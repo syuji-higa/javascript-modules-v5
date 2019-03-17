@@ -132,6 +132,12 @@ window.esdocSearchIndex = [
     "function"
   ],
   [
+    "javascript-modules-v5/src/utils/background-image.js~getbackgroundimages",
+    "function/index.html#static-function-getBackgroundImages",
+    "<span>getBackgroundImages</span> <span class=\"search-result-import-path\">javascript-modules-v5/src/utils/background-image.js</span>",
+    "function"
+  ],
+  [
     "javascript-modules-v5/src/models/trigonometric.js~heightfrombasehypotenuse",
     "function/index.html#static-function-heightFromBaseHypotenuse",
     "<span>heightFromBaseHypotenuse</span> <span class=\"search-result-import-path\">javascript-modules-v5/src/models/trigonometric.js</span>",
@@ -903,6 +909,12 @@ window.esdocSearchIndex = [
     "src/store.js",
     "file/src/store.js.html",
     "src/store.js",
+    "file"
+  ],
+  [
+    "src/utils/background-image.js",
+    "file/src/utils/background-image.js.html",
+    "src/utils/background-image.js",
     "file"
   ],
   [

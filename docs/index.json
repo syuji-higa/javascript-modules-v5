@@ -5199,6 +5199,53 @@
   {
     "__docId__": 179,
     "kind": "file",
+    "name": "src/utils/background-image.js",
+    "content": "/**\n * @param {Element} $el\n * @return {string[]}\n */\nexport const getBackgroundImages = ($el) => {\n  const _backgroundImage /* :string */ = getComputedStyle($el, '')\n    .backgroundImage\n  const _paths /* :string[] */ = []\n\n  if (_backgroundImage === 'none') {\n    return _paths\n  }\n\n  const _images /* :string[] */ = _backgroundImage.split(/,\\s?/)\n\n  if (!_images) {\n    return _paths\n  }\n\n  for (const img /* :string */ of _images) {\n    const _path /* :string */ = img.match(/^url\\(['\"]?(.+[0-9a-zA-Z])['\"]?\\)$/)\n\n    if (typeof _path !== 'undefined' && _path !== null) {\n      _paths.push(_path[1])\n    }\n  }\n\n  return _paths\n}\n",
+    "static": true,
+    "longname": "/Users/higa_syuuji/github/syuji-higa/javascript-modules-v5/src/utils/background-image.js",
+    "access": "public",
+    "description": null,
+    "lineNumber": 1
+  },
+  {
+    "__docId__": 180,
+    "kind": "function",
+    "name": "getBackgroundImages",
+    "memberof": "src/utils/background-image.js",
+    "generator": false,
+    "async": false,
+    "static": true,
+    "longname": "src/utils/background-image.js~getBackgroundImages",
+    "access": "public",
+    "export": true,
+    "importPath": "javascript-modules-v5/src/utils/background-image.js",
+    "importStyle": "{getBackgroundImages}",
+    "description": "",
+    "lineNumber": 5,
+    "params": [
+      {
+        "nullable": null,
+        "types": [
+          "Element"
+        ],
+        "spread": false,
+        "optional": false,
+        "name": "$el",
+        "description": ""
+      }
+    ],
+    "return": {
+      "nullable": null,
+      "types": [
+        "string[]"
+      ],
+      "spread": false,
+      "description": ""
+    }
+  },
+  {
+    "__docId__": 181,
+    "kind": "file",
     "name": "src/utils/debounce.js",
     "content": "/**\n * @param {Object} [options]\n * @param {number} [options.interval] - int[0,inf)\n * @param {boolean} [options.isFirstRun]\n * @return {function}\n */\nexport const debounce = (options = {}) => {\n  const { interval, isFirstRun } = Object.assign(\n    { interval: 100, isFirstRun: false },\n    options\n  )\n  let _timer /* :number int[0,inf) */ = 0\n  let _firstRun /* :boolean */ = true\n\n  return (fn /* :function */) => {\n    if (isFirstRun && _firstRun) {\n      fn()\n      _firstRun = false\n    }\n    clearTimeout(_timer)\n    _timer = setTimeout(() => {\n      fn()\n      _timer = 0\n      if (isFirstRun) {\n        _firstRun = true\n      }\n    }, interval)\n  }\n}\n",
     "static": true,
@@ -5208,7 +5255,7 @@
     "lineNumber": 1
   },
   {
-    "__docId__": 180,
+    "__docId__": 182,
     "kind": "function",
     "name": "debounce",
     "memberof": "src/utils/debounce.js",
@@ -5264,7 +5311,7 @@
     }
   },
   {
-    "__docId__": 181,
+    "__docId__": 183,
     "kind": "file",
     "name": "src/utils/event.js",
     "content": "/**\n * @param {Element} target\n * @param {string} eventType\n * @param {function} listener\n * @param {boolean|Object} [option]\n * @return {Object}\n */\nexport const createEvent = (target, eventType, listener, option = false) => {\n  return {\n    handleEvent: (e) => {\n      listener(e)\n    },\n    add: function() {\n      target.addEventListener(eventType, this, option)\n    },\n    remove: function() {\n      target.removeEventListener(eventType, this, option)\n    }\n  }\n}\n\n/**\n * @param {Array} options\n * @param {Element} options[0] - dispatc target\n * @param {string} options[1] - eventType\n * @param {Object} [options[2]] - event detail\n * @param {Event} event\n *\n * @example\n *   onDispatchEvent.bind(this, [window, 'resize'], e);\n */\nexport const onDispatchEvent = (options, event) => {\n  const [target, eventType, detail] = options\n\n  const _detail /* :Object */ = (() => {\n    const _obj /* :Object */ = {\n      status: event\n    }\n    if (detail) Object.assign(_obj, detail)\n    return _obj\n  })()\n\n  target.dispatchEvent(\n    new CustomEvent(eventType, {\n      detail: _detail\n    })\n  )\n}\n",
@@ -5275,7 +5322,7 @@
     "lineNumber": 1
   },
   {
-    "__docId__": 182,
+    "__docId__": 184,
     "kind": "function",
     "name": "createEvent",
     "memberof": "src/utils/event.js",
@@ -5342,7 +5389,7 @@
     }
   },
   {
-    "__docId__": 183,
+    "__docId__": 185,
     "kind": "function",
     "name": "onDispatchEvent",
     "memberof": "src/utils/event.js",
@@ -5414,7 +5461,7 @@
     "return": null
   },
   {
-    "__docId__": 184,
+    "__docId__": 186,
     "kind": "file",
     "name": "src/utils/load.js",
     "content": "/**\n * @param {Element} $video\n * @return {Promise}\n */\nexport const loadVideo = ($video) => {\n  return new Promise((resolve /* :function */) => {\n    $video.load()\n    $video.addEventListener(\n      'canplaythrough',\n      () => {\n        resolve()\n      },\n      { once: true }\n    )\n  })\n}\n\n/**\n * @param {string} src\n * @param {Object} [options]\n * @param {funciton} [options.done]\n * @param {funciton} [options.fail]\n * @param {funciton} [options.always]\n * @return {Promise}\n */\nexport const loadImage = (src, options = {}) => {\n  const { done, fail, always } = options\n\n  return new Promise((resolve /* :function */) => {\n    const _img /* :Image */ = new Image()\n\n    const _always = (img /* :Image */, isSuccess /* :boolean */) => {\n      if (always) always(img)\n      resolve(img, isSuccess)\n    }\n\n    _img.onload /* :functon */ = () => {\n      if (done) done(_img)\n      _always(_img, true)\n    }\n    _img.onerror /* :functon */ = () => {\n      if (fail) fail(_img)\n      _always(_img, false)\n    }\n\n    _img.src /* :string */ = src\n  })\n}\n\n/**\n * @param {string} file\n * @param {Object} [options]\n * @param {funciton} [options.done]\n * @param {funciton} [options.fail]\n * @param {funciton} [options.always]\n * @return {Promise}\n */\nexport const loadFile = (file, options = {}) => {\n  const { done, fail, always } = options\n\n  return new Promise((resolve /* :function */) => {\n    const _reader /* :FileRender */ = new FileReader()\n\n    const _always /* :function */ = (\n      file_ /* :FileRender */,\n      isSuccess /* :boolean */\n    ) => {\n      if (always) always(file_)\n      resolve(isSuccess)\n    }\n\n    _reader.onload /* :function */ = (file_ /* :FileRender */) => {\n      if (done) done(file_)\n      _always(file_, true)\n    }\n    _reader.onerror /* :function */ = (file_ /* :FileRender */) => {\n      if (fail) fail(file_)\n      _always(file_, false)\n    }\n\n    _reader.readAsDataURL(file)\n  })\n}\n",
@@ -5425,7 +5472,7 @@
     "lineNumber": 1
   },
   {
-    "__docId__": 185,
+    "__docId__": 187,
     "kind": "function",
     "name": "loadVideo",
     "memberof": "src/utils/load.js",
@@ -5461,7 +5508,7 @@
     }
   },
   {
-    "__docId__": 186,
+    "__docId__": 188,
     "kind": "function",
     "name": "loadImage",
     "memberof": "src/utils/load.js",
@@ -5537,7 +5584,7 @@
     }
   },
   {
-    "__docId__": 187,
+    "__docId__": 189,
     "kind": "function",
     "name": "loadFile",
     "memberof": "src/utils/load.js",

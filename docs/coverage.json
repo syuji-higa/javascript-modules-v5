@@ -1,7 +1,7 @@
 {
-  "coverage": "81.65%",
-  "expectCount": 109,
-  "actualCount": 89,
+  "coverage": "81.81%",
+  "expectCount": 110,
+  "actualCount": 90,
   "files": {
     "src/models/array.js": {
       "expectCount": 5,
@@ -154,6 +154,11 @@
         50,
         52
       ]
+    },
+    "src/utils/background-image.js": {
+      "expectCount": 1,
+      "actualCount": 1,
+      "undocumentLines": []
     },
     "src/utils/debounce.js": {
       "expectCount": 1,
