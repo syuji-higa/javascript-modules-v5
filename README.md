@@ -15,6 +15,16 @@ fix command.
 $ npm run lint -- --fix
 ```
 
+## Jest unit test
+```
+$ npm run test
+```
+
+watch command.
+```
+$ npm run test -- --watch
+```
+
 ## ESDoc
 ```
 $ npm run esdoc
