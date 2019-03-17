@@ -2501,6 +2501,134 @@
     }
   },
   {
+    "__docId__": 101,
+    "kind": "file",
+    "name": "src/models/random.js",
+    "content": "/**\n * @param {number} num\n * @param {number} [min]\n * @return {number}\n */\nexport const random = (num, min = 0) => {\n  return Math.random() * (num - min) + min\n}\n\n/**\n * @param {number} num - int\n * @param {number} [min] - int\n * @return {number} int\n */\nexport const randomInt = (num, min = 0) => {\n  return Math.floor(random(num + 1, min))\n}\n\n/**\n * @return {number} -1|1\n */\nexport const randomDir = () => {\n  return randomInt(1) ? 1 : -1\n}\n",
+    "static": true,
+    "longname": "/Users/higa_syuuji/github/syuji-higa/javascript-modules-v5/src/models/random.js",
+    "access": "public",
+    "description": null,
+    "lineNumber": 1
+  },
+  {
+    "__docId__": 102,
+    "kind": "function",
+    "name": "random",
+    "memberof": "src/models/random.js",
+    "generator": false,
+    "async": false,
+    "static": true,
+    "longname": "src/models/random.js~random",
+    "access": "public",
+    "export": true,
+    "importPath": "javascript-modules-v5/src/models/random.js",
+    "importStyle": "{random}",
+    "description": "",
+    "lineNumber": 6,
+    "params": [
+      {
+        "nullable": null,
+        "types": [
+          "number"
+        ],
+        "spread": false,
+        "optional": false,
+        "name": "num",
+        "description": ""
+      },
+      {
+        "nullable": null,
+        "types": [
+          "number"
+        ],
+        "spread": false,
+        "optional": true,
+        "name": "min",
+        "description": ""
+      }
+    ],
+    "return": {
+      "nullable": null,
+      "types": [
+        "number"
+      ],
+      "spread": false,
+      "description": ""
+    }
+  },
+  {
+    "__docId__": 103,
+    "kind": "function",
+    "name": "randomInt",
+    "memberof": "src/models/random.js",
+    "generator": false,
+    "async": false,
+    "static": true,
+    "longname": "src/models/random.js~randomInt",
+    "access": "public",
+    "export": true,
+    "importPath": "javascript-modules-v5/src/models/random.js",
+    "importStyle": "{randomInt}",
+    "description": "",
+    "lineNumber": 15,
+    "params": [
+      {
+        "nullable": null,
+        "types": [
+          "number"
+        ],
+        "spread": false,
+        "optional": false,
+        "name": "num",
+        "description": "int"
+      },
+      {
+        "nullable": null,
+        "types": [
+          "number"
+        ],
+        "spread": false,
+        "optional": true,
+        "name": "min",
+        "description": "int"
+      }
+    ],
+    "return": {
+      "nullable": null,
+      "types": [
+        "number"
+      ],
+      "spread": false,
+      "description": "int"
+    }
+  },
+  {
+    "__docId__": 104,
+    "kind": "function",
+    "name": "randomDir",
+    "memberof": "src/models/random.js",
+    "generator": false,
+    "async": false,
+    "static": true,
+    "longname": "src/models/random.js~randomDir",
+    "access": "public",
+    "export": true,
+    "importPath": "javascript-modules-v5/src/models/random.js",
+    "importStyle": "{randomDir}",
+    "description": "",
+    "lineNumber": 22,
+    "return": {
+      "nullable": null,
+      "types": [
+        "number"
+      ],
+      "spread": false,
+      "description": "1|1"
+    },
+    "params": []
+  },
+  {
     "kind": "index",
     "content": "# JavaScript Modules\n\n## Check rules that are in conflict with Prettier\n```\n$ npm run eslint-check\n```\n\n## ESLint and Prettier\n```\n$ npm run lint\n```\n\nfix command.\n```\n$ npm run lint -- --fix\n```\n\n## Jest unit test\n```\n$ npm run test\n```\n\nwatch command.\n```\n$ npm run test -- --watch\n```\n\n## ESDoc\n```\n$ npm run esdoc\n```\n\n## ESLint and Jest and ESDoc\n```\n$ npm run precommit\n```\n",
     "longname": "/Users/higa_syuuji/github/syuji-higa/javascript-modules-v5/README.md",

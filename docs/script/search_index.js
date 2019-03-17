@@ -150,6 +150,24 @@ window.esdocSearchIndex = [
     "function"
   ],
   [
+    "javascript-modules-v5/src/models/random.js~random",
+    "function/index.html#static-function-random",
+    "<span>random</span> <span class=\"search-result-import-path\">javascript-modules-v5/src/models/random.js</span>",
+    "function"
+  ],
+  [
+    "javascript-modules-v5/src/models/random.js~randomdir",
+    "function/index.html#static-function-randomDir",
+    "<span>randomDir</span> <span class=\"search-result-import-path\">javascript-modules-v5/src/models/random.js</span>",
+    "function"
+  ],
+  [
+    "javascript-modules-v5/src/models/random.js~randomint",
+    "function/index.html#static-function-randomInt",
+    "<span>randomInt</span> <span class=\"search-result-import-path\">javascript-modules-v5/src/models/random.js</span>",
+    "function"
+  ],
+  [
     "javascript-modules-v5/src/models/math.js~round",
     "function/index.html#static-function-round",
     "<span>round</span> <span class=\"search-result-import-path\">javascript-modules-v5/src/models/math.js</span>",
@@ -579,6 +597,12 @@ window.esdocSearchIndex = [
     "src/models/query-string.js",
     "file/src/models/query-string.js.html",
     "src/models/query-string.js",
+    "file"
+  ],
+  [
+    "src/models/random.js",
+    "file/src/models/random.js.html",
+    "src/models/random.js",
     "file"
   ]
 ]
