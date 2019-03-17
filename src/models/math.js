@@ -54,7 +54,7 @@ export const ceil = (num, digit = 6) => {
 
 /**
  * @param {number} num
- * @return {number} -1 | 0 | 1
+ * @return {number} -1|0|1
  */
 export const sign = (num) => {
   return num > 0 ? 1 : num < 0 ? -1 : 0
