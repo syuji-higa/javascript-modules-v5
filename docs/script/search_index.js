@@ -120,9 +120,21 @@ window.esdocSearchIndex = [
     "function"
   ],
   [
+    "javascript-modules-v5/src/models/query-string.js~parse",
+    "function/index.html#static-function-parse",
+    "<span>parse</span> <span class=\"search-result-import-path\">javascript-modules-v5/src/models/query-string.js</span>",
+    "function"
+  ],
+  [
     "javascript-modules-v5/src/models/math.js~round",
     "function/index.html#static-function-round",
     "<span>round</span> <span class=\"search-result-import-path\">javascript-modules-v5/src/models/math.js</span>",
+    "function"
+  ],
+  [
+    "javascript-modules-v5/src/models/query-string.js~serialize",
+    "function/index.html#static-function-serialize",
+    "<span>serialize</span> <span class=\"search-result-import-path\">javascript-modules-v5/src/models/query-string.js</span>",
     "function"
   ],
   [
@@ -519,6 +531,12 @@ window.esdocSearchIndex = [
     "src/models/object.js",
     "file/src/models/object.js.html",
     "src/models/object.js",
+    "file"
+  ],
+  [
+    "src/models/query-string.js",
+    "file/src/models/query-string.js.html",
+    "src/models/query-string.js",
     "file"
   ]
 ]

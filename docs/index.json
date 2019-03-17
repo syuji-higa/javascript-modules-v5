@@ -2050,6 +2050,159 @@
     }
   },
   {
+    "__docId__": 90,
+    "kind": "file",
+    "name": "src/models/query-string.js",
+    "content": "/**\n * @param {string} str\n * @param {Object} [options]\n * @param {string} [options.sep]\n * @param {string} [options.eq]\n * @param {boolean} [options.typeChange]\n * @return {Object}\n */\nexport const parse = (str, options = {}) => {\n  const { sep, eq, typeChange } = Object.assign(\n    {\n      sep: '&',\n      eq: '=',\n      typeChange: true\n    },\n    options\n  )\n  if (!str || typeof str !== 'string') {\n    return {}\n  }\n  return String(str)\n    .split(sep)\n    .reduce((obj /* :Object */, param /* :string */) => {\n      const [key /* :string */, val /* :string */] = param.split(eq)\n      const _val /* :string|number|boolean */ = (() => {\n        if (!typeChange) return val\n        if (val.match(/^[+,-]?([1-9]\\d*|0)(\\.\\d+)?$/)) {\n          return Number(val)\n        }\n        switch (val) {\n          case 'true':\n            return true\n          case 'false':\n            return false\n          default:\n            return val\n        }\n      })()\n      obj[key] /* :string|number|boolean */ = _val\n      return obj\n    }, {})\n}\n\n/**\n * @param {Object} data\n * @param {Object} [options]\n * @param {string} [options.sep]\n * @param {string} [options.eq]\n * @return {string}\n */\nexport const serialize = (data, options = {}) => {\n  const { sep, eq } = Object.assign({ sep: '&', eq: '=' }, options)\n  const _encode /* :function */ = encodeURIComponent\n  let _query /* :string */ = ''\n\n  Object.entries(data).forEach(\n    ([key /* :string */, val /* :string|number|Object|*[] */]) => {\n      const _type /* :string */ =\n        typeof val === 'object' && val instanceof Array ? 'array' : typeof val\n\n      switch (_type) {\n        case 'undefined':\n          _query += key\n          break\n        case 'array':\n          val.forEach((_i) => {\n            _query += `${key}[]${eq + _encode(val[_i]) + sep}`\n          })\n          _query = _query.substr(0, _query.length - 1)\n          break\n        case 'object':\n          Object.entries(val).forEach(([key_ /* :string */, val_ /* :* */]) => {\n            _query += `${key}[${key_}]${eq + _encode(val_) + sep}`\n          })\n          _query = _query.substr(0, _query.length - 1)\n          break\n        default:\n          _query += key + eq + _encode(val)\n          break\n      }\n      _query += sep\n    }\n  )\n  return _query.substr(0, _query.length - 1)\n}\n",
+    "static": true,
+    "longname": "/Users/higa_syuuji/github/syuji-higa/javascript-modules-v5/src/models/query-string.js",
+    "access": "public",
+    "description": null,
+    "lineNumber": 1
+  },
+  {
+    "__docId__": 91,
+    "kind": "function",
+    "name": "parse",
+    "memberof": "src/models/query-string.js",
+    "generator": false,
+    "async": false,
+    "static": true,
+    "longname": "src/models/query-string.js~parse",
+    "access": "public",
+    "export": true,
+    "importPath": "javascript-modules-v5/src/models/query-string.js",
+    "importStyle": "{parse}",
+    "description": "",
+    "lineNumber": 9,
+    "params": [
+      {
+        "nullable": null,
+        "types": [
+          "string"
+        ],
+        "spread": false,
+        "optional": false,
+        "name": "str",
+        "description": ""
+      },
+      {
+        "nullable": null,
+        "types": [
+          "Object"
+        ],
+        "spread": false,
+        "optional": true,
+        "name": "options",
+        "description": ""
+      },
+      {
+        "nullable": null,
+        "types": [
+          "string"
+        ],
+        "spread": false,
+        "optional": true,
+        "name": "options.sep",
+        "description": ""
+      },
+      {
+        "nullable": null,
+        "types": [
+          "string"
+        ],
+        "spread": false,
+        "optional": true,
+        "name": "options.eq",
+        "description": ""
+      },
+      {
+        "nullable": null,
+        "types": [
+          "boolean"
+        ],
+        "spread": false,
+        "optional": true,
+        "name": "options.typeChange",
+        "description": ""
+      }
+    ],
+    "return": {
+      "nullable": null,
+      "types": [
+        "Object"
+      ],
+      "spread": false,
+      "description": ""
+    }
+  },
+  {
+    "__docId__": 92,
+    "kind": "function",
+    "name": "serialize",
+    "memberof": "src/models/query-string.js",
+    "generator": false,
+    "async": false,
+    "static": true,
+    "longname": "src/models/query-string.js~serialize",
+    "access": "public",
+    "export": true,
+    "importPath": "javascript-modules-v5/src/models/query-string.js",
+    "importStyle": "{serialize}",
+    "description": "",
+    "lineNumber": 51,
+    "params": [
+      {
+        "nullable": null,
+        "types": [
+          "Object"
+        ],
+        "spread": false,
+        "optional": false,
+        "name": "data",
+        "description": ""
+      },
+      {
+        "nullable": null,
+        "types": [
+          "Object"
+        ],
+        "spread": false,
+        "optional": true,
+        "name": "options",
+        "description": ""
+      },
+      {
+        "nullable": null,
+        "types": [
+          "string"
+        ],
+        "spread": false,
+        "optional": true,
+        "name": "options.sep",
+        "description": ""
+      },
+      {
+        "nullable": null,
+        "types": [
+          "string"
+        ],
+        "spread": false,
+        "optional": true,
+        "name": "options.eq",
+        "description": ""
+      }
+    ],
+    "return": {
+      "nullable": null,
+      "types": [
+        "string"
+      ],
+      "spread": false,
+      "description": ""
+    }
+  },
+  {
     "kind": "index",
     "content": "# JavaScript Modules\n\n## Check rules that are in conflict with Prettier\n```\n$ npm run eslint-check\n```\n\n## ESLint and Prettier\n```\n$ npm run lint\n```\n\nfix command.\n```\n$ npm run lint -- --fix\n```\n\n## Jest unit test\n```\n$ npm run test\n```\n\nwatch command.\n```\n$ npm run test -- --watch\n```\n\n## ESDoc\n```\n$ npm run esdoc\n```\n\n## ESLint and Jest and ESDoc\n```\n$ npm run precommit\n```\n",
     "longname": "/Users/higa_syuuji/github/syuji-higa/javascript-modules-v5/README.md",
