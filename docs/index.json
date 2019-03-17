@@ -1287,7 +1287,7 @@
     "__docId__": 68,
     "kind": "file",
     "name": "src/models/form-data.js",
-    "content": "/**\n * @param {Object} obj\n * @return {FormData}\n */\nexport const toFormData = (obj) => {\n  return Object.entries(obj).reduce((\n    formData /* :Instance */,\n    [key /* :string */, val /* :* */]\n  ) => {\n    formData.append(key, val)\n    return formData\n  }, new FormData())\n}\n",
+    "content": "/**\n * @param {Object} obj\n * @return {FormData}\n */\nexport const toFormData = (obj) => {\n  return Object.entries(obj).reduce((\n    formData /* :FormData */,\n    [key /* :string */, val /* :* */]\n  ) => {\n    formData.append(key, val)\n    return formData\n  }, new FormData())\n}\n",
     "static": true,
     "longname": "/Users/higa_syuuji/github/syuji-higa/javascript-modules-v5/src/models/form-data.js",
     "access": "public",

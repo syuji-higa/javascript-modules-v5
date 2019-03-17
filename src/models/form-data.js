@@ -4,7 +4,7 @@
  */
 export const toFormData = (obj) => {
   return Object.entries(obj).reduce((
-    formData /* :Instance */,
+    formData /* :FormData */,
     [key /* :string */, val /* :* */]
   ) => {
     formData.append(key, val)
