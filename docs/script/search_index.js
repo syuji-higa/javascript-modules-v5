@@ -168,6 +168,12 @@ window.esdocSearchIndex = [
     "function"
   ],
   [
+    "javascript-modules-v5/src/models/url.js~ismatchlocation",
+    "function/index.html#static-function-isMatchLocation",
+    "<span>isMatchLocation</span> <span class=\"search-result-import-path\">javascript-modules-v5/src/models/url.js</span>",
+    "function"
+  ],
+  [
     "javascript-modules-v5/src/models/ratio.js~normalizeoverratio",
     "function/index.html#static-function-normalizeOverRatio",
     "<span>normalizeOverRatio</span> <span class=\"search-result-import-path\">javascript-modules-v5/src/models/ratio.js</span>",
@@ -213,6 +219,12 @@ window.esdocSearchIndex = [
     "javascript-modules-v5/src/models/query-string.js~parse",
     "function/index.html#static-function-parse",
     "<span>parse</span> <span class=\"search-result-import-path\">javascript-modules-v5/src/models/query-string.js</span>",
+    "function"
+  ],
+  [
+    "javascript-modules-v5/src/models/url.js~parseurl",
+    "function/index.html#static-function-parseUrl",
+    "<span>parseUrl</span> <span class=\"search-result-import-path\">javascript-modules-v5/src/models/url.js</span>",
     "function"
   ],
   [
@@ -765,6 +777,12 @@ window.esdocSearchIndex = [
     "src/models/trigonometric.js",
     "file/src/models/trigonometric.js.html",
     "src/models/trigonometric.js",
+    "file"
+  ],
+  [
+    "src/models/url.js",
+    "file/src/models/url.js.html",
+    "src/models/url.js",
     "file"
   ]
 ]

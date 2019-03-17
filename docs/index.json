@@ -3829,6 +3829,241 @@
     }
   },
   {
+    "__docId__": 132,
+    "kind": "file",
+    "name": "src/models/url.js",
+    "content": "/**\n * @param {string} str\n * @return {Object}\n * @property {string} href - example: 'http://localhost:3000/about/index.html?param#hash'\n * @property {string} hrefPathname - example: 'http://localhost:3000/about/index.html'\n * @property {string} hrefDirname - example: 'http://localhost:3000/about/'\n * @property {string} origin - example: 'http://localhost:3000'\n * @property {string} protocol  - example: 'http:'\n * @property {string} host - example: 'localhost:3000'\n * @property {string} hostname - example: 'localhost'\n * @property {string} port - example: '3000'\n * @property {string} local - example: '/about/index.html?param#hash'\n * @property {string} pathname - example: '/about/index.html'\n * @property {string} dirname - example: '/about/'\n * @property {string} filename - example: 'index.html'\n * @property {string} extname - example: 'html'\n * @property {string} search - example: '?param'\n * @property {string} hash - example: '#hash'\n */\nexport const parseUrl = (str) => {\n  const _urlStrs /* :string[] */ = str.match(\n    /^(http:|https:)\\/\\/([^\\/:]+):?([0-9]{1,5})?(\\/[^?#]*)(\\?[^#]+)?(#.*)?$/\n  )\n\n  if (!_urlStrs) return null\n\n  const [\n    _href,\n    _protocol,\n    _hostname,\n    _port,\n    _pathname,\n    _search,\n    _hash\n  ] = _urlStrs\n\n  const _host /* :string */ = _port ? `${_hostname}:${_port}` : _hostname\n  const _origin /* :string */ = `${_protocol}//${_host}`\n  const _local /* :string */ = (() => {\n    let _pn /* :string */ = _pathname\n    if (_search) _pn += _search\n    if (_hash) _pn += _hash\n    return _pn\n  })()\n  const _filenameStrs /* :string[] */ = _pathname.match(\n    /^[^.]*(\\/(.+\\.(.+)))?$/\n  )\n  const _dirname /* :string */ = _pathname.replace(_filenameStrs[2], '')\n\n  return {\n    href: _href,\n    hrefPathname: _origin + _pathname,\n    hrefDirname: _origin + _dirname,\n    origin: _origin,\n    local: _local,\n    protocol: _protocol,\n    host: _host,\n    hostname: _hostname,\n    port: _port,\n    pathname: _pathname,\n    dirname: _dirname,\n    filename: _filenameStrs[2],\n    extname: _filenameStrs[3],\n    search: _search,\n    hash: _hash\n  }\n}\n\n/**\n * @param {string} href\n * @return {boolean}\n */\nexport const isMatchLocation = (href) => {\n  const { origin /* :string */, pathname /* :string */ } = parseUrl(\n    location.href\n  )\n\n  const _rx /* :RegExp */ = new RegExp(`^${origin}${pathname}(\\\\\\?.+)?(#.*)?$`)\n\n  return !!href.match(_rx)\n}\n",
+    "static": true,
+    "longname": "/Users/higa_syuuji/github/syuji-higa/javascript-modules-v5/src/models/url.js",
+    "access": "public",
+    "description": null,
+    "lineNumber": 1
+  },
+  {
+    "__docId__": 133,
+    "kind": "function",
+    "name": "parseUrl",
+    "memberof": "src/models/url.js",
+    "generator": false,
+    "async": false,
+    "static": true,
+    "longname": "src/models/url.js~parseUrl",
+    "access": "public",
+    "export": true,
+    "importPath": "javascript-modules-v5/src/models/url.js",
+    "importStyle": "{parseUrl}",
+    "description": "",
+    "lineNumber": 20,
+    "params": [
+      {
+        "nullable": null,
+        "types": [
+          "string"
+        ],
+        "spread": false,
+        "optional": false,
+        "name": "str",
+        "description": ""
+      }
+    ],
+    "properties": [
+      {
+        "nullable": null,
+        "types": [
+          "string"
+        ],
+        "spread": false,
+        "optional": false,
+        "name": "href",
+        "description": "example: 'http://localhost:3000/about/index.html?param#hash'"
+      },
+      {
+        "nullable": null,
+        "types": [
+          "string"
+        ],
+        "spread": false,
+        "optional": false,
+        "name": "hrefPathname",
+        "description": "example: 'http://localhost:3000/about/index.html'"
+      },
+      {
+        "nullable": null,
+        "types": [
+          "string"
+        ],
+        "spread": false,
+        "optional": false,
+        "name": "hrefDirname",
+        "description": "example: 'http://localhost:3000/about/'"
+      },
+      {
+        "nullable": null,
+        "types": [
+          "string"
+        ],
+        "spread": false,
+        "optional": false,
+        "name": "origin",
+        "description": "example: 'http://localhost:3000'"
+      },
+      {
+        "nullable": null,
+        "types": [
+          "string"
+        ],
+        "spread": false,
+        "optional": false,
+        "name": "protocol",
+        "description": "example: 'http:'"
+      },
+      {
+        "nullable": null,
+        "types": [
+          "string"
+        ],
+        "spread": false,
+        "optional": false,
+        "name": "host",
+        "description": "example: 'localhost:3000'"
+      },
+      {
+        "nullable": null,
+        "types": [
+          "string"
+        ],
+        "spread": false,
+        "optional": false,
+        "name": "hostname",
+        "description": "example: 'localhost'"
+      },
+      {
+        "nullable": null,
+        "types": [
+          "string"
+        ],
+        "spread": false,
+        "optional": false,
+        "name": "port",
+        "description": "example: '3000'"
+      },
+      {
+        "nullable": null,
+        "types": [
+          "string"
+        ],
+        "spread": false,
+        "optional": false,
+        "name": "local",
+        "description": "example: '/about/index.html?param#hash'"
+      },
+      {
+        "nullable": null,
+        "types": [
+          "string"
+        ],
+        "spread": false,
+        "optional": false,
+        "name": "pathname",
+        "description": "example: '/about/index.html'"
+      },
+      {
+        "nullable": null,
+        "types": [
+          "string"
+        ],
+        "spread": false,
+        "optional": false,
+        "name": "dirname",
+        "description": "example: '/about/'"
+      },
+      {
+        "nullable": null,
+        "types": [
+          "string"
+        ],
+        "spread": false,
+        "optional": false,
+        "name": "filename",
+        "description": "example: 'index.html'"
+      },
+      {
+        "nullable": null,
+        "types": [
+          "string"
+        ],
+        "spread": false,
+        "optional": false,
+        "name": "extname",
+        "description": "example: 'html'"
+      },
+      {
+        "nullable": null,
+        "types": [
+          "string"
+        ],
+        "spread": false,
+        "optional": false,
+        "name": "search",
+        "description": "example: '?param'"
+      },
+      {
+        "nullable": null,
+        "types": [
+          "string"
+        ],
+        "spread": false,
+        "optional": false,
+        "name": "hash",
+        "description": "example: '#hash'"
+      }
+    ],
+    "return": {
+      "nullable": null,
+      "types": [
+        "Object"
+      ],
+      "spread": false,
+      "description": ""
+    }
+  },
+  {
+    "__docId__": 134,
+    "kind": "function",
+    "name": "isMatchLocation",
+    "memberof": "src/models/url.js",
+    "generator": false,
+    "async": false,
+    "static": true,
+    "longname": "src/models/url.js~isMatchLocation",
+    "access": "public",
+    "export": true,
+    "importPath": "javascript-modules-v5/src/models/url.js",
+    "importStyle": "{isMatchLocation}",
+    "description": "",
+    "lineNumber": 73,
+    "params": [
+      {
+        "nullable": null,
+        "types": [
+          "string"
+        ],
+        "spread": false,
+        "optional": false,
+        "name": "href",
+        "description": ""
+      }
+    ],
+    "return": {
+      "nullable": null,
+      "types": [
+        "boolean"
+      ],
+      "spread": false,
+      "description": ""
+    }
+  },
+  {
     "kind": "index",
     "content": "# JavaScript Modules\n\n## Check rules that are in conflict with Prettier\n```\n$ npm run eslint-check\n```\n\n## ESLint and Prettier\n```\n$ npm run lint\n```\n\nfix command.\n```\n$ npm run lint -- --fix\n```\n\n## Jest unit test\n```\n$ npm run test\n```\n\nwatch command.\n```\n$ npm run test -- --watch\n```\n\n## ESDoc\n```\n$ npm run esdoc\n```\n\n## ESLint and Jest and ESDoc\n```\n$ npm run precommit\n```\n",
     "longname": "/Users/higa_syuuji/github/syuji-higa/javascript-modules-v5/README.md",
