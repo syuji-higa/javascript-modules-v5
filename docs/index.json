@@ -2894,6 +2894,141 @@
     }
   },
   {
+    "__docId__": 109,
+    "kind": "file",
+    "name": "src/models/squares.js",
+    "content": "/**\n * squares\n */\n\n/**\n * @param {number} col - int[0,inf)\n * @param {number} x - int[0,inf)\n * @param {number} y - int[0,inf)\n * @return {number} int[0,inf)\n */\nexport const squaresIndex = (col, x, y) => {\n  return col * y + x\n}\n\n/**\n * @param {number} col - int[0,inf)\n * @param {number} index - int[0,inf)\n * @return {number[]} int[0,inf)\n * @property {number} 0 int[0,inf)  x position\n * @property {number} 1 int[0,inf)  y position\n */\nexport const squaresPosition = (col, index) => {\n  const x /* :number int[0,inf) */ = index % col\n  const y /* :number int[0,inf) */ = (index - x) / col\n  return [x, y]\n}\n",
+    "static": true,
+    "longname": "/Users/higa_syuuji/github/syuji-higa/javascript-modules-v5/src/models/squares.js",
+    "access": "public",
+    "description": null,
+    "lineNumber": 1
+  },
+  {
+    "__docId__": 110,
+    "kind": "function",
+    "name": "squaresIndex",
+    "memberof": "src/models/squares.js",
+    "generator": false,
+    "async": false,
+    "static": true,
+    "longname": "src/models/squares.js~squaresIndex",
+    "access": "public",
+    "export": true,
+    "importPath": "javascript-modules-v5/src/models/squares.js",
+    "importStyle": "{squaresIndex}",
+    "description": "",
+    "lineNumber": 11,
+    "params": [
+      {
+        "nullable": null,
+        "types": [
+          "number"
+        ],
+        "spread": false,
+        "optional": false,
+        "name": "col",
+        "description": "int[0,inf)"
+      },
+      {
+        "nullable": null,
+        "types": [
+          "number"
+        ],
+        "spread": false,
+        "optional": false,
+        "name": "x",
+        "description": "int[0,inf)"
+      },
+      {
+        "nullable": null,
+        "types": [
+          "number"
+        ],
+        "spread": false,
+        "optional": false,
+        "name": "y",
+        "description": "int[0,inf)"
+      }
+    ],
+    "return": {
+      "nullable": null,
+      "types": [
+        "number"
+      ],
+      "spread": false,
+      "description": "int[0,inf)"
+    }
+  },
+  {
+    "__docId__": 111,
+    "kind": "function",
+    "name": "squaresPosition",
+    "memberof": "src/models/squares.js",
+    "generator": false,
+    "async": false,
+    "static": true,
+    "longname": "src/models/squares.js~squaresPosition",
+    "access": "public",
+    "export": true,
+    "importPath": "javascript-modules-v5/src/models/squares.js",
+    "importStyle": "{squaresPosition}",
+    "description": "",
+    "lineNumber": 22,
+    "params": [
+      {
+        "nullable": null,
+        "types": [
+          "number"
+        ],
+        "spread": false,
+        "optional": false,
+        "name": "col",
+        "description": "int[0,inf)"
+      },
+      {
+        "nullable": null,
+        "types": [
+          "number"
+        ],
+        "spread": false,
+        "optional": false,
+        "name": "index",
+        "description": "int[0,inf)"
+      }
+    ],
+    "properties": [
+      {
+        "nullable": null,
+        "types": [
+          "number"
+        ],
+        "spread": false,
+        "optional": false,
+        "name": "0",
+        "description": "int[0,inf)  x position"
+      },
+      {
+        "nullable": null,
+        "types": [
+          "number"
+        ],
+        "spread": false,
+        "optional": false,
+        "name": "1",
+        "description": "int[0,inf)  y position"
+      }
+    ],
+    "return": {
+      "nullable": null,
+      "types": [
+        "number[]"
+      ],
+      "spread": false,
+      "description": "int[0,inf)"
+    }
+  },
+  {
     "kind": "index",
     "content": "# JavaScript Modules\n\n## Check rules that are in conflict with Prettier\n```\n$ npm run eslint-check\n```\n\n## ESLint and Prettier\n```\n$ npm run lint\n```\n\nfix command.\n```\n$ npm run lint -- --fix\n```\n\n## Jest unit test\n```\n$ npm run test\n```\n\nwatch command.\n```\n$ npm run test -- --watch\n```\n\n## ESDoc\n```\n$ npm run esdoc\n```\n\n## ESLint and Jest and ESDoc\n```\n$ npm run precommit\n```\n",
     "longname": "/Users/higa_syuuji/github/syuji-higa/javascript-modules-v5/README.md",

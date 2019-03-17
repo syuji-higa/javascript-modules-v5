@@ -210,6 +210,18 @@ window.esdocSearchIndex = [
     "function"
   ],
   [
+    "javascript-modules-v5/src/models/squares.js~squaresindex",
+    "function/index.html#static-function-squaresIndex",
+    "<span>squaresIndex</span> <span class=\"search-result-import-path\">javascript-modules-v5/src/models/squares.js</span>",
+    "function"
+  ],
+  [
+    "javascript-modules-v5/src/models/squares.js~squaresposition",
+    "function/index.html#static-function-squaresPosition",
+    "<span>squaresPosition</span> <span class=\"search-result-import-path\">javascript-modules-v5/src/models/squares.js</span>",
+    "function"
+  ],
+  [
     "javascript-modules-v5/src/models/math.js~toangle",
     "function/index.html#static-function-toAngle",
     "<span>toAngle</span> <span class=\"search-result-import-path\">javascript-modules-v5/src/models/math.js</span>",
@@ -627,6 +639,12 @@ window.esdocSearchIndex = [
     "src/models/ratio.js",
     "file/src/models/ratio.js.html",
     "src/models/ratio.js",
+    "file"
+  ],
+  [
+    "src/models/squares.js",
+    "file/src/models/squares.js.html",
+    "src/models/squares.js",
     "file"
   ]
 ]
