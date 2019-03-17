@@ -30,7 +30,7 @@ $ npm run test -- --watch
 $ npm run esdoc
 ```
 
-## ESLint and ESDoc
+## ESLint and Jest and ESDoc
 ```
 $ npm run precommit
 ```
