@@ -1,7 +1,7 @@
 {
-  "coverage": "92.22%",
-  "expectCount": 90,
-  "actualCount": 83,
+  "coverage": "81.13%",
+  "expectCount": 106,
+  "actualCount": 86,
   "files": {
     "src/models/array.js": {
       "expectCount": 5,
@@ -122,12 +122,37 @@
         4
       ]
     },
+    "src/modules/window-size-observer.js": {
+      "expectCount": 9,
+      "actualCount": 3,
+      "undocumentLines": [
+        9,
+        10,
+        11,
+        12,
+        14,
+        72
+      ]
+    },
     "src/pattern/singleton.js": {
       "expectCount": 5,
       "actualCount": 3,
       "undocumentLines": [
         1,
         25
+      ]
+    },
+    "src/store.js": {
+      "expectCount": 7,
+      "actualCount": 0,
+      "undocumentLines": [
+        10,
+        11,
+        18,
+        30,
+        48,
+        50,
+        52
       ]
     },
     "src/utils/debounce.js": {

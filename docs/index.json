@@ -4765,6 +4765,181 @@
   {
     "__docId__": 152,
     "kind": "file",
+    "name": "src/modules/window-size-observer.js",
+    "content": "/**\n * depends on 'vanix' used in '../store'\n */\n\nimport { store } from '../store'\nimport { eventer } from './module'\nimport { debounce } from '../utils/debounce'\n\nclass WindowSizeObserver {\n  _isMobile /* :boolane */ = false\n  _resizeDebounce /* :function */\n  _resizeEvent /* :Object */ = {}\n\n  constructor() {\n    this._isMobile = !!store.state.platform.type.match(/^mobile$/)\n\n    this._resizeDebounce = debounce(200)\n    this._resizeEvent = eventer.create(\n      window,\n      'resize',\n      this._onResize.bind(this)\n    )\n  }\n\n  /**\n   * @return {Instance}\n   */\n  on() {\n    this._resizeEvent.add()\n    return this\n  }\n\n  /**\n   * @return {Instance}\n   */\n  off() {\n    this._resizeEvent.remove()\n    return this\n  }\n\n  /**\n   * @return {Instance}\n   */\n  resize() {\n    store.commit('setWindowWidth', window.innerWidth)\n    store.commit('setWindowHeight', window.innerHeight)\n\n    if (\n      !this._isMobile ||\n      store.state.windowWidthLastChangedHeight !== window.innerWidth\n    ) {\n      store.commit('setWindowWidthLastChangedHeight', window.innerHeight)\n    }\n\n    if (store.state.breakPoint[0] > store.state.windowWidth) {\n      if (store.state.windowSizeType !== 'mobile') {\n        store.commit('setWindowSizeType', 'mobile')\n      }\n    } else if (store.state.breakPoint[1] > store.state.windowWidth) {\n      if (store.state.windowSizeType !== 'tablet') {\n        store.commit('setWindowSizeType', 'tablet')\n      }\n    } else {\n      if (store.state.windowSizeType !== 'desktop') {\n        store.commit('setWindowSizeType', 'desktop')\n      }\n    }\n\n    return this\n  }\n\n  _onResize() {\n    this._resizeDebounce(this.resize.bind(this))\n  }\n}\n\nexport { WindowSizeObserver as default }\n",
+    "static": true,
+    "longname": "/Users/higa_syuuji/github/syuji-higa/javascript-modules-v5/src/modules/window-size-observer.js",
+    "access": "public",
+    "description": null,
+    "lineNumber": 1
+  },
+  {
+    "__docId__": 153,
+    "kind": "class",
+    "name": "WindowSizeObserver",
+    "memberof": "src/modules/window-size-observer.js",
+    "static": true,
+    "longname": "src/modules/window-size-observer.js~WindowSizeObserver",
+    "access": "public",
+    "export": false,
+    "importPath": "javascript-modules-v5/src/modules/window-size-observer.js",
+    "importStyle": null,
+    "description": null,
+    "lineNumber": 9,
+    "undocument": true,
+    "interface": false,
+    "ignore": true
+  },
+  {
+    "__docId__": 154,
+    "kind": "member",
+    "name": "_isMobile",
+    "memberof": "src/modules/window-size-observer.js~WindowSizeObserver",
+    "static": false,
+    "longname": "src/modules/window-size-observer.js~WindowSizeObserver#_isMobile",
+    "access": "private",
+    "description": null,
+    "lineNumber": 10,
+    "undocument": true,
+    "type": {
+      "types": [
+        "*"
+      ]
+    }
+  },
+  {
+    "__docId__": 155,
+    "kind": "member",
+    "name": "_resizeDebounce",
+    "memberof": "src/modules/window-size-observer.js~WindowSizeObserver",
+    "static": false,
+    "longname": "src/modules/window-size-observer.js~WindowSizeObserver#_resizeDebounce",
+    "access": "private",
+    "description": null,
+    "lineNumber": 11,
+    "undocument": true,
+    "type": {
+      "types": [
+        "*"
+      ]
+    }
+  },
+  {
+    "__docId__": 156,
+    "kind": "member",
+    "name": "_resizeEvent",
+    "memberof": "src/modules/window-size-observer.js~WindowSizeObserver",
+    "static": false,
+    "longname": "src/modules/window-size-observer.js~WindowSizeObserver#_resizeEvent",
+    "access": "private",
+    "description": null,
+    "lineNumber": 12,
+    "undocument": true,
+    "type": {
+      "types": [
+        "*"
+      ]
+    }
+  },
+  {
+    "__docId__": 157,
+    "kind": "constructor",
+    "name": "constructor",
+    "memberof": "src/modules/window-size-observer.js~WindowSizeObserver",
+    "generator": false,
+    "async": false,
+    "static": false,
+    "longname": "src/modules/window-size-observer.js~WindowSizeObserver#constructor",
+    "access": "public",
+    "description": null,
+    "lineNumber": 14,
+    "undocument": true
+  },
+  {
+    "__docId__": 161,
+    "kind": "method",
+    "name": "on",
+    "memberof": "src/modules/window-size-observer.js~WindowSizeObserver",
+    "generator": false,
+    "async": false,
+    "static": false,
+    "longname": "src/modules/window-size-observer.js~WindowSizeObserver#on",
+    "access": "public",
+    "description": "",
+    "lineNumber": 28,
+    "return": {
+      "nullable": null,
+      "types": [
+        "Instance"
+      ],
+      "spread": false,
+      "description": ""
+    },
+    "params": []
+  },
+  {
+    "__docId__": 162,
+    "kind": "method",
+    "name": "off",
+    "memberof": "src/modules/window-size-observer.js~WindowSizeObserver",
+    "generator": false,
+    "async": false,
+    "static": false,
+    "longname": "src/modules/window-size-observer.js~WindowSizeObserver#off",
+    "access": "public",
+    "description": "",
+    "lineNumber": 36,
+    "return": {
+      "nullable": null,
+      "types": [
+        "Instance"
+      ],
+      "spread": false,
+      "description": ""
+    },
+    "params": []
+  },
+  {
+    "__docId__": 163,
+    "kind": "method",
+    "name": "resize",
+    "memberof": "src/modules/window-size-observer.js~WindowSizeObserver",
+    "generator": false,
+    "async": false,
+    "static": false,
+    "longname": "src/modules/window-size-observer.js~WindowSizeObserver#resize",
+    "access": "public",
+    "description": "",
+    "lineNumber": 44,
+    "return": {
+      "nullable": null,
+      "types": [
+        "Instance"
+      ],
+      "spread": false,
+      "description": ""
+    },
+    "params": []
+  },
+  {
+    "__docId__": 164,
+    "kind": "method",
+    "name": "_onResize",
+    "memberof": "src/modules/window-size-observer.js~WindowSizeObserver",
+    "generator": false,
+    "async": false,
+    "static": false,
+    "longname": "src/modules/window-size-observer.js~WindowSizeObserver#_onResize",
+    "access": "private",
+    "description": null,
+    "lineNumber": 72,
+    "undocument": true,
+    "params": [],
+    "return": null
+  },
+  {
+    "__docId__": 165,
+    "kind": "file",
     "name": "src/pattern/singleton.js",
     "content": "class Singleton {\n  /**\n   * @type {Object}\n   */\n  static _instance = {}\n\n  /**\n   * @type {Object}\n   */\n  static _isInternal = {}\n\n  /**\n   * @return {Instance}\n   */\n  static getInstance() {\n    const { _instance, _isInternal } = Singleton\n    const _name /* :string */ = this.name\n    if (_instance[_name]) {\n      return Singleton._instance[_name]\n    }\n    _isInternal[_name] /* :boolean */ = true\n    return new this()\n  }\n\n  constructor() {\n    const { _isInternal, _instance } = Singleton\n    const _name /* :string */ = this.constructor.name\n    if (!_isInternal[_name]) {\n      throw new Error(\n        `Can't call new ${_name}(), use ${_name}.getInstance() instead.`\n      )\n    }\n    _isInternal[_name] /* :boolean */ = false\n    _instance[_name] /* :Instance */ = this\n  }\n}\n\nexport { Singleton as default }\n",
     "static": true,
@@ -4774,7 +4949,7 @@
     "lineNumber": 1
   },
   {
-    "__docId__": 153,
+    "__docId__": 166,
     "kind": "class",
     "name": "Singleton",
     "memberof": "src/pattern/singleton.js",
@@ -4791,7 +4966,7 @@
     "ignore": true
   },
   {
-    "__docId__": 154,
+    "__docId__": 167,
     "kind": "member",
     "name": "_instance",
     "memberof": "src/pattern/singleton.js~Singleton",
@@ -4810,7 +4985,7 @@
     }
   },
   {
-    "__docId__": 155,
+    "__docId__": 168,
     "kind": "member",
     "name": "_isInternal",
     "memberof": "src/pattern/singleton.js~Singleton",
@@ -4829,7 +5004,7 @@
     }
   },
   {
-    "__docId__": 156,
+    "__docId__": 169,
     "kind": "method",
     "name": "getInstance",
     "memberof": "src/pattern/singleton.js~Singleton",
@@ -4851,7 +5026,7 @@
     "params": []
   },
   {
-    "__docId__": 157,
+    "__docId__": 170,
     "kind": "constructor",
     "name": "constructor",
     "memberof": "src/pattern/singleton.js~Singleton",
@@ -4865,7 +5040,164 @@
     "undocument": true
   },
   {
-    "__docId__": 158,
+    "__docId__": 171,
+    "kind": "file",
+    "name": "src/store.js",
+    "content": "/**\n * depends on 'vanix'\n * depends on 'bowser'\n */\n\nimport Vanix from 'vanix'\nimport Bowser from 'bowser'\n\n// bowser\nconst bowser /* :Object */ = Bowser.getParser(window.navigator.userAgent)\nconst {\n  browser /* :Object */,\n  engin /* :Object */,\n  os /* :Object */,\n  platform /* :Object */\n} = bowser.parsedResult\n\nconst state /* :Object */ = {\n  browser,\n  engin,\n  os,\n  platform,\n  breakPoint: /* :number[] int[0,inf) */ [768, 1024],\n  windowWidth: /* :number[] int[0,inf) */ 0,\n  windowHeight: /* :number[] int[0,inf) */ 0,\n  windowWidthLastChangedHeight: /* :number[] int[0,inf) */ 0,\n  windowSizeType: /* :string */ ''\n}\n\nconst mutations /* :Object */ = {\n  setWindowWidth(state /* :Object */, data /* :number[] int[0,inf) */) {\n    state.windowWidth = data\n  },\n  setWindowHeight(state /* :Object */, data /* :number[] int[0,inf) */) {\n    state.windowHeight = data\n  },\n  setWindowWidthLastChangedHeight(\n    state /* :Object */,\n    data /* :number[] int[0,inf) */\n  ) {\n    state.windowWidthLastChangedHeight = data\n  },\n  setWindowSizeType(state /* :Object */, data /* :number[] int[0,inf) */) {\n    state.windowSizeType = data\n  }\n}\n\nconst actions /* :Object */ = {}\n\nconst vanix /* :Instance */ = new Vanix({ state, mutations, actions })\n\nexport const store /* :Object */ = vanix.create()\n",
+    "static": true,
+    "longname": "/Users/higa_syuuji/github/syuji-higa/javascript-modules-v5/src/store.js",
+    "access": "public",
+    "description": null,
+    "lineNumber": 1
+  },
+  {
+    "__docId__": 172,
+    "kind": "variable",
+    "name": "bowser",
+    "memberof": "src/store.js",
+    "static": true,
+    "longname": "src/store.js~bowser",
+    "access": "public",
+    "export": false,
+    "importPath": "javascript-modules-v5/src/store.js",
+    "importStyle": null,
+    "description": null,
+    "lineNumber": 10,
+    "undocument": true,
+    "type": {
+      "types": [
+        "*"
+      ]
+    },
+    "ignore": true
+  },
+  {
+    "__docId__": 173,
+    "kind": "variable",
+    "name": "browser",
+    "memberof": "src/store.js",
+    "static": true,
+    "longname": "src/store.js~browser",
+    "access": "public",
+    "export": false,
+    "importPath": "javascript-modules-v5/src/store.js",
+    "importStyle": null,
+    "description": null,
+    "lineNumber": 11,
+    "undocument": true,
+    "type": {
+      "types": [
+        "*"
+      ]
+    },
+    "ignore": true
+  },
+  {
+    "__docId__": 174,
+    "kind": "variable",
+    "name": "state",
+    "memberof": "src/store.js",
+    "static": true,
+    "longname": "src/store.js~state",
+    "access": "public",
+    "export": false,
+    "importPath": "javascript-modules-v5/src/store.js",
+    "importStyle": null,
+    "description": null,
+    "lineNumber": 18,
+    "undocument": true,
+    "type": {
+      "types": [
+        "{\"browser\": *, \"engin\": *, \"os\": *, \"platform\": *, \"breakPoint\": *, \"windowWidth\": *, \"windowHeight\": *, \"windowWidthLastChangedHeight\": *, \"windowSizeType\": *}"
+      ]
+    },
+    "ignore": true
+  },
+  {
+    "__docId__": 175,
+    "kind": "variable",
+    "name": "mutations",
+    "memberof": "src/store.js",
+    "static": true,
+    "longname": "src/store.js~mutations",
+    "access": "public",
+    "export": false,
+    "importPath": "javascript-modules-v5/src/store.js",
+    "importStyle": null,
+    "description": null,
+    "lineNumber": 30,
+    "undocument": true,
+    "type": {
+      "types": [
+        "{\"setWindowWidth\": function, \"setWindowHeight\": function, \"setWindowWidthLastChangedHeight\": function, \"setWindowSizeType\": function}"
+      ]
+    },
+    "ignore": true
+  },
+  {
+    "__docId__": 176,
+    "kind": "variable",
+    "name": "actions",
+    "memberof": "src/store.js",
+    "static": true,
+    "longname": "src/store.js~actions",
+    "access": "public",
+    "export": false,
+    "importPath": "javascript-modules-v5/src/store.js",
+    "importStyle": null,
+    "description": null,
+    "lineNumber": 48,
+    "undocument": true,
+    "type": {
+      "types": [
+        "{}"
+      ]
+    },
+    "ignore": true
+  },
+  {
+    "__docId__": 177,
+    "kind": "variable",
+    "name": "vanix",
+    "memberof": "src/store.js",
+    "static": true,
+    "longname": "src/store.js~vanix",
+    "access": "public",
+    "export": false,
+    "importPath": "javascript-modules-v5/src/store.js",
+    "importStyle": null,
+    "description": null,
+    "lineNumber": 50,
+    "undocument": true,
+    "type": {
+      "types": [
+        "*"
+      ]
+    },
+    "ignore": true
+  },
+  {
+    "__docId__": 178,
+    "kind": "variable",
+    "name": "store",
+    "memberof": "src/store.js",
+    "static": true,
+    "longname": "src/store.js~store",
+    "access": "public",
+    "export": true,
+    "importPath": "javascript-modules-v5/src/store.js",
+    "importStyle": "{store}",
+    "description": null,
+    "lineNumber": 52,
+    "undocument": true,
+    "type": {
+      "types": [
+        "*"
+      ]
+    }
+  },
+  {
+    "__docId__": 179,
     "kind": "file",
     "name": "src/utils/debounce.js",
     "content": "/**\n * @param {Object} [options]\n * @param {number} [options.interval] - int[0,inf)\n * @param {boolean} [options.isFirstRun]\n * @return {function}\n */\nexport const debounce = (options = {}) => {\n  const { interval, isFirstRun } = Object.assign(\n    { interval: 100, isFirstRun: false },\n    options\n  )\n  let _timer /* :number int[0,inf) */ = 0\n  let _firstRun /* :boolean */ = true\n\n  return (fn /* :function */) => {\n    if (isFirstRun && _firstRun) {\n      fn()\n      _firstRun = false\n    }\n    clearTimeout(_timer)\n    _timer = setTimeout(() => {\n      fn()\n      _timer = 0\n      if (isFirstRun) {\n        _firstRun = true\n      }\n    }, interval)\n  }\n}\n",
@@ -4876,7 +5208,7 @@
     "lineNumber": 1
   },
   {
-    "__docId__": 159,
+    "__docId__": 180,
     "kind": "function",
     "name": "debounce",
     "memberof": "src/utils/debounce.js",
@@ -4932,7 +5264,7 @@
     }
   },
   {
-    "__docId__": 160,
+    "__docId__": 181,
     "kind": "file",
     "name": "src/utils/event.js",
     "content": "/**\n * @param {Element} target\n * @param {string} eventType\n * @param {function} listener\n * @param {boolean|Object} [option]\n * @return {Object}\n */\nexport const createEvent = (target, eventType, listener, option = false) => {\n  return {\n    handleEvent: (e) => {\n      listener(e)\n    },\n    add: function() {\n      target.addEventListener(eventType, this, option)\n    },\n    remove: function() {\n      target.removeEventListener(eventType, this, option)\n    }\n  }\n}\n\n/**\n * @param {Array} options\n * @param {Element} options[0] - dispatc target\n * @param {string} options[1] - eventType\n * @param {Object} [options[2]] - event detail\n * @param {Event} event\n *\n * @example\n *   onDispatchEvent.bind(this, [window, 'resize'], e);\n */\nexport const onDispatchEvent = (options, event) => {\n  const [target, eventType, detail] = options\n\n  const _detail /* :Object */ = (() => {\n    const _obj /* :Object */ = {\n      status: event\n    }\n    if (detail) Object.assign(_obj, detail)\n    return _obj\n  })()\n\n  target.dispatchEvent(\n    new CustomEvent(eventType, {\n      detail: _detail\n    })\n  )\n}\n",
@@ -4943,7 +5275,7 @@
     "lineNumber": 1
   },
   {
-    "__docId__": 161,
+    "__docId__": 182,
     "kind": "function",
     "name": "createEvent",
     "memberof": "src/utils/event.js",
@@ -5010,7 +5342,7 @@
     }
   },
   {
-    "__docId__": 162,
+    "__docId__": 183,
     "kind": "function",
     "name": "onDispatchEvent",
     "memberof": "src/utils/event.js",
@@ -5091,7 +5423,7 @@
   },
   {
     "kind": "packageJSON",
-    "content": "{\n  \"name\": \"javascript-modules-v5\",\n  \"version\": \"1.0.0\",\n  \"description\": \"General purpose TypeScript modules.\",\n  \"main\": \"index.js\",\n  \"dependencies\": {},\n  \"devDependencies\": {\n    \"@babel/plugin-proposal-class-properties\": \"^7.3.4\",\n    \"@babel/preset-env\": \"^7.3.4\",\n    \"babel-eslint\": \"^10.0.1\",\n    \"esdoc\": \"^1.1.0\",\n    \"esdoc-ecmascript-proposal-plugin\": \"^1.0.0\",\n    \"esdoc-standard-plugin\": \"^1.0.0\",\n    \"eslint\": \"^5.15.2\",\n    \"eslint-config-prettier\": \"^4.1.0\",\n    \"eslint-plugin-prettier\": \"^3.0.1\",\n    \"jest\": \"^24.5.0\",\n    \"prettier\": \"^1.16.4\"\n  },\n  \"scripts\": {\n    \"eslint-check\": \"eslint --print-config . | eslint-config-prettier-check\",\n    \"lint\": \"eslint --ext .js --ignore-path .gitignore ./src\",\n    \"test\": \"jest\",\n    \"esdoc\": \"esdoc -c esdoc.json\",\n    \"precommit\": \"npm run lint -- --fix && npm run test && npm run esdoc\"\n  },\n  \"repository\": {\n    \"type\": \"git\",\n    \"url\": \"git+https://github.com/syuji-higa/javascript-modules-v5.git\"\n  },\n  \"author\": \"syuji-higa\",\n  \"license\": \"MIT\",\n  \"bugs\": {\n    \"url\": \"https://github.com/syuji-higa/javascript-modules-v5/issues\"\n  },\n  \"homepage\": \"https://github.com/syuji-higa/javascript-modules-v5#readme\"\n}\n",
+    "content": "{\n  \"name\": \"javascript-modules-v5\",\n  \"version\": \"1.0.0\",\n  \"description\": \"General purpose TypeScript modules.\",\n  \"main\": \"index.js\",\n  \"dependencies\": {},\n  \"devDependencies\": {\n    \"@babel/plugin-proposal-class-properties\": \"^7.3.4\",\n    \"@babel/preset-env\": \"^7.3.4\",\n    \"babel-eslint\": \"^10.0.1\",\n    \"bowser\": \"^2.1.2\",\n    \"esdoc\": \"^1.1.0\",\n    \"esdoc-ecmascript-proposal-plugin\": \"^1.0.0\",\n    \"esdoc-standard-plugin\": \"^1.0.0\",\n    \"eslint\": \"^5.15.2\",\n    \"eslint-config-prettier\": \"^4.1.0\",\n    \"eslint-plugin-prettier\": \"^3.0.1\",\n    \"jest\": \"^24.5.0\",\n    \"prettier\": \"^1.16.4\",\n    \"vanix\": \"0.0.5\"\n  },\n  \"scripts\": {\n    \"eslint-check\": \"eslint --print-config . | eslint-config-prettier-check\",\n    \"lint\": \"eslint --ext .js --ignore-path .gitignore ./src\",\n    \"test\": \"jest\",\n    \"esdoc\": \"esdoc -c esdoc.json\",\n    \"precommit\": \"npm run lint -- --fix && npm run test && npm run esdoc\"\n  },\n  \"repository\": {\n    \"type\": \"git\",\n    \"url\": \"git+https://github.com/syuji-higa/javascript-modules-v5.git\"\n  },\n  \"author\": \"syuji-higa\",\n  \"license\": \"MIT\",\n  \"bugs\": {\n    \"url\": \"https://github.com/syuji-higa/javascript-modules-v5/issues\"\n  },\n  \"homepage\": \"https://github.com/syuji-higa/javascript-modules-v5#readme\"\n}\n",
     "longname": "/Users/higa_syuuji/github/syuji-higa/javascript-modules-v5/package.json",
     "name": "package.json",
     "static": true,

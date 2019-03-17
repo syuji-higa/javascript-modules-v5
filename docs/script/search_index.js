@@ -378,6 +378,12 @@ window.esdocSearchIndex = [
     "function"
   ],
   [
+    "javascript-modules-v5/src/store.js~store",
+    "variable/index.html#static-variable-store",
+    "<span>store</span> <span class=\"search-result-import-path\">javascript-modules-v5/src/store.js</span>",
+    "variable"
+  ],
+  [
     "javascript-modules-v5/src/models/math.js~toangle",
     "function/index.html#static-function-toAngle",
     "<span>toAngle</span> <span class=\"search-result-import-path\">javascript-modules-v5/src/models/math.js</span>",
@@ -864,9 +870,21 @@ window.esdocSearchIndex = [
     "file"
   ],
   [
+    "src/modules/window-size-observer.js",
+    "file/src/modules/window-size-observer.js.html",
+    "src/modules/window-size-observer.js",
+    "file"
+  ],
+  [
     "src/pattern/singleton.js",
     "file/src/pattern/singleton.js.html",
     "src/pattern/singleton.js",
+    "file"
+  ],
+  [
+    "src/store.js",
+    "file/src/store.js.html",
+    "src/store.js",
     "file"
   ],
   [
