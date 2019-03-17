@@ -940,5 +940,11 @@ window.esdocSearchIndex = [
     "file/src/views/client-flag-setter.js.html",
     "src/views/client-flag-setter.js",
     "file"
+  ],
+  [
+    "src/views/height-fitter.js",
+    "file/src/views/height-fitter.js.html",
+    "src/views/height-fitter.js",
+    "file"
   ]
 ]

@@ -1,7 +1,7 @@
 {
-  "coverage": "80.35%",
-  "expectCount": 112,
-  "actualCount": 90,
+  "coverage": "78.51%",
+  "expectCount": 121,
+  "actualCount": 95,
   "files": {
     "src/models/array.js": {
       "expectCount": 5,
@@ -181,6 +181,16 @@
       "undocumentLines": [
         7,
         8
+      ]
+    },
+    "src/views/height-fitter.js": {
+      "expectCount": 9,
+      "actualCount": 5,
+      "undocumentLines": [
+        7,
+        8,
+        9,
+        10
       ]
     }
   }
