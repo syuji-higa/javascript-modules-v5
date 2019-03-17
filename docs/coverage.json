@@ -1,6 +1,6 @@
 {
-  "coverage": "100%",
-  "expectCount": 8,
+  "coverage": "88.88%",
+  "expectCount": 9,
   "actualCount": 8,
   "files": {
     "src/models/array.js": {
@@ -17,6 +17,13 @@
       "expectCount": 2,
       "actualCount": 2,
       "undocumentLines": []
+    },
+    "src/models/cubic-bezier-easing.js": {
+      "expectCount": 1,
+      "actualCount": 0,
+      "undocumentLines": [
+        1
+      ]
     }
   }
 }

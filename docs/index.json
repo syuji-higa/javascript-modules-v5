@@ -995,6 +995,37 @@
     }
   },
   {
+    "__docId__": 59,
+    "kind": "file",
+    "name": "src/models/cubic-bezier-easing.js",
+    "content": "export const easings = {\n  // Cubic\n  easeInCubic: 'cubic-bezier(0.55, 0.055, 0.675, 0.19)',\n  easeOutCubic: 'cubic-bezier(0.215, 0.61, 0.355, 1)',\n  easeInOutCubic: 'cubic-bezier(0.645, 0.045, 0.355, 1)',\n\n  // Circ\n  easeInCirc: 'cubic-bezier(0.6, 0.04, 0.98, 0.335)',\n  easeOutCirc: 'cubic-bezier(0.075, 0.82, 0.165, 1)',\n  easeInOutCirc: 'cubic-bezier(0.785, 0.135, 0.15, 0.86)',\n\n  // Expo\n  easeInExpo: 'cubic-bezier(0.95, 0.05, 0.795, 0.035)',\n  easeOutExpo: 'cubic-bezier(0.19, 1, 0.22, 1)',\n  easeInOutExpo: 'cubic-bezier(1, 0, 0, 1)',\n\n  // Quad\n  easeInQuad: 'cubic-bezier(0.55, 0.085, 0.68, 0.53)',\n  easeOutQuad: 'cubic-bezier(0.25, 0.46, 0.45, 0.94)',\n  easeInOutQuad: 'cubic-bezier(0.455, 0.03, 0.515, 0.955)',\n\n  // Quart\n  easeInQuart: 'cubic-bezier(0.895, 0.03, 0.685, 0.22)',\n  easeOutQuart: 'cubic-bezier(0.165, 0.84, 0.44, 1)',\n  easeInOutQuart: 'cubic-bezier(0.77, 0, 0.175, 1)',\n\n  // Quint\n  easeInQuint: 'cubic-bezier(0.755, 0.05, 0.855, 0.06)',\n  easeOutQuint: 'cubic-bezier(0.23, 1, 0.32, 1)',\n  easeInOutQuint: 'cubic-bezier(0.86, 0, 0.07, 1)',\n\n  // Sine\n  easeInSine: 'cubic-bezier(0.47, 0, 0.745, 0.715)',\n  easeOutSine: 'cubic-bezier(0.39, 0.575, 0.565, 1)',\n  easeInOutSine: 'cubic-bezier(0.445, 0.05, 0.55, 0.95)',\n\n  // Back\n  easeInBack: 'cubic-bezier(0.6, -0.28, 0.735, 0.045)',\n  easeOutBack: 'cubic-bezier(0.175, 0.885, 0.32, 1.275)',\n  easeInOutBack: 'cubic-bezier(0.68, -0.55, 0.265, 1.55)'\n}\n",
+    "static": true,
+    "longname": "/Users/higa_syuuji/github/syuji-higa/javascript-modules-v5/src/models/cubic-bezier-easing.js",
+    "access": "public",
+    "description": null,
+    "lineNumber": 1
+  },
+  {
+    "__docId__": 60,
+    "kind": "variable",
+    "name": "easings",
+    "memberof": "src/models/cubic-bezier-easing.js",
+    "static": true,
+    "longname": "src/models/cubic-bezier-easing.js~easings",
+    "access": "public",
+    "export": true,
+    "importPath": "javascript-modules-v5/src/models/cubic-bezier-easing.js",
+    "importStyle": "{easings}",
+    "description": null,
+    "lineNumber": 1,
+    "undocument": true,
+    "type": {
+      "types": [
+        "{\"easeInCubic\": string, \"easeOutCubic\": string, \"easeInOutCubic\": string, \"easeInCirc\": string, \"easeOutCirc\": string, \"easeInOutCirc\": string, \"easeInExpo\": string, \"easeOutExpo\": string, \"easeInOutExpo\": string, \"easeInQuad\": string, \"easeOutQuad\": string, \"easeInOutQuad\": string, \"easeInQuart\": string, \"easeOutQuart\": string, \"easeInOutQuart\": string, \"easeInQuint\": string, \"easeOutQuint\": string, \"easeInOutQuint\": string, \"easeInSine\": string, \"easeOutSine\": string, \"easeInOutSine\": string, \"easeInBack\": string, \"easeOutBack\": string, \"easeInOutBack\": string}"
+      ]
+    }
+  },
+  {
     "kind": "index",
     "content": "# JavaScript Modules\n\n## Check rules that are in conflict with Prettier\n```\n$ npm run eslint-check\n```\n\n## ESLint and Prettier\n```\n$ npm run lint\n```\n\nfix command.\n```\n$ npm run lint -- --fix\n```\n\n## Jest unit test\n```\n$ npm run test\n```\n\nwatch command.\n```\n$ npm run test -- --watch\n```\n\n## ESDoc\n```\n$ npm run esdoc\n```\n\n## ESLint and Jest and ESDoc\n```\n$ npm run precommit\n```\n",
     "longname": "/Users/higa_syuuji/github/syuji-higa/javascript-modules-v5/README.md",

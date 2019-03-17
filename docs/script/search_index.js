@@ -30,6 +30,12 @@ window.esdocSearchIndex = [
     "function"
   ],
   [
+    "javascript-modules-v5/src/models/cubic-bezier-easing.js~easings",
+    "variable/index.html#static-variable-easings",
+    "<span>easings</span> <span class=\"search-result-import-path\">javascript-modules-v5/src/models/cubic-bezier-easing.js</span>",
+    "variable"
+  ],
+  [
     "javascript-modules-v5/src/models/array.js~flattenarray",
     "function/index.html#static-function-flattenArray",
     "<span>flattenArray</span> <span class=\"search-result-import-path\">javascript-modules-v5/src/models/array.js</span>",
@@ -345,6 +351,12 @@ window.esdocSearchIndex = [
     "src/models/coordinate.js",
     "file/src/models/coordinate.js.html",
     "src/models/coordinate.js",
+    "file"
+  ],
+  [
+    "src/models/cubic-bezier-easing.js",
+    "file/src/models/cubic-bezier-easing.js.html",
+    "src/models/cubic-bezier-easing.js",
     "file"
   ]
 ]

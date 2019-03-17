@@ -3,7 +3,7 @@
 <head>
   <meta charset="utf-8">
   <base data-ice="baseUrl" href="../../../">
-  <title data-ice="title">src/models/coordinate.js | javascript-modules-v5</title>
+  <title data-ice="title">src/models/cubic-bezier-easing.js | javascript-modules-v5</title>
   <link type="text/css" rel="stylesheet" href="css/style.css">
   <link type="text/css" rel="stylesheet" href="css/prettify-tomorrow.css">
   <script src="script/prettify/prettify.js"></script>
@@ -42,39 +42,47 @@
 </div>
 </nav>
 
-<div class="content" data-ice="content"><h1 data-ice="title">src/models/coordinate.js</h1>
-<pre class="source-code line-number raw-source-code"><code class="prettyprint linenums" data-ice="content">/**
- * @param {number} p1X - float position 1 x
- * @param {number} p1Y - float position 1 y
- * @param {number} p2X - float position 2 x
- * @param {number} p2Y - float position 2 y
- * @return {number}
- */
-export const coordinateLength = (p1X, p1Y, p2X, p2Y) =&gt; {
-  return Math.sqrt(Math.pow(p1X - p2X, 2) + Math.pow(p1Y - p2Y, 2))
-}
+<div class="content" data-ice="content"><h1 data-ice="title">src/models/cubic-bezier-easing.js</h1>
+<pre class="source-code line-number raw-source-code"><code class="prettyprint linenums" data-ice="content">export const easings = {
+  // Cubic
+  easeInCubic: &apos;cubic-bezier(0.55, 0.055, 0.675, 0.19)&apos;,
+  easeOutCubic: &apos;cubic-bezier(0.215, 0.61, 0.355, 1)&apos;,
+  easeInOutCubic: &apos;cubic-bezier(0.645, 0.045, 0.355, 1)&apos;,
 
-/**
- * @param {number[]} cTL - float[0,1] color top left
- * @param {number[]} cTR - float[0,1] color top right
- * @param {number[]} cBL - float[0,1] color bottom left
- * @param {number[]} cBR - float[0,1] color bottom right
- * @param {number} pRX - float[-1,1] position ratio x
- * @param {number} pRY - float[-1,1] position ratio y
- * @return {number[]} - float[0,1] pickup color
- */
-export const coordinatePickupColor = (cTL, cTR, cBL, cBR, pRX, pRY) =&gt; {
-  // color top
-  const _cT /* :number[] float[0,1] */ = cTL.map((c, i) =&gt; {
-    return cTL[i] + (cTR[i] - cTL[i]) * pRX
-  })
-  // color bottom
-  const _cB /* :number[] float[0,1] */ = cBL.map((c, i) =&gt; {
-    return cBL[i] + (cBR[i] - cBL[i]) * pRX
-  })
-  return _cT.map((c, i) =&gt; {
-    return _cT[i] + (_cB[i] - _cT[i]) * pRY
-  })
+  // Circ
+  easeInCirc: &apos;cubic-bezier(0.6, 0.04, 0.98, 0.335)&apos;,
+  easeOutCirc: &apos;cubic-bezier(0.075, 0.82, 0.165, 1)&apos;,
+  easeInOutCirc: &apos;cubic-bezier(0.785, 0.135, 0.15, 0.86)&apos;,
+
+  // Expo
+  easeInExpo: &apos;cubic-bezier(0.95, 0.05, 0.795, 0.035)&apos;,
+  easeOutExpo: &apos;cubic-bezier(0.19, 1, 0.22, 1)&apos;,
+  easeInOutExpo: &apos;cubic-bezier(1, 0, 0, 1)&apos;,
+
+  // Quad
+  easeInQuad: &apos;cubic-bezier(0.55, 0.085, 0.68, 0.53)&apos;,
+  easeOutQuad: &apos;cubic-bezier(0.25, 0.46, 0.45, 0.94)&apos;,
+  easeInOutQuad: &apos;cubic-bezier(0.455, 0.03, 0.515, 0.955)&apos;,
+
+  // Quart
+  easeInQuart: &apos;cubic-bezier(0.895, 0.03, 0.685, 0.22)&apos;,
+  easeOutQuart: &apos;cubic-bezier(0.165, 0.84, 0.44, 1)&apos;,
+  easeInOutQuart: &apos;cubic-bezier(0.77, 0, 0.175, 1)&apos;,
+
+  // Quint
+  easeInQuint: &apos;cubic-bezier(0.755, 0.05, 0.855, 0.06)&apos;,
+  easeOutQuint: &apos;cubic-bezier(0.23, 1, 0.32, 1)&apos;,
+  easeInOutQuint: &apos;cubic-bezier(0.86, 0, 0.07, 1)&apos;,
+
+  // Sine
+  easeInSine: &apos;cubic-bezier(0.47, 0, 0.745, 0.715)&apos;,
+  easeOutSine: &apos;cubic-bezier(0.39, 0.575, 0.565, 1)&apos;,
+  easeInOutSine: &apos;cubic-bezier(0.445, 0.05, 0.55, 0.95)&apos;,
+
+  // Back
+  easeInBack: &apos;cubic-bezier(0.6, -0.28, 0.735, 0.045)&apos;,
+  easeOutBack: &apos;cubic-bezier(0.175, 0.885, 0.32, 1.275)&apos;,
+  easeInOutBack: &apos;cubic-bezier(0.68, -0.55, 0.265, 1.55)&apos;
 }
 </code></pre>
 
