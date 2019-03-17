@@ -1,7 +1,7 @@
 {
-  "coverage": "90.9%",
-  "expectCount": 33,
-  "actualCount": 30,
+  "coverage": "92.1%",
+  "expectCount": 38,
+  "actualCount": 35,
   "files": {
     "src/models/array.js": {
       "expectCount": 5,
@@ -62,6 +62,11 @@
     "src/models/object.js": {
       "expectCount": 2,
       "actualCount": 2,
+      "undocumentLines": []
+    },
+    "src/models/parameter.js": {
+      "expectCount": 5,
+      "actualCount": 5,
       "undocumentLines": []
     },
     "src/models/query-string.js": {

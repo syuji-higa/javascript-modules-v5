@@ -2052,6 +2052,217 @@
   {
     "__docId__": 90,
     "kind": "file",
+    "name": "src/models/parameter.js",
+    "content": "import { parse } from './query-string'\n\n/**\n * @return {string}\n */\nconst _hashQuery = () => {\n  const { hash /* :string */ } = location\n\n  if (hash === '') {\n    return ''\n  }\n\n  const _hashStrs /* :string[] */ = hash.match(/^.*\\?(.*)$/)\n\n  if (_hashStrs === null) {\n    return ''\n  }\n\n  return _hashStrs[1]\n}\n\n/**\n * @param {boolean} [isHash]\n * @return {string}\n */\nexport const query = (isHash = false) => {\n  return isHash ? _hashQuery() : location.search.replace('?', '')\n}\n\n/**\n * @param {string} query\n * @return {Object}\n */\nexport const toParams = (query) => {\n  return query ? parse(query) : {}\n}\n\n/**\n * @param {boolean} [isHash]\n * @return {Object}\n */\nexport const params = (isHash = false) => {\n  const _query /* :string */ = query(isHash)\n  return _query ? parse(_query) : {}\n}\n\n/**\n * @param {string} name\n * @param {Object} [opts]\n * @param {?string} [opts.query]\n * @param {boolean} [opts.isHash]\n * @return {string}\n */\nexport const paramVal = (name, opts = {}) => {\n  const { query = null, isHash = false } = opts\n\n  const _query /* :string */ = query || query(isHash)\n\n  if (!_query) return ''\n\n  const _params /* :Object */ = parse(_query)\n\n  if (typeof _params === 'undefined') return ''\n\n  return _params[name]\n}\n",
+    "static": true,
+    "longname": "/Users/higa_syuuji/github/syuji-higa/javascript-modules-v5/src/models/parameter.js",
+    "access": "public",
+    "description": null,
+    "lineNumber": 1
+  },
+  {
+    "__docId__": 91,
+    "kind": "function",
+    "name": "_hashQuery",
+    "memberof": "src/models/parameter.js",
+    "generator": false,
+    "async": false,
+    "static": true,
+    "longname": "src/models/parameter.js~_hashQuery",
+    "access": "private",
+    "export": false,
+    "importPath": "javascript-modules-v5/src/models/parameter.js",
+    "importStyle": null,
+    "description": "",
+    "lineNumber": 6,
+    "return": {
+      "nullable": null,
+      "types": [
+        "string"
+      ],
+      "spread": false,
+      "description": ""
+    },
+    "params": [],
+    "ignore": true
+  },
+  {
+    "__docId__": 92,
+    "kind": "function",
+    "name": "query",
+    "memberof": "src/models/parameter.js",
+    "generator": false,
+    "async": false,
+    "static": true,
+    "longname": "src/models/parameter.js~query",
+    "access": "public",
+    "export": true,
+    "importPath": "javascript-modules-v5/src/models/parameter.js",
+    "importStyle": "{query}",
+    "description": "",
+    "lineNumber": 26,
+    "params": [
+      {
+        "nullable": null,
+        "types": [
+          "boolean"
+        ],
+        "spread": false,
+        "optional": true,
+        "name": "isHash",
+        "description": ""
+      }
+    ],
+    "return": {
+      "nullable": null,
+      "types": [
+        "string"
+      ],
+      "spread": false,
+      "description": ""
+    }
+  },
+  {
+    "__docId__": 93,
+    "kind": "function",
+    "name": "toParams",
+    "memberof": "src/models/parameter.js",
+    "generator": false,
+    "async": false,
+    "static": true,
+    "longname": "src/models/parameter.js~toParams",
+    "access": "public",
+    "export": true,
+    "importPath": "javascript-modules-v5/src/models/parameter.js",
+    "importStyle": "{toParams}",
+    "description": "",
+    "lineNumber": 34,
+    "params": [
+      {
+        "nullable": null,
+        "types": [
+          "string"
+        ],
+        "spread": false,
+        "optional": false,
+        "name": "query",
+        "description": ""
+      }
+    ],
+    "return": {
+      "nullable": null,
+      "types": [
+        "Object"
+      ],
+      "spread": false,
+      "description": ""
+    }
+  },
+  {
+    "__docId__": 94,
+    "kind": "function",
+    "name": "params",
+    "memberof": "src/models/parameter.js",
+    "generator": false,
+    "async": false,
+    "static": true,
+    "longname": "src/models/parameter.js~params",
+    "access": "public",
+    "export": true,
+    "importPath": "javascript-modules-v5/src/models/parameter.js",
+    "importStyle": "{params}",
+    "description": "",
+    "lineNumber": 42,
+    "params": [
+      {
+        "nullable": null,
+        "types": [
+          "boolean"
+        ],
+        "spread": false,
+        "optional": true,
+        "name": "isHash",
+        "description": ""
+      }
+    ],
+    "return": {
+      "nullable": null,
+      "types": [
+        "Object"
+      ],
+      "spread": false,
+      "description": ""
+    }
+  },
+  {
+    "__docId__": 95,
+    "kind": "function",
+    "name": "paramVal",
+    "memberof": "src/models/parameter.js",
+    "generator": false,
+    "async": false,
+    "static": true,
+    "longname": "src/models/parameter.js~paramVal",
+    "access": "public",
+    "export": true,
+    "importPath": "javascript-modules-v5/src/models/parameter.js",
+    "importStyle": "{paramVal}",
+    "description": "",
+    "lineNumber": 54,
+    "params": [
+      {
+        "nullable": null,
+        "types": [
+          "string"
+        ],
+        "spread": false,
+        "optional": false,
+        "name": "name",
+        "description": ""
+      },
+      {
+        "nullable": null,
+        "types": [
+          "Object"
+        ],
+        "spread": false,
+        "optional": true,
+        "name": "opts",
+        "description": ""
+      },
+      {
+        "nullable": true,
+        "types": [
+          "string"
+        ],
+        "spread": false,
+        "optional": true,
+        "name": "opts.query",
+        "description": ""
+      },
+      {
+        "nullable": null,
+        "types": [
+          "boolean"
+        ],
+        "spread": false,
+        "optional": true,
+        "name": "opts.isHash",
+        "description": ""
+      }
+    ],
+    "return": {
+      "nullable": null,
+      "types": [
+        "string"
+      ],
+      "spread": false,
+      "description": ""
+    }
+  },
+  {
+    "__docId__": 96,
+    "kind": "file",
     "name": "src/models/query-string.js",
     "content": "/**\n * @param {string} str\n * @param {Object} [options]\n * @param {string} [options.sep]\n * @param {string} [options.eq]\n * @param {boolean} [options.typeChange]\n * @return {Object}\n */\nexport const parse = (str, options = {}) => {\n  const { sep, eq, typeChange } = Object.assign(\n    {\n      sep: '&',\n      eq: '=',\n      typeChange: true\n    },\n    options\n  )\n  if (!str || typeof str !== 'string') {\n    return {}\n  }\n  return String(str)\n    .split(sep)\n    .reduce((obj /* :Object */, param /* :string */) => {\n      const [key /* :string */, val /* :string */] = param.split(eq)\n      const _val /* :string|number|boolean */ = (() => {\n        if (!typeChange) return val\n        if (val.match(/^[+,-]?([1-9]\\d*|0)(\\.\\d+)?$/)) {\n          return Number(val)\n        }\n        switch (val) {\n          case 'true':\n            return true\n          case 'false':\n            return false\n          default:\n            return val\n        }\n      })()\n      obj[key] /* :string|number|boolean */ = _val\n      return obj\n    }, {})\n}\n\n/**\n * @param {Object} data\n * @param {Object} [options]\n * @param {string} [options.sep]\n * @param {string} [options.eq]\n * @return {string}\n */\nexport const serialize = (data, options = {}) => {\n  const { sep, eq } = Object.assign({ sep: '&', eq: '=' }, options)\n  const _encode /* :function */ = encodeURIComponent\n  let _query /* :string */ = ''\n\n  Object.entries(data).forEach(\n    ([key /* :string */, val /* :string|number|Object|*[] */]) => {\n      const _type /* :string */ =\n        typeof val === 'object' && val instanceof Array ? 'array' : typeof val\n\n      switch (_type) {\n        case 'undefined':\n          _query += key\n          break\n        case 'array':\n          val.forEach((_i) => {\n            _query += `${key}[]${eq + _encode(val[_i]) + sep}`\n          })\n          _query = _query.substr(0, _query.length - 1)\n          break\n        case 'object':\n          Object.entries(val).forEach(([key_ /* :string */, val_ /* :* */]) => {\n            _query += `${key}[${key_}]${eq + _encode(val_) + sep}`\n          })\n          _query = _query.substr(0, _query.length - 1)\n          break\n        default:\n          _query += key + eq + _encode(val)\n          break\n      }\n      _query += sep\n    }\n  )\n  return _query.substr(0, _query.length - 1)\n}\n",
     "static": true,
@@ -2061,7 +2272,7 @@
     "lineNumber": 1
   },
   {
-    "__docId__": 91,
+    "__docId__": 97,
     "kind": "function",
     "name": "parse",
     "memberof": "src/models/query-string.js",
@@ -2137,7 +2348,7 @@
     }
   },
   {
-    "__docId__": 92,
+    "__docId__": 98,
     "kind": "function",
     "name": "serialize",
     "memberof": "src/models/query-string.js",

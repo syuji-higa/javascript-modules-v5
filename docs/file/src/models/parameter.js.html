@@ -3,7 +3,7 @@
 <head>
   <meta charset="utf-8">
   <base data-ice="baseUrl" href="../../../">
-  <title data-ice="title">src/models/cubic-bezier-easing.js | javascript-modules-v5</title>
+  <title data-ice="title">src/models/parameter.js | javascript-modules-v5</title>
   <link type="text/css" rel="stylesheet" href="css/style.css">
   <link type="text/css" rel="stylesheet" href="css/prettify-tomorrow.css">
   <script src="script/prettify/prettify.js"></script>
@@ -68,47 +68,72 @@
 </div>
 </nav>
 
-<div class="content" data-ice="content"><h1 data-ice="title">src/models/cubic-bezier-easing.js</h1>
-<pre class="source-code line-number raw-source-code"><code class="prettyprint linenums" data-ice="content">export const easings = {
-  // Cubic
-  easeInCubic: &apos;cubic-bezier(0.55, 0.055, 0.675, 0.19)&apos;,
-  easeOutCubic: &apos;cubic-bezier(0.215, 0.61, 0.355, 1)&apos;,
-  easeInOutCubic: &apos;cubic-bezier(0.645, 0.045, 0.355, 1)&apos;,
+<div class="content" data-ice="content"><h1 data-ice="title">src/models/parameter.js</h1>
+<pre class="source-code line-number raw-source-code"><code class="prettyprint linenums" data-ice="content">import { parse } from &apos;./query-string&apos;
 
-  // Circ
-  easeInCirc: &apos;cubic-bezier(0.6, 0.04, 0.98, 0.335)&apos;,
-  easeOutCirc: &apos;cubic-bezier(0.075, 0.82, 0.165, 1)&apos;,
-  easeInOutCirc: &apos;cubic-bezier(0.785, 0.135, 0.15, 0.86)&apos;,
+/**
+ * @return {string}
+ */
+const _hashQuery = () =&gt; {
+  const { hash /* :string */ } = location
 
-  // Expo
-  easeInExpo: &apos;cubic-bezier(0.95, 0.05, 0.795, 0.035)&apos;,
-  easeOutExpo: &apos;cubic-bezier(0.19, 1, 0.22, 1)&apos;,
-  easeInOutExpo: &apos;cubic-bezier(1, 0, 0, 1)&apos;,
+  if (hash === &apos;&apos;) {
+    return &apos;&apos;
+  }
 
-  // Quad
-  easeInQuad: &apos;cubic-bezier(0.55, 0.085, 0.68, 0.53)&apos;,
-  easeOutQuad: &apos;cubic-bezier(0.25, 0.46, 0.45, 0.94)&apos;,
-  easeInOutQuad: &apos;cubic-bezier(0.455, 0.03, 0.515, 0.955)&apos;,
+  const _hashStrs /* :string[] */ = hash.match(/^.*\?(.*)$/)
 
-  // Quart
-  easeInQuart: &apos;cubic-bezier(0.895, 0.03, 0.685, 0.22)&apos;,
-  easeOutQuart: &apos;cubic-bezier(0.165, 0.84, 0.44, 1)&apos;,
-  easeInOutQuart: &apos;cubic-bezier(0.77, 0, 0.175, 1)&apos;,
+  if (_hashStrs === null) {
+    return &apos;&apos;
+  }
 
-  // Quint
-  easeInQuint: &apos;cubic-bezier(0.755, 0.05, 0.855, 0.06)&apos;,
-  easeOutQuint: &apos;cubic-bezier(0.23, 1, 0.32, 1)&apos;,
-  easeInOutQuint: &apos;cubic-bezier(0.86, 0, 0.07, 1)&apos;,
+  return _hashStrs[1]
+}
 
-  // Sine
-  easeInSine: &apos;cubic-bezier(0.47, 0, 0.745, 0.715)&apos;,
-  easeOutSine: &apos;cubic-bezier(0.39, 0.575, 0.565, 1)&apos;,
-  easeInOutSine: &apos;cubic-bezier(0.445, 0.05, 0.55, 0.95)&apos;,
+/**
+ * @param {boolean} [isHash]
+ * @return {string}
+ */
+export const query = (isHash = false) =&gt; {
+  return isHash ? _hashQuery() : location.search.replace(&apos;?&apos;, &apos;&apos;)
+}
 
-  // Back
-  easeInBack: &apos;cubic-bezier(0.6, -0.28, 0.735, 0.045)&apos;,
-  easeOutBack: &apos;cubic-bezier(0.175, 0.885, 0.32, 1.275)&apos;,
-  easeInOutBack: &apos;cubic-bezier(0.68, -0.55, 0.265, 1.55)&apos;
+/**
+ * @param {string} query
+ * @return {Object}
+ */
+export const toParams = (query) =&gt; {
+  return query ? parse(query) : {}
+}
+
+/**
+ * @param {boolean} [isHash]
+ * @return {Object}
+ */
+export const params = (isHash = false) =&gt; {
+  const _query /* :string */ = query(isHash)
+  return _query ? parse(_query) : {}
+}
+
+/**
+ * @param {string} name
+ * @param {Object} [opts]
+ * @param {?string} [opts.query]
+ * @param {boolean} [opts.isHash]
+ * @return {string}
+ */
+export const paramVal = (name, opts = {}) =&gt; {
+  const { query = null, isHash = false } = opts
+
+  const _query /* :string */ = query || query(isHash)
+
+  if (!_query) return &apos;&apos;
+
+  const _params /* :Object */ = parse(_query)
+
+  if (typeof _params === &apos;undefined&apos;) return &apos;&apos;
+
+  return _params[name]
 }
 </code></pre>
 

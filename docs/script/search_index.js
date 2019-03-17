@@ -120,9 +120,27 @@ window.esdocSearchIndex = [
     "function"
   ],
   [
+    "javascript-modules-v5/src/models/parameter.js~paramval",
+    "function/index.html#static-function-paramVal",
+    "<span>paramVal</span> <span class=\"search-result-import-path\">javascript-modules-v5/src/models/parameter.js</span>",
+    "function"
+  ],
+  [
+    "javascript-modules-v5/src/models/parameter.js~params",
+    "function/index.html#static-function-params",
+    "<span>params</span> <span class=\"search-result-import-path\">javascript-modules-v5/src/models/parameter.js</span>",
+    "function"
+  ],
+  [
     "javascript-modules-v5/src/models/query-string.js~parse",
     "function/index.html#static-function-parse",
     "<span>parse</span> <span class=\"search-result-import-path\">javascript-modules-v5/src/models/query-string.js</span>",
+    "function"
+  ],
+  [
+    "javascript-modules-v5/src/models/parameter.js~query",
+    "function/index.html#static-function-query",
+    "<span>query</span> <span class=\"search-result-import-path\">javascript-modules-v5/src/models/parameter.js</span>",
     "function"
   ],
   [
@@ -171,6 +189,12 @@ window.esdocSearchIndex = [
     "javascript-modules-v5/src/models/date.js~tomonthen",
     "function/index.html#static-function-toMonthEn",
     "<span>toMonthEn</span> <span class=\"search-result-import-path\">javascript-modules-v5/src/models/date.js</span>",
+    "function"
+  ],
+  [
+    "javascript-modules-v5/src/models/parameter.js~toparams",
+    "function/index.html#static-function-toParams",
+    "<span>toParams</span> <span class=\"search-result-import-path\">javascript-modules-v5/src/models/parameter.js</span>",
     "function"
   ],
   [
@@ -531,6 +555,12 @@ window.esdocSearchIndex = [
     "src/models/object.js",
     "file/src/models/object.js.html",
     "src/models/object.js",
+    "file"
+  ],
+  [
+    "src/models/parameter.js",
+    "file/src/models/parameter.js.html",
+    "src/models/parameter.js",
     "file"
   ],
   [
