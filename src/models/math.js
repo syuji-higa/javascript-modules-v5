@@ -1,8 +1,4 @@
 /**
- * math
- */
-
-/**
  * @param {number} rad
  * @return {number}
  */

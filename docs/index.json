@@ -1334,7 +1334,7 @@
     "__docId__": 70,
     "kind": "file",
     "name": "src/models/math.js",
-    "content": "/**\n * math\n */\n\n/**\n * @param {number} rad\n * @return {number}\n */\nexport const toAngle = (rad) => {\n  return (rad * 180) / Math.PI\n}\n\n/**\n * @param {number} ang\n * @return {number}\n */\nexport const toRadian = (ang) => {\n  return (ang * Math.PI) / 180\n}\n\n/**\n * @param {number} num\n * @return {number}\n */\nexport const decimal = (num) => {\n  return parseFloat('0.' + String(num).split('.')[1])\n}\n\n/**\n * @param {number} num\n * @param {number} [digit] - int\n * @return {number}\n */\nexport const round = (num, digit = 6) => {\n  const _digit /* :number int */ = Math.pow(10, digit)\n  return Math.round(num * _digit) / _digit\n}\n\n/**\n * @param {number} num\n * @param {number} [digit] - int\n * @return {number}\n */\nexport const floor = (num, digit = 6) => {\n  const _digit /* :number int */ = Math.pow(10, digit)\n  return Math.floor(num * _digit) / _digit\n}\n\n/**\n * @param {number} num\n * @param {number} [digit] - int\n * @return {number}\n */\nexport const ceil = (num, digit = 6) => {\n  const _digit /* :number int */ = Math.pow(10, digit)\n  return Math.ceil(num * _digit) / _digit\n}\n\n/**\n * @param {number} num\n * @return {number} -1 | 0 | 1\n */\nexport const sign = (num) => {\n  return num > 0 ? 1 : num < 0 ? -1 : 0\n}\n\n/**\n * @param {number} num\n * @param {number} min\n * @param {number} max\n * @return {number}\n */\nexport const clamp = (num, min, max) => {\n  return min > num ? min : max < num ? max : num\n}\n\n/**\n * @param {number} num - int\n * @param {number} min - int\n * @param {number} max - int\n * @return {number} int\n */\nexport const hoop = (num, min, max) => {\n  const _range /* :number int[0,inf) */ = max - min + 1\n  let _num /* :number int */ = (num - min) % _range\n  if (0 > _num) {\n    _num = _range + _num\n  }\n  return _num + min\n}\n\n/**\n * @param {number} num - int[0,inf)\n * @return {number} int[0,inf)\n */\nexport const toTowPower = (num) => {\n  return Math.pow(2, (Math.log(num) / Math.LN2) | 0)\n}\n",
+    "content": "/**\n * @param {number} rad\n * @return {number}\n */\nexport const toAngle = (rad) => {\n  return (rad * 180) / Math.PI\n}\n\n/**\n * @param {number} ang\n * @return {number}\n */\nexport const toRadian = (ang) => {\n  return (ang * Math.PI) / 180\n}\n\n/**\n * @param {number} num\n * @return {number}\n */\nexport const decimal = (num) => {\n  return parseFloat('0.' + String(num).split('.')[1])\n}\n\n/**\n * @param {number} num\n * @param {number} [digit] - int\n * @return {number}\n */\nexport const round = (num, digit = 6) => {\n  const _digit /* :number int */ = Math.pow(10, digit)\n  return Math.round(num * _digit) / _digit\n}\n\n/**\n * @param {number} num\n * @param {number} [digit] - int\n * @return {number}\n */\nexport const floor = (num, digit = 6) => {\n  const _digit /* :number int */ = Math.pow(10, digit)\n  return Math.floor(num * _digit) / _digit\n}\n\n/**\n * @param {number} num\n * @param {number} [digit] - int\n * @return {number}\n */\nexport const ceil = (num, digit = 6) => {\n  const _digit /* :number int */ = Math.pow(10, digit)\n  return Math.ceil(num * _digit) / _digit\n}\n\n/**\n * @param {number} num\n * @return {number} -1 | 0 | 1\n */\nexport const sign = (num) => {\n  return num > 0 ? 1 : num < 0 ? -1 : 0\n}\n\n/**\n * @param {number} num\n * @param {number} min\n * @param {number} max\n * @return {number}\n */\nexport const clamp = (num, min, max) => {\n  return min > num ? min : max < num ? max : num\n}\n\n/**\n * @param {number} num - int\n * @param {number} min - int\n * @param {number} max - int\n * @return {number} int\n */\nexport const hoop = (num, min, max) => {\n  const _range /* :number int[0,inf) */ = max - min + 1\n  let _num /* :number int */ = (num - min) % _range\n  if (0 > _num) {\n    _num = _range + _num\n  }\n  return _num + min\n}\n\n/**\n * @param {number} num - int[0,inf)\n * @return {number} int[0,inf)\n */\nexport const toTowPower = (num) => {\n  return Math.pow(2, (Math.log(num) / Math.LN2) | 0)\n}\n",
     "static": true,
     "longname": "/Users/higa_syuuji/github/syuji-higa/javascript-modules-v5/src/models/math.js",
     "access": "public",
@@ -1355,7 +1355,7 @@
     "importPath": "javascript-modules-v5/src/models/math.js",
     "importStyle": "{toAngle}",
     "description": "",
-    "lineNumber": 9,
+    "lineNumber": 5,
     "params": [
       {
         "nullable": null,
@@ -1391,7 +1391,7 @@
     "importPath": "javascript-modules-v5/src/models/math.js",
     "importStyle": "{toRadian}",
     "description": "",
-    "lineNumber": 17,
+    "lineNumber": 13,
     "params": [
       {
         "nullable": null,
@@ -1427,7 +1427,7 @@
     "importPath": "javascript-modules-v5/src/models/math.js",
     "importStyle": "{decimal}",
     "description": "",
-    "lineNumber": 25,
+    "lineNumber": 21,
     "params": [
       {
         "nullable": null,
@@ -1463,7 +1463,7 @@
     "importPath": "javascript-modules-v5/src/models/math.js",
     "importStyle": "{round}",
     "description": "",
-    "lineNumber": 34,
+    "lineNumber": 30,
     "params": [
       {
         "nullable": null,
@@ -1509,7 +1509,7 @@
     "importPath": "javascript-modules-v5/src/models/math.js",
     "importStyle": "{floor}",
     "description": "",
-    "lineNumber": 44,
+    "lineNumber": 40,
     "params": [
       {
         "nullable": null,
@@ -1555,7 +1555,7 @@
     "importPath": "javascript-modules-v5/src/models/math.js",
     "importStyle": "{ceil}",
     "description": "",
-    "lineNumber": 54,
+    "lineNumber": 50,
     "params": [
       {
         "nullable": null,
@@ -1601,7 +1601,7 @@
     "importPath": "javascript-modules-v5/src/models/math.js",
     "importStyle": "{sign}",
     "description": "",
-    "lineNumber": 63,
+    "lineNumber": 59,
     "params": [
       {
         "nullable": null,
@@ -1637,7 +1637,7 @@
     "importPath": "javascript-modules-v5/src/models/math.js",
     "importStyle": "{clamp}",
     "description": "",
-    "lineNumber": 73,
+    "lineNumber": 69,
     "params": [
       {
         "nullable": null,
@@ -1693,7 +1693,7 @@
     "importPath": "javascript-modules-v5/src/models/math.js",
     "importStyle": "{hoop}",
     "description": "",
-    "lineNumber": 83,
+    "lineNumber": 79,
     "params": [
       {
         "nullable": null,
@@ -1749,7 +1749,7 @@
     "importPath": "javascript-modules-v5/src/models/math.js",
     "importStyle": "{toTowPower}",
     "description": "",
-    "lineNumber": 96,
+    "lineNumber": 92,
     "params": [
       {
         "nullable": null,
