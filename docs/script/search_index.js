@@ -48,6 +48,12 @@ window.esdocSearchIndex = [
     "variable"
   ],
   [
+    "javascript-modules-v5/src/models/easing.js~easings",
+    "variable/index.html#static-variable-easings",
+    "<span>easings</span> <span class=\"search-result-import-path\">javascript-modules-v5/src/models/easing.js</span>",
+    "variable"
+  ],
+  [
     "javascript-modules-v5/src/models/array.js~flattenarray",
     "function/index.html#static-function-flattenArray",
     "<span>flattenArray</span> <span class=\"search-result-import-path\">javascript-modules-v5/src/models/array.js</span>",
@@ -387,6 +393,12 @@ window.esdocSearchIndex = [
     "src/models/date.js",
     "file/src/models/date.js.html",
     "src/models/date.js",
+    "file"
+  ],
+  [
+    "src/models/easing.js",
+    "file/src/models/easing.js.html",
+    "src/models/easing.js",
     "file"
   ]
 ]
