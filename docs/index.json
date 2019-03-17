@@ -1772,6 +1772,119 @@
     }
   },
   {
+    "__docId__": 81,
+    "kind": "file",
+    "name": "src/models/normalize.js",
+    "content": "/**\n * @param {number} num\n * @param {number} max\n * @param {number} [min]\n * @return {number} [0,1]\n */\nexport const normalizeZeroOne = (num, max, min = 0) => {\n  return num / (max - min)\n}\n\n/**\n * @param {number} num\n * @param {number} [range] - [0,inf)\n * @return {number} [-1,1]\n */\nexport const normalizeZeroCenter = (num, range = 1) => {\n  return num * 2 - range\n}\n",
+    "static": true,
+    "longname": "/Users/higa_syuuji/github/syuji-higa/javascript-modules-v5/src/models/normalize.js",
+    "access": "public",
+    "description": null,
+    "lineNumber": 1
+  },
+  {
+    "__docId__": 82,
+    "kind": "function",
+    "name": "normalizeZeroOne",
+    "memberof": "src/models/normalize.js",
+    "generator": false,
+    "async": false,
+    "static": true,
+    "longname": "src/models/normalize.js~normalizeZeroOne",
+    "access": "public",
+    "export": true,
+    "importPath": "javascript-modules-v5/src/models/normalize.js",
+    "importStyle": "{normalizeZeroOne}",
+    "description": "",
+    "lineNumber": 7,
+    "params": [
+      {
+        "nullable": null,
+        "types": [
+          "number"
+        ],
+        "spread": false,
+        "optional": false,
+        "name": "num",
+        "description": ""
+      },
+      {
+        "nullable": null,
+        "types": [
+          "number"
+        ],
+        "spread": false,
+        "optional": false,
+        "name": "max",
+        "description": ""
+      },
+      {
+        "nullable": null,
+        "types": [
+          "number"
+        ],
+        "spread": false,
+        "optional": true,
+        "name": "min",
+        "description": ""
+      }
+    ],
+    "return": {
+      "nullable": null,
+      "types": [
+        "number"
+      ],
+      "spread": false,
+      "description": "[0,1]"
+    }
+  },
+  {
+    "__docId__": 83,
+    "kind": "function",
+    "name": "normalizeZeroCenter",
+    "memberof": "src/models/normalize.js",
+    "generator": false,
+    "async": false,
+    "static": true,
+    "longname": "src/models/normalize.js~normalizeZeroCenter",
+    "access": "public",
+    "export": true,
+    "importPath": "javascript-modules-v5/src/models/normalize.js",
+    "importStyle": "{normalizeZeroCenter}",
+    "description": "",
+    "lineNumber": 16,
+    "params": [
+      {
+        "nullable": null,
+        "types": [
+          "number"
+        ],
+        "spread": false,
+        "optional": false,
+        "name": "num",
+        "description": ""
+      },
+      {
+        "nullable": null,
+        "types": [
+          "number"
+        ],
+        "spread": false,
+        "optional": true,
+        "name": "range",
+        "description": "[0,inf)"
+      }
+    ],
+    "return": {
+      "nullable": null,
+      "types": [
+        "number"
+      ],
+      "spread": false,
+      "description": "[-1,1]"
+    }
+  },
+  {
     "kind": "index",
     "content": "# JavaScript Modules\n\n## Check rules that are in conflict with Prettier\n```\n$ npm run eslint-check\n```\n\n## ESLint and Prettier\n```\n$ npm run lint\n```\n\nfix command.\n```\n$ npm run lint -- --fix\n```\n\n## Jest unit test\n```\n$ npm run test\n```\n\nwatch command.\n```\n$ npm run test -- --watch\n```\n\n## ESDoc\n```\n$ npm run esdoc\n```\n\n## ESLint and Jest and ESDoc\n```\n$ npm run precommit\n```\n",
     "longname": "/Users/higa_syuuji/github/syuji-higa/javascript-modules-v5/README.md",

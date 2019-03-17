@@ -96,6 +96,18 @@ window.esdocSearchIndex = [
     "function"
   ],
   [
+    "javascript-modules-v5/src/models/normalize.js~normalizezerocenter",
+    "function/index.html#static-function-normalizeZeroCenter",
+    "<span>normalizeZeroCenter</span> <span class=\"search-result-import-path\">javascript-modules-v5/src/models/normalize.js</span>",
+    "function"
+  ],
+  [
+    "javascript-modules-v5/src/models/normalize.js~normalizezeroone",
+    "function/index.html#static-function-normalizeZeroOne",
+    "<span>normalizeZeroOne</span> <span class=\"search-result-import-path\">javascript-modules-v5/src/models/normalize.js</span>",
+    "function"
+  ],
+  [
     "javascript-modules-v5/src/models/math.js~round",
     "function/index.html#static-function-round",
     "<span>round</span> <span class=\"search-result-import-path\">javascript-modules-v5/src/models/math.js</span>",
@@ -477,6 +489,12 @@ window.esdocSearchIndex = [
     "src/models/math.js",
     "file/src/models/math.js.html",
     "src/models/math.js",
+    "file"
+  ],
+  [
+    "src/models/normalize.js",
+    "file/src/models/normalize.js.html",
+    "src/models/normalize.js",
     "file"
   ]
 ]
