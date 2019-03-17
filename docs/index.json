@@ -3029,6 +3029,243 @@
     }
   },
   {
+    "__docId__": 112,
+    "kind": "file",
+    "name": "src/models/string.js",
+    "content": "/**\n * @param {string} str\n * @return {string}\n */\nexport const toHalfNum = (str) => {\n  return str.replace(/[０-９]/g, (\n    s /* :'０'|'１'|'２'|'３'|'４'|'５'|'６'|'７'|'８'|'９' */\n  ) => {\n    return String.fromCharCode(s.charCodeAt(0) - 0xfee0)\n  })\n}\n\n/**\n * @param {string} str\n * @return {string}\n */\nexport const toCommaNum = (str) => {\n  const _strs /* :string[] */ = str.split('.')\n  if (!_strs[0] || !_strs[0].match(/[0-9]+/)) {\n    throw new Error(`'${_strs[0]}' is not number string.`)\n  }\n  const _decimal /* :string */ = _strs[1]\n  const _integer /* :string */ = _strs[0]\n    .replace(/,/g, '')\n    .replace(/(\\d)(?=(\\d{3})+$)/g, '$1,')\n  return _decimal ? `${_integer}.${_decimal}` : _integer\n}\n\n/**\n * @param {string} str\n * @param {number} digit - int[0,inf)\n * @return {string}\n */\nexport const toZeroPadding = (str, digit) => {\n  const _digit /* :number int[0,inf) */ = str.split('.')[0].length\n  const _diff /* :number int */ = digit - _digit\n  let _zero /* :string */ = ''\n  for (let i /* :number int[0,inf) */ = 0; _diff > i; i++) {\n    _zero += '0'\n  }\n  return _zero + str\n}\n\n/**\n * @param {string} str\n * @return {string}\n */\nexport const ucfirst = (str) => {\n  return str.charAt(0).toUpperCase() + str.slice(1)\n}\n\n/**\n * @param {string} str\n * @return {string}\n */\nexport const toFirstLetterUpper = (str) => {\n  return str.charAt(0).toUpperCase() + str.substring(1).toLowerCase()\n}\n\n/**\n * @param {string} str\n * @return {number}\n */\nexport const charCount = (str) => {\n  let _count /* :number int[0,inf) */ = 0\n  const _escapeStr /* :string */ = escape(str)\n  for (\n    let i /* :number int[0,inf) */ = 0;\n    i < _escapeStr.length;\n    i++, _count++\n  ) {\n    if (_escapeStr.charAt(i) === '%') {\n      if (_escapeStr.charAt(++i) === 'u') {\n        i += 3\n        _count++\n      }\n      i++\n    }\n  }\n  return _count\n}\n",
+    "static": true,
+    "longname": "/Users/higa_syuuji/github/syuji-higa/javascript-modules-v5/src/models/string.js",
+    "access": "public",
+    "description": null,
+    "lineNumber": 1
+  },
+  {
+    "__docId__": 113,
+    "kind": "function",
+    "name": "toHalfNum",
+    "memberof": "src/models/string.js",
+    "generator": false,
+    "async": false,
+    "static": true,
+    "longname": "src/models/string.js~toHalfNum",
+    "access": "public",
+    "export": true,
+    "importPath": "javascript-modules-v5/src/models/string.js",
+    "importStyle": "{toHalfNum}",
+    "description": "",
+    "lineNumber": 5,
+    "params": [
+      {
+        "nullable": null,
+        "types": [
+          "string"
+        ],
+        "spread": false,
+        "optional": false,
+        "name": "str",
+        "description": ""
+      }
+    ],
+    "return": {
+      "nullable": null,
+      "types": [
+        "string"
+      ],
+      "spread": false,
+      "description": ""
+    }
+  },
+  {
+    "__docId__": 114,
+    "kind": "function",
+    "name": "toCommaNum",
+    "memberof": "src/models/string.js",
+    "generator": false,
+    "async": false,
+    "static": true,
+    "longname": "src/models/string.js~toCommaNum",
+    "access": "public",
+    "export": true,
+    "importPath": "javascript-modules-v5/src/models/string.js",
+    "importStyle": "{toCommaNum}",
+    "description": "",
+    "lineNumber": 17,
+    "params": [
+      {
+        "nullable": null,
+        "types": [
+          "string"
+        ],
+        "spread": false,
+        "optional": false,
+        "name": "str",
+        "description": ""
+      }
+    ],
+    "return": {
+      "nullable": null,
+      "types": [
+        "string"
+      ],
+      "spread": false,
+      "description": ""
+    }
+  },
+  {
+    "__docId__": 115,
+    "kind": "function",
+    "name": "toZeroPadding",
+    "memberof": "src/models/string.js",
+    "generator": false,
+    "async": false,
+    "static": true,
+    "longname": "src/models/string.js~toZeroPadding",
+    "access": "public",
+    "export": true,
+    "importPath": "javascript-modules-v5/src/models/string.js",
+    "importStyle": "{toZeroPadding}",
+    "description": "",
+    "lineNumber": 34,
+    "params": [
+      {
+        "nullable": null,
+        "types": [
+          "string"
+        ],
+        "spread": false,
+        "optional": false,
+        "name": "str",
+        "description": ""
+      },
+      {
+        "nullable": null,
+        "types": [
+          "number"
+        ],
+        "spread": false,
+        "optional": false,
+        "name": "digit",
+        "description": "int[0,inf)"
+      }
+    ],
+    "return": {
+      "nullable": null,
+      "types": [
+        "string"
+      ],
+      "spread": false,
+      "description": ""
+    }
+  },
+  {
+    "__docId__": 116,
+    "kind": "function",
+    "name": "ucfirst",
+    "memberof": "src/models/string.js",
+    "generator": false,
+    "async": false,
+    "static": true,
+    "longname": "src/models/string.js~ucfirst",
+    "access": "public",
+    "export": true,
+    "importPath": "javascript-modules-v5/src/models/string.js",
+    "importStyle": "{ucfirst}",
+    "description": "",
+    "lineNumber": 48,
+    "params": [
+      {
+        "nullable": null,
+        "types": [
+          "string"
+        ],
+        "spread": false,
+        "optional": false,
+        "name": "str",
+        "description": ""
+      }
+    ],
+    "return": {
+      "nullable": null,
+      "types": [
+        "string"
+      ],
+      "spread": false,
+      "description": ""
+    }
+  },
+  {
+    "__docId__": 117,
+    "kind": "function",
+    "name": "toFirstLetterUpper",
+    "memberof": "src/models/string.js",
+    "generator": false,
+    "async": false,
+    "static": true,
+    "longname": "src/models/string.js~toFirstLetterUpper",
+    "access": "public",
+    "export": true,
+    "importPath": "javascript-modules-v5/src/models/string.js",
+    "importStyle": "{toFirstLetterUpper}",
+    "description": "",
+    "lineNumber": 56,
+    "params": [
+      {
+        "nullable": null,
+        "types": [
+          "string"
+        ],
+        "spread": false,
+        "optional": false,
+        "name": "str",
+        "description": ""
+      }
+    ],
+    "return": {
+      "nullable": null,
+      "types": [
+        "string"
+      ],
+      "spread": false,
+      "description": ""
+    }
+  },
+  {
+    "__docId__": 118,
+    "kind": "function",
+    "name": "charCount",
+    "memberof": "src/models/string.js",
+    "generator": false,
+    "async": false,
+    "static": true,
+    "longname": "src/models/string.js~charCount",
+    "access": "public",
+    "export": true,
+    "importPath": "javascript-modules-v5/src/models/string.js",
+    "importStyle": "{charCount}",
+    "description": "",
+    "lineNumber": 64,
+    "params": [
+      {
+        "nullable": null,
+        "types": [
+          "string"
+        ],
+        "spread": false,
+        "optional": false,
+        "name": "str",
+        "description": ""
+      }
+    ],
+    "return": {
+      "nullable": null,
+      "types": [
+        "number"
+      ],
+      "spread": false,
+      "description": ""
+    }
+  },
+  {
     "kind": "index",
     "content": "# JavaScript Modules\n\n## Check rules that are in conflict with Prettier\n```\n$ npm run eslint-check\n```\n\n## ESLint and Prettier\n```\n$ npm run lint\n```\n\nfix command.\n```\n$ npm run lint -- --fix\n```\n\n## Jest unit test\n```\n$ npm run test\n```\n\nwatch command.\n```\n$ npm run test -- --watch\n```\n\n## ESDoc\n```\n$ npm run esdoc\n```\n\n## ESLint and Jest and ESDoc\n```\n$ npm run precommit\n```\n",
     "longname": "/Users/higa_syuuji/github/syuji-higa/javascript-modules-v5/README.md",

@@ -24,6 +24,12 @@ window.esdocSearchIndex = [
     "function"
   ],
   [
+    "javascript-modules-v5/src/models/string.js~charcount",
+    "function/index.html#static-function-charCount",
+    "<span>charCount</span> <span class=\"search-result-import-path\">javascript-modules-v5/src/models/string.js</span>",
+    "function"
+  ],
+  [
     "javascript-modules-v5/src/models/math.js~clamp",
     "function/index.html#static-function-clamp",
     "<span>clamp</span> <span class=\"search-result-import-path\">javascript-modules-v5/src/models/math.js</span>",
@@ -228,15 +234,33 @@ window.esdocSearchIndex = [
     "function"
   ],
   [
+    "javascript-modules-v5/src/models/string.js~tocommanum",
+    "function/index.html#static-function-toCommaNum",
+    "<span>toCommaNum</span> <span class=\"search-result-import-path\">javascript-modules-v5/src/models/string.js</span>",
+    "function"
+  ],
+  [
     "javascript-modules-v5/src/models/date.js~todayofweeken",
     "function/index.html#static-function-toDayOfWeekEn",
     "<span>toDayOfWeekEn</span> <span class=\"search-result-import-path\">javascript-modules-v5/src/models/date.js</span>",
     "function"
   ],
   [
+    "javascript-modules-v5/src/models/string.js~tofirstletterupper",
+    "function/index.html#static-function-toFirstLetterUpper",
+    "<span>toFirstLetterUpper</span> <span class=\"search-result-import-path\">javascript-modules-v5/src/models/string.js</span>",
+    "function"
+  ],
+  [
     "javascript-modules-v5/src/models/form-data.js~toformdata",
     "function/index.html#static-function-toFormData",
     "<span>toFormData</span> <span class=\"search-result-import-path\">javascript-modules-v5/src/models/form-data.js</span>",
+    "function"
+  ],
+  [
+    "javascript-modules-v5/src/models/string.js~tohalfnum",
+    "function/index.html#static-function-toHalfNum",
+    "<span>toHalfNum</span> <span class=\"search-result-import-path\">javascript-modules-v5/src/models/string.js</span>",
     "function"
   ],
   [
@@ -261,6 +285,18 @@ window.esdocSearchIndex = [
     "javascript-modules-v5/src/models/math.js~totowpower",
     "function/index.html#static-function-toTowPower",
     "<span>toTowPower</span> <span class=\"search-result-import-path\">javascript-modules-v5/src/models/math.js</span>",
+    "function"
+  ],
+  [
+    "javascript-modules-v5/src/models/string.js~tozeropadding",
+    "function/index.html#static-function-toZeroPadding",
+    "<span>toZeroPadding</span> <span class=\"search-result-import-path\">javascript-modules-v5/src/models/string.js</span>",
+    "function"
+  ],
+  [
+    "javascript-modules-v5/src/models/string.js~ucfirst",
+    "function/index.html#static-function-ucfirst",
+    "<span>ucfirst</span> <span class=\"search-result-import-path\">javascript-modules-v5/src/models/string.js</span>",
     "function"
   ],
   [
@@ -645,6 +681,12 @@ window.esdocSearchIndex = [
     "src/models/squares.js",
     "file/src/models/squares.js.html",
     "src/models/squares.js",
+    "file"
+  ],
+  [
+    "src/models/string.js",
+    "file/src/models/string.js.html",
+    "src/models/string.js",
     "file"
   ]
 ]

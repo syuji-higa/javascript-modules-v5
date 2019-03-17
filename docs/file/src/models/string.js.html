@@ -3,7 +3,7 @@
 <head>
   <meta charset="utf-8">
   <base data-ice="baseUrl" href="../../../">
-  <title data-ice="title">src/models/form-data.js | javascript-modules-v5</title>
+  <title data-ice="title">src/models/string.js | javascript-modules-v5</title>
   <link type="text/css" rel="stylesheet" href="css/style.css">
   <link type="text/css" rel="stylesheet" href="css/prettify-tomorrow.css">
   <script src="script/prettify/prettify.js"></script>
@@ -83,19 +83,87 @@
 </div>
 </nav>
 
-<div class="content" data-ice="content"><h1 data-ice="title">src/models/form-data.js</h1>
+<div class="content" data-ice="content"><h1 data-ice="title">src/models/string.js</h1>
 <pre class="source-code line-number raw-source-code"><code class="prettyprint linenums" data-ice="content">/**
- * @param {Object} obj
- * @return {FormData}
+ * @param {string} str
+ * @return {string}
  */
-export const toFormData = (obj) =&gt; {
-  return Object.entries(obj).reduce((
-    formData /* :Instance */,
-    [key /* :string */, val /* :* */]
+export const toHalfNum = (str) =&gt; {
+  return str.replace(/[&#xFF10;-&#xFF19;]/g, (
+    s /* :&apos;&#xFF10;&apos;|&apos;&#xFF11;&apos;|&apos;&#xFF12;&apos;|&apos;&#xFF13;&apos;|&apos;&#xFF14;&apos;|&apos;&#xFF15;&apos;|&apos;&#xFF16;&apos;|&apos;&#xFF17;&apos;|&apos;&#xFF18;&apos;|&apos;&#xFF19;&apos; */
   ) =&gt; {
-    formData.append(key, val)
-    return formData
-  }, new FormData())
+    return String.fromCharCode(s.charCodeAt(0) - 0xfee0)
+  })
+}
+
+/**
+ * @param {string} str
+ * @return {string}
+ */
+export const toCommaNum = (str) =&gt; {
+  const _strs /* :string[] */ = str.split(&apos;.&apos;)
+  if (!_strs[0] || !_strs[0].match(/[0-9]+/)) {
+    throw new Error(`&apos;${_strs[0]}&apos; is not number string.`)
+  }
+  const _decimal /* :string */ = _strs[1]
+  const _integer /* :string */ = _strs[0]
+    .replace(/,/g, &apos;&apos;)
+    .replace(/(\d)(?=(\d{3})+$)/g, &apos;$1,&apos;)
+  return _decimal ? `${_integer}.${_decimal}` : _integer
+}
+
+/**
+ * @param {string} str
+ * @param {number} digit - int[0,inf)
+ * @return {string}
+ */
+export const toZeroPadding = (str, digit) =&gt; {
+  const _digit /* :number int[0,inf) */ = str.split(&apos;.&apos;)[0].length
+  const _diff /* :number int */ = digit - _digit
+  let _zero /* :string */ = &apos;&apos;
+  for (let i /* :number int[0,inf) */ = 0; _diff &gt; i; i++) {
+    _zero += &apos;0&apos;
+  }
+  return _zero + str
+}
+
+/**
+ * @param {string} str
+ * @return {string}
+ */
+export const ucfirst = (str) =&gt; {
+  return str.charAt(0).toUpperCase() + str.slice(1)
+}
+
+/**
+ * @param {string} str
+ * @return {string}
+ */
+export const toFirstLetterUpper = (str) =&gt; {
+  return str.charAt(0).toUpperCase() + str.substring(1).toLowerCase()
+}
+
+/**
+ * @param {string} str
+ * @return {number}
+ */
+export const charCount = (str) =&gt; {
+  let _count /* :number int[0,inf) */ = 0
+  const _escapeStr /* :string */ = escape(str)
+  for (
+    let i /* :number int[0,inf) */ = 0;
+    i &lt; _escapeStr.length;
+    i++, _count++
+  ) {
+    if (_escapeStr.charAt(i) === &apos;%&apos;) {
+      if (_escapeStr.charAt(++i) === &apos;u&apos;) {
+        i += 3
+        _count++
+      }
+      i++
+    }
+  }
+  return _count
 }
 </code></pre>
 
