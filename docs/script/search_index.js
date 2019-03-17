@@ -234,6 +234,24 @@ window.esdocSearchIndex = [
     "function"
   ],
   [
+    "javascript-modules-v5/src/utils/load.js~loadfile",
+    "function/index.html#static-function-loadFile",
+    "<span>loadFile</span> <span class=\"search-result-import-path\">javascript-modules-v5/src/utils/load.js</span>",
+    "function"
+  ],
+  [
+    "javascript-modules-v5/src/utils/load.js~loadimage",
+    "function/index.html#static-function-loadImage",
+    "<span>loadImage</span> <span class=\"search-result-import-path\">javascript-modules-v5/src/utils/load.js</span>",
+    "function"
+  ],
+  [
+    "javascript-modules-v5/src/utils/load.js~loadvideo",
+    "function/index.html#static-function-loadVideo",
+    "<span>loadVideo</span> <span class=\"search-result-import-path\">javascript-modules-v5/src/utils/load.js</span>",
+    "function"
+  ],
+  [
     "javascript-modules-v5/src/models/ratio.js~normalizeoverratio",
     "function/index.html#static-function-normalizeOverRatio",
     "<span>normalizeOverRatio</span> <span class=\"search-result-import-path\">javascript-modules-v5/src/models/ratio.js</span>",
@@ -897,6 +915,12 @@ window.esdocSearchIndex = [
     "src/utils/event.js",
     "file/src/utils/event.js.html",
     "src/utils/event.js",
+    "file"
+  ],
+  [
+    "src/utils/load.js",
+    "file/src/utils/load.js.html",
+    "src/utils/load.js",
     "file"
   ]
 ]

@@ -2,8 +2,8 @@
 <html>
 <head>
   <meta charset="utf-8">
-  <base data-ice="baseUrl">
-  <title data-ice="title">Home | javascript-modules-v5</title>
+  <base data-ice="baseUrl" href="../../../">
+  <title data-ice="title">src/utils/load.js | javascript-modules-v5</title>
   <link type="text/css" rel="stylesheet" href="css/style.css">
   <link type="text/css" rel="stylesheet" href="css/prettify-tomorrow.css">
   <script src="script/prettify/prettify.js"></script>
@@ -112,16 +112,92 @@
 </div>
 </nav>
 
-<div class="content" data-ice="content"><div data-ice="index" class="github-markdown"><h1 id="javascript-modules">JavaScript Modules</h1><h2 id="check-rules-that-are-in-conflict-with-prettier">Check rules that are in conflict with Prettier</h2><pre><code><code class="source-code prettyprint">$ npm run eslint-check</code>
-</code></pre><h2 id="eslint-and-prettier">ESLint and Prettier</h2><pre><code><code class="source-code prettyprint">$ npm run lint</code>
-</code></pre><p>fix command.</p>
-<pre><code><code class="source-code prettyprint">$ npm run lint -- --fix</code>
-</code></pre><h2 id="jest-unit-test">Jest unit test</h2><pre><code><code class="source-code prettyprint">$ npm run test</code>
-</code></pre><p>watch command.</p>
-<pre><code><code class="source-code prettyprint">$ npm run test -- --watch</code>
-</code></pre><h2 id="esdoc">ESDoc</h2><pre><code><code class="source-code prettyprint">$ npm run esdoc</code>
-</code></pre><h2 id="eslint-and-jest-and-esdoc">ESLint and Jest and ESDoc</h2><pre><code><code class="source-code prettyprint">$ npm run precommit</code>
-</code></pre></div>
+<div class="content" data-ice="content"><h1 data-ice="title">src/utils/load.js</h1>
+<pre class="source-code line-number raw-source-code"><code class="prettyprint linenums" data-ice="content">/**
+ * @param {Element} $video
+ * @return {Promise}
+ */
+export const loadVideo = ($video) =&gt; {
+  return new Promise((resolve /* :function */) =&gt; {
+    $video.load()
+    $video.addEventListener(
+      &apos;canplaythrough&apos;,
+      () =&gt; {
+        resolve()
+      },
+      { once: true }
+    )
+  })
+}
+
+/**
+ * @param {string} src
+ * @param {Object} [options]
+ * @param {funciton} [options.done]
+ * @param {funciton} [options.fail]
+ * @param {funciton} [options.always]
+ * @return {Promise}
+ */
+export const loadImage = (src, options = {}) =&gt; {
+  const { done, fail, always } = options
+
+  return new Promise((resolve /* :function */) =&gt; {
+    const _img /* :Image */ = new Image()
+
+    const _always = (img /* :Image */, isSuccess /* :boolean */) =&gt; {
+      if (always) always(img)
+      resolve(img, isSuccess)
+    }
+
+    _img.onload /* :functon */ = () =&gt; {
+      if (done) done(_img)
+      _always(_img, true)
+    }
+    _img.onerror /* :functon */ = () =&gt; {
+      if (fail) fail(_img)
+      _always(_img, false)
+    }
+
+    _img.src /* :string */ = src
+  })
+}
+
+/**
+ * @param {string} file
+ * @param {Object} [options]
+ * @param {funciton} [options.done]
+ * @param {funciton} [options.fail]
+ * @param {funciton} [options.always]
+ * @return {Promise}
+ */
+export const loadFile = (file, options = {}) =&gt; {
+  const { done, fail, always } = options
+
+  return new Promise((resolve /* :function */) =&gt; {
+    const _reader /* :FileRender */ = new FileReader()
+
+    const _always /* :function */ = (
+      file_ /* :FileRender */,
+      isSuccess /* :boolean */
+    ) =&gt; {
+      if (always) always(file_)
+      resolve(isSuccess)
+    }
+
+    _reader.onload /* :function */ = (file_ /* :FileRender */) =&gt; {
+      if (done) done(file_)
+      _always(file_, true)
+    }
+    _reader.onerror /* :function */ = (file_ /* :FileRender */) =&gt; {
+      if (fail) fail(file_)
+      _always(file_, false)
+    }
+
+    _reader.readAsDataURL(file)
+  })
+}
+</code></pre>
+
 </div>
 
 <footer class="footer">
