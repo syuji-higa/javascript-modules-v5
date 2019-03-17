@@ -108,6 +108,12 @@ window.esdocSearchIndex = [
     "function"
   ],
   [
+    "javascript-modules-v5/src/models/object-type.js~objecttype",
+    "function/index.html#static-function-objectType",
+    "<span>objectType</span> <span class=\"search-result-import-path\">javascript-modules-v5/src/models/object-type.js</span>",
+    "function"
+  ],
+  [
     "javascript-modules-v5/src/models/math.js~round",
     "function/index.html#static-function-round",
     "<span>round</span> <span class=\"search-result-import-path\">javascript-modules-v5/src/models/math.js</span>",
@@ -495,6 +501,12 @@ window.esdocSearchIndex = [
     "src/models/normalize.js",
     "file/src/models/normalize.js.html",
     "src/models/normalize.js",
+    "file"
+  ],
+  [
+    "src/models/object-type.js",
+    "file/src/models/object-type.js.html",
+    "src/models/object-type.js",
     "file"
   ]
 ]
