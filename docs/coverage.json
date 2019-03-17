@@ -1,11 +1,16 @@
 {
   "coverage": "100%",
-  "expectCount": 5,
-  "actualCount": 5,
+  "expectCount": 6,
+  "actualCount": 6,
   "files": {
     "src/models/array.js": {
       "expectCount": 5,
       "actualCount": 5,
+      "undocumentLines": []
+    },
+    "src/models/check.js": {
+      "expectCount": 1,
+      "actualCount": 1,
       "undocumentLines": []
     }
   }

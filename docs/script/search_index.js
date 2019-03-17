@@ -24,6 +24,12 @@ window.esdocSearchIndex = [
     "function"
   ],
   [
+    "javascript-modules-v5/src/models/check.js~isjson",
+    "function/index.html#static-function-isJson",
+    "<span>isJson</span> <span class=\"search-result-import-path\">javascript-modules-v5/src/models/check.js</span>",
+    "function"
+  ],
+  [
     "javascript-modules-v5/src/models/array.js~shufflearray",
     "function/index.html#static-function-shuffleArray",
     "<span>shuffleArray</span> <span class=\"search-result-import-path\">javascript-modules-v5/src/models/array.js</span>",
@@ -315,6 +321,12 @@ window.esdocSearchIndex = [
     "src/models/array.js",
     "file/src/models/array.js.html",
     "src/models/array.js",
+    "file"
+  ],
+  [
+    "src/models/check.js",
+    "file/src/models/check.js.html",
+    "src/models/check.js",
     "file"
   ]
 ]

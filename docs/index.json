@@ -785,6 +785,53 @@
     }
   },
   {
+    "__docId__": 54,
+    "kind": "file",
+    "name": "src/models/check.js",
+    "content": "/**\n * @param {*} arg\n * @return {boolean}\n */\nexport const isJson = (arg) => {\n  const _val /* :* */ = typeof arg === 'function' ? arg() : arg\n  if (typeof _val !== 'string') {\n    return false\n  }\n  try {\n    JSON ? JSON.parse(_val) : eval(`(${_val})`)\n    return true\n  } catch (err) {\n    return false\n  }\n}\n",
+    "static": true,
+    "longname": "/Users/higa_syuuji/github/syuji-higa/javascript-modules-v5/src/models/check.js",
+    "access": "public",
+    "description": null,
+    "lineNumber": 1
+  },
+  {
+    "__docId__": 55,
+    "kind": "function",
+    "name": "isJson",
+    "memberof": "src/models/check.js",
+    "generator": false,
+    "async": false,
+    "static": true,
+    "longname": "src/models/check.js~isJson",
+    "access": "public",
+    "export": true,
+    "importPath": "javascript-modules-v5/src/models/check.js",
+    "importStyle": "{isJson}",
+    "description": "",
+    "lineNumber": 5,
+    "params": [
+      {
+        "nullable": null,
+        "types": [
+          "*"
+        ],
+        "spread": false,
+        "optional": false,
+        "name": "arg",
+        "description": ""
+      }
+    ],
+    "return": {
+      "nullable": null,
+      "types": [
+        "boolean"
+      ],
+      "spread": false,
+      "description": ""
+    }
+  },
+  {
     "kind": "index",
     "content": "# JavaScript Modules\n\n## Check rules that are in conflict with Prettier\n```\n$ npm run eslint-check\n```\n\n## ESLint and Prettier\n```\n$ npm run lint\n```\n\nfix command.\n```\n$ npm run lint -- --fix\n```\n\n## Jest unit test\n```\n$ npm run test\n```\n\nwatch command.\n```\n$ npm run test -- --watch\n```\n\n## ESDoc\n```\n$ npm run esdoc\n```\n\n## ESLint and Jest and ESDoc\n```\n$ npm run precommit\n```\n",
     "longname": "/Users/higa_syuuji/github/syuji-higa/javascript-modules-v5/README.md",
