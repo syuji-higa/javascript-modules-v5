@@ -1026,6 +1026,233 @@
     }
   },
   {
+    "__docId__": 61,
+    "kind": "file",
+    "name": "src/models/date.js",
+    "content": "/**\n * @param {number} offset - int\n * @return {number} int[0,inf)\n */\nexport const areaTimestamp = (offset) => {\n  const _date /* :Instance */ = new Date()\n  const _utc /* :number int[0,inf) */ = _date.getTime()\n  const _deviceOffset /* :number int */ = _date.getTimezoneOffset()\n  return _utc + 1000 * 60 * (_deviceOffset + offset * 60)\n}\n\n/**\n * @param {number} offset - int\n * @return {Object}\n * @property {number} year int[0,inf)\n * @property {number} day int[0,6]\n * @property {number} date int[1,31]\n * @property {number} month int[0,11]\n * @property {number} hours int[0,23]\n * @property {number} minutes int[0,59]\n * @property {number} milliseconds int[0,999]\n */\nexport const areaDate = (offset) => {\n  const _offsetDate /* :Instance */ = new Date(areaTimestamp(offset))\n\n  return {\n    year: _offsetDate.getFullYear(),\n    day: _offsetDate.getDay(),\n    date: _offsetDate.getDate(),\n    month: _offsetDate.getMonth(),\n    hours: _offsetDate.getHours(),\n    minutes: _offsetDate.getMinutes(),\n    milliseconds: _offsetDate.getMilliseconds()\n  }\n}\n\n/**\n * @param {number} num - int[0,6]\n * @return {string[]}\n */\nexport const toDayOfWeekEn = (num) => {\n  const _DAY = [\n    'Sunday',\n    'Monday',\n    'Tuesday',\n    'Wednesday',\n    'Thursday',\n    'Friday',\n    'Saturday'\n  ]\n  return _DAY[num]\n}\n\n/**\n * @param {number} num - int[0,11]\n * @return {Array<string>}\n */\nexport const toMonthEn = (num) => {\n  const _MONTH = [\n    'January',\n    'February',\n    'March',\n    'April',\n    'May',\n    'June',\n    'July',\n    'August',\n    'September',\n    'October',\n    'November',\n    'December'\n  ]\n  return _MONTH[num]\n}\n",
+    "static": true,
+    "longname": "/Users/higa_syuuji/github/syuji-higa/javascript-modules-v5/src/models/date.js",
+    "access": "public",
+    "description": null,
+    "lineNumber": 1
+  },
+  {
+    "__docId__": 62,
+    "kind": "function",
+    "name": "areaTimestamp",
+    "memberof": "src/models/date.js",
+    "generator": false,
+    "async": false,
+    "static": true,
+    "longname": "src/models/date.js~areaTimestamp",
+    "access": "public",
+    "export": true,
+    "importPath": "javascript-modules-v5/src/models/date.js",
+    "importStyle": "{areaTimestamp}",
+    "description": "",
+    "lineNumber": 5,
+    "params": [
+      {
+        "nullable": null,
+        "types": [
+          "number"
+        ],
+        "spread": false,
+        "optional": false,
+        "name": "offset",
+        "description": "int"
+      }
+    ],
+    "return": {
+      "nullable": null,
+      "types": [
+        "number"
+      ],
+      "spread": false,
+      "description": "int[0,inf)"
+    }
+  },
+  {
+    "__docId__": 63,
+    "kind": "function",
+    "name": "areaDate",
+    "memberof": "src/models/date.js",
+    "generator": false,
+    "async": false,
+    "static": true,
+    "longname": "src/models/date.js~areaDate",
+    "access": "public",
+    "export": true,
+    "importPath": "javascript-modules-v5/src/models/date.js",
+    "importStyle": "{areaDate}",
+    "description": "",
+    "lineNumber": 23,
+    "params": [
+      {
+        "nullable": null,
+        "types": [
+          "number"
+        ],
+        "spread": false,
+        "optional": false,
+        "name": "offset",
+        "description": "int"
+      }
+    ],
+    "properties": [
+      {
+        "nullable": null,
+        "types": [
+          "number"
+        ],
+        "spread": false,
+        "optional": false,
+        "name": "year",
+        "description": "int[0,inf)"
+      },
+      {
+        "nullable": null,
+        "types": [
+          "number"
+        ],
+        "spread": false,
+        "optional": false,
+        "name": "day",
+        "description": "int[0,6]"
+      },
+      {
+        "nullable": null,
+        "types": [
+          "number"
+        ],
+        "spread": false,
+        "optional": false,
+        "name": "date",
+        "description": "int[1,31]"
+      },
+      {
+        "nullable": null,
+        "types": [
+          "number"
+        ],
+        "spread": false,
+        "optional": false,
+        "name": "month",
+        "description": "int[0,11]"
+      },
+      {
+        "nullable": null,
+        "types": [
+          "number"
+        ],
+        "spread": false,
+        "optional": false,
+        "name": "hours",
+        "description": "int[0,23]"
+      },
+      {
+        "nullable": null,
+        "types": [
+          "number"
+        ],
+        "spread": false,
+        "optional": false,
+        "name": "minutes",
+        "description": "int[0,59]"
+      },
+      {
+        "nullable": null,
+        "types": [
+          "number"
+        ],
+        "spread": false,
+        "optional": false,
+        "name": "milliseconds",
+        "description": "int[0,999]"
+      }
+    ],
+    "return": {
+      "nullable": null,
+      "types": [
+        "Object"
+      ],
+      "spread": false,
+      "description": ""
+    }
+  },
+  {
+    "__docId__": 64,
+    "kind": "function",
+    "name": "toDayOfWeekEn",
+    "memberof": "src/models/date.js",
+    "generator": false,
+    "async": false,
+    "static": true,
+    "longname": "src/models/date.js~toDayOfWeekEn",
+    "access": "public",
+    "export": true,
+    "importPath": "javascript-modules-v5/src/models/date.js",
+    "importStyle": "{toDayOfWeekEn}",
+    "description": "",
+    "lineNumber": 41,
+    "params": [
+      {
+        "nullable": null,
+        "types": [
+          "number"
+        ],
+        "spread": false,
+        "optional": false,
+        "name": "num",
+        "description": "int[0,6]"
+      }
+    ],
+    "return": {
+      "nullable": null,
+      "types": [
+        "string[]"
+      ],
+      "spread": false,
+      "description": ""
+    }
+  },
+  {
+    "__docId__": 65,
+    "kind": "function",
+    "name": "toMonthEn",
+    "memberof": "src/models/date.js",
+    "generator": false,
+    "async": false,
+    "static": true,
+    "longname": "src/models/date.js~toMonthEn",
+    "access": "public",
+    "export": true,
+    "importPath": "javascript-modules-v5/src/models/date.js",
+    "importStyle": "{toMonthEn}",
+    "description": "",
+    "lineNumber": 58,
+    "params": [
+      {
+        "nullable": null,
+        "types": [
+          "number"
+        ],
+        "spread": false,
+        "optional": false,
+        "name": "num",
+        "description": "int[0,11]"
+      }
+    ],
+    "return": {
+      "nullable": null,
+      "types": [
+        "Array<string>"
+      ],
+      "spread": false,
+      "description": ""
+    }
+  },
+  {
     "kind": "index",
     "content": "# JavaScript Modules\n\n## Check rules that are in conflict with Prettier\n```\n$ npm run eslint-check\n```\n\n## ESLint and Prettier\n```\n$ npm run lint\n```\n\nfix command.\n```\n$ npm run lint -- --fix\n```\n\n## Jest unit test\n```\n$ npm run test\n```\n\nwatch command.\n```\n$ npm run test -- --watch\n```\n\n## ESDoc\n```\n$ npm run esdoc\n```\n\n## ESLint and Jest and ESDoc\n```\n$ npm run precommit\n```\n",
     "longname": "/Users/higa_syuuji/github/syuji-higa/javascript-modules-v5/README.md",

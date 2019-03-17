@@ -2,8 +2,8 @@
 <html>
 <head>
   <meta charset="utf-8">
-  <base data-ice="baseUrl">
-  <title data-ice="title">Home | javascript-modules-v5</title>
+  <base data-ice="baseUrl" href="../../../">
+  <title data-ice="title">src/models/date.js | javascript-modules-v5</title>
   <link type="text/css" rel="stylesheet" href="css/style.css">
   <link type="text/css" rel="stylesheet" href="css/prettify-tomorrow.css">
   <script src="script/prettify/prettify.js"></script>
@@ -46,16 +46,83 @@
 </div>
 </nav>
 
-<div class="content" data-ice="content"><div data-ice="index" class="github-markdown"><h1 id="javascript-modules">JavaScript Modules</h1><h2 id="check-rules-that-are-in-conflict-with-prettier">Check rules that are in conflict with Prettier</h2><pre><code><code class="source-code prettyprint">$ npm run eslint-check</code>
-</code></pre><h2 id="eslint-and-prettier">ESLint and Prettier</h2><pre><code><code class="source-code prettyprint">$ npm run lint</code>
-</code></pre><p>fix command.</p>
-<pre><code><code class="source-code prettyprint">$ npm run lint -- --fix</code>
-</code></pre><h2 id="jest-unit-test">Jest unit test</h2><pre><code><code class="source-code prettyprint">$ npm run test</code>
-</code></pre><p>watch command.</p>
-<pre><code><code class="source-code prettyprint">$ npm run test -- --watch</code>
-</code></pre><h2 id="esdoc">ESDoc</h2><pre><code><code class="source-code prettyprint">$ npm run esdoc</code>
-</code></pre><h2 id="eslint-and-jest-and-esdoc">ESLint and Jest and ESDoc</h2><pre><code><code class="source-code prettyprint">$ npm run precommit</code>
-</code></pre></div>
+<div class="content" data-ice="content"><h1 data-ice="title">src/models/date.js</h1>
+<pre class="source-code line-number raw-source-code"><code class="prettyprint linenums" data-ice="content">/**
+ * @param {number} offset - int
+ * @return {number} int[0,inf)
+ */
+export const areaTimestamp = (offset) =&gt; {
+  const _date /* :Instance */ = new Date()
+  const _utc /* :number int[0,inf) */ = _date.getTime()
+  const _deviceOffset /* :number int */ = _date.getTimezoneOffset()
+  return _utc + 1000 * 60 * (_deviceOffset + offset * 60)
+}
+
+/**
+ * @param {number} offset - int
+ * @return {Object}
+ * @property {number} year int[0,inf)
+ * @property {number} day int[0,6]
+ * @property {number} date int[1,31]
+ * @property {number} month int[0,11]
+ * @property {number} hours int[0,23]
+ * @property {number} minutes int[0,59]
+ * @property {number} milliseconds int[0,999]
+ */
+export const areaDate = (offset) =&gt; {
+  const _offsetDate /* :Instance */ = new Date(areaTimestamp(offset))
+
+  return {
+    year: _offsetDate.getFullYear(),
+    day: _offsetDate.getDay(),
+    date: _offsetDate.getDate(),
+    month: _offsetDate.getMonth(),
+    hours: _offsetDate.getHours(),
+    minutes: _offsetDate.getMinutes(),
+    milliseconds: _offsetDate.getMilliseconds()
+  }
+}
+
+/**
+ * @param {number} num - int[0,6]
+ * @return {string[]}
+ */
+export const toDayOfWeekEn = (num) =&gt; {
+  const _DAY = [
+    &apos;Sunday&apos;,
+    &apos;Monday&apos;,
+    &apos;Tuesday&apos;,
+    &apos;Wednesday&apos;,
+    &apos;Thursday&apos;,
+    &apos;Friday&apos;,
+    &apos;Saturday&apos;
+  ]
+  return _DAY[num]
+}
+
+/**
+ * @param {number} num - int[0,11]
+ * @return {Array&lt;string&gt;}
+ */
+export const toMonthEn = (num) =&gt; {
+  const _MONTH = [
+    &apos;January&apos;,
+    &apos;February&apos;,
+    &apos;March&apos;,
+    &apos;April&apos;,
+    &apos;May&apos;,
+    &apos;June&apos;,
+    &apos;July&apos;,
+    &apos;August&apos;,
+    &apos;September&apos;,
+    &apos;October&apos;,
+    &apos;November&apos;,
+    &apos;December&apos;
+  ]
+  return _MONTH[num]
+}
+</code></pre>
+
 </div>
 
 <footer class="footer">

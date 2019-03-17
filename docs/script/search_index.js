@@ -1,5 +1,17 @@
 window.esdocSearchIndex = [
   [
+    "javascript-modules-v5/src/models/date.js~areadate",
+    "function/index.html#static-function-areaDate",
+    "<span>areaDate</span> <span class=\"search-result-import-path\">javascript-modules-v5/src/models/date.js</span>",
+    "function"
+  ],
+  [
+    "javascript-modules-v5/src/models/date.js~areatimestamp",
+    "function/index.html#static-function-areaTimestamp",
+    "<span>areaTimestamp</span> <span class=\"search-result-import-path\">javascript-modules-v5/src/models/date.js</span>",
+    "function"
+  ],
+  [
     "javascript-modules-v5/src/models/array.js~caterpillararray",
     "function/index.html#static-function-caterpillarArray",
     "<span>caterpillarArray</span> <span class=\"search-result-import-path\">javascript-modules-v5/src/models/array.js</span>",
@@ -51,6 +63,18 @@ window.esdocSearchIndex = [
     "javascript-modules-v5/src/models/array.js~shufflearray",
     "function/index.html#static-function-shuffleArray",
     "<span>shuffleArray</span> <span class=\"search-result-import-path\">javascript-modules-v5/src/models/array.js</span>",
+    "function"
+  ],
+  [
+    "javascript-modules-v5/src/models/date.js~todayofweeken",
+    "function/index.html#static-function-toDayOfWeekEn",
+    "<span>toDayOfWeekEn</span> <span class=\"search-result-import-path\">javascript-modules-v5/src/models/date.js</span>",
+    "function"
+  ],
+  [
+    "javascript-modules-v5/src/models/date.js~tomonthen",
+    "function/index.html#static-function-toMonthEn",
+    "<span>toMonthEn</span> <span class=\"search-result-import-path\">javascript-modules-v5/src/models/date.js</span>",
     "function"
   ],
   [
@@ -357,6 +381,12 @@ window.esdocSearchIndex = [
     "src/models/cubic-bezier-easing.js",
     "file/src/models/cubic-bezier-easing.js.html",
     "src/models/cubic-bezier-easing.js",
+    "file"
+  ],
+  [
+    "src/models/date.js",
+    "file/src/models/date.js.html",
+    "src/models/date.js",
     "file"
   ]
 ]
