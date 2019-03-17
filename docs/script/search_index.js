@@ -852,6 +852,12 @@ window.esdocSearchIndex = [
     "file"
   ],
   [
+    "src/modules/eventer.js",
+    "file/src/modules/eventer.js.html",
+    "src/modules/eventer.js",
+    "file"
+  ],
+  [
     "src/pattern/singleton.js",
     "file/src/pattern/singleton.js.html",
     "src/pattern/singleton.js",

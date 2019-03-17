@@ -4405,6 +4405,366 @@
   {
     "__docId__": 144,
     "kind": "file",
+    "name": "src/modules/eventer.js",
+    "content": "import { createEvent } from '../utils/event'\n\nclass Eventer {\n  _events /* Object[] */ = []\n\n  /**\n   * @param {Element} target\n   * @param {string} eventType\n   * @param {function} listener\n   * @param {boolean|Object} [option]\n   * @return {Object}\n   * @property {functon} add\n   * @property {functon} remove\n   */\n  create(target, eventType, listener, option = false) {\n    return {\n      add: () => {\n        this.add(target, eventType, listener, option)\n      },\n      remove: () => {\n        this.remove(target, eventType, listener)\n      }\n    }\n  }\n\n  /**\n   * @param {Element} target\n   * @param {string} eventType\n   * @param {function} listener\n   * @param {boolean|Object} [option]\n   * @return {Instance}\n   */\n  add(target, eventType, listener, option = false) {\n    let _hasEvent /* :boolean */ = false\n\n    for (const e /* :Object */ of this._events) {\n      if (\n        target === e.target &&\n        eventType === e.eventType &&\n        option === e.option &&\n        !e.listeners.includes(listener)\n      ) {\n        e.listeners.push(listener)\n        _hasEvent = true\n        return\n      }\n    }\n\n    if (!_hasEvent) {\n      const _listeners /* :function[] */ = [listener]\n      this._events.push({\n        target,\n        eventType,\n        option,\n        listeners: _listeners,\n        event: this._addEvent(target, eventType, _listeners, option)\n      })\n    }\n\n    return this\n  }\n\n  /**\n   * @param {Element} target\n   * @param {string} eventType\n   * @param {function} listener\n   * @return {Instance}\n   */\n  remove(target, eventType, listener) {\n    this._events.forEach((e /* :Object */, i /* :number int[0,inf) */) => {\n      if (\n        target === e.target &&\n        eventType === e.eventType &&\n        e.listeners.includes(listener)\n      ) {\n        e.listeners.splice(e.listeners.indexOf(listener), 1)\n        if (!e.listeners.length) {\n          this._removeEvent(i)\n        }\n        return\n      }\n    })\n\n    return this\n  }\n\n  /**\n   * @param {Element} target\n   * @param {string} eventType\n   * @param {function[]} listeners\n   * @param {boolean|Object} option\n   * @return {Object}\n   * @property {function} add\n   * @property {function} remove\n   */\n  _addEvent(target, eventType, listeners, option) {\n    const _event = createEvent(\n      target,\n      eventType,\n      (e /* :Event */) => {\n        for (const listener /* :function */ of listeners) {\n          listener(e)\n        }\n      },\n      option\n    )\n    _event.add()\n    return _event\n  }\n\n  /**\n   * @param {number} index - int\n   */\n  _removeEvent(index) {\n    this._events.splice(index, 1)\n  }\n}\n\nexport { Eventer as default }\n",
+    "static": true,
+    "longname": "/Users/higa_syuuji/github/syuji-higa/javascript-modules-v5/src/modules/eventer.js",
+    "access": "public",
+    "description": null,
+    "lineNumber": 1
+  },
+  {
+    "__docId__": 145,
+    "kind": "class",
+    "name": "Eventer",
+    "memberof": "src/modules/eventer.js",
+    "static": true,
+    "longname": "src/modules/eventer.js~Eventer",
+    "access": "public",
+    "export": false,
+    "importPath": "javascript-modules-v5/src/modules/eventer.js",
+    "importStyle": null,
+    "description": null,
+    "lineNumber": 3,
+    "undocument": true,
+    "interface": false,
+    "ignore": true
+  },
+  {
+    "__docId__": 146,
+    "kind": "member",
+    "name": "_events",
+    "memberof": "src/modules/eventer.js~Eventer",
+    "static": false,
+    "longname": "src/modules/eventer.js~Eventer#_events",
+    "access": "private",
+    "description": null,
+    "lineNumber": 4,
+    "undocument": true,
+    "type": {
+      "types": [
+        "*"
+      ]
+    }
+  },
+  {
+    "__docId__": 147,
+    "kind": "method",
+    "name": "create",
+    "memberof": "src/modules/eventer.js~Eventer",
+    "generator": false,
+    "async": false,
+    "static": false,
+    "longname": "src/modules/eventer.js~Eventer#create",
+    "access": "public",
+    "description": "",
+    "lineNumber": 15,
+    "params": [
+      {
+        "nullable": null,
+        "types": [
+          "Element"
+        ],
+        "spread": false,
+        "optional": false,
+        "name": "target",
+        "description": ""
+      },
+      {
+        "nullable": null,
+        "types": [
+          "string"
+        ],
+        "spread": false,
+        "optional": false,
+        "name": "eventType",
+        "description": ""
+      },
+      {
+        "nullable": null,
+        "types": [
+          "function"
+        ],
+        "spread": false,
+        "optional": false,
+        "name": "listener",
+        "description": ""
+      },
+      {
+        "nullable": null,
+        "types": [
+          "boolean",
+          "Object"
+        ],
+        "spread": false,
+        "optional": true,
+        "name": "option",
+        "description": ""
+      }
+    ],
+    "properties": [
+      {
+        "nullable": null,
+        "types": [
+          "functon"
+        ],
+        "spread": false,
+        "optional": false,
+        "name": "add",
+        "description": ""
+      },
+      {
+        "nullable": null,
+        "types": [
+          "functon"
+        ],
+        "spread": false,
+        "optional": false,
+        "name": "remove",
+        "description": ""
+      }
+    ],
+    "return": {
+      "nullable": null,
+      "types": [
+        "Object"
+      ],
+      "spread": false,
+      "description": ""
+    }
+  },
+  {
+    "__docId__": 148,
+    "kind": "method",
+    "name": "add",
+    "memberof": "src/modules/eventer.js~Eventer",
+    "generator": false,
+    "async": false,
+    "static": false,
+    "longname": "src/modules/eventer.js~Eventer#add",
+    "access": "public",
+    "description": "",
+    "lineNumber": 33,
+    "params": [
+      {
+        "nullable": null,
+        "types": [
+          "Element"
+        ],
+        "spread": false,
+        "optional": false,
+        "name": "target",
+        "description": ""
+      },
+      {
+        "nullable": null,
+        "types": [
+          "string"
+        ],
+        "spread": false,
+        "optional": false,
+        "name": "eventType",
+        "description": ""
+      },
+      {
+        "nullable": null,
+        "types": [
+          "function"
+        ],
+        "spread": false,
+        "optional": false,
+        "name": "listener",
+        "description": ""
+      },
+      {
+        "nullable": null,
+        "types": [
+          "boolean",
+          "Object"
+        ],
+        "spread": false,
+        "optional": true,
+        "name": "option",
+        "description": ""
+      }
+    ],
+    "return": {
+      "nullable": null,
+      "types": [
+        "Instance"
+      ],
+      "spread": false,
+      "description": ""
+    }
+  },
+  {
+    "__docId__": 149,
+    "kind": "method",
+    "name": "remove",
+    "memberof": "src/modules/eventer.js~Eventer",
+    "generator": false,
+    "async": false,
+    "static": false,
+    "longname": "src/modules/eventer.js~Eventer#remove",
+    "access": "public",
+    "description": "",
+    "lineNumber": 69,
+    "params": [
+      {
+        "nullable": null,
+        "types": [
+          "Element"
+        ],
+        "spread": false,
+        "optional": false,
+        "name": "target",
+        "description": ""
+      },
+      {
+        "nullable": null,
+        "types": [
+          "string"
+        ],
+        "spread": false,
+        "optional": false,
+        "name": "eventType",
+        "description": ""
+      },
+      {
+        "nullable": null,
+        "types": [
+          "function"
+        ],
+        "spread": false,
+        "optional": false,
+        "name": "listener",
+        "description": ""
+      }
+    ],
+    "return": {
+      "nullable": null,
+      "types": [
+        "Instance"
+      ],
+      "spread": false,
+      "description": ""
+    }
+  },
+  {
+    "__docId__": 150,
+    "kind": "method",
+    "name": "_addEvent",
+    "memberof": "src/modules/eventer.js~Eventer",
+    "generator": false,
+    "async": false,
+    "static": false,
+    "longname": "src/modules/eventer.js~Eventer#_addEvent",
+    "access": "private",
+    "description": "",
+    "lineNumber": 96,
+    "params": [
+      {
+        "nullable": null,
+        "types": [
+          "Element"
+        ],
+        "spread": false,
+        "optional": false,
+        "name": "target",
+        "description": ""
+      },
+      {
+        "nullable": null,
+        "types": [
+          "string"
+        ],
+        "spread": false,
+        "optional": false,
+        "name": "eventType",
+        "description": ""
+      },
+      {
+        "nullable": null,
+        "types": [
+          "function[]"
+        ],
+        "spread": false,
+        "optional": false,
+        "name": "listeners",
+        "description": ""
+      },
+      {
+        "nullable": null,
+        "types": [
+          "boolean",
+          "Object"
+        ],
+        "spread": false,
+        "optional": false,
+        "name": "option",
+        "description": ""
+      }
+    ],
+    "properties": [
+      {
+        "nullable": null,
+        "types": [
+          "function"
+        ],
+        "spread": false,
+        "optional": false,
+        "name": "add",
+        "description": ""
+      },
+      {
+        "nullable": null,
+        "types": [
+          "function"
+        ],
+        "spread": false,
+        "optional": false,
+        "name": "remove",
+        "description": ""
+      }
+    ],
+    "return": {
+      "nullable": null,
+      "types": [
+        "Object"
+      ],
+      "spread": false,
+      "description": ""
+    }
+  },
+  {
+    "__docId__": 151,
+    "kind": "method",
+    "name": "_removeEvent",
+    "memberof": "src/modules/eventer.js~Eventer",
+    "generator": false,
+    "async": false,
+    "static": false,
+    "longname": "src/modules/eventer.js~Eventer#_removeEvent",
+    "access": "private",
+    "description": "",
+    "lineNumber": 114,
+    "params": [
+      {
+        "nullable": null,
+        "types": [
+          "number"
+        ],
+        "spread": false,
+        "optional": false,
+        "name": "index",
+        "description": "int"
+      }
+    ],
+    "return": null
+  },
+  {
+    "__docId__": 152,
+    "kind": "file",
     "name": "src/pattern/singleton.js",
     "content": "class Singleton {\n  /**\n   * @type {Object}\n   */\n  static _instance = {}\n\n  /**\n   * @type {Object}\n   */\n  static _isInternal = {}\n\n  /**\n   * @return {Instance}\n   */\n  static getInstance() {\n    const { _instance, _isInternal } = Singleton\n    const _name /* :string */ = this.name\n    if (_instance[_name]) {\n      return Singleton._instance[_name]\n    }\n    _isInternal[_name] /* :boolean */ = true\n    return new this()\n  }\n\n  constructor() {\n    const { _isInternal, _instance } = Singleton\n    const _name /* :string */ = this.constructor.name\n    if (!_isInternal[_name]) {\n      throw new Error(\n        `Can't call new ${_name}(), use ${_name}.getInstance() instead.`\n      )\n    }\n    _isInternal[_name] /* :boolean */ = false\n    _instance[_name] /* :Instance */ = this\n  }\n}\n\nexport { Singleton as default }\n",
     "static": true,
@@ -4414,7 +4774,7 @@
     "lineNumber": 1
   },
   {
-    "__docId__": 145,
+    "__docId__": 153,
     "kind": "class",
     "name": "Singleton",
     "memberof": "src/pattern/singleton.js",
@@ -4431,7 +4791,7 @@
     "ignore": true
   },
   {
-    "__docId__": 146,
+    "__docId__": 154,
     "kind": "member",
     "name": "_instance",
     "memberof": "src/pattern/singleton.js~Singleton",
@@ -4450,7 +4810,7 @@
     }
   },
   {
-    "__docId__": 147,
+    "__docId__": 155,
     "kind": "member",
     "name": "_isInternal",
     "memberof": "src/pattern/singleton.js~Singleton",
@@ -4469,7 +4829,7 @@
     }
   },
   {
-    "__docId__": 148,
+    "__docId__": 156,
     "kind": "method",
     "name": "getInstance",
     "memberof": "src/pattern/singleton.js~Singleton",
@@ -4491,7 +4851,7 @@
     "params": []
   },
   {
-    "__docId__": 149,
+    "__docId__": 157,
     "kind": "constructor",
     "name": "constructor",
     "memberof": "src/pattern/singleton.js~Singleton",
@@ -4505,7 +4865,7 @@
     "undocument": true
   },
   {
-    "__docId__": 150,
+    "__docId__": 158,
     "kind": "file",
     "name": "src/utils/event.js",
     "content": "/**\n * @param {Element} target\n * @param {string} eventType\n * @param {function} listener\n * @param {boolean|Object} [option]\n * @return {Object}\n */\nexport const createEvent = (target, eventType, listener, option = false) => {\n  return {\n    handleEvent: (e) => {\n      listener(e)\n    },\n    add: function() {\n      target.addEventListener(eventType, this, option)\n    },\n    remove: function() {\n      target.removeEventListener(eventType, this, option)\n    }\n  }\n}\n\n/**\n * @param {Array} options\n * @param {Element} options[0] - dispatc target\n * @param {string} options[1] - eventType\n * @param {Object} [options[2]] - event detail\n * @param {Event} event\n *\n * @example\n *   onDispatchEvent.bind(this, [window, 'resize'], e);\n */\nexport const onDispatchEvent = (options, event) => {\n  const [target, eventType, detail] = options\n\n  const _detail /* :Object */ = (() => {\n    const _obj /* :Object */ = {\n      status: event\n    }\n    if (detail) Object.assign(_obj, detail)\n    return _obj\n  })()\n\n  target.dispatchEvent(\n    new CustomEvent(eventType, {\n      detail: _detail\n    })\n  )\n}\n",
@@ -4516,7 +4876,7 @@
     "lineNumber": 1
   },
   {
-    "__docId__": 151,
+    "__docId__": 159,
     "kind": "function",
     "name": "createEvent",
     "memberof": "src/utils/event.js",
@@ -4583,7 +4943,7 @@
     }
   },
   {
-    "__docId__": 152,
+    "__docId__": 160,
     "kind": "function",
     "name": "onDispatchEvent",
     "memberof": "src/utils/event.js",
