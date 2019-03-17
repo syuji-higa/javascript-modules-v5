@@ -3,7 +3,7 @@
 <head>
   <meta charset="utf-8">
   <base data-ice="baseUrl" href="../../../">
-  <title data-ice="title">src/models/object-type.js | javascript-modules-v5</title>
+  <title data-ice="title">src/models/validate.js | javascript-modules-v5</title>
   <link type="text/css" rel="stylesheet" href="css/style.css">
   <link type="text/css" rel="stylesheet" href="css/prettify-tomorrow.css">
   <script src="script/prettify/prettify.js"></script>
@@ -105,16 +105,81 @@
 </div>
 </nav>
 
-<div class="content" data-ice="content"><h1 data-ice="title">src/models/object-type.js</h1>
-<pre class="source-code line-number raw-source-code"><code class="prettyprint linenums" data-ice="content">const toString /* :function */ = Object.prototype.toString
+<div class="content" data-ice="content"><h1 data-ice="title">src/models/validate.js</h1>
+<pre class="source-code line-number raw-source-code"><code class="prettyprint linenums" data-ice="content">import { charCount } from &apos;./string&apos;
 
 /**
- * @param {*} target
- * @return {string}
+ * @param {string} str
+ * @return {boolean}
  */
-export const objectType = (target) =&gt; {
-  const _strs /* :string[] */ = toString.call(target).match(/^\[object (.+)\]$/)
-  return _strs[1]
+export const isEntry = (str) =&gt; {
+  return str !== &apos;&apos;
+}
+
+/**
+ * @param {string} str
+ * @return {boolean}
+ */
+export const isEmKana = (str) =&gt; {
+  return !!str.match(/^[\u30A0-\u30FF]+$/)
+}
+
+/**
+ * @param {string} str
+ * @return {boolean}
+ */
+export const isEmailAddress = (str) =&gt; {
+  return !!str.match(
+    /^[a-zA-Z0-9.!#$%&amp;&apos;*+/=?^_`{|}~-]+@[a-zA-Z0-9-]+(?:\.[a-zA-Z0-9-]+)*$/
+  )
+}
+
+/**
+ * @param {string} str
+ * @return {boolean}
+ */
+export const isTell = (str) =&gt; {
+  return !!str.match(
+    /^[0-9&#xFF10;-&#xFF19;]{2,4}[-&#x2212;]?[0-9&#xFF10;-&#xFF19;]{2,4}[-&#x2212;]?[0-9&#xFF10;-&#xFF19;]{3,4}$/
+  )
+}
+
+/**
+ * @param {string} str
+ * @return {boolean}
+ */
+export const isZipCode = (str) =&gt; {
+  return !!str.match(/^[0-9&#xFF10;-&#xFF19;]{3}[-&#x2212;]?[0-9&#xFF10;-&#xFF19;]{4}$/)
+}
+
+/**
+ * @param {string} str
+ * @return {boolean}
+ */
+export const isHalfNum = (str) =&gt; {
+  return str.match(/^[0-9]+$/) ? true : false
+}
+
+/**
+ * @param {string} str
+ * @param {number} min - int[0,inf)
+ * @param {number} max - int[0,inf)
+ * @return {boolean}
+ */
+export const isStrRenge = (str, min, max) =&gt; {
+  const _len /* :number int[0,inf) */ = Math.ceil(charCount(str) / 2)
+  return min &lt;= _len &amp;&amp; _len &lt;= max
+}
+
+/**
+ * @param {string} str
+ * @param {number} min
+ * @param {number} max
+ * @return {boolean}
+ */
+export const isNumRenge = (str, min, max) =&gt; {
+  const _num /* :number */ = Number(str)
+  return min &lt;= _num &amp;&amp; _num &lt;= max
 }
 </code></pre>
 

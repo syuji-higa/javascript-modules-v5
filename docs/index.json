@@ -4064,6 +4064,345 @@
     }
   },
   {
+    "__docId__": 135,
+    "kind": "file",
+    "name": "src/models/validate.js",
+    "content": "import { charCount } from './string'\n\n/**\n * @param {string} str\n * @return {boolean}\n */\nexport const isEntry = (str) => {\n  return str !== ''\n}\n\n/**\n * @param {string} str\n * @return {boolean}\n */\nexport const isEmKana = (str) => {\n  return !!str.match(/^[\\u30A0-\\u30FF]+$/)\n}\n\n/**\n * @param {string} str\n * @return {boolean}\n */\nexport const isEmailAddress = (str) => {\n  return !!str.match(\n    /^[a-zA-Z0-9.!#$%&'*+/=?^_`{|}~-]+@[a-zA-Z0-9-]+(?:\\.[a-zA-Z0-9-]+)*$/\n  )\n}\n\n/**\n * @param {string} str\n * @return {boolean}\n */\nexport const isTell = (str) => {\n  return !!str.match(\n    /^[0-9０-９]{2,4}[-−]?[0-9０-９]{2,4}[-−]?[0-9０-９]{3,4}$/\n  )\n}\n\n/**\n * @param {string} str\n * @return {boolean}\n */\nexport const isZipCode = (str) => {\n  return !!str.match(/^[0-9０-９]{3}[-−]?[0-9０-９]{4}$/)\n}\n\n/**\n * @param {string} str\n * @return {boolean}\n */\nexport const isHalfNum = (str) => {\n  return str.match(/^[0-9]+$/) ? true : false\n}\n\n/**\n * @param {string} str\n * @param {number} min - int[0,inf)\n * @param {number} max - int[0,inf)\n * @return {boolean}\n */\nexport const isStrRenge = (str, min, max) => {\n  const _len /* :number int[0,inf) */ = Math.ceil(charCount(str) / 2)\n  return min <= _len && _len <= max\n}\n\n/**\n * @param {string} str\n * @param {number} min\n * @param {number} max\n * @return {boolean}\n */\nexport const isNumRenge = (str, min, max) => {\n  const _num /* :number */ = Number(str)\n  return min <= _num && _num <= max\n}\n",
+    "static": true,
+    "longname": "/Users/higa_syuuji/github/syuji-higa/javascript-modules-v5/src/models/validate.js",
+    "access": "public",
+    "description": null,
+    "lineNumber": 1
+  },
+  {
+    "__docId__": 136,
+    "kind": "function",
+    "name": "isEntry",
+    "memberof": "src/models/validate.js",
+    "generator": false,
+    "async": false,
+    "static": true,
+    "longname": "src/models/validate.js~isEntry",
+    "access": "public",
+    "export": true,
+    "importPath": "javascript-modules-v5/src/models/validate.js",
+    "importStyle": "{isEntry}",
+    "description": "",
+    "lineNumber": 7,
+    "params": [
+      {
+        "nullable": null,
+        "types": [
+          "string"
+        ],
+        "spread": false,
+        "optional": false,
+        "name": "str",
+        "description": ""
+      }
+    ],
+    "return": {
+      "nullable": null,
+      "types": [
+        "boolean"
+      ],
+      "spread": false,
+      "description": ""
+    }
+  },
+  {
+    "__docId__": 137,
+    "kind": "function",
+    "name": "isEmKana",
+    "memberof": "src/models/validate.js",
+    "generator": false,
+    "async": false,
+    "static": true,
+    "longname": "src/models/validate.js~isEmKana",
+    "access": "public",
+    "export": true,
+    "importPath": "javascript-modules-v5/src/models/validate.js",
+    "importStyle": "{isEmKana}",
+    "description": "",
+    "lineNumber": 15,
+    "params": [
+      {
+        "nullable": null,
+        "types": [
+          "string"
+        ],
+        "spread": false,
+        "optional": false,
+        "name": "str",
+        "description": ""
+      }
+    ],
+    "return": {
+      "nullable": null,
+      "types": [
+        "boolean"
+      ],
+      "spread": false,
+      "description": ""
+    }
+  },
+  {
+    "__docId__": 138,
+    "kind": "function",
+    "name": "isEmailAddress",
+    "memberof": "src/models/validate.js",
+    "generator": false,
+    "async": false,
+    "static": true,
+    "longname": "src/models/validate.js~isEmailAddress",
+    "access": "public",
+    "export": true,
+    "importPath": "javascript-modules-v5/src/models/validate.js",
+    "importStyle": "{isEmailAddress}",
+    "description": "",
+    "lineNumber": 23,
+    "params": [
+      {
+        "nullable": null,
+        "types": [
+          "string"
+        ],
+        "spread": false,
+        "optional": false,
+        "name": "str",
+        "description": ""
+      }
+    ],
+    "return": {
+      "nullable": null,
+      "types": [
+        "boolean"
+      ],
+      "spread": false,
+      "description": ""
+    }
+  },
+  {
+    "__docId__": 139,
+    "kind": "function",
+    "name": "isTell",
+    "memberof": "src/models/validate.js",
+    "generator": false,
+    "async": false,
+    "static": true,
+    "longname": "src/models/validate.js~isTell",
+    "access": "public",
+    "export": true,
+    "importPath": "javascript-modules-v5/src/models/validate.js",
+    "importStyle": "{isTell}",
+    "description": "",
+    "lineNumber": 33,
+    "params": [
+      {
+        "nullable": null,
+        "types": [
+          "string"
+        ],
+        "spread": false,
+        "optional": false,
+        "name": "str",
+        "description": ""
+      }
+    ],
+    "return": {
+      "nullable": null,
+      "types": [
+        "boolean"
+      ],
+      "spread": false,
+      "description": ""
+    }
+  },
+  {
+    "__docId__": 140,
+    "kind": "function",
+    "name": "isZipCode",
+    "memberof": "src/models/validate.js",
+    "generator": false,
+    "async": false,
+    "static": true,
+    "longname": "src/models/validate.js~isZipCode",
+    "access": "public",
+    "export": true,
+    "importPath": "javascript-modules-v5/src/models/validate.js",
+    "importStyle": "{isZipCode}",
+    "description": "",
+    "lineNumber": 43,
+    "params": [
+      {
+        "nullable": null,
+        "types": [
+          "string"
+        ],
+        "spread": false,
+        "optional": false,
+        "name": "str",
+        "description": ""
+      }
+    ],
+    "return": {
+      "nullable": null,
+      "types": [
+        "boolean"
+      ],
+      "spread": false,
+      "description": ""
+    }
+  },
+  {
+    "__docId__": 141,
+    "kind": "function",
+    "name": "isHalfNum",
+    "memberof": "src/models/validate.js",
+    "generator": false,
+    "async": false,
+    "static": true,
+    "longname": "src/models/validate.js~isHalfNum",
+    "access": "public",
+    "export": true,
+    "importPath": "javascript-modules-v5/src/models/validate.js",
+    "importStyle": "{isHalfNum}",
+    "description": "",
+    "lineNumber": 51,
+    "params": [
+      {
+        "nullable": null,
+        "types": [
+          "string"
+        ],
+        "spread": false,
+        "optional": false,
+        "name": "str",
+        "description": ""
+      }
+    ],
+    "return": {
+      "nullable": null,
+      "types": [
+        "boolean"
+      ],
+      "spread": false,
+      "description": ""
+    }
+  },
+  {
+    "__docId__": 142,
+    "kind": "function",
+    "name": "isStrRenge",
+    "memberof": "src/models/validate.js",
+    "generator": false,
+    "async": false,
+    "static": true,
+    "longname": "src/models/validate.js~isStrRenge",
+    "access": "public",
+    "export": true,
+    "importPath": "javascript-modules-v5/src/models/validate.js",
+    "importStyle": "{isStrRenge}",
+    "description": "",
+    "lineNumber": 61,
+    "params": [
+      {
+        "nullable": null,
+        "types": [
+          "string"
+        ],
+        "spread": false,
+        "optional": false,
+        "name": "str",
+        "description": ""
+      },
+      {
+        "nullable": null,
+        "types": [
+          "number"
+        ],
+        "spread": false,
+        "optional": false,
+        "name": "min",
+        "description": "int[0,inf)"
+      },
+      {
+        "nullable": null,
+        "types": [
+          "number"
+        ],
+        "spread": false,
+        "optional": false,
+        "name": "max",
+        "description": "int[0,inf)"
+      }
+    ],
+    "return": {
+      "nullable": null,
+      "types": [
+        "boolean"
+      ],
+      "spread": false,
+      "description": ""
+    }
+  },
+  {
+    "__docId__": 143,
+    "kind": "function",
+    "name": "isNumRenge",
+    "memberof": "src/models/validate.js",
+    "generator": false,
+    "async": false,
+    "static": true,
+    "longname": "src/models/validate.js~isNumRenge",
+    "access": "public",
+    "export": true,
+    "importPath": "javascript-modules-v5/src/models/validate.js",
+    "importStyle": "{isNumRenge}",
+    "description": "",
+    "lineNumber": 72,
+    "params": [
+      {
+        "nullable": null,
+        "types": [
+          "string"
+        ],
+        "spread": false,
+        "optional": false,
+        "name": "str",
+        "description": ""
+      },
+      {
+        "nullable": null,
+        "types": [
+          "number"
+        ],
+        "spread": false,
+        "optional": false,
+        "name": "min",
+        "description": ""
+      },
+      {
+        "nullable": null,
+        "types": [
+          "number"
+        ],
+        "spread": false,
+        "optional": false,
+        "name": "max",
+        "description": ""
+      }
+    ],
+    "return": {
+      "nullable": null,
+      "types": [
+        "boolean"
+      ],
+      "spread": false,
+      "description": ""
+    }
+  },
+  {
     "kind": "index",
     "content": "# JavaScript Modules\n\n## Check rules that are in conflict with Prettier\n```\n$ npm run eslint-check\n```\n\n## ESLint and Prettier\n```\n$ npm run lint\n```\n\nfix command.\n```\n$ npm run lint -- --fix\n```\n\n## Jest unit test\n```\n$ npm run test\n```\n\nwatch command.\n```\n$ npm run test -- --watch\n```\n\n## ESDoc\n```\n$ npm run esdoc\n```\n\n## ESLint and Jest and ESDoc\n```\n$ npm run precommit\n```\n",
     "longname": "/Users/higa_syuuji/github/syuji-higa/javascript-modules-v5/README.md",

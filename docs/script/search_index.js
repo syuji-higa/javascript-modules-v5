@@ -162,6 +162,30 @@ window.esdocSearchIndex = [
     "function"
   ],
   [
+    "javascript-modules-v5/src/models/validate.js~isemkana",
+    "function/index.html#static-function-isEmKana",
+    "<span>isEmKana</span> <span class=\"search-result-import-path\">javascript-modules-v5/src/models/validate.js</span>",
+    "function"
+  ],
+  [
+    "javascript-modules-v5/src/models/validate.js~isemailaddress",
+    "function/index.html#static-function-isEmailAddress",
+    "<span>isEmailAddress</span> <span class=\"search-result-import-path\">javascript-modules-v5/src/models/validate.js</span>",
+    "function"
+  ],
+  [
+    "javascript-modules-v5/src/models/validate.js~isentry",
+    "function/index.html#static-function-isEntry",
+    "<span>isEntry</span> <span class=\"search-result-import-path\">javascript-modules-v5/src/models/validate.js</span>",
+    "function"
+  ],
+  [
+    "javascript-modules-v5/src/models/validate.js~ishalfnum",
+    "function/index.html#static-function-isHalfNum",
+    "<span>isHalfNum</span> <span class=\"search-result-import-path\">javascript-modules-v5/src/models/validate.js</span>",
+    "function"
+  ],
+  [
     "javascript-modules-v5/src/models/check.js~isjson",
     "function/index.html#static-function-isJson",
     "<span>isJson</span> <span class=\"search-result-import-path\">javascript-modules-v5/src/models/check.js</span>",
@@ -171,6 +195,30 @@ window.esdocSearchIndex = [
     "javascript-modules-v5/src/models/url.js~ismatchlocation",
     "function/index.html#static-function-isMatchLocation",
     "<span>isMatchLocation</span> <span class=\"search-result-import-path\">javascript-modules-v5/src/models/url.js</span>",
+    "function"
+  ],
+  [
+    "javascript-modules-v5/src/models/validate.js~isnumrenge",
+    "function/index.html#static-function-isNumRenge",
+    "<span>isNumRenge</span> <span class=\"search-result-import-path\">javascript-modules-v5/src/models/validate.js</span>",
+    "function"
+  ],
+  [
+    "javascript-modules-v5/src/models/validate.js~isstrrenge",
+    "function/index.html#static-function-isStrRenge",
+    "<span>isStrRenge</span> <span class=\"search-result-import-path\">javascript-modules-v5/src/models/validate.js</span>",
+    "function"
+  ],
+  [
+    "javascript-modules-v5/src/models/validate.js~istell",
+    "function/index.html#static-function-isTell",
+    "<span>isTell</span> <span class=\"search-result-import-path\">javascript-modules-v5/src/models/validate.js</span>",
+    "function"
+  ],
+  [
+    "javascript-modules-v5/src/models/validate.js~iszipcode",
+    "function/index.html#static-function-isZipCode",
+    "<span>isZipCode</span> <span class=\"search-result-import-path\">javascript-modules-v5/src/models/validate.js</span>",
     "function"
   ],
   [
@@ -783,6 +831,12 @@ window.esdocSearchIndex = [
     "src/models/url.js",
     "file/src/models/url.js.html",
     "src/models/url.js",
+    "file"
+  ],
+  [
+    "src/models/validate.js",
+    "file/src/models/validate.js.html",
+    "src/models/validate.js",
     "file"
   ]
 ]
