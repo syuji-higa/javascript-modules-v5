@@ -835,7 +835,7 @@
     "__docId__": 56,
     "kind": "file",
     "name": "src/models/coordinate.js",
-    "content": "/**\n * @param {number} p1X - float position 1 x\n * @param {number} p1Y - float position 1 y\n * @param {number} p2X - float position 2 x\n * @param {number} p2Y - float position 2 y\n * @return {number}\n */\nexport const coordinateLength = (p1X, p1Y, p2X, p2Y) => {\n  return Math.sqrt(Math.pow(p1X - p2X, 2) + Math.pow(p1Y - p2Y, 2))\n}\n\n/**\n * @param {number[]} cTL - float[0,1] color top left\n * @param {number[]} cTR - float[0,1] color top right\n * @param {number[]} cBL - float[0,1] color bottom left\n * @param {number[]} cBR - float[0,1] color bottom right\n * @param {number} pRX - float[-1,1] position ratio x\n * @param {number} pRY - float[-1,1] position ratio y\n * @return {number[]} - float[0,1] pickup color\n */\nexport const coordinatePickupColor = (cTL, cTR, cBL, cBR, pRX, pRY) => {\n  // color top\n  const _cT /* :number[] float[0,1] */ = cTL.map((\n    c /* :number float[0,1] */,\n    i /* :number int[0,inf) */\n  ) => {\n    return cTL[i] + (cTR[i] - cTL[i]) * pRX\n  })\n  // color bottom\n  const _cB /* :number[] float[0,1] */ = cBL.map((\n    c /* :number float[0,1] */,\n    i /* :number int[0,inf) */\n  ) => {\n    return cBL[i] + (cBR[i] - cBL[i]) * pRX\n  })\n  return _cT.map((c /* :number float[0,1] */, i /* :number int[0,inf) */) => {\n    return _cT[i] + (_cB[i] - _cT[i]) * pRY\n  })\n}\n",
+    "content": "/**\n * @param {number} p1X - position 1 x\n * @param {number} p1Y - position 1 y\n * @param {number} p2X - position 2 x\n * @param {number} p2Y - position 2 y\n * @return {number}\n */\nexport const coordinateLength = (p1X, p1Y, p2X, p2Y) => {\n  return Math.sqrt(Math.pow(p1X - p2X, 2) + Math.pow(p1Y - p2Y, 2))\n}\n\n/**\n * @param {number[]} cTL - [0,1] color top left\n * @param {number[]} cTR - [0,1] color top right\n * @param {number[]} cBL - [0,1] color bottom left\n * @param {number[]} cBR - [0,1] color bottom right\n * @param {number} pRX - [-1,1] position ratio x\n * @param {number} pRY - [-1,1] position ratio y\n * @return {number[]} - [0,1] pickup color\n */\nexport const coordinatePickupColor = (cTL, cTR, cBL, cBR, pRX, pRY) => {\n  // color top\n  const _cT /* :number[] [0,1] */ = cTL.map((\n    c /* :number [0,1] */,\n    i /* :number int[0,inf) */\n  ) => {\n    return cTL[i] + (cTR[i] - cTL[i]) * pRX\n  })\n  // color bottom\n  const _cB /* :number[] [0,1] */ = cBL.map((\n    c /* :number [0,1] */,\n    i /* :number int[0,inf) */\n  ) => {\n    return cBL[i] + (cBR[i] - cBL[i]) * pRX\n  })\n  return _cT.map((c /* :number [0,1] */, i /* :number int[0,inf) */) => {\n    return _cT[i] + (_cB[i] - _cT[i]) * pRY\n  })\n}\n",
     "static": true,
     "longname": "/Users/higa_syuuji/github/syuji-higa/javascript-modules-v5/src/models/coordinate.js",
     "access": "public",
@@ -866,7 +866,7 @@
         "spread": false,
         "optional": false,
         "name": "p1X",
-        "description": "float position 1 x"
+        "description": "position 1 x"
       },
       {
         "nullable": null,
@@ -876,7 +876,7 @@
         "spread": false,
         "optional": false,
         "name": "p1Y",
-        "description": "float position 1 y"
+        "description": "position 1 y"
       },
       {
         "nullable": null,
@@ -886,7 +886,7 @@
         "spread": false,
         "optional": false,
         "name": "p2X",
-        "description": "float position 2 x"
+        "description": "position 2 x"
       },
       {
         "nullable": null,
@@ -896,7 +896,7 @@
         "spread": false,
         "optional": false,
         "name": "p2Y",
-        "description": "float position 2 y"
+        "description": "position 2 y"
       }
     ],
     "return": {
@@ -932,7 +932,7 @@
         "spread": false,
         "optional": false,
         "name": "cTL",
-        "description": "float[0,1] color top left"
+        "description": "[0,1] color top left"
       },
       {
         "nullable": null,
@@ -942,7 +942,7 @@
         "spread": false,
         "optional": false,
         "name": "cTR",
-        "description": "float[0,1] color top right"
+        "description": "[0,1] color top right"
       },
       {
         "nullable": null,
@@ -952,7 +952,7 @@
         "spread": false,
         "optional": false,
         "name": "cBL",
-        "description": "float[0,1] color bottom left"
+        "description": "[0,1] color bottom left"
       },
       {
         "nullable": null,
@@ -962,7 +962,7 @@
         "spread": false,
         "optional": false,
         "name": "cBR",
-        "description": "float[0,1] color bottom right"
+        "description": "[0,1] color bottom right"
       },
       {
         "nullable": null,
@@ -972,7 +972,7 @@
         "spread": false,
         "optional": false,
         "name": "pRX",
-        "description": "float[-1,1] position ratio x"
+        "description": "[-1,1] position ratio x"
       },
       {
         "nullable": null,
@@ -982,7 +982,7 @@
         "spread": false,
         "optional": false,
         "name": "pRY",
-        "description": "float[-1,1] position ratio y"
+        "description": "[-1,1] position ratio y"
       }
     ],
     "return": {
@@ -991,7 +991,7 @@
         "number[]"
       ],
       "spread": false,
-      "description": "float[0,1] pickup color"
+      "description": "[0,1] pickup color"
     }
   },
   {
