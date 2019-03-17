@@ -18,6 +18,18 @@ window.esdocSearchIndex = [
     "function"
   ],
   [
+    "javascript-modules-v5/src/models/math.js~ceil",
+    "function/index.html#static-function-ceil",
+    "<span>ceil</span> <span class=\"search-result-import-path\">javascript-modules-v5/src/models/math.js</span>",
+    "function"
+  ],
+  [
+    "javascript-modules-v5/src/models/math.js~clamp",
+    "function/index.html#static-function-clamp",
+    "<span>clamp</span> <span class=\"search-result-import-path\">javascript-modules-v5/src/models/math.js</span>",
+    "function"
+  ],
+  [
     "javascript-modules-v5/src/models/coordinate.js~coordinatelength",
     "function/index.html#static-function-coordinateLength",
     "<span>coordinateLength</span> <span class=\"search-result-import-path\">javascript-modules-v5/src/models/coordinate.js</span>",
@@ -42,6 +54,12 @@ window.esdocSearchIndex = [
     "function"
   ],
   [
+    "javascript-modules-v5/src/models/math.js~decimal",
+    "function/index.html#static-function-decimal",
+    "<span>decimal</span> <span class=\"search-result-import-path\">javascript-modules-v5/src/models/math.js</span>",
+    "function"
+  ],
+  [
     "javascript-modules-v5/src/models/cubic-bezier-easing.js~easings",
     "variable/index.html#static-variable-easings",
     "<span>easings</span> <span class=\"search-result-import-path\">javascript-modules-v5/src/models/cubic-bezier-easing.js</span>",
@@ -60,15 +78,45 @@ window.esdocSearchIndex = [
     "function"
   ],
   [
+    "javascript-modules-v5/src/models/math.js~floor",
+    "function/index.html#static-function-floor",
+    "<span>floor</span> <span class=\"search-result-import-path\">javascript-modules-v5/src/models/math.js</span>",
+    "function"
+  ],
+  [
+    "javascript-modules-v5/src/models/math.js~hoop",
+    "function/index.html#static-function-hoop",
+    "<span>hoop</span> <span class=\"search-result-import-path\">javascript-modules-v5/src/models/math.js</span>",
+    "function"
+  ],
+  [
     "javascript-modules-v5/src/models/check.js~isjson",
     "function/index.html#static-function-isJson",
     "<span>isJson</span> <span class=\"search-result-import-path\">javascript-modules-v5/src/models/check.js</span>",
     "function"
   ],
   [
+    "javascript-modules-v5/src/models/math.js~round",
+    "function/index.html#static-function-round",
+    "<span>round</span> <span class=\"search-result-import-path\">javascript-modules-v5/src/models/math.js</span>",
+    "function"
+  ],
+  [
     "javascript-modules-v5/src/models/array.js~shufflearray",
     "function/index.html#static-function-shuffleArray",
     "<span>shuffleArray</span> <span class=\"search-result-import-path\">javascript-modules-v5/src/models/array.js</span>",
+    "function"
+  ],
+  [
+    "javascript-modules-v5/src/models/math.js~sign",
+    "function/index.html#static-function-sign",
+    "<span>sign</span> <span class=\"search-result-import-path\">javascript-modules-v5/src/models/math.js</span>",
+    "function"
+  ],
+  [
+    "javascript-modules-v5/src/models/math.js~toangle",
+    "function/index.html#static-function-toAngle",
+    "<span>toAngle</span> <span class=\"search-result-import-path\">javascript-modules-v5/src/models/math.js</span>",
     "function"
   ],
   [
@@ -87,6 +135,18 @@ window.esdocSearchIndex = [
     "javascript-modules-v5/src/models/date.js~tomonthen",
     "function/index.html#static-function-toMonthEn",
     "<span>toMonthEn</span> <span class=\"search-result-import-path\">javascript-modules-v5/src/models/date.js</span>",
+    "function"
+  ],
+  [
+    "javascript-modules-v5/src/models/math.js~toradian",
+    "function/index.html#static-function-toRadian",
+    "<span>toRadian</span> <span class=\"search-result-import-path\">javascript-modules-v5/src/models/math.js</span>",
+    "function"
+  ],
+  [
+    "javascript-modules-v5/src/models/math.js~totowpower",
+    "function/index.html#static-function-toTowPower",
+    "<span>toTowPower</span> <span class=\"search-result-import-path\">javascript-modules-v5/src/models/math.js</span>",
     "function"
   ],
   [
@@ -411,6 +471,12 @@ window.esdocSearchIndex = [
     "src/models/form-data.js",
     "file/src/models/form-data.js.html",
     "src/models/form-data.js",
+    "file"
+  ],
+  [
+    "src/models/math.js",
+    "file/src/models/math.js.html",
+    "src/models/math.js",
     "file"
   ]
 ]

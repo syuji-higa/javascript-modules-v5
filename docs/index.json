@@ -1331,6 +1331,447 @@
     }
   },
   {
+    "__docId__": 70,
+    "kind": "file",
+    "name": "src/models/math.js",
+    "content": "/**\n * math\n */\n\n/**\n * @param {number} rad\n * @return {number}\n */\nexport const toAngle = (rad) => {\n  return (rad * 180) / Math.PI\n}\n\n/**\n * @param {number} ang\n * @return {number}\n */\nexport const toRadian = (ang) => {\n  return (ang * Math.PI) / 180\n}\n\n/**\n * @param {number} num\n * @return {number}\n */\nexport const decimal = (num) => {\n  return parseFloat('0.' + String(num).split('.')[1])\n}\n\n/**\n * @param {number} num\n * @param {number} [digit] - int\n * @return {number}\n */\nexport const round = (num, digit = 6) => {\n  const _digit /* :number int */ = Math.pow(10, digit)\n  return Math.round(num * _digit) / _digit\n}\n\n/**\n * @param {number} num\n * @param {number} [digit] - int\n * @return {number}\n */\nexport const floor = (num, digit = 6) => {\n  const _digit /* :number int */ = Math.pow(10, digit)\n  return Math.floor(num * _digit) / _digit\n}\n\n/**\n * @param {number} num\n * @param {number} [digit] - int\n * @return {number}\n */\nexport const ceil = (num, digit = 6) => {\n  const _digit /* :number int */ = Math.pow(10, digit)\n  return Math.ceil(num * _digit) / _digit\n}\n\n/**\n * @param {number} num\n * @return {number} -1 | 0 | 1\n */\nexport const sign = (num) => {\n  return num > 0 ? 1 : num < 0 ? -1 : 0\n}\n\n/**\n * @param {number} num\n * @param {number} min\n * @param {number} max\n * @return {number}\n */\nexport const clamp = (num, min, max) => {\n  return min > num ? min : max < num ? max : num\n}\n\n/**\n * @param {number} num - int\n * @param {number} min - int\n * @param {number} max - int\n * @return {number} int\n */\nexport const hoop = (num, min, max) => {\n  const _range /* :number int[0,inf) */ = max - min + 1\n  let _num /* :number int */ = (num - min) % _range\n  if (0 > _num) {\n    _num = _range + _num\n  }\n  return _num + min\n}\n\n/**\n * @param {number} num - int[0,inf)\n * @return {number} int[0,inf)\n */\nexport const toTowPower = (num) => {\n  return Math.pow(2, (Math.log(num) / Math.LN2) | 0)\n}\n",
+    "static": true,
+    "longname": "/Users/higa_syuuji/github/syuji-higa/javascript-modules-v5/src/models/math.js",
+    "access": "public",
+    "description": null,
+    "lineNumber": 1
+  },
+  {
+    "__docId__": 71,
+    "kind": "function",
+    "name": "toAngle",
+    "memberof": "src/models/math.js",
+    "generator": false,
+    "async": false,
+    "static": true,
+    "longname": "src/models/math.js~toAngle",
+    "access": "public",
+    "export": true,
+    "importPath": "javascript-modules-v5/src/models/math.js",
+    "importStyle": "{toAngle}",
+    "description": "",
+    "lineNumber": 9,
+    "params": [
+      {
+        "nullable": null,
+        "types": [
+          "number"
+        ],
+        "spread": false,
+        "optional": false,
+        "name": "rad",
+        "description": ""
+      }
+    ],
+    "return": {
+      "nullable": null,
+      "types": [
+        "number"
+      ],
+      "spread": false,
+      "description": ""
+    }
+  },
+  {
+    "__docId__": 72,
+    "kind": "function",
+    "name": "toRadian",
+    "memberof": "src/models/math.js",
+    "generator": false,
+    "async": false,
+    "static": true,
+    "longname": "src/models/math.js~toRadian",
+    "access": "public",
+    "export": true,
+    "importPath": "javascript-modules-v5/src/models/math.js",
+    "importStyle": "{toRadian}",
+    "description": "",
+    "lineNumber": 17,
+    "params": [
+      {
+        "nullable": null,
+        "types": [
+          "number"
+        ],
+        "spread": false,
+        "optional": false,
+        "name": "ang",
+        "description": ""
+      }
+    ],
+    "return": {
+      "nullable": null,
+      "types": [
+        "number"
+      ],
+      "spread": false,
+      "description": ""
+    }
+  },
+  {
+    "__docId__": 73,
+    "kind": "function",
+    "name": "decimal",
+    "memberof": "src/models/math.js",
+    "generator": false,
+    "async": false,
+    "static": true,
+    "longname": "src/models/math.js~decimal",
+    "access": "public",
+    "export": true,
+    "importPath": "javascript-modules-v5/src/models/math.js",
+    "importStyle": "{decimal}",
+    "description": "",
+    "lineNumber": 25,
+    "params": [
+      {
+        "nullable": null,
+        "types": [
+          "number"
+        ],
+        "spread": false,
+        "optional": false,
+        "name": "num",
+        "description": ""
+      }
+    ],
+    "return": {
+      "nullable": null,
+      "types": [
+        "number"
+      ],
+      "spread": false,
+      "description": ""
+    }
+  },
+  {
+    "__docId__": 74,
+    "kind": "function",
+    "name": "round",
+    "memberof": "src/models/math.js",
+    "generator": false,
+    "async": false,
+    "static": true,
+    "longname": "src/models/math.js~round",
+    "access": "public",
+    "export": true,
+    "importPath": "javascript-modules-v5/src/models/math.js",
+    "importStyle": "{round}",
+    "description": "",
+    "lineNumber": 34,
+    "params": [
+      {
+        "nullable": null,
+        "types": [
+          "number"
+        ],
+        "spread": false,
+        "optional": false,
+        "name": "num",
+        "description": ""
+      },
+      {
+        "nullable": null,
+        "types": [
+          "number"
+        ],
+        "spread": false,
+        "optional": true,
+        "name": "digit",
+        "description": "int"
+      }
+    ],
+    "return": {
+      "nullable": null,
+      "types": [
+        "number"
+      ],
+      "spread": false,
+      "description": ""
+    }
+  },
+  {
+    "__docId__": 75,
+    "kind": "function",
+    "name": "floor",
+    "memberof": "src/models/math.js",
+    "generator": false,
+    "async": false,
+    "static": true,
+    "longname": "src/models/math.js~floor",
+    "access": "public",
+    "export": true,
+    "importPath": "javascript-modules-v5/src/models/math.js",
+    "importStyle": "{floor}",
+    "description": "",
+    "lineNumber": 44,
+    "params": [
+      {
+        "nullable": null,
+        "types": [
+          "number"
+        ],
+        "spread": false,
+        "optional": false,
+        "name": "num",
+        "description": ""
+      },
+      {
+        "nullable": null,
+        "types": [
+          "number"
+        ],
+        "spread": false,
+        "optional": true,
+        "name": "digit",
+        "description": "int"
+      }
+    ],
+    "return": {
+      "nullable": null,
+      "types": [
+        "number"
+      ],
+      "spread": false,
+      "description": ""
+    }
+  },
+  {
+    "__docId__": 76,
+    "kind": "function",
+    "name": "ceil",
+    "memberof": "src/models/math.js",
+    "generator": false,
+    "async": false,
+    "static": true,
+    "longname": "src/models/math.js~ceil",
+    "access": "public",
+    "export": true,
+    "importPath": "javascript-modules-v5/src/models/math.js",
+    "importStyle": "{ceil}",
+    "description": "",
+    "lineNumber": 54,
+    "params": [
+      {
+        "nullable": null,
+        "types": [
+          "number"
+        ],
+        "spread": false,
+        "optional": false,
+        "name": "num",
+        "description": ""
+      },
+      {
+        "nullable": null,
+        "types": [
+          "number"
+        ],
+        "spread": false,
+        "optional": true,
+        "name": "digit",
+        "description": "int"
+      }
+    ],
+    "return": {
+      "nullable": null,
+      "types": [
+        "number"
+      ],
+      "spread": false,
+      "description": ""
+    }
+  },
+  {
+    "__docId__": 77,
+    "kind": "function",
+    "name": "sign",
+    "memberof": "src/models/math.js",
+    "generator": false,
+    "async": false,
+    "static": true,
+    "longname": "src/models/math.js~sign",
+    "access": "public",
+    "export": true,
+    "importPath": "javascript-modules-v5/src/models/math.js",
+    "importStyle": "{sign}",
+    "description": "",
+    "lineNumber": 63,
+    "params": [
+      {
+        "nullable": null,
+        "types": [
+          "number"
+        ],
+        "spread": false,
+        "optional": false,
+        "name": "num",
+        "description": ""
+      }
+    ],
+    "return": {
+      "nullable": null,
+      "types": [
+        "number"
+      ],
+      "spread": false,
+      "description": "1 | 0 | 1"
+    }
+  },
+  {
+    "__docId__": 78,
+    "kind": "function",
+    "name": "clamp",
+    "memberof": "src/models/math.js",
+    "generator": false,
+    "async": false,
+    "static": true,
+    "longname": "src/models/math.js~clamp",
+    "access": "public",
+    "export": true,
+    "importPath": "javascript-modules-v5/src/models/math.js",
+    "importStyle": "{clamp}",
+    "description": "",
+    "lineNumber": 73,
+    "params": [
+      {
+        "nullable": null,
+        "types": [
+          "number"
+        ],
+        "spread": false,
+        "optional": false,
+        "name": "num",
+        "description": ""
+      },
+      {
+        "nullable": null,
+        "types": [
+          "number"
+        ],
+        "spread": false,
+        "optional": false,
+        "name": "min",
+        "description": ""
+      },
+      {
+        "nullable": null,
+        "types": [
+          "number"
+        ],
+        "spread": false,
+        "optional": false,
+        "name": "max",
+        "description": ""
+      }
+    ],
+    "return": {
+      "nullable": null,
+      "types": [
+        "number"
+      ],
+      "spread": false,
+      "description": ""
+    }
+  },
+  {
+    "__docId__": 79,
+    "kind": "function",
+    "name": "hoop",
+    "memberof": "src/models/math.js",
+    "generator": false,
+    "async": false,
+    "static": true,
+    "longname": "src/models/math.js~hoop",
+    "access": "public",
+    "export": true,
+    "importPath": "javascript-modules-v5/src/models/math.js",
+    "importStyle": "{hoop}",
+    "description": "",
+    "lineNumber": 83,
+    "params": [
+      {
+        "nullable": null,
+        "types": [
+          "number"
+        ],
+        "spread": false,
+        "optional": false,
+        "name": "num",
+        "description": "int"
+      },
+      {
+        "nullable": null,
+        "types": [
+          "number"
+        ],
+        "spread": false,
+        "optional": false,
+        "name": "min",
+        "description": "int"
+      },
+      {
+        "nullable": null,
+        "types": [
+          "number"
+        ],
+        "spread": false,
+        "optional": false,
+        "name": "max",
+        "description": "int"
+      }
+    ],
+    "return": {
+      "nullable": null,
+      "types": [
+        "number"
+      ],
+      "spread": false,
+      "description": "int"
+    }
+  },
+  {
+    "__docId__": 80,
+    "kind": "function",
+    "name": "toTowPower",
+    "memberof": "src/models/math.js",
+    "generator": false,
+    "async": false,
+    "static": true,
+    "longname": "src/models/math.js~toTowPower",
+    "access": "public",
+    "export": true,
+    "importPath": "javascript-modules-v5/src/models/math.js",
+    "importStyle": "{toTowPower}",
+    "description": "",
+    "lineNumber": 96,
+    "params": [
+      {
+        "nullable": null,
+        "types": [
+          "number"
+        ],
+        "spread": false,
+        "optional": false,
+        "name": "num",
+        "description": "int[0,inf)"
+      }
+    ],
+    "return": {
+      "nullable": null,
+      "types": [
+        "number"
+      ],
+      "spread": false,
+      "description": "int[0,inf)"
+    }
+  },
+  {
     "kind": "index",
     "content": "# JavaScript Modules\n\n## Check rules that are in conflict with Prettier\n```\n$ npm run eslint-check\n```\n\n## ESLint and Prettier\n```\n$ npm run lint\n```\n\nfix command.\n```\n$ npm run lint -- --fix\n```\n\n## Jest unit test\n```\n$ npm run test\n```\n\nwatch command.\n```\n$ npm run test -- --watch\n```\n\n## ESDoc\n```\n$ npm run esdoc\n```\n\n## ESLint and Jest and ESDoc\n```\n$ npm run precommit\n```\n",
     "longname": "/Users/higa_syuuji/github/syuji-higa/javascript-modules-v5/README.md",

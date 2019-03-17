@@ -3,7 +3,7 @@
 <head>
   <meta charset="utf-8">
   <base data-ice="baseUrl" href="../../../">
-  <title data-ice="title">src/models/array.js | javascript-modules-v5</title>
+  <title data-ice="title">src/models/math.js | javascript-modules-v5</title>
   <link type="text/css" rel="stylesheet" href="css/style.css">
   <link type="text/css" rel="stylesheet" href="css/prettify-tomorrow.css">
   <script src="script/prettify/prettify.js"></script>
@@ -58,80 +58,104 @@
 </div>
 </nav>
 
-<div class="content" data-ice="content"><h1 data-ice="title">src/models/array.js</h1>
+<div class="content" data-ice="content"><h1 data-ice="title">src/models/math.js</h1>
 <pre class="source-code line-number raw-source-code"><code class="prettyprint linenums" data-ice="content">/**
- * @param {number} num - int[0,inf)
- * @param {?*} val
- * @return {*[]}
+ * math
  */
-export const createArray = (num, val) =&gt; {
-  const _arr /* :*[] */ = []
 
-  for (let i /* :number int[0,inf) */ = 0; num &gt; i; i++) {
-    _arr[i] = val
+/**
+ * @param {number} rad
+ * @return {number}
+ */
+export const toAngle = (rad) =&gt; {
+  return (rad * 180) / Math.PI
+}
+
+/**
+ * @param {number} ang
+ * @return {number}
+ */
+export const toRadian = (ang) =&gt; {
+  return (ang * Math.PI) / 180
+}
+
+/**
+ * @param {number} num
+ * @return {number}
+ */
+export const decimal = (num) =&gt; {
+  return parseFloat(&apos;0.&apos; + String(num).split(&apos;.&apos;)[1])
+}
+
+/**
+ * @param {number} num
+ * @param {number} [digit] - int
+ * @return {number}
+ */
+export const round = (num, digit = 6) =&gt; {
+  const _digit /* :number int */ = Math.pow(10, digit)
+  return Math.round(num * _digit) / _digit
+}
+
+/**
+ * @param {number} num
+ * @param {number} [digit] - int
+ * @return {number}
+ */
+export const floor = (num, digit = 6) =&gt; {
+  const _digit /* :number int */ = Math.pow(10, digit)
+  return Math.floor(num * _digit) / _digit
+}
+
+/**
+ * @param {number} num
+ * @param {number} [digit] - int
+ * @return {number}
+ */
+export const ceil = (num, digit = 6) =&gt; {
+  const _digit /* :number int */ = Math.pow(10, digit)
+  return Math.ceil(num * _digit) / _digit
+}
+
+/**
+ * @param {number} num
+ * @return {number} -1 | 0 | 1
+ */
+export const sign = (num) =&gt; {
+  return num &gt; 0 ? 1 : num &lt; 0 ? -1 : 0
+}
+
+/**
+ * @param {number} num
+ * @param {number} min
+ * @param {number} max
+ * @return {number}
+ */
+export const clamp = (num, min, max) =&gt; {
+  return min &gt; num ? min : max &lt; num ? max : num
+}
+
+/**
+ * @param {number} num - int
+ * @param {number} min - int
+ * @param {number} max - int
+ * @return {number} int
+ */
+export const hoop = (num, min, max) =&gt; {
+  const _range /* :number int[0,inf) */ = max - min + 1
+  let _num /* :number int */ = (num - min) % _range
+  if (0 &gt; _num) {
+    _num = _range + _num
   }
-
-  return _arr
+  return _num + min
 }
 
 /**
  * @param {number} num - int[0,inf)
- * @param {number} [start] - int
- * @return {*[]}
+ * @return {number} int[0,inf)
  */
-export const createSerialNumberArray = (num, start = 0) =&gt; {
-  const _arr /* :*[] */ = []
-
-  for (let i /* :number int[0,inf) */ = 0; num &gt; i; i++) {
-    _arr[i] = start + i
-  }
-
-  return _arr
-}
-
-/**
- * @param {*[]} arr
- * @return {*[]}
- */
-export const shuffleArray = (arr) =&gt; {
-  let _n /* :number int[0,inf) */ = arr.length
-  let _t /* :number int[0,inf) */ = 0
-  let _i /* :number int[0,inf) */ = 0
-
-  while (_n) {
-    _i = Math.floor(Math.random() * _n--)
-    _t = arr[_n]
-    arr[_n] = arr[_i]
-    arr[_i] = _t
-  }
-
-  return arr
-}
-
-/**
- * @param {*[]} arr
- * @return {*[]}
- */
-export const flattenArray = (arr) =&gt; {
-  return arr.reduce((memo, val) =&gt; {
-    return Array.isArray(val)
-      ? memo.concat(flattenArray(val))
-      : memo.concat(val)
-  }, [])
-}
-
-/**
- * @param {*[]} arr
- * @param {number} num - int[0,inf)
- * @return {*[]}
- */
-export const caterpillarArray = (arr, num) =&gt; {
-  if (0 &lt; num) {
-    arr.push(...arr.splice(0, num))
-  } else if (0 &gt; num) {
-    arr.unshift(...arr.splice(num, arr.length - num))
-  }
-  return arr
+export const toTowPower = (num) =&gt; {
+  return Math.pow(2, (Math.log(num) / Math.LN2) | 0)
 }
 </code></pre>
 
