@@ -3,7 +3,7 @@
 <head>
   <meta charset="utf-8">
   <base data-ice="baseUrl" href="../../../">
-  <title data-ice="title">src/models/random.js | javascript-modules-v5</title>
+  <title data-ice="title">src/models/trigonometric.js | javascript-modules-v5</title>
   <link type="text/css" rel="stylesheet" href="css/style.css">
   <link type="text/css" rel="stylesheet" href="css/prettify-tomorrow.css">
   <script src="script/prettify/prettify.js"></script>
@@ -95,30 +95,113 @@
 </div>
 </nav>
 
-<div class="content" data-ice="content"><h1 data-ice="title">src/models/random.js</h1>
+<div class="content" data-ice="content"><h1 data-ice="title">src/models/trigonometric.js</h1>
 <pre class="source-code line-number raw-source-code"><code class="prettyprint linenums" data-ice="content">/**
- * @param {number} num
- * @param {number} [min]
+ * @param {number} base
+ * @param {number} radian
  * @return {number}
  */
-export const random = (num, min = 0) =&gt; {
-  return Math.random() * (num - min) + min
+export const hypotenuseFromBaseRadian = (base, radian) =&gt; {
+  return base / Math.sin(radian)
 }
 
 /**
- * @param {number} num - int
- * @param {number} [min] - int
- * @return {number} int
+ * @param {number} height
+ * @param {number} radian
+ * @return {number}
  */
-export const randomInt = (num, min = 0) =&gt; {
-  return Math.floor(random(num + 1, min))
+export const hypotenuseFromHeightRadian = (height, radian) =&gt; {
+  return height / Math.sin(radian)
 }
 
 /**
- * @return {number} -1|1
+ * @param {number} base
+ * @param {number} height
+ * @return {number}
  */
-export const randomDir = () =&gt; {
-  return randomInt(1) ? 1 : -1
+export const hypotenuseFromBaseHeight = (base, height) =&gt; {
+  return Math.sqrt(Math.pow(base, 2) + Math.pow(height, 2))
+}
+
+/**
+ * @param {number} base
+ * @param {number} radian
+ * @return {number}
+ */
+export const heightFromBaseRadian = (base, radian) =&gt; {
+  return base * Math.tan(radian)
+}
+
+/**
+ * @param {number} hypotenuse
+ * @param {number} radian
+ * @return {number}
+ */
+export const heightFromHypotenuseRadian = (hypotenuse, radian) =&gt; {
+  return hypotenuse * Math.sin(radian)
+}
+
+/**
+ * @param {number} base
+ * @param {number} hypotenuse
+ * @return {number}
+ */
+export const heightFromBaseHypotenuse = (base, hypotenuse) =&gt; {
+  return Math.sqrt(Math.pow(hypotenuse, 2) - Math.pow(base, 2))
+}
+
+/**
+ * @param {number} height
+ * @param {number} radian
+ * @return {number}
+ */
+export const baseFromHeightRadian = (height, radian) =&gt; {
+  return height / Math.tan(radian)
+}
+
+/**
+ * @param {number} hypotenuse
+ * @param {number} radian
+ * @return {number}
+ */
+export const baseFromHypotenuseRadian = (hypotenuse, radian) =&gt; {
+  return hypotenuse * Math.cos(radian)
+}
+
+/**
+ * @param {number} height
+ * @param {number} hypotenuse
+ * @return {number}
+ */
+export const baseFromHeightHypotenuse = (height, hypotenuse) =&gt; {
+  return Math.sqrt(Math.pow(hypotenuse, 2) - Math.pow(height, 2))
+}
+
+/**
+ * @param {number} base
+ * @param {number} height
+ * @return {number}
+ */
+export const radianFromBaseHeight = (base, height) =&gt; {
+  return Math.atan2(height, base)
+}
+
+/**
+ * @param {number} base
+ * @param {number} hypotenuse
+ * @return {number}
+ */
+export const radianFromBaseHypotenuse = (base, hypotenuse) =&gt; {
+  return Math.acos(base / hypotenuse)
+}
+
+/**
+ * @param {number} height
+ * @param {number} hypotenuse
+ * @return {number}
+ */
+export const radianFromHeightHypotenuse = (height, hypotenuse) =&gt; {
+  return Math.asin(height / hypotenuse)
 }
 </code></pre>
 

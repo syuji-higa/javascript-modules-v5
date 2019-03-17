@@ -12,6 +12,24 @@ window.esdocSearchIndex = [
     "function"
   ],
   [
+    "javascript-modules-v5/src/models/trigonometric.js~basefromheighthypotenuse",
+    "function/index.html#static-function-baseFromHeightHypotenuse",
+    "<span>baseFromHeightHypotenuse</span> <span class=\"search-result-import-path\">javascript-modules-v5/src/models/trigonometric.js</span>",
+    "function"
+  ],
+  [
+    "javascript-modules-v5/src/models/trigonometric.js~basefromheightradian",
+    "function/index.html#static-function-baseFromHeightRadian",
+    "<span>baseFromHeightRadian</span> <span class=\"search-result-import-path\">javascript-modules-v5/src/models/trigonometric.js</span>",
+    "function"
+  ],
+  [
+    "javascript-modules-v5/src/models/trigonometric.js~basefromhypotenuseradian",
+    "function/index.html#static-function-baseFromHypotenuseRadian",
+    "<span>baseFromHypotenuseRadian</span> <span class=\"search-result-import-path\">javascript-modules-v5/src/models/trigonometric.js</span>",
+    "function"
+  ],
+  [
     "javascript-modules-v5/src/models/array.js~caterpillararray",
     "function/index.html#static-function-caterpillarArray",
     "<span>caterpillarArray</span> <span class=\"search-result-import-path\">javascript-modules-v5/src/models/array.js</span>",
@@ -102,9 +120,45 @@ window.esdocSearchIndex = [
     "function"
   ],
   [
+    "javascript-modules-v5/src/models/trigonometric.js~heightfrombasehypotenuse",
+    "function/index.html#static-function-heightFromBaseHypotenuse",
+    "<span>heightFromBaseHypotenuse</span> <span class=\"search-result-import-path\">javascript-modules-v5/src/models/trigonometric.js</span>",
+    "function"
+  ],
+  [
+    "javascript-modules-v5/src/models/trigonometric.js~heightfrombaseradian",
+    "function/index.html#static-function-heightFromBaseRadian",
+    "<span>heightFromBaseRadian</span> <span class=\"search-result-import-path\">javascript-modules-v5/src/models/trigonometric.js</span>",
+    "function"
+  ],
+  [
+    "javascript-modules-v5/src/models/trigonometric.js~heightfromhypotenuseradian",
+    "function/index.html#static-function-heightFromHypotenuseRadian",
+    "<span>heightFromHypotenuseRadian</span> <span class=\"search-result-import-path\">javascript-modules-v5/src/models/trigonometric.js</span>",
+    "function"
+  ],
+  [
     "javascript-modules-v5/src/models/math.js~hoop",
     "function/index.html#static-function-hoop",
     "<span>hoop</span> <span class=\"search-result-import-path\">javascript-modules-v5/src/models/math.js</span>",
+    "function"
+  ],
+  [
+    "javascript-modules-v5/src/models/trigonometric.js~hypotenusefrombaseheight",
+    "function/index.html#static-function-hypotenuseFromBaseHeight",
+    "<span>hypotenuseFromBaseHeight</span> <span class=\"search-result-import-path\">javascript-modules-v5/src/models/trigonometric.js</span>",
+    "function"
+  ],
+  [
+    "javascript-modules-v5/src/models/trigonometric.js~hypotenusefrombaseradian",
+    "function/index.html#static-function-hypotenuseFromBaseRadian",
+    "<span>hypotenuseFromBaseRadian</span> <span class=\"search-result-import-path\">javascript-modules-v5/src/models/trigonometric.js</span>",
+    "function"
+  ],
+  [
+    "javascript-modules-v5/src/models/trigonometric.js~hypotenusefromheightradian",
+    "function/index.html#static-function-hypotenuseFromHeightRadian",
+    "<span>hypotenuseFromHeightRadian</span> <span class=\"search-result-import-path\">javascript-modules-v5/src/models/trigonometric.js</span>",
     "function"
   ],
   [
@@ -171,6 +225,24 @@ window.esdocSearchIndex = [
     "javascript-modules-v5/src/models/parameter.js~query",
     "function/index.html#static-function-query",
     "<span>query</span> <span class=\"search-result-import-path\">javascript-modules-v5/src/models/parameter.js</span>",
+    "function"
+  ],
+  [
+    "javascript-modules-v5/src/models/trigonometric.js~radianfrombaseheight",
+    "function/index.html#static-function-radianFromBaseHeight",
+    "<span>radianFromBaseHeight</span> <span class=\"search-result-import-path\">javascript-modules-v5/src/models/trigonometric.js</span>",
+    "function"
+  ],
+  [
+    "javascript-modules-v5/src/models/trigonometric.js~radianfrombasehypotenuse",
+    "function/index.html#static-function-radianFromBaseHypotenuse",
+    "<span>radianFromBaseHypotenuse</span> <span class=\"search-result-import-path\">javascript-modules-v5/src/models/trigonometric.js</span>",
+    "function"
+  ],
+  [
+    "javascript-modules-v5/src/models/trigonometric.js~radianfromheighthypotenuse",
+    "function/index.html#static-function-radianFromHeightHypotenuse",
+    "<span>radianFromHeightHypotenuse</span> <span class=\"search-result-import-path\">javascript-modules-v5/src/models/trigonometric.js</span>",
     "function"
   ],
   [
@@ -687,6 +759,12 @@ window.esdocSearchIndex = [
     "src/models/string.js",
     "file/src/models/string.js.html",
     "src/models/string.js",
+    "file"
+  ],
+  [
+    "src/models/trigonometric.js",
+    "file/src/models/trigonometric.js.html",
+    "src/models/trigonometric.js",
     "file"
   ]
 ]

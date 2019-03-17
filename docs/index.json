@@ -3266,6 +3266,569 @@
     }
   },
   {
+    "__docId__": 119,
+    "kind": "file",
+    "name": "src/models/trigonometric.js",
+    "content": "/**\n * @param {number} base\n * @param {number} radian\n * @return {number}\n */\nexport const hypotenuseFromBaseRadian = (base, radian) => {\n  return base / Math.sin(radian)\n}\n\n/**\n * @param {number} height\n * @param {number} radian\n * @return {number}\n */\nexport const hypotenuseFromHeightRadian = (height, radian) => {\n  return height / Math.sin(radian)\n}\n\n/**\n * @param {number} base\n * @param {number} height\n * @return {number}\n */\nexport const hypotenuseFromBaseHeight = (base, height) => {\n  return Math.sqrt(Math.pow(base, 2) + Math.pow(height, 2))\n}\n\n/**\n * @param {number} base\n * @param {number} radian\n * @return {number}\n */\nexport const heightFromBaseRadian = (base, radian) => {\n  return base * Math.tan(radian)\n}\n\n/**\n * @param {number} hypotenuse\n * @param {number} radian\n * @return {number}\n */\nexport const heightFromHypotenuseRadian = (hypotenuse, radian) => {\n  return hypotenuse * Math.sin(radian)\n}\n\n/**\n * @param {number} base\n * @param {number} hypotenuse\n * @return {number}\n */\nexport const heightFromBaseHypotenuse = (base, hypotenuse) => {\n  return Math.sqrt(Math.pow(hypotenuse, 2) - Math.pow(base, 2))\n}\n\n/**\n * @param {number} height\n * @param {number} radian\n * @return {number}\n */\nexport const baseFromHeightRadian = (height, radian) => {\n  return height / Math.tan(radian)\n}\n\n/**\n * @param {number} hypotenuse\n * @param {number} radian\n * @return {number}\n */\nexport const baseFromHypotenuseRadian = (hypotenuse, radian) => {\n  return hypotenuse * Math.cos(radian)\n}\n\n/**\n * @param {number} height\n * @param {number} hypotenuse\n * @return {number}\n */\nexport const baseFromHeightHypotenuse = (height, hypotenuse) => {\n  return Math.sqrt(Math.pow(hypotenuse, 2) - Math.pow(height, 2))\n}\n\n/**\n * @param {number} base\n * @param {number} height\n * @return {number}\n */\nexport const radianFromBaseHeight = (base, height) => {\n  return Math.atan2(height, base)\n}\n\n/**\n * @param {number} base\n * @param {number} hypotenuse\n * @return {number}\n */\nexport const radianFromBaseHypotenuse = (base, hypotenuse) => {\n  return Math.acos(base / hypotenuse)\n}\n\n/**\n * @param {number} height\n * @param {number} hypotenuse\n * @return {number}\n */\nexport const radianFromHeightHypotenuse = (height, hypotenuse) => {\n  return Math.asin(height / hypotenuse)\n}\n",
+    "static": true,
+    "longname": "/Users/higa_syuuji/github/syuji-higa/javascript-modules-v5/src/models/trigonometric.js",
+    "access": "public",
+    "description": null,
+    "lineNumber": 1
+  },
+  {
+    "__docId__": 120,
+    "kind": "function",
+    "name": "hypotenuseFromBaseRadian",
+    "memberof": "src/models/trigonometric.js",
+    "generator": false,
+    "async": false,
+    "static": true,
+    "longname": "src/models/trigonometric.js~hypotenuseFromBaseRadian",
+    "access": "public",
+    "export": true,
+    "importPath": "javascript-modules-v5/src/models/trigonometric.js",
+    "importStyle": "{hypotenuseFromBaseRadian}",
+    "description": "",
+    "lineNumber": 6,
+    "params": [
+      {
+        "nullable": null,
+        "types": [
+          "number"
+        ],
+        "spread": false,
+        "optional": false,
+        "name": "base",
+        "description": ""
+      },
+      {
+        "nullable": null,
+        "types": [
+          "number"
+        ],
+        "spread": false,
+        "optional": false,
+        "name": "radian",
+        "description": ""
+      }
+    ],
+    "return": {
+      "nullable": null,
+      "types": [
+        "number"
+      ],
+      "spread": false,
+      "description": ""
+    }
+  },
+  {
+    "__docId__": 121,
+    "kind": "function",
+    "name": "hypotenuseFromHeightRadian",
+    "memberof": "src/models/trigonometric.js",
+    "generator": false,
+    "async": false,
+    "static": true,
+    "longname": "src/models/trigonometric.js~hypotenuseFromHeightRadian",
+    "access": "public",
+    "export": true,
+    "importPath": "javascript-modules-v5/src/models/trigonometric.js",
+    "importStyle": "{hypotenuseFromHeightRadian}",
+    "description": "",
+    "lineNumber": 15,
+    "params": [
+      {
+        "nullable": null,
+        "types": [
+          "number"
+        ],
+        "spread": false,
+        "optional": false,
+        "name": "height",
+        "description": ""
+      },
+      {
+        "nullable": null,
+        "types": [
+          "number"
+        ],
+        "spread": false,
+        "optional": false,
+        "name": "radian",
+        "description": ""
+      }
+    ],
+    "return": {
+      "nullable": null,
+      "types": [
+        "number"
+      ],
+      "spread": false,
+      "description": ""
+    }
+  },
+  {
+    "__docId__": 122,
+    "kind": "function",
+    "name": "hypotenuseFromBaseHeight",
+    "memberof": "src/models/trigonometric.js",
+    "generator": false,
+    "async": false,
+    "static": true,
+    "longname": "src/models/trigonometric.js~hypotenuseFromBaseHeight",
+    "access": "public",
+    "export": true,
+    "importPath": "javascript-modules-v5/src/models/trigonometric.js",
+    "importStyle": "{hypotenuseFromBaseHeight}",
+    "description": "",
+    "lineNumber": 24,
+    "params": [
+      {
+        "nullable": null,
+        "types": [
+          "number"
+        ],
+        "spread": false,
+        "optional": false,
+        "name": "base",
+        "description": ""
+      },
+      {
+        "nullable": null,
+        "types": [
+          "number"
+        ],
+        "spread": false,
+        "optional": false,
+        "name": "height",
+        "description": ""
+      }
+    ],
+    "return": {
+      "nullable": null,
+      "types": [
+        "number"
+      ],
+      "spread": false,
+      "description": ""
+    }
+  },
+  {
+    "__docId__": 123,
+    "kind": "function",
+    "name": "heightFromBaseRadian",
+    "memberof": "src/models/trigonometric.js",
+    "generator": false,
+    "async": false,
+    "static": true,
+    "longname": "src/models/trigonometric.js~heightFromBaseRadian",
+    "access": "public",
+    "export": true,
+    "importPath": "javascript-modules-v5/src/models/trigonometric.js",
+    "importStyle": "{heightFromBaseRadian}",
+    "description": "",
+    "lineNumber": 33,
+    "params": [
+      {
+        "nullable": null,
+        "types": [
+          "number"
+        ],
+        "spread": false,
+        "optional": false,
+        "name": "base",
+        "description": ""
+      },
+      {
+        "nullable": null,
+        "types": [
+          "number"
+        ],
+        "spread": false,
+        "optional": false,
+        "name": "radian",
+        "description": ""
+      }
+    ],
+    "return": {
+      "nullable": null,
+      "types": [
+        "number"
+      ],
+      "spread": false,
+      "description": ""
+    }
+  },
+  {
+    "__docId__": 124,
+    "kind": "function",
+    "name": "heightFromHypotenuseRadian",
+    "memberof": "src/models/trigonometric.js",
+    "generator": false,
+    "async": false,
+    "static": true,
+    "longname": "src/models/trigonometric.js~heightFromHypotenuseRadian",
+    "access": "public",
+    "export": true,
+    "importPath": "javascript-modules-v5/src/models/trigonometric.js",
+    "importStyle": "{heightFromHypotenuseRadian}",
+    "description": "",
+    "lineNumber": 42,
+    "params": [
+      {
+        "nullable": null,
+        "types": [
+          "number"
+        ],
+        "spread": false,
+        "optional": false,
+        "name": "hypotenuse",
+        "description": ""
+      },
+      {
+        "nullable": null,
+        "types": [
+          "number"
+        ],
+        "spread": false,
+        "optional": false,
+        "name": "radian",
+        "description": ""
+      }
+    ],
+    "return": {
+      "nullable": null,
+      "types": [
+        "number"
+      ],
+      "spread": false,
+      "description": ""
+    }
+  },
+  {
+    "__docId__": 125,
+    "kind": "function",
+    "name": "heightFromBaseHypotenuse",
+    "memberof": "src/models/trigonometric.js",
+    "generator": false,
+    "async": false,
+    "static": true,
+    "longname": "src/models/trigonometric.js~heightFromBaseHypotenuse",
+    "access": "public",
+    "export": true,
+    "importPath": "javascript-modules-v5/src/models/trigonometric.js",
+    "importStyle": "{heightFromBaseHypotenuse}",
+    "description": "",
+    "lineNumber": 51,
+    "params": [
+      {
+        "nullable": null,
+        "types": [
+          "number"
+        ],
+        "spread": false,
+        "optional": false,
+        "name": "base",
+        "description": ""
+      },
+      {
+        "nullable": null,
+        "types": [
+          "number"
+        ],
+        "spread": false,
+        "optional": false,
+        "name": "hypotenuse",
+        "description": ""
+      }
+    ],
+    "return": {
+      "nullable": null,
+      "types": [
+        "number"
+      ],
+      "spread": false,
+      "description": ""
+    }
+  },
+  {
+    "__docId__": 126,
+    "kind": "function",
+    "name": "baseFromHeightRadian",
+    "memberof": "src/models/trigonometric.js",
+    "generator": false,
+    "async": false,
+    "static": true,
+    "longname": "src/models/trigonometric.js~baseFromHeightRadian",
+    "access": "public",
+    "export": true,
+    "importPath": "javascript-modules-v5/src/models/trigonometric.js",
+    "importStyle": "{baseFromHeightRadian}",
+    "description": "",
+    "lineNumber": 60,
+    "params": [
+      {
+        "nullable": null,
+        "types": [
+          "number"
+        ],
+        "spread": false,
+        "optional": false,
+        "name": "height",
+        "description": ""
+      },
+      {
+        "nullable": null,
+        "types": [
+          "number"
+        ],
+        "spread": false,
+        "optional": false,
+        "name": "radian",
+        "description": ""
+      }
+    ],
+    "return": {
+      "nullable": null,
+      "types": [
+        "number"
+      ],
+      "spread": false,
+      "description": ""
+    }
+  },
+  {
+    "__docId__": 127,
+    "kind": "function",
+    "name": "baseFromHypotenuseRadian",
+    "memberof": "src/models/trigonometric.js",
+    "generator": false,
+    "async": false,
+    "static": true,
+    "longname": "src/models/trigonometric.js~baseFromHypotenuseRadian",
+    "access": "public",
+    "export": true,
+    "importPath": "javascript-modules-v5/src/models/trigonometric.js",
+    "importStyle": "{baseFromHypotenuseRadian}",
+    "description": "",
+    "lineNumber": 69,
+    "params": [
+      {
+        "nullable": null,
+        "types": [
+          "number"
+        ],
+        "spread": false,
+        "optional": false,
+        "name": "hypotenuse",
+        "description": ""
+      },
+      {
+        "nullable": null,
+        "types": [
+          "number"
+        ],
+        "spread": false,
+        "optional": false,
+        "name": "radian",
+        "description": ""
+      }
+    ],
+    "return": {
+      "nullable": null,
+      "types": [
+        "number"
+      ],
+      "spread": false,
+      "description": ""
+    }
+  },
+  {
+    "__docId__": 128,
+    "kind": "function",
+    "name": "baseFromHeightHypotenuse",
+    "memberof": "src/models/trigonometric.js",
+    "generator": false,
+    "async": false,
+    "static": true,
+    "longname": "src/models/trigonometric.js~baseFromHeightHypotenuse",
+    "access": "public",
+    "export": true,
+    "importPath": "javascript-modules-v5/src/models/trigonometric.js",
+    "importStyle": "{baseFromHeightHypotenuse}",
+    "description": "",
+    "lineNumber": 78,
+    "params": [
+      {
+        "nullable": null,
+        "types": [
+          "number"
+        ],
+        "spread": false,
+        "optional": false,
+        "name": "height",
+        "description": ""
+      },
+      {
+        "nullable": null,
+        "types": [
+          "number"
+        ],
+        "spread": false,
+        "optional": false,
+        "name": "hypotenuse",
+        "description": ""
+      }
+    ],
+    "return": {
+      "nullable": null,
+      "types": [
+        "number"
+      ],
+      "spread": false,
+      "description": ""
+    }
+  },
+  {
+    "__docId__": 129,
+    "kind": "function",
+    "name": "radianFromBaseHeight",
+    "memberof": "src/models/trigonometric.js",
+    "generator": false,
+    "async": false,
+    "static": true,
+    "longname": "src/models/trigonometric.js~radianFromBaseHeight",
+    "access": "public",
+    "export": true,
+    "importPath": "javascript-modules-v5/src/models/trigonometric.js",
+    "importStyle": "{radianFromBaseHeight}",
+    "description": "",
+    "lineNumber": 87,
+    "params": [
+      {
+        "nullable": null,
+        "types": [
+          "number"
+        ],
+        "spread": false,
+        "optional": false,
+        "name": "base",
+        "description": ""
+      },
+      {
+        "nullable": null,
+        "types": [
+          "number"
+        ],
+        "spread": false,
+        "optional": false,
+        "name": "height",
+        "description": ""
+      }
+    ],
+    "return": {
+      "nullable": null,
+      "types": [
+        "number"
+      ],
+      "spread": false,
+      "description": ""
+    }
+  },
+  {
+    "__docId__": 130,
+    "kind": "function",
+    "name": "radianFromBaseHypotenuse",
+    "memberof": "src/models/trigonometric.js",
+    "generator": false,
+    "async": false,
+    "static": true,
+    "longname": "src/models/trigonometric.js~radianFromBaseHypotenuse",
+    "access": "public",
+    "export": true,
+    "importPath": "javascript-modules-v5/src/models/trigonometric.js",
+    "importStyle": "{radianFromBaseHypotenuse}",
+    "description": "",
+    "lineNumber": 96,
+    "params": [
+      {
+        "nullable": null,
+        "types": [
+          "number"
+        ],
+        "spread": false,
+        "optional": false,
+        "name": "base",
+        "description": ""
+      },
+      {
+        "nullable": null,
+        "types": [
+          "number"
+        ],
+        "spread": false,
+        "optional": false,
+        "name": "hypotenuse",
+        "description": ""
+      }
+    ],
+    "return": {
+      "nullable": null,
+      "types": [
+        "number"
+      ],
+      "spread": false,
+      "description": ""
+    }
+  },
+  {
+    "__docId__": 131,
+    "kind": "function",
+    "name": "radianFromHeightHypotenuse",
+    "memberof": "src/models/trigonometric.js",
+    "generator": false,
+    "async": false,
+    "static": true,
+    "longname": "src/models/trigonometric.js~radianFromHeightHypotenuse",
+    "access": "public",
+    "export": true,
+    "importPath": "javascript-modules-v5/src/models/trigonometric.js",
+    "importStyle": "{radianFromHeightHypotenuse}",
+    "description": "",
+    "lineNumber": 105,
+    "params": [
+      {
+        "nullable": null,
+        "types": [
+          "number"
+        ],
+        "spread": false,
+        "optional": false,
+        "name": "height",
+        "description": ""
+      },
+      {
+        "nullable": null,
+        "types": [
+          "number"
+        ],
+        "spread": false,
+        "optional": false,
+        "name": "hypotenuse",
+        "description": ""
+      }
+    ],
+    "return": {
+      "nullable": null,
+      "types": [
+        "number"
+      ],
+      "spread": false,
+      "description": ""
+    }
+  },
+  {
     "kind": "index",
     "content": "# JavaScript Modules\n\n## Check rules that are in conflict with Prettier\n```\n$ npm run eslint-check\n```\n\n## ESLint and Prettier\n```\n$ npm run lint\n```\n\nfix command.\n```\n$ npm run lint -- --fix\n```\n\n## Jest unit test\n```\n$ npm run test\n```\n\nwatch command.\n```\n$ npm run test -- --watch\n```\n\n## ESDoc\n```\n$ npm run esdoc\n```\n\n## ESLint and Jest and ESDoc\n```\n$ npm run precommit\n```\n",
     "longname": "/Users/higa_syuuji/github/syuji-higa/javascript-modules-v5/README.md",
