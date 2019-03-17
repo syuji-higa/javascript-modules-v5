@@ -1284,6 +1284,53 @@
     }
   },
   {
+    "__docId__": 68,
+    "kind": "file",
+    "name": "src/models/form-data.js",
+    "content": "/**\n * @param {Object} obj\n * @return {FormData}\n */\nexport const toFormData = (obj) => {\n  return Object.entries(obj).reduce((\n    formData /* :Instance */,\n    [key /* :string */, val /* :* */]\n  ) => {\n    formData.append(key, val)\n    return formData\n  }, new FormData())\n}\n",
+    "static": true,
+    "longname": "/Users/higa_syuuji/github/syuji-higa/javascript-modules-v5/src/models/form-data.js",
+    "access": "public",
+    "description": null,
+    "lineNumber": 1
+  },
+  {
+    "__docId__": 69,
+    "kind": "function",
+    "name": "toFormData",
+    "memberof": "src/models/form-data.js",
+    "generator": false,
+    "async": false,
+    "static": true,
+    "longname": "src/models/form-data.js~toFormData",
+    "access": "public",
+    "export": true,
+    "importPath": "javascript-modules-v5/src/models/form-data.js",
+    "importStyle": "{toFormData}",
+    "description": "",
+    "lineNumber": 5,
+    "params": [
+      {
+        "nullable": null,
+        "types": [
+          "Object"
+        ],
+        "spread": false,
+        "optional": false,
+        "name": "obj",
+        "description": ""
+      }
+    ],
+    "return": {
+      "nullable": null,
+      "types": [
+        "FormData"
+      ],
+      "spread": false,
+      "description": ""
+    }
+  },
+  {
     "kind": "index",
     "content": "# JavaScript Modules\n\n## Check rules that are in conflict with Prettier\n```\n$ npm run eslint-check\n```\n\n## ESLint and Prettier\n```\n$ npm run lint\n```\n\nfix command.\n```\n$ npm run lint -- --fix\n```\n\n## Jest unit test\n```\n$ npm run test\n```\n\nwatch command.\n```\n$ npm run test -- --watch\n```\n\n## ESDoc\n```\n$ npm run esdoc\n```\n\n## ESLint and Jest and ESDoc\n```\n$ npm run precommit\n```\n",
     "longname": "/Users/higa_syuuji/github/syuji-higa/javascript-modules-v5/README.md",
