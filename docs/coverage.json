@@ -1,7 +1,7 @@
 {
-  "coverage": "96%",
-  "expectCount": 75,
-  "actualCount": 72,
+  "coverage": "93.75%",
+  "expectCount": 80,
+  "actualCount": 75,
   "files": {
     "src/models/array.js": {
       "expectCount": 5,
@@ -113,6 +113,14 @@
       "expectCount": 8,
       "actualCount": 8,
       "undocumentLines": []
+    },
+    "src/pattern/singleton.js": {
+      "expectCount": 5,
+      "actualCount": 3,
+      "undocumentLines": [
+        1,
+        25
+      ]
     }
   }
 }

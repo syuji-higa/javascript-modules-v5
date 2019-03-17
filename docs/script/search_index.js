@@ -838,5 +838,11 @@ window.esdocSearchIndex = [
     "file/src/models/validate.js.html",
     "src/models/validate.js",
     "file"
+  ],
+  [
+    "src/pattern/singleton.js",
+    "file/src/pattern/singleton.js.html",
+    "src/pattern/singleton.js",
+    "file"
   ]
 ]
