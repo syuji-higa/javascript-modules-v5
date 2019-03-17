@@ -1,7 +1,7 @@
 {
-  "coverage": "78.51%",
-  "expectCount": 121,
-  "actualCount": 95,
+  "coverage": "76.08%",
+  "expectCount": 138,
+  "actualCount": 105,
   "files": {
     "src/models/array.js": {
       "expectCount": 5,
@@ -187,6 +187,19 @@
       "expectCount": 9,
       "actualCount": 5,
       "undocumentLines": [
+        7,
+        8,
+        9,
+        10
+      ]
+    },
+    "src/views/lazyloader.js": {
+      "expectCount": 17,
+      "actualCount": 10,
+      "undocumentLines": [
+        4,
+        5,
+        6,
         7,
         8,
         9,

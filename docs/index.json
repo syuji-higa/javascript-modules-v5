@@ -5908,6 +5908,426 @@
     "params": []
   },
   {
+    "__docId__": 206,
+    "kind": "file",
+    "name": "src/views/lazyloader.js",
+    "content": "import { loadImage } from '../utils/load'\nimport { getBackgroundImages } from '../utils/background-image'\n\nclass Lazyloader {\n  _selfClassName /* :string */ = ''\n  _isLoadedClassName /* :string */ = ''\n  _isImageSettedClassName /* :string */ = ''\n  _$$el /* :HTMLCollection|NodeList */\n  _observer /* :IntersectionObserver */\n  _targets /* :Set */ = new Set()\n\n  /**\n   * @return {Object}\n   */\n  static get _defOpts() {\n    return {\n      selfClassName: 'js-lazyloader',\n      isLoadedClassName: 'is-lazyloaded',\n      isImageSettedClassName: 'is-image-setted'\n    }\n  }\n\n  /**\n   * @param {Object} [opts]\n   * @param {string} [opts.selfClassName]\n   * @param {string} [opts.isLoadedClassName]\n   * @param {string} [opts.isImageSettedClassName]\n   */\n  constructor(opts = {}) {\n    const {\n      selfClassName,\n      isLoadedClassName,\n      isImageSettedClassName\n    } = Object.assign(Lazyloader._defOpts, opts)\n\n    this._selfClassName = selfClassName\n    this._isLoadedClassName = isLoadedClassName\n    this._isImageSettedClassName = isImageSettedClassName\n  }\n\n  /**\n   * @return {Instance}\n   */\n  create() {\n    this._$$el = document.getElementsByClassName(this._selfClassName)\n    this._observer = new IntersectionObserver(this._inviewport.bind(this), {\n      rootMargin: '50% 50% 50% 50%'\n    })\n    return this\n  }\n\n  /**\n   * @return {Instance}\n   */\n  destroy() {\n    this._$$el = null\n    this._observer = null\n    this._targets.clear()\n    return this\n  }\n\n  /**\n   * @return {Instance}\n   */\n  on() {\n    for (const $el /* :Element */ of Array.from(this._$$el)) {\n      this.add($el)\n    }\n    return this\n  }\n\n  /**\n   * @return {Instance}\n   */\n  off() {\n    this._targets.forEach(($el /* :Element */) => {\n      this.remove($el)\n    })\n    return this\n  }\n\n  /**\n   * @return {Instance}\n   */\n  add($el) {\n    this._observer.observe($el)\n    this._targets.add($el)\n    return this\n  }\n\n  /**\n   * @return {Instance}\n   */\n  remove($el) {\n    this._observer.unobserve($el)\n    this._targets.delete($el)\n    return this\n  }\n\n  /**\n   * @param {Array<IntersectionObserverEntry>} entries\n   * @return {Promise}\n   */\n  async _inviewport(entries) {\n    const loadList = []\n\n    for (const { target, isIntersecting } of entries) {\n      if (isIntersecting) {\n        target.classList.add(this._isImageSettedClassName)\n        const _srcList /* :string[] */ = this._setSrcList(target)\n        this.remove(target)\n\n        loadList.push(() => {\n          return (async () => {\n            await Promise.all(_srcList.map((src) => loadImage(src)))\n            target.classList.add(this._isLoadedClassName)\n          })()\n        })\n      }\n    }\n\n    await Promise.all(loadList.map((load /* :function */) => load()))\n  }\n\n  /**\n   * @param {Element} $el\n   */\n  _setSrcList($el) {\n    const _src /* :string */ = $el.dataset.src\n\n    // img\n    if ($el.src) {\n      $el.src = _src\n      return [_src]\n    }\n    // source\n    else if ($el.srcset) {\n      $el.srcset = _src\n      return [_src]\n    }\n\n    // background-image\n    const _bgImages /* string[] */ = getBackgroundImages($el)\n\n    if (0 >= _bgImages.length) {\n      console.warn(\n        '\"data-src\" has not been set or Not find background-image, for lazyloader.'\n      )\n    }\n\n    return _bgImages\n  }\n}\n\nexport { Lazyloader as default }\n",
+    "static": true,
+    "longname": "/Users/higa_syuuji/github/syuji-higa/javascript-modules-v5/src/views/lazyloader.js",
+    "access": "public",
+    "description": null,
+    "lineNumber": 1
+  },
+  {
+    "__docId__": 207,
+    "kind": "class",
+    "name": "Lazyloader",
+    "memberof": "src/views/lazyloader.js",
+    "static": true,
+    "longname": "src/views/lazyloader.js~Lazyloader",
+    "access": "public",
+    "export": false,
+    "importPath": "javascript-modules-v5/src/views/lazyloader.js",
+    "importStyle": null,
+    "description": null,
+    "lineNumber": 4,
+    "undocument": true,
+    "interface": false,
+    "ignore": true
+  },
+  {
+    "__docId__": 208,
+    "kind": "member",
+    "name": "_selfClassName",
+    "memberof": "src/views/lazyloader.js~Lazyloader",
+    "static": false,
+    "longname": "src/views/lazyloader.js~Lazyloader#_selfClassName",
+    "access": "private",
+    "description": null,
+    "lineNumber": 5,
+    "undocument": true,
+    "type": {
+      "types": [
+        "*"
+      ]
+    }
+  },
+  {
+    "__docId__": 209,
+    "kind": "member",
+    "name": "_isLoadedClassName",
+    "memberof": "src/views/lazyloader.js~Lazyloader",
+    "static": false,
+    "longname": "src/views/lazyloader.js~Lazyloader#_isLoadedClassName",
+    "access": "private",
+    "description": null,
+    "lineNumber": 6,
+    "undocument": true,
+    "type": {
+      "types": [
+        "*"
+      ]
+    }
+  },
+  {
+    "__docId__": 210,
+    "kind": "member",
+    "name": "_isImageSettedClassName",
+    "memberof": "src/views/lazyloader.js~Lazyloader",
+    "static": false,
+    "longname": "src/views/lazyloader.js~Lazyloader#_isImageSettedClassName",
+    "access": "private",
+    "description": null,
+    "lineNumber": 7,
+    "undocument": true,
+    "type": {
+      "types": [
+        "*"
+      ]
+    }
+  },
+  {
+    "__docId__": 211,
+    "kind": "member",
+    "name": "_$$el",
+    "memberof": "src/views/lazyloader.js~Lazyloader",
+    "static": false,
+    "longname": "src/views/lazyloader.js~Lazyloader#_$$el",
+    "access": "private",
+    "description": null,
+    "lineNumber": 8,
+    "undocument": true,
+    "type": {
+      "types": [
+        "*"
+      ]
+    }
+  },
+  {
+    "__docId__": 212,
+    "kind": "member",
+    "name": "_observer",
+    "memberof": "src/views/lazyloader.js~Lazyloader",
+    "static": false,
+    "longname": "src/views/lazyloader.js~Lazyloader#_observer",
+    "access": "private",
+    "description": null,
+    "lineNumber": 9,
+    "undocument": true,
+    "type": {
+      "types": [
+        "*"
+      ]
+    }
+  },
+  {
+    "__docId__": 213,
+    "kind": "member",
+    "name": "_targets",
+    "memberof": "src/views/lazyloader.js~Lazyloader",
+    "static": false,
+    "longname": "src/views/lazyloader.js~Lazyloader#_targets",
+    "access": "private",
+    "description": null,
+    "lineNumber": 10,
+    "undocument": true,
+    "type": {
+      "types": [
+        "*"
+      ]
+    }
+  },
+  {
+    "__docId__": 214,
+    "kind": "get",
+    "name": "_defOpts",
+    "memberof": "src/views/lazyloader.js~Lazyloader",
+    "generator": false,
+    "async": false,
+    "static": true,
+    "longname": "src/views/lazyloader.js~Lazyloader._defOpts",
+    "access": "private",
+    "description": "",
+    "lineNumber": 15,
+    "return": {
+      "nullable": null,
+      "types": [
+        "Object"
+      ],
+      "spread": false,
+      "description": ""
+    },
+    "type": {
+      "types": [
+        "{\"selfClassName\": string, \"isLoadedClassName\": string, \"isImageSettedClassName\": string}"
+      ]
+    }
+  },
+  {
+    "__docId__": 215,
+    "kind": "constructor",
+    "name": "constructor",
+    "memberof": "src/views/lazyloader.js~Lazyloader",
+    "generator": false,
+    "async": false,
+    "static": false,
+    "longname": "src/views/lazyloader.js~Lazyloader#constructor",
+    "access": "public",
+    "description": "",
+    "lineNumber": 29,
+    "params": [
+      {
+        "nullable": null,
+        "types": [
+          "Object"
+        ],
+        "spread": false,
+        "optional": true,
+        "name": "opts",
+        "description": ""
+      },
+      {
+        "nullable": null,
+        "types": [
+          "string"
+        ],
+        "spread": false,
+        "optional": true,
+        "name": "opts.selfClassName",
+        "description": ""
+      },
+      {
+        "nullable": null,
+        "types": [
+          "string"
+        ],
+        "spread": false,
+        "optional": true,
+        "name": "opts.isLoadedClassName",
+        "description": ""
+      },
+      {
+        "nullable": null,
+        "types": [
+          "string"
+        ],
+        "spread": false,
+        "optional": true,
+        "name": "opts.isImageSettedClassName",
+        "description": ""
+      }
+    ]
+  },
+  {
+    "__docId__": 219,
+    "kind": "method",
+    "name": "create",
+    "memberof": "src/views/lazyloader.js~Lazyloader",
+    "generator": false,
+    "async": false,
+    "static": false,
+    "longname": "src/views/lazyloader.js~Lazyloader#create",
+    "access": "public",
+    "description": "",
+    "lineNumber": 44,
+    "return": {
+      "nullable": null,
+      "types": [
+        "Instance"
+      ],
+      "spread": false,
+      "description": ""
+    },
+    "params": []
+  },
+  {
+    "__docId__": 222,
+    "kind": "method",
+    "name": "destroy",
+    "memberof": "src/views/lazyloader.js~Lazyloader",
+    "generator": false,
+    "async": false,
+    "static": false,
+    "longname": "src/views/lazyloader.js~Lazyloader#destroy",
+    "access": "public",
+    "description": "",
+    "lineNumber": 55,
+    "return": {
+      "nullable": null,
+      "types": [
+        "Instance"
+      ],
+      "spread": false,
+      "description": ""
+    },
+    "params": []
+  },
+  {
+    "__docId__": 225,
+    "kind": "method",
+    "name": "on",
+    "memberof": "src/views/lazyloader.js~Lazyloader",
+    "generator": false,
+    "async": false,
+    "static": false,
+    "longname": "src/views/lazyloader.js~Lazyloader#on",
+    "access": "public",
+    "description": "",
+    "lineNumber": 65,
+    "return": {
+      "nullable": null,
+      "types": [
+        "Instance"
+      ],
+      "spread": false,
+      "description": ""
+    },
+    "params": []
+  },
+  {
+    "__docId__": 226,
+    "kind": "method",
+    "name": "off",
+    "memberof": "src/views/lazyloader.js~Lazyloader",
+    "generator": false,
+    "async": false,
+    "static": false,
+    "longname": "src/views/lazyloader.js~Lazyloader#off",
+    "access": "public",
+    "description": "",
+    "lineNumber": 75,
+    "return": {
+      "nullable": null,
+      "types": [
+        "Instance"
+      ],
+      "spread": false,
+      "description": ""
+    },
+    "params": []
+  },
+  {
+    "__docId__": 227,
+    "kind": "method",
+    "name": "add",
+    "memberof": "src/views/lazyloader.js~Lazyloader",
+    "generator": false,
+    "async": false,
+    "static": false,
+    "longname": "src/views/lazyloader.js~Lazyloader#add",
+    "access": "public",
+    "description": "",
+    "lineNumber": 85,
+    "return": {
+      "nullable": null,
+      "types": [
+        "Instance"
+      ],
+      "spread": false,
+      "description": ""
+    },
+    "params": [
+      {
+        "name": "$el",
+        "types": [
+          "*"
+        ]
+      }
+    ]
+  },
+  {
+    "__docId__": 228,
+    "kind": "method",
+    "name": "remove",
+    "memberof": "src/views/lazyloader.js~Lazyloader",
+    "generator": false,
+    "async": false,
+    "static": false,
+    "longname": "src/views/lazyloader.js~Lazyloader#remove",
+    "access": "public",
+    "description": "",
+    "lineNumber": 94,
+    "return": {
+      "nullable": null,
+      "types": [
+        "Instance"
+      ],
+      "spread": false,
+      "description": ""
+    },
+    "params": [
+      {
+        "name": "$el",
+        "types": [
+          "*"
+        ]
+      }
+    ]
+  },
+  {
+    "__docId__": 229,
+    "kind": "method",
+    "name": "_inviewport",
+    "memberof": "src/views/lazyloader.js~Lazyloader",
+    "generator": false,
+    "async": true,
+    "static": false,
+    "longname": "src/views/lazyloader.js~Lazyloader#_inviewport",
+    "access": "private",
+    "description": "",
+    "lineNumber": 104,
+    "params": [
+      {
+        "nullable": null,
+        "types": [
+          "Array<IntersectionObserverEntry>"
+        ],
+        "spread": false,
+        "optional": false,
+        "name": "entries",
+        "description": ""
+      }
+    ],
+    "return": {
+      "nullable": null,
+      "types": [
+        "Promise"
+      ],
+      "spread": false,
+      "description": ""
+    }
+  },
+  {
+    "__docId__": 230,
+    "kind": "method",
+    "name": "_setSrcList",
+    "memberof": "src/views/lazyloader.js~Lazyloader",
+    "generator": false,
+    "async": false,
+    "static": false,
+    "longname": "src/views/lazyloader.js~Lazyloader#_setSrcList",
+    "access": "private",
+    "description": "",
+    "lineNumber": 128,
+    "params": [
+      {
+        "nullable": null,
+        "types": [
+          "Element"
+        ],
+        "spread": false,
+        "optional": false,
+        "name": "$el",
+        "description": ""
+      }
+    ],
+    "return": {
+      "types": [
+        "*"
+      ]
+    }
+  },
+  {
     "kind": "index",
     "content": "# JavaScript Modules\n\n## Check rules that are in conflict with Prettier\n```\n$ npm run eslint-check\n```\n\n## ESLint and Prettier\n```\n$ npm run lint\n```\n\nfix command.\n```\n$ npm run lint -- --fix\n```\n\n## Jest unit test\n```\n$ npm run test\n```\n\nwatch command.\n```\n$ npm run test -- --watch\n```\n\n## ESDoc\n```\n$ npm run esdoc\n```\n\n## ESLint and Jest and ESDoc\n```\n$ npm run precommit\n```\n",
     "longname": "/Users/higa_syuuji/github/syuji-higa/javascript-modules-v5/README.md",

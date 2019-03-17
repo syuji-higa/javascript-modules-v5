@@ -946,5 +946,11 @@ window.esdocSearchIndex = [
     "file/src/views/height-fitter.js.html",
     "src/views/height-fitter.js",
     "file"
+  ],
+  [
+    "src/views/lazyloader.js",
+    "file/src/views/lazyloader.js.html",
+    "src/views/lazyloader.js",
+    "file"
   ]
 ]
