@@ -934,5 +934,11 @@ window.esdocSearchIndex = [
     "file/src/utils/load.js.html",
     "src/utils/load.js",
     "file"
+  ],
+  [
+    "src/views/client-flag-setter.js",
+    "file/src/views/client-flag-setter.js.html",
+    "src/views/client-flag-setter.js",
+    "file"
   ]
 ]

@@ -5660,6 +5660,48 @@
     }
   },
   {
+    "__docId__": 190,
+    "kind": "file",
+    "name": "src/views/client-flag-setter.js",
+    "content": "/**\n * depends on 'vanix' used in '../store'\n */\n\nimport { store } from '../store'\n\nclass ClientFlagSetter {\n  constructor() {\n    const { platform /* Object */ } = store.state\n\n    document.documentElement.classList.add(`is-${platform.type}`)\n  }\n}\n\nexport { ClientFlagSetter as default }\n",
+    "static": true,
+    "longname": "/Users/higa_syuuji/github/syuji-higa/javascript-modules-v5/src/views/client-flag-setter.js",
+    "access": "public",
+    "description": null,
+    "lineNumber": 1
+  },
+  {
+    "__docId__": 191,
+    "kind": "class",
+    "name": "ClientFlagSetter",
+    "memberof": "src/views/client-flag-setter.js",
+    "static": true,
+    "longname": "src/views/client-flag-setter.js~ClientFlagSetter",
+    "access": "public",
+    "export": false,
+    "importPath": "javascript-modules-v5/src/views/client-flag-setter.js",
+    "importStyle": null,
+    "description": null,
+    "lineNumber": 7,
+    "undocument": true,
+    "interface": false,
+    "ignore": true
+  },
+  {
+    "__docId__": 192,
+    "kind": "constructor",
+    "name": "constructor",
+    "memberof": "src/views/client-flag-setter.js~ClientFlagSetter",
+    "generator": false,
+    "async": false,
+    "static": false,
+    "longname": "src/views/client-flag-setter.js~ClientFlagSetter#constructor",
+    "access": "public",
+    "description": null,
+    "lineNumber": 8,
+    "undocument": true
+  },
+  {
     "kind": "index",
     "content": "# JavaScript Modules\n\n## Check rules that are in conflict with Prettier\n```\n$ npm run eslint-check\n```\n\n## ESLint and Prettier\n```\n$ npm run lint\n```\n\nfix command.\n```\n$ npm run lint -- --fix\n```\n\n## Jest unit test\n```\n$ npm run test\n```\n\nwatch command.\n```\n$ npm run test -- --watch\n```\n\n## ESDoc\n```\n$ npm run esdoc\n```\n\n## ESLint and Jest and ESDoc\n```\n$ npm run precommit\n```\n",
     "longname": "/Users/higa_syuuji/github/syuji-higa/javascript-modules-v5/README.md",
