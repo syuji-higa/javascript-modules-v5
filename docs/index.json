@@ -832,6 +832,169 @@
     }
   },
   {
+    "__docId__": 56,
+    "kind": "file",
+    "name": "src/models/coordinate.js",
+    "content": "/**\n * @param {number} p1X - float position 1 x\n * @param {number} p1Y - float position 1 y\n * @param {number} p2X - float position 2 x\n * @param {number} p2Y - float position 2 y\n * @return {number}\n */\nexport const coordinateLength = (p1X, p1Y, p2X, p2Y) => {\n  return Math.sqrt(Math.pow(p1X - p2X, 2) + Math.pow(p1Y - p2Y, 2))\n}\n\n/**\n * @param {number[]} cTL - float[0,1] color top left\n * @param {number[]} cTR - float[0,1] color top right\n * @param {number[]} cBL - float[0,1] color bottom left\n * @param {number[]} cBR - float[0,1] color bottom right\n * @param {number} pRX - float[-1,1] position ratio x\n * @param {number} pRY - float[-1,1] position ratio y\n * @return {number[]} - float[0,1] pickup color\n */\nexport const coordinatePickupColor = (cTL, cTR, cBL, cBR, pRX, pRY) => {\n  // color top\n  const _cT /* :number[] float[0,1] */ = cTL.map((c, i) => {\n    return cTL[i] + (cTR[i] - cTL[i]) * pRX\n  })\n  // color bottom\n  const _cB /* :number[] float[0,1] */ = cBL.map((c, i) => {\n    return cBL[i] + (cBR[i] - cBL[i]) * pRX\n  })\n  return _cT.map((c, i) => {\n    return _cT[i] + (_cB[i] - _cT[i]) * pRY\n  })\n}\n",
+    "static": true,
+    "longname": "/Users/higa_syuuji/github/syuji-higa/javascript-modules-v5/src/models/coordinate.js",
+    "access": "public",
+    "description": null,
+    "lineNumber": 1
+  },
+  {
+    "__docId__": 57,
+    "kind": "function",
+    "name": "coordinateLength",
+    "memberof": "src/models/coordinate.js",
+    "generator": false,
+    "async": false,
+    "static": true,
+    "longname": "src/models/coordinate.js~coordinateLength",
+    "access": "public",
+    "export": true,
+    "importPath": "javascript-modules-v5/src/models/coordinate.js",
+    "importStyle": "{coordinateLength}",
+    "description": "",
+    "lineNumber": 8,
+    "params": [
+      {
+        "nullable": null,
+        "types": [
+          "number"
+        ],
+        "spread": false,
+        "optional": false,
+        "name": "p1X",
+        "description": "float position 1 x"
+      },
+      {
+        "nullable": null,
+        "types": [
+          "number"
+        ],
+        "spread": false,
+        "optional": false,
+        "name": "p1Y",
+        "description": "float position 1 y"
+      },
+      {
+        "nullable": null,
+        "types": [
+          "number"
+        ],
+        "spread": false,
+        "optional": false,
+        "name": "p2X",
+        "description": "float position 2 x"
+      },
+      {
+        "nullable": null,
+        "types": [
+          "number"
+        ],
+        "spread": false,
+        "optional": false,
+        "name": "p2Y",
+        "description": "float position 2 y"
+      }
+    ],
+    "return": {
+      "nullable": null,
+      "types": [
+        "number"
+      ],
+      "spread": false,
+      "description": ""
+    }
+  },
+  {
+    "__docId__": 58,
+    "kind": "function",
+    "name": "coordinatePickupColor",
+    "memberof": "src/models/coordinate.js",
+    "generator": false,
+    "async": false,
+    "static": true,
+    "longname": "src/models/coordinate.js~coordinatePickupColor",
+    "access": "public",
+    "export": true,
+    "importPath": "javascript-modules-v5/src/models/coordinate.js",
+    "importStyle": "{coordinatePickupColor}",
+    "description": "",
+    "lineNumber": 21,
+    "params": [
+      {
+        "nullable": null,
+        "types": [
+          "number[]"
+        ],
+        "spread": false,
+        "optional": false,
+        "name": "cTL",
+        "description": "float[0,1] color top left"
+      },
+      {
+        "nullable": null,
+        "types": [
+          "number[]"
+        ],
+        "spread": false,
+        "optional": false,
+        "name": "cTR",
+        "description": "float[0,1] color top right"
+      },
+      {
+        "nullable": null,
+        "types": [
+          "number[]"
+        ],
+        "spread": false,
+        "optional": false,
+        "name": "cBL",
+        "description": "float[0,1] color bottom left"
+      },
+      {
+        "nullable": null,
+        "types": [
+          "number[]"
+        ],
+        "spread": false,
+        "optional": false,
+        "name": "cBR",
+        "description": "float[0,1] color bottom right"
+      },
+      {
+        "nullable": null,
+        "types": [
+          "number"
+        ],
+        "spread": false,
+        "optional": false,
+        "name": "pRX",
+        "description": "float[-1,1] position ratio x"
+      },
+      {
+        "nullable": null,
+        "types": [
+          "number"
+        ],
+        "spread": false,
+        "optional": false,
+        "name": "pRY",
+        "description": "float[-1,1] position ratio y"
+      }
+    ],
+    "return": {
+      "nullable": null,
+      "types": [
+        "number[]"
+      ],
+      "spread": false,
+      "description": "float[0,1] pickup color"
+    }
+  },
+  {
     "kind": "index",
     "content": "# JavaScript Modules\n\n## Check rules that are in conflict with Prettier\n```\n$ npm run eslint-check\n```\n\n## ESLint and Prettier\n```\n$ npm run lint\n```\n\nfix command.\n```\n$ npm run lint -- --fix\n```\n\n## Jest unit test\n```\n$ npm run test\n```\n\nwatch command.\n```\n$ npm run test -- --watch\n```\n\n## ESDoc\n```\n$ npm run esdoc\n```\n\n## ESLint and Jest and ESDoc\n```\n$ npm run precommit\n```\n",
     "longname": "/Users/higa_syuuji/github/syuji-higa/javascript-modules-v5/README.md",

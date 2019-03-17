@@ -6,6 +6,18 @@ window.esdocSearchIndex = [
     "function"
   ],
   [
+    "javascript-modules-v5/src/models/coordinate.js~coordinatelength",
+    "function/index.html#static-function-coordinateLength",
+    "<span>coordinateLength</span> <span class=\"search-result-import-path\">javascript-modules-v5/src/models/coordinate.js</span>",
+    "function"
+  ],
+  [
+    "javascript-modules-v5/src/models/coordinate.js~coordinatepickupcolor",
+    "function/index.html#static-function-coordinatePickupColor",
+    "<span>coordinatePickupColor</span> <span class=\"search-result-import-path\">javascript-modules-v5/src/models/coordinate.js</span>",
+    "function"
+  ],
+  [
     "javascript-modules-v5/src/models/array.js~createarray",
     "function/index.html#static-function-createArray",
     "<span>createArray</span> <span class=\"search-result-import-path\">javascript-modules-v5/src/models/array.js</span>",
@@ -327,6 +339,12 @@ window.esdocSearchIndex = [
     "src/models/check.js",
     "file/src/models/check.js.html",
     "src/models/check.js",
+    "file"
+  ],
+  [
+    "src/models/coordinate.js",
+    "file/src/models/coordinate.js.html",
+    "src/models/coordinate.js",
     "file"
   ]
 ]

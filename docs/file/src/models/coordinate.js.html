@@ -2,8 +2,8 @@
 <html>
 <head>
   <meta charset="utf-8">
-  <base data-ice="baseUrl" href>
-  <title data-ice="title">Source | javascript-modules-v5</title>
+  <base data-ice="baseUrl" href="../../../">
+  <title data-ice="title">src/models/coordinate.js | javascript-modules-v5</title>
   <link type="text/css" rel="stylesheet" href="css/style.css">
   <link type="text/css" rel="stylesheet" href="css/prettify-tomorrow.css">
   <script src="script/prettify/prettify.js"></script>
@@ -41,52 +41,42 @@
 </div>
 </nav>
 
-<div class="content" data-ice="content"><h1>Source <img data-ice="coverageBadge" src="./badge.svg"><span data-ice="totalCoverageCount" class="total-coverage-count">8/8</span></h1>
+<div class="content" data-ice="content"><h1 data-ice="title">src/models/coordinate.js</h1>
+<pre class="source-code line-number raw-source-code"><code class="prettyprint linenums" data-ice="content">/**
+ * @param {number} p1X - float position 1 x
+ * @param {number} p1Y - float position 1 y
+ * @param {number} p2X - float position 2 x
+ * @param {number} p2Y - float position 2 y
+ * @return {number}
+ */
+export const coordinateLength = (p1X, p1Y, p2X, p2Y) =&gt; {
+  return Math.sqrt(Math.pow(p1X - p2X, 2) + Math.pow(p1Y - p2Y, 2))
+}
 
-<table class="files-summary" data-ice="files" data-use-coverage="true">
-  <thead>
-    <tr>
-      <td>File</td>
-      <td>Identifier</td>
-      <td class="coverage">Document</td>
-      <td style="display: none;">Size</td>
-      <td style="display: none;">Lines</td>
-      <td style="display: none;">Updated</td>
-    </tr>
-  </thead>
-  <tbody>
-    
-  <tr data-ice="file">
-      <td data-ice="filePath"><span><a href="file/src/models/array.js.html">src/models/array.js</a></span></td>
-      <td data-ice="identifier" class="identifiers"><span><a href="function/index.html#static-function-caterpillarArray">caterpillarArray</a></span>
-<span><a href="function/index.html#static-function-createArray">createArray</a></span>
-<span><a href="function/index.html#static-function-createSerialNumberArray">createSerialNumberArray</a></span>
-<span><a href="function/index.html#static-function-flattenArray">flattenArray</a></span>
-<span><a href="function/index.html#static-function-shuffleArray">shuffleArray</a></span></td>
-      <td class="coverage"><span data-ice="coverage">100 %</span><span data-ice="coverageCount" class="coverage-count">5/5</span></td>
-      <td style="display: none;" data-ice="size">1390 byte</td>
-      <td style="display: none;" data-ice="lines">74</td>
-      <td style="display: none;" data-ice="updated">2019-03-01 02:56:13 (UTC)</td>
-    </tr>
-<tr data-ice="file">
-      <td data-ice="filePath"><span><a href="file/src/models/check.js.html">src/models/check.js</a></span></td>
-      <td data-ice="identifier" class="identifiers"><span><a href="function/index.html#static-function-isJson">isJson</a></span></td>
-      <td class="coverage"><span data-ice="coverage">100 %</span><span data-ice="coverageCount" class="coverage-count">1/1</span></td>
-      <td style="display: none;" data-ice="size">312 byte</td>
-      <td style="display: none;" data-ice="lines">16</td>
-      <td style="display: none;" data-ice="updated">2019-03-01 05:57:32 (UTC)</td>
-    </tr>
-<tr data-ice="file">
-      <td data-ice="filePath"><span><a href="file/src/models/coordinate.js.html">src/models/coordinate.js</a></span></td>
-      <td data-ice="identifier" class="identifiers"><span><a href="function/index.html#static-function-coordinateLength">coordinateLength</a></span>
-<span><a href="function/index.html#static-function-coordinatePickupColor">coordinatePickupColor</a></span></td>
-      <td class="coverage"><span data-ice="coverage">100 %</span><span data-ice="coverageCount" class="coverage-count">2/2</span></td>
-      <td style="display: none;" data-ice="size">1123 byte</td>
-      <td style="display: none;" data-ice="lines">33</td>
-      <td style="display: none;" data-ice="updated">2019-03-01 06:02:14 (UTC)</td>
-    </tr>
-</tbody>
-</table>
+/**
+ * @param {number[]} cTL - float[0,1] color top left
+ * @param {number[]} cTR - float[0,1] color top right
+ * @param {number[]} cBL - float[0,1] color bottom left
+ * @param {number[]} cBR - float[0,1] color bottom right
+ * @param {number} pRX - float[-1,1] position ratio x
+ * @param {number} pRY - float[-1,1] position ratio y
+ * @return {number[]} - float[0,1] pickup color
+ */
+export const coordinatePickupColor = (cTL, cTR, cBL, cBR, pRX, pRY) =&gt; {
+  // color top
+  const _cT /* :number[] float[0,1] */ = cTL.map((c, i) =&gt; {
+    return cTL[i] + (cTR[i] - cTL[i]) * pRX
+  })
+  // color bottom
+  const _cB /* :number[] float[0,1] */ = cBL.map((c, i) =&gt; {
+    return cBL[i] + (cBR[i] - cBL[i]) * pRX
+  })
+  return _cT.map((c, i) =&gt; {
+    return _cT[i] + (_cB[i] - _cT[i]) * pRY
+  })
+}
+</code></pre>
+
 </div>
 
 <footer class="footer">
