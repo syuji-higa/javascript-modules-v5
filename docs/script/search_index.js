@@ -78,6 +78,12 @@ window.esdocSearchIndex = [
     "function"
   ],
   [
+    "javascript-modules-v5/src/utils/event.js~createevent",
+    "function/index.html#static-function-createEvent",
+    "<span>createEvent</span> <span class=\"search-result-import-path\">javascript-modules-v5/src/utils/event.js</span>",
+    "function"
+  ],
+  [
     "javascript-modules-v5/src/models/array.js~createserialnumberarray",
     "function/index.html#static-function-createSerialNumberArray",
     "<span>createSerialNumberArray</span> <span class=\"search-result-import-path\">javascript-modules-v5/src/models/array.js</span>",
@@ -249,6 +255,12 @@ window.esdocSearchIndex = [
     "javascript-modules-v5/src/models/object-type.js~objecttype",
     "function/index.html#static-function-objectType",
     "<span>objectType</span> <span class=\"search-result-import-path\">javascript-modules-v5/src/models/object-type.js</span>",
+    "function"
+  ],
+  [
+    "javascript-modules-v5/src/utils/event.js~ondispatchevent",
+    "function/index.html#static-function-onDispatchEvent",
+    "<span>onDispatchEvent</span> <span class=\"search-result-import-path\">javascript-modules-v5/src/utils/event.js</span>",
     "function"
   ],
   [
@@ -843,6 +855,12 @@ window.esdocSearchIndex = [
     "src/pattern/singleton.js",
     "file/src/pattern/singleton.js.html",
     "src/pattern/singleton.js",
+    "file"
+  ],
+  [
+    "src/utils/event.js",
+    "file/src/utils/event.js.html",
+    "src/utils/event.js",
     "file"
   ]
 ]

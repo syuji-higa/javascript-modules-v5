@@ -4505,6 +4505,156 @@
     "undocument": true
   },
   {
+    "__docId__": 150,
+    "kind": "file",
+    "name": "src/utils/event.js",
+    "content": "/**\n * @param {Element} target\n * @param {string} eventType\n * @param {function} listener\n * @param {boolean|Object} [option]\n * @return {Object}\n */\nexport const createEvent = (target, eventType, listener, option = false) => {\n  return {\n    handleEvent: (e) => {\n      listener(e)\n    },\n    add: function() {\n      target.addEventListener(eventType, this, option)\n    },\n    remove: function() {\n      target.removeEventListener(eventType, this, option)\n    }\n  }\n}\n\n/**\n * @param {Array} options\n * @param {Element} options[0] - dispatc target\n * @param {string} options[1] - eventType\n * @param {Object} [options[2]] - event detail\n * @param {Event} event\n *\n * @example\n *   onDispatchEvent.bind(this, [window, 'resize'], e);\n */\nexport const onDispatchEvent = (options, event) => {\n  const [target, eventType, detail] = options\n\n  const _detail /* :Object */ = (() => {\n    const _obj /* :Object */ = {\n      status: event\n    }\n    if (detail) Object.assign(_obj, detail)\n    return _obj\n  })()\n\n  target.dispatchEvent(\n    new CustomEvent(eventType, {\n      detail: _detail\n    })\n  )\n}\n",
+    "static": true,
+    "longname": "/Users/higa_syuuji/github/syuji-higa/javascript-modules-v5/src/utils/event.js",
+    "access": "public",
+    "description": null,
+    "lineNumber": 1
+  },
+  {
+    "__docId__": 151,
+    "kind": "function",
+    "name": "createEvent",
+    "memberof": "src/utils/event.js",
+    "generator": false,
+    "async": false,
+    "static": true,
+    "longname": "src/utils/event.js~createEvent",
+    "access": "public",
+    "export": true,
+    "importPath": "javascript-modules-v5/src/utils/event.js",
+    "importStyle": "{createEvent}",
+    "description": "",
+    "lineNumber": 8,
+    "params": [
+      {
+        "nullable": null,
+        "types": [
+          "Element"
+        ],
+        "spread": false,
+        "optional": false,
+        "name": "target",
+        "description": ""
+      },
+      {
+        "nullable": null,
+        "types": [
+          "string"
+        ],
+        "spread": false,
+        "optional": false,
+        "name": "eventType",
+        "description": ""
+      },
+      {
+        "nullable": null,
+        "types": [
+          "function"
+        ],
+        "spread": false,
+        "optional": false,
+        "name": "listener",
+        "description": ""
+      },
+      {
+        "nullable": null,
+        "types": [
+          "boolean",
+          "Object"
+        ],
+        "spread": false,
+        "optional": true,
+        "name": "option",
+        "description": ""
+      }
+    ],
+    "return": {
+      "nullable": null,
+      "types": [
+        "Object"
+      ],
+      "spread": false,
+      "description": ""
+    }
+  },
+  {
+    "__docId__": 152,
+    "kind": "function",
+    "name": "onDispatchEvent",
+    "memberof": "src/utils/event.js",
+    "generator": false,
+    "async": false,
+    "static": true,
+    "longname": "src/utils/event.js~onDispatchEvent",
+    "access": "public",
+    "export": true,
+    "importPath": "javascript-modules-v5/src/utils/event.js",
+    "importStyle": "{onDispatchEvent}",
+    "description": "",
+    "examples": [
+      "  onDispatchEvent.bind(this, [window, 'resize'], e);"
+    ],
+    "lineNumber": 32,
+    "params": [
+      {
+        "nullable": null,
+        "types": [
+          "Array"
+        ],
+        "spread": false,
+        "optional": false,
+        "name": "options",
+        "description": ""
+      },
+      {
+        "nullable": null,
+        "types": [
+          "Element"
+        ],
+        "spread": false,
+        "optional": false,
+        "name": "options[0]",
+        "description": "dispatc target"
+      },
+      {
+        "nullable": null,
+        "types": [
+          "string"
+        ],
+        "spread": false,
+        "optional": false,
+        "name": "options[1]",
+        "description": "eventType"
+      },
+      {
+        "nullable": null,
+        "types": [
+          "Object"
+        ],
+        "spread": false,
+        "optional": true,
+        "name": "options[2]",
+        "description": "event detail"
+      },
+      {
+        "nullable": null,
+        "types": [
+          "Event"
+        ],
+        "spread": false,
+        "optional": false,
+        "name": "event",
+        "description": ""
+      }
+    ],
+    "return": null
+  },
+  {
     "kind": "index",
     "content": "# JavaScript Modules\n\n## Check rules that are in conflict with Prettier\n```\n$ npm run eslint-check\n```\n\n## ESLint and Prettier\n```\n$ npm run lint\n```\n\nfix command.\n```\n$ npm run lint -- --fix\n```\n\n## Jest unit test\n```\n$ npm run test\n```\n\nwatch command.\n```\n$ npm run test -- --watch\n```\n\n## ESDoc\n```\n$ npm run esdoc\n```\n\n## ESLint and Jest and ESDoc\n```\n$ npm run precommit\n```\n",
     "longname": "/Users/higa_syuuji/github/syuji-higa/javascript-modules-v5/README.md",
