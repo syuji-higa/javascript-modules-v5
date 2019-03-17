@@ -786,7 +786,7 @@
   },
   {
     "kind": "index",
-    "content": "# TypeScript Modules\n\n## Check rules that are in conflict with Prettier\n```\n$ npm run tslint-check\n```\n\n## TSLint and Prettier\n```\n$ npm run lint\n```\n\nfix command.\n```\n$ npm run lint -- -- fix\n```\n\n## TypeDoc\n```\n$ npm run typedoc\n```\n\n## TSLint and TypeDoc\n```\n$ npm run precommit\n```\n",
+    "content": "# JavaScript Modules\n\n## Check rules that are in conflict with Prettier\n```\n$ npm run eslint-check\n```\n\n## ESLint and Prettier\n```\n$ npm run lint\n```\n\nfix command.\n```\n$ npm run lint -- --fix\n```\n\n## ESDoc\n```\n$ npm run esdoc\n```\n\n## ESLint and ESDoc\n```\n$ npm run precommit\n```\n",
     "longname": "/Users/higa_syuuji/github/syuji-higa/javascript-modules-v5/README.md",
     "name": "./README.md",
     "static": true,
@@ -794,7 +794,7 @@
   },
   {
     "kind": "packageJSON",
-    "content": "{\n  \"name\": \"javascript-modules-v5\",\n  \"version\": \"1.0.0\",\n  \"description\": \"General purpose TypeScript modules.\",\n  \"main\": \"index.js\",\n  \"dependencies\": {},\n  \"devDependencies\": {\n    \"esdoc\": \"^1.1.0\",\n    \"esdoc-ecmascript-proposal-plugin\": \"^1.0.0\",\n    \"esdoc-standard-plugin\": \"^1.0.0\"\n  },\n  \"scripts\": {\n    \"esdoc\": \"esdoc -c esdoc.json\"\n  },\n  \"repository\": {\n    \"type\": \"git\",\n    \"url\": \"git+https://github.com/syuji-higa/javascript-modules-v5.git\"\n  },\n  \"author\": \"syuji-higa\",\n  \"license\": \"MIT\",\n  \"bugs\": {\n    \"url\": \"https://github.com/syuji-higa/javascript-modules-v5/issues\"\n  },\n  \"homepage\": \"https://github.com/syuji-higa/javascript-modules-v5#readme\"\n}\n",
+    "content": "{\n  \"name\": \"javascript-modules-v5\",\n  \"version\": \"1.0.0\",\n  \"description\": \"General purpose TypeScript modules.\",\n  \"main\": \"index.js\",\n  \"dependencies\": {},\n  \"devDependencies\": {\n    \"esdoc\": \"^1.1.0\",\n    \"esdoc-ecmascript-proposal-plugin\": \"^1.0.0\",\n    \"esdoc-standard-plugin\": \"^1.0.0\",\n    \"eslint\": \"^5.15.2\",\n    \"eslint-config-prettier\": \"^4.1.0\",\n    \"eslint-plugin-prettier\": \"^3.0.1\",\n    \"prettier\": \"^1.16.4\"\n  },\n  \"scripts\": {\n    \"eslint-check\": \"eslint --print-config . | eslint-config-prettier-check\",\n    \"lint\": \"eslint --ext .js --ignore-path .gitignore ./src\",\n    \"esdoc\": \"esdoc -c esdoc.json\",\n    \"precommit\": \"npm run lint -- --fix && npm run esdoc\"\n  },\n  \"repository\": {\n    \"type\": \"git\",\n    \"url\": \"git+https://github.com/syuji-higa/javascript-modules-v5.git\"\n  },\n  \"author\": \"syuji-higa\",\n  \"license\": \"MIT\",\n  \"bugs\": {\n    \"url\": \"https://github.com/syuji-higa/javascript-modules-v5/issues\"\n  },\n  \"homepage\": \"https://github.com/syuji-higa/javascript-modules-v5#readme\"\n}\n",
     "longname": "/Users/higa_syuuji/github/syuji-higa/javascript-modules-v5/package.json",
     "name": "package.json",
     "static": true,

@@ -1,26 +1,26 @@
-# TypeScript Modules
+# JavaScript Modules
 
 ## Check rules that are in conflict with Prettier
 ```
-$ npm run tslint-check
+$ npm run eslint-check
 ```
 
-## TSLint and Prettier
+## ESLint and Prettier
 ```
 $ npm run lint
 ```
 
 fix command.
 ```
-$ npm run lint -- -- fix
+$ npm run lint -- --fix
 ```
 
-## TypeDoc
+## ESDoc
 ```
-$ npm run typedoc
+$ npm run esdoc
 ```
 
-## TSLint and TypeDoc
+## ESLint and ESDoc
 ```
 $ npm run precommit
 ```

@@ -14,8 +14,10 @@
     "prettier": "^1.16.4"
   },
   "scripts": {
+    "eslint-check": "eslint --print-config . | eslint-config-prettier-check",
     "lint": "eslint --ext .js --ignore-path .gitignore ./src",
-    "esdoc": "esdoc -c esdoc.json"
+    "esdoc": "esdoc -c esdoc.json",
+    "precommit": "npm run lint -- --fix && npm run esdoc"
   },
   "repository": {
     "type": "git",
