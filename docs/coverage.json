@@ -1,7 +1,7 @@
 {
-  "coverage": "92.85%",
-  "expectCount": 42,
-  "actualCount": 39,
+  "coverage": "93.33%",
+  "expectCount": 45,
+  "actualCount": 42,
   "files": {
     "src/models/array.js": {
       "expectCount": 5,
@@ -80,6 +80,11 @@
       "undocumentLines": []
     },
     "src/models/random.js": {
+      "expectCount": 3,
+      "actualCount": 3,
+      "undocumentLines": []
+    },
+    "src/models/ratio.js": {
       "expectCount": 3,
       "actualCount": 3,
       "undocumentLines": []

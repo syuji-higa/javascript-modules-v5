@@ -42,6 +42,12 @@ window.esdocSearchIndex = [
     "function"
   ],
   [
+    "javascript-modules-v5/src/models/ratio.js~cover",
+    "function/index.html#static-function-cover",
+    "<span>cover</span> <span class=\"search-result-import-path\">javascript-modules-v5/src/models/ratio.js</span>",
+    "function"
+  ],
+  [
     "javascript-modules-v5/src/models/array.js~createarray",
     "function/index.html#static-function-createArray",
     "<span>createArray</span> <span class=\"search-result-import-path\">javascript-modules-v5/src/models/array.js</span>",
@@ -99,6 +105,18 @@ window.esdocSearchIndex = [
     "javascript-modules-v5/src/models/check.js~isjson",
     "function/index.html#static-function-isJson",
     "<span>isJson</span> <span class=\"search-result-import-path\">javascript-modules-v5/src/models/check.js</span>",
+    "function"
+  ],
+  [
+    "javascript-modules-v5/src/models/ratio.js~normalizeoverratio",
+    "function/index.html#static-function-normalizeOverRatio",
+    "<span>normalizeOverRatio</span> <span class=\"search-result-import-path\">javascript-modules-v5/src/models/ratio.js</span>",
+    "function"
+  ],
+  [
+    "javascript-modules-v5/src/models/ratio.js~normalizeunderratio",
+    "function/index.html#static-function-normalizeUnderRatio",
+    "<span>normalizeUnderRatio</span> <span class=\"search-result-import-path\">javascript-modules-v5/src/models/ratio.js</span>",
     "function"
   ],
   [
@@ -603,6 +621,12 @@ window.esdocSearchIndex = [
     "src/models/random.js",
     "file/src/models/random.js.html",
     "src/models/random.js",
+    "file"
+  ],
+  [
+    "src/models/ratio.js",
+    "file/src/models/ratio.js.html",
+    "src/models/ratio.js",
     "file"
   ]
 ]
