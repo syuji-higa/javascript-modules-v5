@@ -1953,6 +1953,103 @@
     }
   },
   {
+    "__docId__": 87,
+    "kind": "file",
+    "name": "src/models/object.js",
+    "content": "import { objectType } from './object-type'\n\n/**\n * @param {Object} to\n * @param {Object} from\n */\nconst assign = (to, from) => {\n  const _toKeys /* :string[] */ = Object.keys(to)\n  for (const [key /* :string */, val /* :* */] of Object.entries(from)) {\n    if (_toKeys.includes(key) && objectType(val) === 'Object') {\n      assign(to[key], val)\n    } else {\n      to[key] /* :* */ = val\n    }\n  }\n}\n\n/**\n * @param {Object} to\n * @param {Object} from\n * @return {Object}\n */\nexport const deepAssign = (to, from) => {\n  assign(to, from)\n  return to\n}\n",
+    "static": true,
+    "longname": "/Users/higa_syuuji/github/syuji-higa/javascript-modules-v5/src/models/object.js",
+    "access": "public",
+    "description": null,
+    "lineNumber": 1
+  },
+  {
+    "__docId__": 88,
+    "kind": "function",
+    "name": "assign",
+    "memberof": "src/models/object.js",
+    "generator": false,
+    "async": false,
+    "static": true,
+    "longname": "src/models/object.js~assign",
+    "access": "public",
+    "export": false,
+    "importPath": "javascript-modules-v5/src/models/object.js",
+    "importStyle": null,
+    "description": "",
+    "lineNumber": 7,
+    "params": [
+      {
+        "nullable": null,
+        "types": [
+          "Object"
+        ],
+        "spread": false,
+        "optional": false,
+        "name": "to",
+        "description": ""
+      },
+      {
+        "nullable": null,
+        "types": [
+          "Object"
+        ],
+        "spread": false,
+        "optional": false,
+        "name": "from",
+        "description": ""
+      }
+    ],
+    "return": null,
+    "ignore": true
+  },
+  {
+    "__docId__": 89,
+    "kind": "function",
+    "name": "deepAssign",
+    "memberof": "src/models/object.js",
+    "generator": false,
+    "async": false,
+    "static": true,
+    "longname": "src/models/object.js~deepAssign",
+    "access": "public",
+    "export": true,
+    "importPath": "javascript-modules-v5/src/models/object.js",
+    "importStyle": "{deepAssign}",
+    "description": "",
+    "lineNumber": 23,
+    "params": [
+      {
+        "nullable": null,
+        "types": [
+          "Object"
+        ],
+        "spread": false,
+        "optional": false,
+        "name": "to",
+        "description": ""
+      },
+      {
+        "nullable": null,
+        "types": [
+          "Object"
+        ],
+        "spread": false,
+        "optional": false,
+        "name": "from",
+        "description": ""
+      }
+    ],
+    "return": {
+      "nullable": null,
+      "types": [
+        "Object"
+      ],
+      "spread": false,
+      "description": ""
+    }
+  },
+  {
     "kind": "index",
     "content": "# JavaScript Modules\n\n## Check rules that are in conflict with Prettier\n```\n$ npm run eslint-check\n```\n\n## ESLint and Prettier\n```\n$ npm run lint\n```\n\nfix command.\n```\n$ npm run lint -- --fix\n```\n\n## Jest unit test\n```\n$ npm run test\n```\n\nwatch command.\n```\n$ npm run test -- --watch\n```\n\n## ESDoc\n```\n$ npm run esdoc\n```\n\n## ESLint and Jest and ESDoc\n```\n$ npm run precommit\n```\n",
     "longname": "/Users/higa_syuuji/github/syuji-higa/javascript-modules-v5/README.md",

@@ -60,6 +60,12 @@ window.esdocSearchIndex = [
     "function"
   ],
   [
+    "javascript-modules-v5/src/models/object.js~deepassign",
+    "function/index.html#static-function-deepAssign",
+    "<span>deepAssign</span> <span class=\"search-result-import-path\">javascript-modules-v5/src/models/object.js</span>",
+    "function"
+  ],
+  [
     "javascript-modules-v5/src/models/cubic-bezier-easing.js~easings",
     "variable/index.html#static-variable-easings",
     "<span>easings</span> <span class=\"search-result-import-path\">javascript-modules-v5/src/models/cubic-bezier-easing.js</span>",
@@ -507,6 +513,12 @@ window.esdocSearchIndex = [
     "src/models/object-type.js",
     "file/src/models/object-type.js.html",
     "src/models/object-type.js",
+    "file"
+  ],
+  [
+    "src/models/object.js",
+    "file/src/models/object.js.html",
+    "src/models/object.js",
     "file"
   ]
 ]
