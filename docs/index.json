@@ -2263,6 +2263,93 @@
   {
     "__docId__": 96,
     "kind": "file",
+    "name": "src/models/progress.js",
+    "content": "import { easings } from './easing'\nimport { round } from './math'\n\n/**\n * @param {string} easing\n * @param {number} time - int[0,inf)\n * @param {number} begin\n * @param {number} complete\n * @param {number} duration - int[0,inf)\n * @return {number}\n */\nexport const progress = (easing, time, begin, complete, duration) => {\n  let _val /* :number */ = easings[easing](\n    Math.min(time, duration),\n    begin,\n    complete - begin,\n    duration\n  )\n  return round(_val)\n}\n",
+    "static": true,
+    "longname": "/Users/higa_syuuji/github/syuji-higa/javascript-modules-v5/src/models/progress.js",
+    "access": "public",
+    "description": null,
+    "lineNumber": 1
+  },
+  {
+    "__docId__": 97,
+    "kind": "function",
+    "name": "progress",
+    "memberof": "src/models/progress.js",
+    "generator": false,
+    "async": false,
+    "static": true,
+    "longname": "src/models/progress.js~progress",
+    "access": "public",
+    "export": true,
+    "importPath": "javascript-modules-v5/src/models/progress.js",
+    "importStyle": "{progress}",
+    "description": "",
+    "lineNumber": 12,
+    "params": [
+      {
+        "nullable": null,
+        "types": [
+          "string"
+        ],
+        "spread": false,
+        "optional": false,
+        "name": "easing",
+        "description": ""
+      },
+      {
+        "nullable": null,
+        "types": [
+          "number"
+        ],
+        "spread": false,
+        "optional": false,
+        "name": "time",
+        "description": "int[0,inf)"
+      },
+      {
+        "nullable": null,
+        "types": [
+          "number"
+        ],
+        "spread": false,
+        "optional": false,
+        "name": "begin",
+        "description": ""
+      },
+      {
+        "nullable": null,
+        "types": [
+          "number"
+        ],
+        "spread": false,
+        "optional": false,
+        "name": "complete",
+        "description": ""
+      },
+      {
+        "nullable": null,
+        "types": [
+          "number"
+        ],
+        "spread": false,
+        "optional": false,
+        "name": "duration",
+        "description": "int[0,inf)"
+      }
+    ],
+    "return": {
+      "nullable": null,
+      "types": [
+        "number"
+      ],
+      "spread": false,
+      "description": ""
+    }
+  },
+  {
+    "__docId__": 98,
+    "kind": "file",
     "name": "src/models/query-string.js",
     "content": "/**\n * @param {string} str\n * @param {Object} [options]\n * @param {string} [options.sep]\n * @param {string} [options.eq]\n * @param {boolean} [options.typeChange]\n * @return {Object}\n */\nexport const parse = (str, options = {}) => {\n  const { sep, eq, typeChange } = Object.assign(\n    {\n      sep: '&',\n      eq: '=',\n      typeChange: true\n    },\n    options\n  )\n  if (!str || typeof str !== 'string') {\n    return {}\n  }\n  return String(str)\n    .split(sep)\n    .reduce((obj /* :Object */, param /* :string */) => {\n      const [key /* :string */, val /* :string */] = param.split(eq)\n      const _val /* :string|number|boolean */ = (() => {\n        if (!typeChange) return val\n        if (val.match(/^[+,-]?([1-9]\\d*|0)(\\.\\d+)?$/)) {\n          return Number(val)\n        }\n        switch (val) {\n          case 'true':\n            return true\n          case 'false':\n            return false\n          default:\n            return val\n        }\n      })()\n      obj[key] /* :string|number|boolean */ = _val\n      return obj\n    }, {})\n}\n\n/**\n * @param {Object} data\n * @param {Object} [options]\n * @param {string} [options.sep]\n * @param {string} [options.eq]\n * @return {string}\n */\nexport const serialize = (data, options = {}) => {\n  const { sep, eq } = Object.assign({ sep: '&', eq: '=' }, options)\n  const _encode /* :function */ = encodeURIComponent\n  let _query /* :string */ = ''\n\n  Object.entries(data).forEach(\n    ([key /* :string */, val /* :string|number|Object|*[] */]) => {\n      const _type /* :string */ =\n        typeof val === 'object' && val instanceof Array ? 'array' : typeof val\n\n      switch (_type) {\n        case 'undefined':\n          _query += key\n          break\n        case 'array':\n          val.forEach((_i) => {\n            _query += `${key}[]${eq + _encode(val[_i]) + sep}`\n          })\n          _query = _query.substr(0, _query.length - 1)\n          break\n        case 'object':\n          Object.entries(val).forEach(([key_ /* :string */, val_ /* :* */]) => {\n            _query += `${key}[${key_}]${eq + _encode(val_) + sep}`\n          })\n          _query = _query.substr(0, _query.length - 1)\n          break\n        default:\n          _query += key + eq + _encode(val)\n          break\n      }\n      _query += sep\n    }\n  )\n  return _query.substr(0, _query.length - 1)\n}\n",
     "static": true,
@@ -2272,7 +2359,7 @@
     "lineNumber": 1
   },
   {
-    "__docId__": 97,
+    "__docId__": 99,
     "kind": "function",
     "name": "parse",
     "memberof": "src/models/query-string.js",
@@ -2348,7 +2435,7 @@
     }
   },
   {
-    "__docId__": 98,
+    "__docId__": 100,
     "kind": "function",
     "name": "serialize",
     "memberof": "src/models/query-string.js",

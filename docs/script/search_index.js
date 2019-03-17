@@ -138,6 +138,12 @@ window.esdocSearchIndex = [
     "function"
   ],
   [
+    "javascript-modules-v5/src/models/progress.js~progress",
+    "function/index.html#static-function-progress",
+    "<span>progress</span> <span class=\"search-result-import-path\">javascript-modules-v5/src/models/progress.js</span>",
+    "function"
+  ],
+  [
     "javascript-modules-v5/src/models/parameter.js~query",
     "function/index.html#static-function-query",
     "<span>query</span> <span class=\"search-result-import-path\">javascript-modules-v5/src/models/parameter.js</span>",
@@ -561,6 +567,12 @@ window.esdocSearchIndex = [
     "src/models/parameter.js",
     "file/src/models/parameter.js.html",
     "src/models/parameter.js",
+    "file"
+  ],
+  [
+    "src/models/progress.js",
+    "file/src/models/progress.js.html",
+    "src/models/progress.js",
     "file"
   ],
   [
