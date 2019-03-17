@@ -4867,6 +4867,73 @@
   {
     "__docId__": 158,
     "kind": "file",
+    "name": "src/utils/debounce.js",
+    "content": "/**\n * @param {Object} [options]\n * @param {number} [options.interval] - int[0,inf)\n * @param {boolean} [options.isFirstRun]\n * @return {function}\n */\nexport const debounce = (options = {}) => {\n  const { interval, isFirstRun } = Object.assign(\n    { interval: 100, isFirstRun: false },\n    options\n  )\n  let _timer /* :number int[0,inf) */ = 0\n  let _firstRun /* :boolean */ = true\n\n  return (fn /* :function */) => {\n    if (isFirstRun && _firstRun) {\n      fn()\n      _firstRun = false\n    }\n    clearTimeout(_timer)\n    _timer = setTimeout(() => {\n      fn()\n      _timer = 0\n      if (isFirstRun) {\n        _firstRun = true\n      }\n    }, interval)\n  }\n}\n",
+    "static": true,
+    "longname": "/Users/higa_syuuji/github/syuji-higa/javascript-modules-v5/src/utils/debounce.js",
+    "access": "public",
+    "description": null,
+    "lineNumber": 1
+  },
+  {
+    "__docId__": 159,
+    "kind": "function",
+    "name": "debounce",
+    "memberof": "src/utils/debounce.js",
+    "generator": false,
+    "async": false,
+    "static": true,
+    "longname": "src/utils/debounce.js~debounce",
+    "access": "public",
+    "export": true,
+    "importPath": "javascript-modules-v5/src/utils/debounce.js",
+    "importStyle": "{debounce}",
+    "description": "",
+    "lineNumber": 7,
+    "params": [
+      {
+        "nullable": null,
+        "types": [
+          "Object"
+        ],
+        "spread": false,
+        "optional": true,
+        "name": "options",
+        "description": ""
+      },
+      {
+        "nullable": null,
+        "types": [
+          "number"
+        ],
+        "spread": false,
+        "optional": true,
+        "name": "options.interval",
+        "description": "int[0,inf)"
+      },
+      {
+        "nullable": null,
+        "types": [
+          "boolean"
+        ],
+        "spread": false,
+        "optional": true,
+        "name": "options.isFirstRun",
+        "description": ""
+      }
+    ],
+    "return": {
+      "nullable": null,
+      "types": [
+        "function"
+      ],
+      "spread": false,
+      "description": ""
+    }
+  },
+  {
+    "__docId__": 160,
+    "kind": "file",
     "name": "src/utils/event.js",
     "content": "/**\n * @param {Element} target\n * @param {string} eventType\n * @param {function} listener\n * @param {boolean|Object} [option]\n * @return {Object}\n */\nexport const createEvent = (target, eventType, listener, option = false) => {\n  return {\n    handleEvent: (e) => {\n      listener(e)\n    },\n    add: function() {\n      target.addEventListener(eventType, this, option)\n    },\n    remove: function() {\n      target.removeEventListener(eventType, this, option)\n    }\n  }\n}\n\n/**\n * @param {Array} options\n * @param {Element} options[0] - dispatc target\n * @param {string} options[1] - eventType\n * @param {Object} [options[2]] - event detail\n * @param {Event} event\n *\n * @example\n *   onDispatchEvent.bind(this, [window, 'resize'], e);\n */\nexport const onDispatchEvent = (options, event) => {\n  const [target, eventType, detail] = options\n\n  const _detail /* :Object */ = (() => {\n    const _obj /* :Object */ = {\n      status: event\n    }\n    if (detail) Object.assign(_obj, detail)\n    return _obj\n  })()\n\n  target.dispatchEvent(\n    new CustomEvent(eventType, {\n      detail: _detail\n    })\n  )\n}\n",
     "static": true,
@@ -4876,7 +4943,7 @@
     "lineNumber": 1
   },
   {
-    "__docId__": 159,
+    "__docId__": 161,
     "kind": "function",
     "name": "createEvent",
     "memberof": "src/utils/event.js",
@@ -4943,7 +5010,7 @@
     }
   },
   {
-    "__docId__": 160,
+    "__docId__": 162,
     "kind": "function",
     "name": "onDispatchEvent",
     "memberof": "src/utils/event.js",

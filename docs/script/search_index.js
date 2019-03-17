@@ -90,6 +90,12 @@ window.esdocSearchIndex = [
     "function"
   ],
   [
+    "javascript-modules-v5/src/utils/debounce.js~debounce",
+    "function/index.html#static-function-debounce",
+    "<span>debounce</span> <span class=\"search-result-import-path\">javascript-modules-v5/src/utils/debounce.js</span>",
+    "function"
+  ],
+  [
     "javascript-modules-v5/src/models/math.js~decimal",
     "function/index.html#static-function-decimal",
     "<span>decimal</span> <span class=\"search-result-import-path\">javascript-modules-v5/src/models/math.js</span>",
@@ -861,6 +867,12 @@ window.esdocSearchIndex = [
     "src/pattern/singleton.js",
     "file/src/pattern/singleton.js.html",
     "src/pattern/singleton.js",
+    "file"
+  ],
+  [
+    "src/utils/debounce.js",
+    "file/src/utils/debounce.js.html",
+    "src/utils/debounce.js",
     "file"
   ],
   [
