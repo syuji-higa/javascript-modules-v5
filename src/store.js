@@ -8,23 +8,18 @@ import Bowser from 'bowser'
 
 // bowser
 const bowser /* :Object */ = Bowser.getParser(window.navigator.userAgent)
-const {
+const { browser, engin, os, platform } = bowser.parsedResult
+
+const state /* :Object */ = {
   browser /* :Object */,
   engin /* :Object */,
   os /* :Object */,
-  platform /* :Object */
-} = bowser.parsedResult
-
-const state /* :Object */ = {
-  browser,
-  engin,
-  os,
-  platform,
-  breakPoint: /* :number[] int[0,inf) */ [768, 1024],
-  windowWidth: /* :number[] int[0,inf) */ 0,
-  windowHeight: /* :number[] int[0,inf) */ 0,
-  windowWidthLastChangedHeight: /* :number[] int[0,inf) */ 0,
-  windowSizeType: /* :string */ ''
+  platform /* :Object */,
+  breakPoint /* :number[] int[0,inf) */: [768, 1024],
+  windowWidth /* :number[] int[0,inf) */: 0,
+  windowHeight /* :number[] int[0,inf) */: 0,
+  windowWidthLastChangedHeight /* :number[] int[0,inf) */: 0,
+  windowSizeType /* :string */: ''
 }
 
 const mutations /* :Object */ = {
