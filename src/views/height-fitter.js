@@ -30,7 +30,7 @@ class HeightFitter {
     this._platformType = store.state.platform.type
 
     this._storeStateObject = {
-      setWindowWidthLastChangedHeight: () => {
+      windowWidthLastChangedHeight: () => {
         this.update()
       }
     }
