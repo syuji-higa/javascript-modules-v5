@@ -12,7 +12,7 @@ class Lazyloader {
   /**
    * @return {Object}
    */
-  static get _defOpts() {
+  static get _defOptions() {
     return {
       selfClassName: 'js-lazyloader',
       isLoadedClassName: 'is-lazyloaded',
@@ -21,17 +21,17 @@ class Lazyloader {
   }
 
   /**
-   * @param {Object} [opts]
-   * @param {string} [opts.selfClassName]
-   * @param {string} [opts.isLoadedClassName]
-   * @param {string} [opts.isImageSettedClassName]
+   * @param {Object} [options]
+   * @param {string} [options.selfClassName]
+   * @param {string} [options.isLoadedClassName]
+   * @param {string} [options.isImageSettedClassName]
    */
-  constructor(opts = {}) {
+  constructor(options = {}) {
     const {
       selfClassName,
       isLoadedClassName,
       isImageSettedClassName
-    } = Object.assign(Lazyloader._defOpts, opts)
+    } = Object.assign(Lazyloader._defOptions, options)
 
     this._selfClassName = selfClassName
     this._isLoadedClassName = isLoadedClassName
