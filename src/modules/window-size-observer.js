@@ -41,7 +41,7 @@ class WindowSizeObserver {
   /**
    * @return {Instance}
    */
-  resize() {
+  update() {
     store.commit('setWindowWidth', window.innerWidth)
     store.commit('setWindowHeight', window.innerHeight)
 
@@ -70,7 +70,7 @@ class WindowSizeObserver {
   }
 
   _onResize() {
-    this._resizeDebounce(this.resize.bind(this))
+    this._resizeDebounce(this.update.bind(this))
   }
 }
 
