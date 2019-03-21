@@ -44,7 +44,7 @@ class Lazyloader {
   create() {
     this._$$el = document.getElementsByClassName(this._selfClassName)
     this._observer = new IntersectionObserver(this._inviewport.bind(this), {
-      rootMargin: '-10% 0 -10% 0'
+      rootMargin: '-10% 0% -10% 0%'
     })
     return this
   }
