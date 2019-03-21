@@ -12,18 +12,18 @@ class HeightFitter {
   /**
    * @return {Object}
    */
-  static get _defOpts() {
+  static get _defOptions() {
     return {
       selfClassName: 'js-height-fitter'
     }
   }
 
   /**
-   * @param {Object} [opts]
-   * @param {string} [opts.selfClassName]
+   * @param {Object} [options]
+   * @param {string} [options.selfClassName]
    */
-  constructor(opts = {}) {
-    const { selfClassName } = Object.assign(HeightFitter._defOpts, opts)
+  constructor(options = {}) {
+    const { selfClassName } = Object.assign(HeightFitter._defOptions, options)
 
     this._$$el = document.getElementsByClassName(selfClassName)
 
