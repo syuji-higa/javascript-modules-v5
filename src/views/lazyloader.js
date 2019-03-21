@@ -102,9 +102,12 @@ class Lazyloader {
    * @return {Promise}
    */
   async _inviewport(entries) {
-    const loadList = []
+    const loadList /* :function[] */ = []
 
-    for (const { target, isIntersecting } of entries) {
+    for (const {
+      target /* :Element */,
+      isIntersecting /* :boolean */
+    } of entries) {
       if (isIntersecting) {
         target.classList.add(this._isImageSettedClassName)
         const _srcList /* :string[] */ = this._setSrcList(target)
