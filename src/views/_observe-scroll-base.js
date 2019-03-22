@@ -11,8 +11,9 @@ class ObserveScrollBase {
   _$el /* :Element */
   _$$item /* :HTMLCollection|NodeList */
   _storeStateObject /* :Object */ = {}
-  _status /* :Object */ = {
-    offsetY /* :number float */: 0
+  _state /* :Object */ = {
+    range /* :number [0,inf) */: 0,
+    start /* :number */: 0
   }
 
   /**
@@ -29,7 +30,7 @@ class ObserveScrollBase {
    * @param {string} [options.selfClassName]
    */
   constructor(options = {}) {
-    const { selfClassName } = Object.assign(
+    const { selfClassName, itemClassName } = Object.assign(
       ObserveScrollBase._defOptions,
       options
     )
@@ -38,13 +39,13 @@ class ObserveScrollBase {
 
     this._storeStateObject = {
       windowWidth: () => {
-        this._setOffsetY()
+        this._setStatus()
       },
       windowHeight: () => {
-        this._setOffsetY()
+        this._setStatus()
       },
       windowOffsetY: (state) => {
-        console.log(state.windowOffsetY)
+        this._update(state.windowOffsetY)
       }
     }
   }
@@ -90,15 +91,24 @@ class ObserveScrollBase {
 
   _on() {
     store.observe(this._storeStateObject)
+    this._setStatus()
   }
 
   _off() {
     store.unobserve(this._storeStateObject)
   }
 
-  _setOffsetY() {
-    this._status.offsetY = rect(this._$el).top
-    console.log(this._status.offsetY)
+  _setStatus() {
+    const { top /* :number */, height /* :number */ } = rect(this._$el)
+    this._state.range = height + store.state.windowHeight
+    this._state.start = top - store.state.windowHeight
+  }
+
+  _update(offsetY) {
+    const { range, start } = this._state
+    const _progress /* :number [0,inf) */ = offsetY - start
+    const _progressRatio /* :number [0,1] */ = _progress / range
+    console.log(_progressRatio)
   }
 }
 
