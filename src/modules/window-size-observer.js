@@ -3,7 +3,7 @@
  */
 
 import { store } from '../store'
-import { eventer } from '../module'
+import { eventer } from '../modules'
 import { debounce } from '../utils/debounce'
 
 class WindowSizeObserver {
