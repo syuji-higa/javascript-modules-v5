@@ -1,5 +1,5 @@
-let _viewportY /* :number float */ = 0
-let _viewportX /* :number float */ = 0
+let _viewportY /* :number */ = 0
+let _viewportX /* :number */ = 0
 
 /**
  * @param {Element} $viewport
@@ -7,8 +7,8 @@ let _viewportX /* :number float */ = 0
 const _reset = ($viewport) => {
   if ($viewport) {
     const {
-      top /* :number float */,
-      left /* :number float */
+      top /* :number */,
+      left /* :number */
     } = $viewport.getBoundingClientRect()
     _viewportY = $viewport.scrollTop - top
     _viewportX = $viewport.scrollLeft - left
@@ -22,12 +22,12 @@ const _reset = ($viewport) => {
  * @param {Element} $el
  * @param {?Element} $viewport
  * @return {Object}
- * @property {number} width - float[0,inf)
- * @property {number} height - float[0,inf)
- * @property {number} top - float
- * @property {number} right - float
- * @property {number} bottom - float
- * @property {number} left - float
+ * @property {number} width - [0,inf)
+ * @property {number} height - [0,inf)
+ * @property {number} top
+ * @property {number} right
+ * @property {number} bottom
+ * @property {number} left
  */
 export const rect = ($el, $viewport = null) => {
   _reset($viewport)
@@ -53,13 +53,13 @@ export const rect = ($el, $viewport = null) => {
  * @param {Element} $el
  * @param {?Element} [$viewport]
  * @return {Object}
- * @property {number} x - float
- * @property {number} y - float
+ * @property {number} x -
+ * @property {number} y -
  */
 export const center = ($el, $viewport = null) => {
   const _rect = /* :Object */ rect($el, $viewport)
   return {
-    x /* :number float */: _rect.left + _rect.width / 2,
-    y /* :number float */: _rect.top + _rect.height / 2
+    x /* :number */: _rect.left + _rect.width / 2,
+    y /* :number */: _rect.top + _rect.height / 2
   }
 }
