@@ -43,7 +43,7 @@ class Lazyloader {
    */
   create() {
     this._$$el = document.getElementsByClassName(this._selfClassName)
-    this._observer = new IntersectionObserver(this._inviewport.bind(this), {
+    this._observer = new IntersectionObserver(this._update.bind(this), {
       rootMargin: '-10% 0% -10% 0%'
     })
     return this
@@ -80,6 +80,7 @@ class Lazyloader {
   }
 
   /**
+   * @param {Element} $el
    * @return {Instance}
    */
   add($el) {
@@ -89,6 +90,7 @@ class Lazyloader {
   }
 
   /**
+   * @param {Element} $el
    * @return {Instance}
    */
   remove($el) {
@@ -101,7 +103,7 @@ class Lazyloader {
    * @param {Array<IntersectionObserverEntry>} entries
    * @return {Promise}
    */
-  async _inviewport(entries) {
+  async _update(entries) {
     const loadList /* :function[] */ = []
 
     for (const {
@@ -110,7 +112,7 @@ class Lazyloader {
     } of entries) {
       if (isIntersecting) {
         target.classList.add(this._isImageSettedClassName)
-        const _srcList /* :string[] */ = this._setSrcList(target)
+        const _srcList /* :string[] */ = this._getSrcList(target)
         this.remove(target)
 
         loadList.push(() => {
@@ -127,31 +129,49 @@ class Lazyloader {
 
   /**
    * @param {Element} $el
+   * @return {string[]}
    */
-  _setSrcList($el) {
-    const _src /* :string */ = $el.dataset.src
-
+  _getSrcList($el) {
     // img
     if ($el.src) {
+      const _src /* :string */ = $el.dataset.src
       $el.src = _src
       return [_src]
     }
     // source
-    else if ($el.srcset) {
-      $el.srcset = _src
-      return [_src]
+    else if ($el.tagName.toLowerCase() === 'picture') {
+      const _sources = []
+      for (const $child /* :Element */ of Array.from($el.children)) {
+        const _tagName /* :string */ = $child.tagName.toLowerCase()
+        let _src /* :string */ = ''
+        switch (_tagName) {
+          case 'source': {
+            _src = $child.dataset.src
+            $child.srcset = _src
+            break
+          }
+          case 'img': {
+            _src = $child.dataset.src
+            $child.src = _src
+            break
+          }
+          default: {
+            break
+          }
+        }
+        _sources.push(_src)
+      }
+      return _sources
     }
 
     // background-image
     const _bgImages /* string[] */ = getBackgroundImages($el)
 
-    if (0 >= _bgImages.length) {
-      console.warn(
-        '"data-src" has not been set or Not find background-image, for lazyloader.'
-      )
+    if (_bgImages.length) {
+      return _bgImages
     }
 
-    return _bgImages
+    return []
   }
 }
 
