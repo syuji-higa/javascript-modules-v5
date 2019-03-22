@@ -19,7 +19,9 @@ const state /* :Object */ = {
   windowWidth /* :number[] int[0,inf) */: 0,
   windowHeight /* :number[] int[0,inf) */: 0,
   windowWidthLastChangedHeight /* :number[] int[0,inf) */: 0,
-  windowSizeType /* :string */: ''
+  windowSizeType /* :string */: '',
+  windowOffsetX /* :number[] int[0,inf) */: 0,
+  windowOffsetY /* :number[] int[0,inf) */: 0
 }
 
 const mutations /* :Object */ = {
@@ -37,6 +39,12 @@ const mutations /* :Object */ = {
   },
   setWindowSizeType(state /* :Object */, data /* :number[] int[0,inf) */) {
     state.windowSizeType = data
+  },
+  setWindowOffsetX(state /* :Object */, data /* :number[] int[0,inf) */) {
+    state.windowOffsetX = data
+  },
+  setWindowOffsetY(state /* :Object */, data /* :number[] int[0,inf) */) {
+    state.windowOffsetY = data
   }
 }
 
