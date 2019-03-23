@@ -52,8 +52,8 @@ class RequestAnimationFramer {
   _animate() {
     this._animateHandle = requestAnimationFrame(this._animate.bind(this))
 
-    this._animes.forEach((func) => {
-      func()
+    this._animes.forEach((func, key) => {
+      func(key)
     })
   }
 }
