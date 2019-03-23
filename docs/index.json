@@ -3032,7 +3032,7 @@
     "__docId__": 112,
     "kind": "file",
     "name": "src/models/string.js",
-    "content": "/**\n * @param {string} str\n * @return {string}\n */\nexport const toHalfNum = (str) => {\n  return str.replace(/[０-９]/g, (\n    s /* :'０'|'１'|'２'|'３'|'４'|'５'|'６'|'７'|'８'|'９' */\n  ) => {\n    return String.fromCharCode(s.charCodeAt(0) - 0xfee0)\n  })\n}\n\n/**\n * @param {string} str\n * @return {string}\n */\nexport const toCommaNum = (str) => {\n  const _strs /* :string[] */ = str.split('.')\n  if (!_strs[0] || !_strs[0].match(/[0-9]+/)) {\n    throw new Error(`'${_strs[0]}' is not number string.`)\n  }\n  const _decimal /* :string */ = _strs[1]\n  const _integer /* :string */ = _strs[0]\n    .replace(/,/g, '')\n    .replace(/(\\d)(?=(\\d{3})+$)/g, '$1,')\n  return _decimal ? `${_integer}.${_decimal}` : _integer\n}\n\n/**\n * @param {string} str\n * @param {number} digit - int[0,inf)\n * @return {string}\n */\nexport const toZeroPadding = (str, digit) => {\n  const _digit /* :number int[0,inf) */ = str.split('.')[0].length\n  const _diff /* :number int */ = digit - _digit\n  let _zero /* :string */ = ''\n  for (let i /* :number int[0,inf) */ = 0; _diff > i; i++) {\n    _zero += '0'\n  }\n  return _zero + str\n}\n\n/**\n * @param {string} str\n * @return {string}\n */\nexport const ucfirst = (str) => {\n  return str.charAt(0).toUpperCase() + str.slice(1)\n}\n\n/**\n * @param {string} str\n * @return {string}\n */\nexport const toFirstLetterUpper = (str) => {\n  return str.charAt(0).toUpperCase() + str.substring(1).toLowerCase()\n}\n\n/**\n * @param {string} str\n * @return {number}\n */\nexport const charCount = (str) => {\n  let _count /* :number int[0,inf) */ = 0\n  const _escapeStr /* :string */ = escape(str)\n  for (\n    let i /* :number int[0,inf) */ = 0;\n    i < _escapeStr.length;\n    i++, _count++\n  ) {\n    if (_escapeStr.charAt(i) === '%') {\n      if (_escapeStr.charAt(++i) === 'u') {\n        i += 3\n        _count++\n      }\n      i++\n    }\n  }\n  return _count\n}\n",
+    "content": "/**\n * @param {string} str\n * @return {string}\n */\nexport const toHalfNum = (str) => {\n  return str.replace(/[０-９]/g, (\n    s /* :'０'|'１'|'２'|'３'|'４'|'５'|'６'|'７'|'８'|'９' */\n  ) => {\n    return String.fromCharCode(s.charCodeAt(0) - 0xfee0)\n  })\n}\n\n/**\n * @param {string} str\n * @return {string}\n */\nexport const toCommaNum = (str) => {\n  const _strs /* :string[] */ = str.split('.')\n  if (!_strs[0] || !_strs[0].match(/[0-9]+/)) {\n    throw new Error(`'${_strs[0]}' is not number string.`)\n  }\n  const _decimal /* :string */ = _strs[1]\n  const _integer /* :string */ = _strs[0]\n    .replace(/,/g, '')\n    .replace(/(\\d)(?=(\\d{3})+$)/g, '$1,')\n  return _decimal ? `${_integer}.${_decimal}` : _integer\n}\n\n/**\n * @param {string} str\n * @param {number} digit - int[0,inf)\n * @return {string}\n */\nexport const toZeroPadding = (str, digit) => {\n  const _digit /* :number int[0,inf) */ = str.split('.')[0].length\n  const _diff /* :number int */ = digit - _digit\n  let _zero /* :string */ = ''\n  for (let i /* :number int[0,inf) */ = 0; _diff > i; i++) {\n    _zero += '0'\n  }\n  return _zero + str\n}\n\n/**\n * @param {string} str\n * @return {string}\n */\nexport const ucfirst = (str) => {\n  return str.charAt(0).toUpperCase() + str.slice(1)\n}\n\n/**\n * @param {string} str\n * @return {string}\n */\nexport const toFirstLetterUpper = (str) => {\n  return str.charAt(0).toUpperCase() + str.substring(1).toLowerCase()\n}\n\n/**\n * @param {string} str\n * @return {string}\n */\nexport const kebabToPascalCase = (str) => {\n  return str.replace(/-./g, (s /* :string */) /* :string */ => {\n    return s.charAt(1).toUpperCase()\n  })\n}\n\n/**\n * @param {string} str\n * @return {string}\n */\nexport const pascalToKebabCase = (str) => {\n  return str.replace(/([A-Z])/g, (s /* :string */) /* :string */ => {\n    return '-' + s.charAt(0).toLowerCase()\n  })\n}\n\n/**\n * @param {string} str\n * @return {number}\n */\nexport const charCount = (str) => {\n  let _count /* :number int[0,inf) */ = 0\n  const _escapeStr /* :string */ = escape(str)\n  for (\n    let i /* :number int[0,inf) */ = 0;\n    i < _escapeStr.length;\n    i++, _count++\n  ) {\n    if (_escapeStr.charAt(i) === '%') {\n      if (_escapeStr.charAt(++i) === 'u') {\n        i += 3\n        _count++\n      }\n      i++\n    }\n  }\n  return _count\n}\n",
     "static": true,
     "longname": "/Users/higa_syuuji/github/syuji-higa/javascript-modules-v5/src/models/string.js",
     "access": "public",
@@ -3232,6 +3232,78 @@
   {
     "__docId__": 118,
     "kind": "function",
+    "name": "kebabToPascalCase",
+    "memberof": "src/models/string.js",
+    "generator": false,
+    "async": false,
+    "static": true,
+    "longname": "src/models/string.js~kebabToPascalCase",
+    "access": "public",
+    "export": true,
+    "importPath": "javascript-modules-v5/src/models/string.js",
+    "importStyle": "{kebabToPascalCase}",
+    "description": "",
+    "lineNumber": 64,
+    "params": [
+      {
+        "nullable": null,
+        "types": [
+          "string"
+        ],
+        "spread": false,
+        "optional": false,
+        "name": "str",
+        "description": ""
+      }
+    ],
+    "return": {
+      "nullable": null,
+      "types": [
+        "string"
+      ],
+      "spread": false,
+      "description": ""
+    }
+  },
+  {
+    "__docId__": 119,
+    "kind": "function",
+    "name": "pascalToKebabCase",
+    "memberof": "src/models/string.js",
+    "generator": false,
+    "async": false,
+    "static": true,
+    "longname": "src/models/string.js~pascalToKebabCase",
+    "access": "public",
+    "export": true,
+    "importPath": "javascript-modules-v5/src/models/string.js",
+    "importStyle": "{pascalToKebabCase}",
+    "description": "",
+    "lineNumber": 74,
+    "params": [
+      {
+        "nullable": null,
+        "types": [
+          "string"
+        ],
+        "spread": false,
+        "optional": false,
+        "name": "str",
+        "description": ""
+      }
+    ],
+    "return": {
+      "nullable": null,
+      "types": [
+        "string"
+      ],
+      "spread": false,
+      "description": ""
+    }
+  },
+  {
+    "__docId__": 120,
+    "kind": "function",
     "name": "charCount",
     "memberof": "src/models/string.js",
     "generator": false,
@@ -3243,7 +3315,7 @@
     "importPath": "javascript-modules-v5/src/models/string.js",
     "importStyle": "{charCount}",
     "description": "",
-    "lineNumber": 64,
+    "lineNumber": 84,
     "params": [
       {
         "nullable": null,
@@ -3266,7 +3338,7 @@
     }
   },
   {
-    "__docId__": 119,
+    "__docId__": 121,
     "kind": "file",
     "name": "src/models/trigonometric.js",
     "content": "/**\n * @param {number} base\n * @param {number} radian\n * @return {number}\n */\nexport const hypotenuseFromBaseRadian = (base, radian) => {\n  return base / Math.sin(radian)\n}\n\n/**\n * @param {number} height\n * @param {number} radian\n * @return {number}\n */\nexport const hypotenuseFromHeightRadian = (height, radian) => {\n  return height / Math.sin(radian)\n}\n\n/**\n * @param {number} base\n * @param {number} height\n * @return {number}\n */\nexport const hypotenuseFromBaseHeight = (base, height) => {\n  return Math.sqrt(Math.pow(base, 2) + Math.pow(height, 2))\n}\n\n/**\n * @param {number} base\n * @param {number} radian\n * @return {number}\n */\nexport const heightFromBaseRadian = (base, radian) => {\n  return base * Math.tan(radian)\n}\n\n/**\n * @param {number} hypotenuse\n * @param {number} radian\n * @return {number}\n */\nexport const heightFromHypotenuseRadian = (hypotenuse, radian) => {\n  return hypotenuse * Math.sin(radian)\n}\n\n/**\n * @param {number} base\n * @param {number} hypotenuse\n * @return {number}\n */\nexport const heightFromBaseHypotenuse = (base, hypotenuse) => {\n  return Math.sqrt(Math.pow(hypotenuse, 2) - Math.pow(base, 2))\n}\n\n/**\n * @param {number} height\n * @param {number} radian\n * @return {number}\n */\nexport const baseFromHeightRadian = (height, radian) => {\n  return height / Math.tan(radian)\n}\n\n/**\n * @param {number} hypotenuse\n * @param {number} radian\n * @return {number}\n */\nexport const baseFromHypotenuseRadian = (hypotenuse, radian) => {\n  return hypotenuse * Math.cos(radian)\n}\n\n/**\n * @param {number} height\n * @param {number} hypotenuse\n * @return {number}\n */\nexport const baseFromHeightHypotenuse = (height, hypotenuse) => {\n  return Math.sqrt(Math.pow(hypotenuse, 2) - Math.pow(height, 2))\n}\n\n/**\n * @param {number} base\n * @param {number} height\n * @return {number}\n */\nexport const radianFromBaseHeight = (base, height) => {\n  return Math.atan2(height, base)\n}\n\n/**\n * @param {number} base\n * @param {number} hypotenuse\n * @return {number}\n */\nexport const radianFromBaseHypotenuse = (base, hypotenuse) => {\n  return Math.acos(base / hypotenuse)\n}\n\n/**\n * @param {number} height\n * @param {number} hypotenuse\n * @return {number}\n */\nexport const radianFromHeightHypotenuse = (height, hypotenuse) => {\n  return Math.asin(height / hypotenuse)\n}\n",
@@ -3277,7 +3349,7 @@
     "lineNumber": 1
   },
   {
-    "__docId__": 120,
+    "__docId__": 122,
     "kind": "function",
     "name": "hypotenuseFromBaseRadian",
     "memberof": "src/models/trigonometric.js",
@@ -3323,7 +3395,7 @@
     }
   },
   {
-    "__docId__": 121,
+    "__docId__": 123,
     "kind": "function",
     "name": "hypotenuseFromHeightRadian",
     "memberof": "src/models/trigonometric.js",
@@ -3369,7 +3441,7 @@
     }
   },
   {
-    "__docId__": 122,
+    "__docId__": 124,
     "kind": "function",
     "name": "hypotenuseFromBaseHeight",
     "memberof": "src/models/trigonometric.js",
@@ -3415,7 +3487,7 @@
     }
   },
   {
-    "__docId__": 123,
+    "__docId__": 125,
     "kind": "function",
     "name": "heightFromBaseRadian",
     "memberof": "src/models/trigonometric.js",
@@ -3461,7 +3533,7 @@
     }
   },
   {
-    "__docId__": 124,
+    "__docId__": 126,
     "kind": "function",
     "name": "heightFromHypotenuseRadian",
     "memberof": "src/models/trigonometric.js",
@@ -3507,7 +3579,7 @@
     }
   },
   {
-    "__docId__": 125,
+    "__docId__": 127,
     "kind": "function",
     "name": "heightFromBaseHypotenuse",
     "memberof": "src/models/trigonometric.js",
@@ -3553,7 +3625,7 @@
     }
   },
   {
-    "__docId__": 126,
+    "__docId__": 128,
     "kind": "function",
     "name": "baseFromHeightRadian",
     "memberof": "src/models/trigonometric.js",
@@ -3599,7 +3671,7 @@
     }
   },
   {
-    "__docId__": 127,
+    "__docId__": 129,
     "kind": "function",
     "name": "baseFromHypotenuseRadian",
     "memberof": "src/models/trigonometric.js",
@@ -3645,7 +3717,7 @@
     }
   },
   {
-    "__docId__": 128,
+    "__docId__": 130,
     "kind": "function",
     "name": "baseFromHeightHypotenuse",
     "memberof": "src/models/trigonometric.js",
@@ -3691,7 +3763,7 @@
     }
   },
   {
-    "__docId__": 129,
+    "__docId__": 131,
     "kind": "function",
     "name": "radianFromBaseHeight",
     "memberof": "src/models/trigonometric.js",
@@ -3737,7 +3809,7 @@
     }
   },
   {
-    "__docId__": 130,
+    "__docId__": 132,
     "kind": "function",
     "name": "radianFromBaseHypotenuse",
     "memberof": "src/models/trigonometric.js",
@@ -3783,7 +3855,7 @@
     }
   },
   {
-    "__docId__": 131,
+    "__docId__": 133,
     "kind": "function",
     "name": "radianFromHeightHypotenuse",
     "memberof": "src/models/trigonometric.js",
@@ -3829,7 +3901,7 @@
     }
   },
   {
-    "__docId__": 132,
+    "__docId__": 134,
     "kind": "file",
     "name": "src/models/url.js",
     "content": "/**\n * @param {string} str\n * @return {Object}\n * @property {string} href - example: 'http://localhost:3000/about/index.html?param#hash'\n * @property {string} hrefPathname - example: 'http://localhost:3000/about/index.html'\n * @property {string} hrefDirname - example: 'http://localhost:3000/about/'\n * @property {string} origin - example: 'http://localhost:3000'\n * @property {string} protocol  - example: 'http:'\n * @property {string} host - example: 'localhost:3000'\n * @property {string} hostname - example: 'localhost'\n * @property {string} port - example: '3000'\n * @property {string} local - example: '/about/index.html?param#hash'\n * @property {string} pathname - example: '/about/index.html'\n * @property {string} dirname - example: '/about/'\n * @property {string} filename - example: 'index.html'\n * @property {string} extname - example: 'html'\n * @property {string} search - example: '?param'\n * @property {string} hash - example: '#hash'\n */\nexport const parseUrl = (str) => {\n  const _urlStrs /* :string[] */ = str.match(\n    /^(http:|https:)\\/\\/([^\\/:]+):?([0-9]{1,5})?(\\/[^?#]*)(\\?[^#]+)?(#.*)?$/\n  )\n\n  if (!_urlStrs) return null\n\n  const [\n    _href,\n    _protocol,\n    _hostname,\n    _port,\n    _pathname,\n    _search,\n    _hash\n  ] = _urlStrs\n\n  const _host /* :string */ = _port ? `${_hostname}:${_port}` : _hostname\n  const _origin /* :string */ = `${_protocol}//${_host}`\n  const _local /* :string */ = (() => {\n    let _pn /* :string */ = _pathname\n    if (_search) _pn += _search\n    if (_hash) _pn += _hash\n    return _pn\n  })()\n  const _filenameStrs /* :string[] */ = _pathname.match(\n    /^[^.]*(\\/(.+\\.(.+)))?$/\n  )\n  const _dirname /* :string */ = _pathname.replace(_filenameStrs[2], '')\n\n  return {\n    href: _href,\n    hrefPathname: _origin + _pathname,\n    hrefDirname: _origin + _dirname,\n    origin: _origin,\n    local: _local,\n    protocol: _protocol,\n    host: _host,\n    hostname: _hostname,\n    port: _port,\n    pathname: _pathname,\n    dirname: _dirname,\n    filename: _filenameStrs[2],\n    extname: _filenameStrs[3],\n    search: _search,\n    hash: _hash\n  }\n}\n\n/**\n * @param {string} href\n * @return {boolean}\n */\nexport const isMatchLocation = (href) => {\n  const { origin /* :string */, pathname /* :string */ } = parseUrl(\n    location.href\n  )\n\n  const _rx /* :RegExp */ = new RegExp(`^${origin}${pathname}(\\\\\\?.+)?(#.*)?$`)\n\n  return !!href.match(_rx)\n}\n",
@@ -3840,7 +3912,7 @@
     "lineNumber": 1
   },
   {
-    "__docId__": 133,
+    "__docId__": 135,
     "kind": "function",
     "name": "parseUrl",
     "memberof": "src/models/url.js",
@@ -4028,7 +4100,7 @@
     }
   },
   {
-    "__docId__": 134,
+    "__docId__": 136,
     "kind": "function",
     "name": "isMatchLocation",
     "memberof": "src/models/url.js",
@@ -4064,7 +4136,7 @@
     }
   },
   {
-    "__docId__": 135,
+    "__docId__": 137,
     "kind": "file",
     "name": "src/models/validate.js",
     "content": "import { charCount } from './string'\n\n/**\n * @param {string} str\n * @return {boolean}\n */\nexport const isEntry = (str) => {\n  return str !== ''\n}\n\n/**\n * @param {string} str\n * @return {boolean}\n */\nexport const isEmKana = (str) => {\n  return !!str.match(/^[\\u30A0-\\u30FF]+$/)\n}\n\n/**\n * @param {string} str\n * @return {boolean}\n */\nexport const isEmailAddress = (str) => {\n  return !!str.match(\n    /^[a-zA-Z0-9.!#$%&'*+/=?^_`{|}~-]+@[a-zA-Z0-9-]+(?:\\.[a-zA-Z0-9-]+)*$/\n  )\n}\n\n/**\n * @param {string} str\n * @return {boolean}\n */\nexport const isTell = (str) => {\n  return !!str.match(\n    /^[0-9０-９]{2,4}[-−]?[0-9０-９]{2,4}[-−]?[0-9０-９]{3,4}$/\n  )\n}\n\n/**\n * @param {string} str\n * @return {boolean}\n */\nexport const isZipCode = (str) => {\n  return !!str.match(/^[0-9０-９]{3}[-−]?[0-9０-９]{4}$/)\n}\n\n/**\n * @param {string} str\n * @return {boolean}\n */\nexport const isHalfNum = (str) => {\n  return str.match(/^[0-9]+$/) ? true : false\n}\n\n/**\n * @param {string} str\n * @param {number} min - int[0,inf)\n * @param {number} max - int[0,inf)\n * @return {boolean}\n */\nexport const isStrRenge = (str, min, max) => {\n  const _len /* :number int[0,inf) */ = Math.ceil(charCount(str) / 2)\n  return min <= _len && _len <= max\n}\n\n/**\n * @param {string} str\n * @param {number} min\n * @param {number} max\n * @return {boolean}\n */\nexport const isNumRenge = (str, min, max) => {\n  const _num /* :number */ = Number(str)\n  return min <= _num && _num <= max\n}\n",
@@ -4075,7 +4147,7 @@
     "lineNumber": 1
   },
   {
-    "__docId__": 136,
+    "__docId__": 138,
     "kind": "function",
     "name": "isEntry",
     "memberof": "src/models/validate.js",
@@ -4111,7 +4183,7 @@
     }
   },
   {
-    "__docId__": 137,
+    "__docId__": 139,
     "kind": "function",
     "name": "isEmKana",
     "memberof": "src/models/validate.js",
@@ -4147,7 +4219,7 @@
     }
   },
   {
-    "__docId__": 138,
+    "__docId__": 140,
     "kind": "function",
     "name": "isEmailAddress",
     "memberof": "src/models/validate.js",
@@ -4183,7 +4255,7 @@
     }
   },
   {
-    "__docId__": 139,
+    "__docId__": 141,
     "kind": "function",
     "name": "isTell",
     "memberof": "src/models/validate.js",
@@ -4219,7 +4291,7 @@
     }
   },
   {
-    "__docId__": 140,
+    "__docId__": 142,
     "kind": "function",
     "name": "isZipCode",
     "memberof": "src/models/validate.js",
@@ -4255,7 +4327,7 @@
     }
   },
   {
-    "__docId__": 141,
+    "__docId__": 143,
     "kind": "function",
     "name": "isHalfNum",
     "memberof": "src/models/validate.js",
@@ -4291,7 +4363,7 @@
     }
   },
   {
-    "__docId__": 142,
+    "__docId__": 144,
     "kind": "function",
     "name": "isStrRenge",
     "memberof": "src/models/validate.js",
@@ -4347,7 +4419,7 @@
     }
   },
   {
-    "__docId__": 143,
+    "__docId__": 145,
     "kind": "function",
     "name": "isNumRenge",
     "memberof": "src/models/validate.js",
@@ -4403,7 +4475,7 @@
     }
   },
   {
-    "__docId__": 144,
+    "__docId__": 146,
     "kind": "file",
     "name": "src/modules/eventer.js",
     "content": "import { createEvent } from '../utils/event'\n\nclass Eventer {\n  _events /* Object[] */ = []\n\n  /**\n   * @param {Element} target\n   * @param {string} eventType\n   * @param {function} listener\n   * @param {boolean|Object} [option]\n   * @return {Object}\n   * @property {functon} add\n   * @property {functon} remove\n   */\n  create(target, eventType, listener, option = false) {\n    return {\n      add: () => {\n        this.add(target, eventType, listener, option)\n      },\n      remove: () => {\n        this.remove(target, eventType, listener)\n      }\n    }\n  }\n\n  /**\n   * @param {Element} target\n   * @param {string} eventType\n   * @param {function} listener\n   * @param {boolean|Object} [option]\n   * @return {Instance}\n   */\n  add(target, eventType, listener, option = false) {\n    let _hasEvent /* :boolean */ = false\n\n    for (const e /* :Object */ of this._events) {\n      if (\n        target === e.target &&\n        eventType === e.eventType &&\n        option === e.option &&\n        !e.listeners.includes(listener)\n      ) {\n        e.listeners.push(listener)\n        _hasEvent = true\n        return\n      }\n    }\n\n    if (!_hasEvent) {\n      const _listeners /* :function[] */ = [listener]\n      this._events.push({\n        target,\n        eventType,\n        option,\n        listeners: _listeners,\n        event: this._addEvent(target, eventType, _listeners, option)\n      })\n    }\n\n    return this\n  }\n\n  /**\n   * @param {Element} target\n   * @param {string} eventType\n   * @param {function} listener\n   * @return {Instance}\n   */\n  remove(target, eventType, listener) {\n    this._events.forEach((e /* :Object */, i /* :number int[0,inf) */) => {\n      if (\n        target === e.target &&\n        eventType === e.eventType &&\n        e.listeners.includes(listener)\n      ) {\n        e.listeners.splice(e.listeners.indexOf(listener), 1)\n        if (!e.listeners.length) {\n          this._removeEvent(i)\n        }\n        return\n      }\n    })\n\n    return this\n  }\n\n  /**\n   * @param {Element} target\n   * @param {string} eventType\n   * @param {function[]} listeners\n   * @param {boolean|Object} option\n   * @return {Object}\n   * @property {function} add\n   * @property {function} remove\n   */\n  _addEvent(target, eventType, listeners, option) {\n    const _event = createEvent(\n      target,\n      eventType,\n      (e /* :Event */) => {\n        for (const listener /* :function */ of listeners) {\n          listener(e)\n        }\n      },\n      option\n    )\n    _event.add()\n    return _event\n  }\n\n  /**\n   * @param {number} index - int\n   */\n  _removeEvent(index) {\n    this._events.splice(index, 1)\n  }\n}\n\nexport { Eventer as default }\n",
@@ -4414,7 +4486,7 @@
     "lineNumber": 1
   },
   {
-    "__docId__": 145,
+    "__docId__": 147,
     "kind": "class",
     "name": "Eventer",
     "memberof": "src/modules/eventer.js",
@@ -4431,7 +4503,7 @@
     "ignore": true
   },
   {
-    "__docId__": 146,
+    "__docId__": 148,
     "kind": "member",
     "name": "_events",
     "memberof": "src/modules/eventer.js~Eventer",
@@ -4448,7 +4520,7 @@
     }
   },
   {
-    "__docId__": 147,
+    "__docId__": 149,
     "kind": "method",
     "name": "create",
     "memberof": "src/modules/eventer.js~Eventer",
@@ -4534,7 +4606,7 @@
     }
   },
   {
-    "__docId__": 148,
+    "__docId__": 150,
     "kind": "method",
     "name": "add",
     "memberof": "src/modules/eventer.js~Eventer",
@@ -4598,7 +4670,7 @@
     }
   },
   {
-    "__docId__": 149,
+    "__docId__": 151,
     "kind": "method",
     "name": "remove",
     "memberof": "src/modules/eventer.js~Eventer",
@@ -4651,7 +4723,7 @@
     }
   },
   {
-    "__docId__": 150,
+    "__docId__": 152,
     "kind": "method",
     "name": "_addEvent",
     "memberof": "src/modules/eventer.js~Eventer",
@@ -4737,7 +4809,7 @@
     }
   },
   {
-    "__docId__": 151,
+    "__docId__": 153,
     "kind": "method",
     "name": "_removeEvent",
     "memberof": "src/modules/eventer.js~Eventer",
@@ -4763,10 +4835,735 @@
     "return": null
   },
   {
-    "__docId__": 152,
+    "__docId__": 154,
+    "kind": "file",
+    "name": "src/modules/image-preloader.js",
+    "content": "import { getBackgroundImages } from '../utils/background-image'\nimport { loadImage } from '../utils/load'\nimport { wait } from '../utils/wait'\n\nclass ImagePreloader {\n  _status /* :WeakMap */ = new WeakMap()\n  _images /* :Map */ = new Map()\n\n  /**\n   * @return {Object}\n   */\n  static get _defOptions() {\n    return {\n      images: [],\n      needsElementLoad: true\n    }\n  }\n\n  /**\n   * @param {Element} $el\n   * @param {Object} [options]\n   * @param {Element[]} [options.images]\n   * @param {boolean} [options.needsElementLoad]\n   * @return {Promsie}\n   */\n  async add($el, options = {}) {\n    const { images, needsElementLoad } = Object.assign(\n      ImagePreloader._defOptions,\n      options\n    )\n\n    const _images /* :Set */ = new Set()\n\n    // init images\n    for (const img /* :Element */ of images) {\n      if (!this._images.has(img)) {\n        _images.add(img)\n      }\n    }\n\n    // wrap element background image\n    for (const bgImg /* :string */ of getBackgroundImages($el)) {\n      if (bgImg && !this._images.has(bgImg)) {\n        _images.add(bgImg)\n      }\n    }\n\n    // child elements background images\n    for (const $child /* :Element */ of $el.getElementsByTagName('*')) {\n      for (const bgImg /* :string */ of getBackgroundImages($child)) {\n        if (bgImg && !this._images.has(bgImg)) {\n          _images.add(bgImg)\n        }\n      }\n    }\n\n    if (needsElementLoad) {\n      // img elements images\n      await Promise.all(\n        Array.from($el.getElementsByTagName('img'), async (\n          $img /* :Element */\n        ) => {\n          if (!$img.getAttribute('src')) {\n            return\n          }\n          let _img /* :string */ = ''\n          await wait(200, () /* :string */ => {\n            _img = 'currentSrc' in $img ? $img.currentSrc : $img.src\n            return _img\n          })\n          if (_img && !this._images.has(_img)) {\n            _images.add(_img)\n          }\n        })\n      )\n\n      // video elements posters\n      Array.from($el.getElementsByTagName('video'), ($video /* :Element */) => {\n        const _poster /* :string */ = $video.poster\n        if (_poster && !this._images.has(_poster)) {\n          _images.add(_poster)\n        }\n      })\n\n      // svg image elements images\n      Array.from($el.getElementsByTagName('image'), ($img /* :Element */) => {\n        const _img /* :string */ = $img.getAttribute('xlink:href')\n        if (_img && !this._images.has(_img)) {\n          _images.add(_img)\n        }\n      })\n    }\n\n    this._status.set($el, {\n      images /* :Set */: _images,\n      loadedLen /* :number int[0,inf) */: 0\n    })\n  }\n\n  /**\n   * @param {Element} $el\n   * @return {Instance}\n   */\n  remove($el) {\n    this._status.delete($el)\n    return this\n  }\n\n  /**\n   * @param {Element} $el\n   * @return {Promise}\n   */\n  load($el) {\n    const _loaders = this.getLoaders($el)\n    return Promise.all(\n      _loaders.map((loader /* :function */) /* :Promise */ => loader())\n    )\n  }\n\n  /**\n   * @param {Element} $el\n   * @return {Array<function>}\n   */\n  getLoaders($el) {\n    const _images /* :Set */ = this._status.get($el).images\n\n    return [..._images].map((src /* :string */) => {\n      return this._load.bind(this, $el, src)\n    })\n  }\n\n  /**\n   * @param {Element} $el\n   * @return {Array<string>}\n   */\n  getImages($el) {\n    return this._status.get($el).images\n  }\n\n  /**\n   * @param {Element} $el\n   * @return {number}\n   */\n  getLoadedLen($el) {\n    return this._status.get($el).loadedLen\n  }\n\n  /**\n   * @param {Element} $el\n   * @param {string} src\n   * @return {Promise}\n   */\n  _load($el, src) {\n    return loadImage(src, {\n      done: (img /* :Image */) => {\n        this._images.set(src, {\n          src /* :string */: img.src,\n          width /* :number int[0,inf) */: img.width,\n          height /* :number int[0,inf) */: img.height\n        })\n      },\n      always: () => {\n        this._status.get($el).loadedLen++\n      }\n    })\n  }\n}\n\nexport { ImagePreloader as default }\n",
+    "static": true,
+    "longname": "/Users/higa_syuuji/github/syuji-higa/javascript-modules-v5/src/modules/image-preloader.js",
+    "access": "public",
+    "description": null,
+    "lineNumber": 1
+  },
+  {
+    "__docId__": 155,
+    "kind": "class",
+    "name": "ImagePreloader",
+    "memberof": "src/modules/image-preloader.js",
+    "static": true,
+    "longname": "src/modules/image-preloader.js~ImagePreloader",
+    "access": "public",
+    "export": false,
+    "importPath": "javascript-modules-v5/src/modules/image-preloader.js",
+    "importStyle": null,
+    "description": null,
+    "lineNumber": 5,
+    "undocument": true,
+    "interface": false,
+    "ignore": true
+  },
+  {
+    "__docId__": 156,
+    "kind": "member",
+    "name": "_status",
+    "memberof": "src/modules/image-preloader.js~ImagePreloader",
+    "static": false,
+    "longname": "src/modules/image-preloader.js~ImagePreloader#_status",
+    "access": "private",
+    "description": null,
+    "lineNumber": 6,
+    "undocument": true,
+    "type": {
+      "types": [
+        "*"
+      ]
+    }
+  },
+  {
+    "__docId__": 157,
+    "kind": "member",
+    "name": "_images",
+    "memberof": "src/modules/image-preloader.js~ImagePreloader",
+    "static": false,
+    "longname": "src/modules/image-preloader.js~ImagePreloader#_images",
+    "access": "private",
+    "description": null,
+    "lineNumber": 7,
+    "undocument": true,
+    "type": {
+      "types": [
+        "*"
+      ]
+    }
+  },
+  {
+    "__docId__": 158,
+    "kind": "get",
+    "name": "_defOptions",
+    "memberof": "src/modules/image-preloader.js~ImagePreloader",
+    "generator": false,
+    "async": false,
+    "static": true,
+    "longname": "src/modules/image-preloader.js~ImagePreloader._defOptions",
+    "access": "private",
+    "description": "",
+    "lineNumber": 12,
+    "return": {
+      "nullable": null,
+      "types": [
+        "Object"
+      ],
+      "spread": false,
+      "description": ""
+    },
+    "type": {
+      "types": [
+        "{\"images\": *, \"needsElementLoad\": boolean}"
+      ]
+    }
+  },
+  {
+    "__docId__": 159,
+    "kind": "method",
+    "name": "add",
+    "memberof": "src/modules/image-preloader.js~ImagePreloader",
+    "generator": false,
+    "async": true,
+    "static": false,
+    "longname": "src/modules/image-preloader.js~ImagePreloader#add",
+    "access": "public",
+    "description": "",
+    "lineNumber": 26,
+    "params": [
+      {
+        "nullable": null,
+        "types": [
+          "Element"
+        ],
+        "spread": false,
+        "optional": false,
+        "name": "$el",
+        "description": ""
+      },
+      {
+        "nullable": null,
+        "types": [
+          "Object"
+        ],
+        "spread": false,
+        "optional": true,
+        "name": "options",
+        "description": ""
+      },
+      {
+        "nullable": null,
+        "types": [
+          "Element[]"
+        ],
+        "spread": false,
+        "optional": true,
+        "name": "options.images",
+        "description": ""
+      },
+      {
+        "nullable": null,
+        "types": [
+          "boolean"
+        ],
+        "spread": false,
+        "optional": true,
+        "name": "options.needsElementLoad",
+        "description": ""
+      }
+    ],
+    "return": {
+      "nullable": null,
+      "types": [
+        "Promsie"
+      ],
+      "spread": false,
+      "description": ""
+    }
+  },
+  {
+    "__docId__": 160,
+    "kind": "method",
+    "name": "remove",
+    "memberof": "src/modules/image-preloader.js~ImagePreloader",
+    "generator": false,
+    "async": false,
+    "static": false,
+    "longname": "src/modules/image-preloader.js~ImagePreloader#remove",
+    "access": "public",
+    "description": "",
+    "lineNumber": 104,
+    "params": [
+      {
+        "nullable": null,
+        "types": [
+          "Element"
+        ],
+        "spread": false,
+        "optional": false,
+        "name": "$el",
+        "description": ""
+      }
+    ],
+    "return": {
+      "nullable": null,
+      "types": [
+        "Instance"
+      ],
+      "spread": false,
+      "description": ""
+    }
+  },
+  {
+    "__docId__": 161,
+    "kind": "method",
+    "name": "load",
+    "memberof": "src/modules/image-preloader.js~ImagePreloader",
+    "generator": false,
+    "async": false,
+    "static": false,
+    "longname": "src/modules/image-preloader.js~ImagePreloader#load",
+    "access": "public",
+    "description": "",
+    "lineNumber": 113,
+    "params": [
+      {
+        "nullable": null,
+        "types": [
+          "Element"
+        ],
+        "spread": false,
+        "optional": false,
+        "name": "$el",
+        "description": ""
+      }
+    ],
+    "return": {
+      "nullable": null,
+      "types": [
+        "Promise"
+      ],
+      "spread": false,
+      "description": ""
+    }
+  },
+  {
+    "__docId__": 162,
+    "kind": "method",
+    "name": "getLoaders",
+    "memberof": "src/modules/image-preloader.js~ImagePreloader",
+    "generator": false,
+    "async": false,
+    "static": false,
+    "longname": "src/modules/image-preloader.js~ImagePreloader#getLoaders",
+    "access": "public",
+    "description": "",
+    "lineNumber": 124,
+    "params": [
+      {
+        "nullable": null,
+        "types": [
+          "Element"
+        ],
+        "spread": false,
+        "optional": false,
+        "name": "$el",
+        "description": ""
+      }
+    ],
+    "return": {
+      "nullable": null,
+      "types": [
+        "Array<function>"
+      ],
+      "spread": false,
+      "description": ""
+    }
+  },
+  {
+    "__docId__": 163,
+    "kind": "method",
+    "name": "getImages",
+    "memberof": "src/modules/image-preloader.js~ImagePreloader",
+    "generator": false,
+    "async": false,
+    "static": false,
+    "longname": "src/modules/image-preloader.js~ImagePreloader#getImages",
+    "access": "public",
+    "description": "",
+    "lineNumber": 136,
+    "params": [
+      {
+        "nullable": null,
+        "types": [
+          "Element"
+        ],
+        "spread": false,
+        "optional": false,
+        "name": "$el",
+        "description": ""
+      }
+    ],
+    "return": {
+      "nullable": null,
+      "types": [
+        "Array<string>"
+      ],
+      "spread": false,
+      "description": ""
+    }
+  },
+  {
+    "__docId__": 164,
+    "kind": "method",
+    "name": "getLoadedLen",
+    "memberof": "src/modules/image-preloader.js~ImagePreloader",
+    "generator": false,
+    "async": false,
+    "static": false,
+    "longname": "src/modules/image-preloader.js~ImagePreloader#getLoadedLen",
+    "access": "public",
+    "description": "",
+    "lineNumber": 144,
+    "params": [
+      {
+        "nullable": null,
+        "types": [
+          "Element"
+        ],
+        "spread": false,
+        "optional": false,
+        "name": "$el",
+        "description": ""
+      }
+    ],
+    "return": {
+      "nullable": null,
+      "types": [
+        "number"
+      ],
+      "spread": false,
+      "description": ""
+    }
+  },
+  {
+    "__docId__": 165,
+    "kind": "method",
+    "name": "_load",
+    "memberof": "src/modules/image-preloader.js~ImagePreloader",
+    "generator": false,
+    "async": false,
+    "static": false,
+    "longname": "src/modules/image-preloader.js~ImagePreloader#_load",
+    "access": "private",
+    "description": "",
+    "lineNumber": 153,
+    "params": [
+      {
+        "nullable": null,
+        "types": [
+          "Element"
+        ],
+        "spread": false,
+        "optional": false,
+        "name": "$el",
+        "description": ""
+      },
+      {
+        "nullable": null,
+        "types": [
+          "string"
+        ],
+        "spread": false,
+        "optional": false,
+        "name": "src",
+        "description": ""
+      }
+    ],
+    "return": {
+      "nullable": null,
+      "types": [
+        "Promise"
+      ],
+      "spread": false,
+      "description": ""
+    }
+  },
+  {
+    "__docId__": 166,
+    "kind": "file",
+    "name": "src/modules/inviewport-observer.js",
+    "content": "class InviewportObserver {\n  _observer /* :IntersectionObserver */\n  _functions /* :WeakMap */ = new WeakMap()\n\n  /**\n   * @return {Instance}\n   */\n  create() {\n    this._observer = new IntersectionObserver(this._update.bind(this))\n    return this\n  }\n\n  /**\n   * @return {Instance}\n   */\n  destroy() {\n    this._observer = null\n    return this\n  }\n\n  /**\n   * @param {Element} $el\n   * @param {function} func\n   * @return {Instance}\n   */\n  add($el, func) {\n    this._functions.set($el, func)\n    this._observer.observe($el)\n    return this\n  }\n\n  /**\n   * @param {Element} $el\n   * @return {Instance}\n   */\n  remove($el) {\n    this._functions.delete($el)\n    this._observer.unobserve($el)\n    return this\n  }\n\n  /**\n   * @param {Array<IntersectionObserverEntry>} entries\n   */\n  _update(entries) {\n    for (const {\n      target /* :Element */,\n      isIntersecting /* :boolean */\n    } of entries) {\n      if (isIntersecting) {\n        this._functions.get(target)(true)\n      } else {\n        this._functions.get(target)(false)\n      }\n    }\n  }\n}\n\nexport { InviewportObserver as default }\n",
+    "static": true,
+    "longname": "/Users/higa_syuuji/github/syuji-higa/javascript-modules-v5/src/modules/inviewport-observer.js",
+    "access": "public",
+    "description": null,
+    "lineNumber": 1
+  },
+  {
+    "__docId__": 167,
+    "kind": "class",
+    "name": "InviewportObserver",
+    "memberof": "src/modules/inviewport-observer.js",
+    "static": true,
+    "longname": "src/modules/inviewport-observer.js~InviewportObserver",
+    "access": "public",
+    "export": false,
+    "importPath": "javascript-modules-v5/src/modules/inviewport-observer.js",
+    "importStyle": null,
+    "description": null,
+    "lineNumber": 1,
+    "undocument": true,
+    "interface": false,
+    "ignore": true
+  },
+  {
+    "__docId__": 168,
+    "kind": "member",
+    "name": "_observer",
+    "memberof": "src/modules/inviewport-observer.js~InviewportObserver",
+    "static": false,
+    "longname": "src/modules/inviewport-observer.js~InviewportObserver#_observer",
+    "access": "private",
+    "description": null,
+    "lineNumber": 2,
+    "undocument": true,
+    "type": {
+      "types": [
+        "*"
+      ]
+    }
+  },
+  {
+    "__docId__": 169,
+    "kind": "member",
+    "name": "_functions",
+    "memberof": "src/modules/inviewport-observer.js~InviewportObserver",
+    "static": false,
+    "longname": "src/modules/inviewport-observer.js~InviewportObserver#_functions",
+    "access": "private",
+    "description": null,
+    "lineNumber": 3,
+    "undocument": true,
+    "type": {
+      "types": [
+        "*"
+      ]
+    }
+  },
+  {
+    "__docId__": 170,
+    "kind": "method",
+    "name": "create",
+    "memberof": "src/modules/inviewport-observer.js~InviewportObserver",
+    "generator": false,
+    "async": false,
+    "static": false,
+    "longname": "src/modules/inviewport-observer.js~InviewportObserver#create",
+    "access": "public",
+    "description": "",
+    "lineNumber": 8,
+    "return": {
+      "nullable": null,
+      "types": [
+        "Instance"
+      ],
+      "spread": false,
+      "description": ""
+    },
+    "params": []
+  },
+  {
+    "__docId__": 172,
+    "kind": "method",
+    "name": "destroy",
+    "memberof": "src/modules/inviewport-observer.js~InviewportObserver",
+    "generator": false,
+    "async": false,
+    "static": false,
+    "longname": "src/modules/inviewport-observer.js~InviewportObserver#destroy",
+    "access": "public",
+    "description": "",
+    "lineNumber": 16,
+    "return": {
+      "nullable": null,
+      "types": [
+        "Instance"
+      ],
+      "spread": false,
+      "description": ""
+    },
+    "params": []
+  },
+  {
+    "__docId__": 174,
+    "kind": "method",
+    "name": "add",
+    "memberof": "src/modules/inviewport-observer.js~InviewportObserver",
+    "generator": false,
+    "async": false,
+    "static": false,
+    "longname": "src/modules/inviewport-observer.js~InviewportObserver#add",
+    "access": "public",
+    "description": "",
+    "lineNumber": 26,
+    "params": [
+      {
+        "nullable": null,
+        "types": [
+          "Element"
+        ],
+        "spread": false,
+        "optional": false,
+        "name": "$el",
+        "description": ""
+      },
+      {
+        "nullable": null,
+        "types": [
+          "function"
+        ],
+        "spread": false,
+        "optional": false,
+        "name": "func",
+        "description": ""
+      }
+    ],
+    "return": {
+      "nullable": null,
+      "types": [
+        "Instance"
+      ],
+      "spread": false,
+      "description": ""
+    }
+  },
+  {
+    "__docId__": 175,
+    "kind": "method",
+    "name": "remove",
+    "memberof": "src/modules/inviewport-observer.js~InviewportObserver",
+    "generator": false,
+    "async": false,
+    "static": false,
+    "longname": "src/modules/inviewport-observer.js~InviewportObserver#remove",
+    "access": "public",
+    "description": "",
+    "lineNumber": 36,
+    "params": [
+      {
+        "nullable": null,
+        "types": [
+          "Element"
+        ],
+        "spread": false,
+        "optional": false,
+        "name": "$el",
+        "description": ""
+      }
+    ],
+    "return": {
+      "nullable": null,
+      "types": [
+        "Instance"
+      ],
+      "spread": false,
+      "description": ""
+    }
+  },
+  {
+    "__docId__": 176,
+    "kind": "method",
+    "name": "_update",
+    "memberof": "src/modules/inviewport-observer.js~InviewportObserver",
+    "generator": false,
+    "async": false,
+    "static": false,
+    "longname": "src/modules/inviewport-observer.js~InviewportObserver#_update",
+    "access": "private",
+    "description": "",
+    "lineNumber": 45,
+    "params": [
+      {
+        "nullable": null,
+        "types": [
+          "Array<IntersectionObserverEntry>"
+        ],
+        "spread": false,
+        "optional": false,
+        "name": "entries",
+        "description": ""
+      }
+    ],
+    "return": null
+  },
+  {
+    "__docId__": 177,
+    "kind": "file",
+    "name": "src/modules/scroll-observer.js",
+    "content": "/**\n * depends on 'vanix' used in 'store'\n */\n\nimport { store } from '../store'\nimport { eventer } from '../modules'\nimport { throttle } from '../utils/throttle'\n\nclass ScrollObserver {\n  _scrollThrottle /* :function */\n  _scrollEvent /* :Object */ = {}\n\n  constructor() {\n    this._scrollThrottle = throttle(200)\n    this._scrollEvent = eventer.create(\n      window,\n      'scroll',\n      this._onScroll.bind(this)\n    )\n  }\n\n  /**\n   * @return {Instance}\n   */\n  on() {\n    this._scrollEvent.add()\n    return this\n  }\n\n  /**\n   * @return {Instance}\n   */\n  off() {\n    this._scrollEvent.remove()\n    return this\n  }\n\n  /**\n   * @return {Instance}\n   */\n  update() {\n    store.commit('setWindowOffsetX', window.pageXOffset)\n    store.commit('setWindowOffsetY', window.pageYOffset)\n    return this\n  }\n\n  _onScroll() {\n    this._scrollThrottle(this.update.bind(this))\n  }\n}\n\nexport { ScrollObserver as default }\n",
+    "static": true,
+    "longname": "/Users/higa_syuuji/github/syuji-higa/javascript-modules-v5/src/modules/scroll-observer.js",
+    "access": "public",
+    "description": null,
+    "lineNumber": 1
+  },
+  {
+    "__docId__": 178,
+    "kind": "class",
+    "name": "ScrollObserver",
+    "memberof": "src/modules/scroll-observer.js",
+    "static": true,
+    "longname": "src/modules/scroll-observer.js~ScrollObserver",
+    "access": "public",
+    "export": false,
+    "importPath": "javascript-modules-v5/src/modules/scroll-observer.js",
+    "importStyle": null,
+    "description": null,
+    "lineNumber": 9,
+    "undocument": true,
+    "interface": false,
+    "ignore": true
+  },
+  {
+    "__docId__": 179,
+    "kind": "member",
+    "name": "_scrollThrottle",
+    "memberof": "src/modules/scroll-observer.js~ScrollObserver",
+    "static": false,
+    "longname": "src/modules/scroll-observer.js~ScrollObserver#_scrollThrottle",
+    "access": "private",
+    "description": null,
+    "lineNumber": 10,
+    "undocument": true,
+    "type": {
+      "types": [
+        "*"
+      ]
+    }
+  },
+  {
+    "__docId__": 180,
+    "kind": "member",
+    "name": "_scrollEvent",
+    "memberof": "src/modules/scroll-observer.js~ScrollObserver",
+    "static": false,
+    "longname": "src/modules/scroll-observer.js~ScrollObserver#_scrollEvent",
+    "access": "private",
+    "description": null,
+    "lineNumber": 11,
+    "undocument": true,
+    "type": {
+      "types": [
+        "*"
+      ]
+    }
+  },
+  {
+    "__docId__": 181,
+    "kind": "constructor",
+    "name": "constructor",
+    "memberof": "src/modules/scroll-observer.js~ScrollObserver",
+    "generator": false,
+    "async": false,
+    "static": false,
+    "longname": "src/modules/scroll-observer.js~ScrollObserver#constructor",
+    "access": "public",
+    "description": null,
+    "lineNumber": 13,
+    "undocument": true
+  },
+  {
+    "__docId__": 184,
+    "kind": "method",
+    "name": "on",
+    "memberof": "src/modules/scroll-observer.js~ScrollObserver",
+    "generator": false,
+    "async": false,
+    "static": false,
+    "longname": "src/modules/scroll-observer.js~ScrollObserver#on",
+    "access": "public",
+    "description": "",
+    "lineNumber": 25,
+    "return": {
+      "nullable": null,
+      "types": [
+        "Instance"
+      ],
+      "spread": false,
+      "description": ""
+    },
+    "params": []
+  },
+  {
+    "__docId__": 185,
+    "kind": "method",
+    "name": "off",
+    "memberof": "src/modules/scroll-observer.js~ScrollObserver",
+    "generator": false,
+    "async": false,
+    "static": false,
+    "longname": "src/modules/scroll-observer.js~ScrollObserver#off",
+    "access": "public",
+    "description": "",
+    "lineNumber": 33,
+    "return": {
+      "nullable": null,
+      "types": [
+        "Instance"
+      ],
+      "spread": false,
+      "description": ""
+    },
+    "params": []
+  },
+  {
+    "__docId__": 186,
+    "kind": "method",
+    "name": "update",
+    "memberof": "src/modules/scroll-observer.js~ScrollObserver",
+    "generator": false,
+    "async": false,
+    "static": false,
+    "longname": "src/modules/scroll-observer.js~ScrollObserver#update",
+    "access": "public",
+    "description": "",
+    "lineNumber": 41,
+    "return": {
+      "nullable": null,
+      "types": [
+        "Instance"
+      ],
+      "spread": false,
+      "description": ""
+    },
+    "params": []
+  },
+  {
+    "__docId__": 187,
+    "kind": "method",
+    "name": "_onScroll",
+    "memberof": "src/modules/scroll-observer.js~ScrollObserver",
+    "generator": false,
+    "async": false,
+    "static": false,
+    "longname": "src/modules/scroll-observer.js~ScrollObserver#_onScroll",
+    "access": "private",
+    "description": null,
+    "lineNumber": 47,
+    "undocument": true,
+    "params": [],
+    "return": null
+  },
+  {
+    "__docId__": 188,
     "kind": "file",
     "name": "src/modules/window-size-observer.js",
-    "content": "/**\n * depends on 'vanix' used in '../store'\n */\n\nimport { store } from '../store'\nimport { eventer } from './module'\nimport { debounce } from '../utils/debounce'\n\nclass WindowSizeObserver {\n  _isMobile /* :boolane */ = false\n  _resizeDebounce /* :function */\n  _resizeEvent /* :Object */ = {}\n\n  constructor() {\n    this._isMobile = !!store.state.platform.type.match(/^mobile$/)\n\n    this._resizeDebounce = debounce(200)\n    this._resizeEvent = eventer.create(\n      window,\n      'resize',\n      this._onResize.bind(this)\n    )\n  }\n\n  /**\n   * @return {Instance}\n   */\n  on() {\n    this._resizeEvent.add()\n    return this\n  }\n\n  /**\n   * @return {Instance}\n   */\n  off() {\n    this._resizeEvent.remove()\n    return this\n  }\n\n  /**\n   * @return {Instance}\n   */\n  resize() {\n    store.commit('setWindowWidth', window.innerWidth)\n    store.commit('setWindowHeight', window.innerHeight)\n\n    if (\n      !this._isMobile ||\n      store.state.windowWidthLastChangedHeight !== window.innerWidth\n    ) {\n      store.commit('setWindowWidthLastChangedHeight', window.innerHeight)\n    }\n\n    if (store.state.breakPoint[0] > store.state.windowWidth) {\n      if (store.state.windowSizeType !== 'mobile') {\n        store.commit('setWindowSizeType', 'mobile')\n      }\n    } else if (store.state.breakPoint[1] > store.state.windowWidth) {\n      if (store.state.windowSizeType !== 'tablet') {\n        store.commit('setWindowSizeType', 'tablet')\n      }\n    } else {\n      if (store.state.windowSizeType !== 'desktop') {\n        store.commit('setWindowSizeType', 'desktop')\n      }\n    }\n\n    return this\n  }\n\n  _onResize() {\n    this._resizeDebounce(this.resize.bind(this))\n  }\n}\n\nexport { WindowSizeObserver as default }\n",
+    "content": "/**\n * depends on 'vanix' used in 'store'\n */\n\nimport { store } from '../store'\nimport { eventer } from '../modules'\nimport { debounce } from '../utils/debounce'\n\nclass WindowSizeObserver {\n  _isMobile /* :boolane */ = false\n  _resizeDebounce /* :function */\n  _resizeEvent /* :Object */ = {}\n\n  constructor() {\n    this._isMobile = !!store.state.platform.type.match(/^mobile$/)\n\n    this._resizeDebounce = debounce(200)\n    this._resizeEvent = eventer.create(\n      window,\n      'resize',\n      this._onResize.bind(this)\n    )\n  }\n\n  /**\n   * @return {Instance}\n   */\n  on() {\n    this._resizeEvent.add()\n    return this\n  }\n\n  /**\n   * @return {Instance}\n   */\n  off() {\n    this._resizeEvent.remove()\n    return this\n  }\n\n  /**\n   * @return {Instance}\n   */\n  update() {\n    store.commit('setWindowWidth', window.innerWidth)\n    store.commit('setWindowHeight', window.innerHeight)\n\n    if (\n      !this._isMobile ||\n      store.state.windowWidthLastChangedHeight !== window.innerWidth\n    ) {\n      store.commit('setWindowWidthLastChangedHeight', window.innerHeight)\n    }\n\n    if (store.state.breakPoint[0] > store.state.windowWidth) {\n      if (store.state.windowSizeType !== 'mobile') {\n        store.commit('setWindowSizeType', 'mobile')\n      }\n    } else if (store.state.breakPoint[1] > store.state.windowWidth) {\n      if (store.state.windowSizeType !== 'tablet') {\n        store.commit('setWindowSizeType', 'tablet')\n      }\n    } else {\n      if (store.state.windowSizeType !== 'desktop') {\n        store.commit('setWindowSizeType', 'desktop')\n      }\n    }\n\n    return this\n  }\n\n  _onResize() {\n    this._resizeDebounce(this.update.bind(this))\n  }\n}\n\nexport { WindowSizeObserver as default }\n",
     "static": true,
     "longname": "/Users/higa_syuuji/github/syuji-higa/javascript-modules-v5/src/modules/window-size-observer.js",
     "access": "public",
@@ -4774,7 +5571,7 @@
     "lineNumber": 1
   },
   {
-    "__docId__": 153,
+    "__docId__": 189,
     "kind": "class",
     "name": "WindowSizeObserver",
     "memberof": "src/modules/window-size-observer.js",
@@ -4791,7 +5588,7 @@
     "ignore": true
   },
   {
-    "__docId__": 154,
+    "__docId__": 190,
     "kind": "member",
     "name": "_isMobile",
     "memberof": "src/modules/window-size-observer.js~WindowSizeObserver",
@@ -4808,7 +5605,7 @@
     }
   },
   {
-    "__docId__": 155,
+    "__docId__": 191,
     "kind": "member",
     "name": "_resizeDebounce",
     "memberof": "src/modules/window-size-observer.js~WindowSizeObserver",
@@ -4825,7 +5622,7 @@
     }
   },
   {
-    "__docId__": 156,
+    "__docId__": 192,
     "kind": "member",
     "name": "_resizeEvent",
     "memberof": "src/modules/window-size-observer.js~WindowSizeObserver",
@@ -4842,7 +5639,7 @@
     }
   },
   {
-    "__docId__": 157,
+    "__docId__": 193,
     "kind": "constructor",
     "name": "constructor",
     "memberof": "src/modules/window-size-observer.js~WindowSizeObserver",
@@ -4856,7 +5653,7 @@
     "undocument": true
   },
   {
-    "__docId__": 161,
+    "__docId__": 197,
     "kind": "method",
     "name": "on",
     "memberof": "src/modules/window-size-observer.js~WindowSizeObserver",
@@ -4878,7 +5675,7 @@
     "params": []
   },
   {
-    "__docId__": 162,
+    "__docId__": 198,
     "kind": "method",
     "name": "off",
     "memberof": "src/modules/window-size-observer.js~WindowSizeObserver",
@@ -4900,14 +5697,14 @@
     "params": []
   },
   {
-    "__docId__": 163,
+    "__docId__": 199,
     "kind": "method",
-    "name": "resize",
+    "name": "update",
     "memberof": "src/modules/window-size-observer.js~WindowSizeObserver",
     "generator": false,
     "async": false,
     "static": false,
-    "longname": "src/modules/window-size-observer.js~WindowSizeObserver#resize",
+    "longname": "src/modules/window-size-observer.js~WindowSizeObserver#update",
     "access": "public",
     "description": "",
     "lineNumber": 44,
@@ -4922,7 +5719,7 @@
     "params": []
   },
   {
-    "__docId__": 164,
+    "__docId__": 200,
     "kind": "method",
     "name": "_onResize",
     "memberof": "src/modules/window-size-observer.js~WindowSizeObserver",
@@ -4938,7 +5735,7 @@
     "return": null
   },
   {
-    "__docId__": 165,
+    "__docId__": 201,
     "kind": "file",
     "name": "src/pattern/singleton.js",
     "content": "class Singleton {\n  /**\n   * @type {Object}\n   */\n  static _instance = {}\n\n  /**\n   * @type {Object}\n   */\n  static _isInternal = {}\n\n  /**\n   * @return {Instance}\n   */\n  static getInstance() {\n    const { _instance, _isInternal } = Singleton\n    const _name /* :string */ = this.name\n    if (_instance[_name]) {\n      return Singleton._instance[_name]\n    }\n    _isInternal[_name] /* :boolean */ = true\n    return new this()\n  }\n\n  constructor() {\n    const { _isInternal, _instance } = Singleton\n    const _name /* :string */ = this.constructor.name\n    if (!_isInternal[_name]) {\n      throw new Error(\n        `Can't call new ${_name}(), use ${_name}.getInstance() instead.`\n      )\n    }\n    _isInternal[_name] /* :boolean */ = false\n    _instance[_name] /* :Instance */ = this\n  }\n}\n\nexport { Singleton as default }\n",
@@ -4949,7 +5746,7 @@
     "lineNumber": 1
   },
   {
-    "__docId__": 166,
+    "__docId__": 202,
     "kind": "class",
     "name": "Singleton",
     "memberof": "src/pattern/singleton.js",
@@ -4966,7 +5763,7 @@
     "ignore": true
   },
   {
-    "__docId__": 167,
+    "__docId__": 203,
     "kind": "member",
     "name": "_instance",
     "memberof": "src/pattern/singleton.js~Singleton",
@@ -4985,7 +5782,7 @@
     }
   },
   {
-    "__docId__": 168,
+    "__docId__": 204,
     "kind": "member",
     "name": "_isInternal",
     "memberof": "src/pattern/singleton.js~Singleton",
@@ -5004,7 +5801,7 @@
     }
   },
   {
-    "__docId__": 169,
+    "__docId__": 205,
     "kind": "method",
     "name": "getInstance",
     "memberof": "src/pattern/singleton.js~Singleton",
@@ -5026,7 +5823,7 @@
     "params": []
   },
   {
-    "__docId__": 170,
+    "__docId__": 206,
     "kind": "constructor",
     "name": "constructor",
     "memberof": "src/pattern/singleton.js~Singleton",
@@ -5040,10 +5837,10 @@
     "undocument": true
   },
   {
-    "__docId__": 171,
+    "__docId__": 207,
     "kind": "file",
     "name": "src/store.js",
-    "content": "/**\n * depends on 'vanix'\n * depends on 'bowser'\n */\n\nimport Vanix from 'vanix'\nimport Bowser from 'bowser'\n\n// bowser\nconst bowser /* :Object */ = Bowser.getParser(window.navigator.userAgent)\nconst {\n  browser /* :Object */,\n  engin /* :Object */,\n  os /* :Object */,\n  platform /* :Object */\n} = bowser.parsedResult\n\nconst state /* :Object */ = {\n  browser,\n  engin,\n  os,\n  platform,\n  breakPoint: /* :number[] int[0,inf) */ [768, 1024],\n  windowWidth: /* :number[] int[0,inf) */ 0,\n  windowHeight: /* :number[] int[0,inf) */ 0,\n  windowWidthLastChangedHeight: /* :number[] int[0,inf) */ 0,\n  windowSizeType: /* :string */ ''\n}\n\nconst mutations /* :Object */ = {\n  setWindowWidth(state /* :Object */, data /* :number[] int[0,inf) */) {\n    state.windowWidth = data\n  },\n  setWindowHeight(state /* :Object */, data /* :number[] int[0,inf) */) {\n    state.windowHeight = data\n  },\n  setWindowWidthLastChangedHeight(\n    state /* :Object */,\n    data /* :number[] int[0,inf) */\n  ) {\n    state.windowWidthLastChangedHeight = data\n  },\n  setWindowSizeType(state /* :Object */, data /* :number[] int[0,inf) */) {\n    state.windowSizeType = data\n  }\n}\n\nconst actions /* :Object */ = {}\n\nconst vanix /* :Instance */ = new Vanix({ state, mutations, actions })\n\nexport const store /* :Object */ = vanix.create()\n",
+    "content": "/**\n * depends on 'vanix'\n * depends on 'bowser'\n */\n\nimport Vanix from 'vanix'\nimport Bowser from 'bowser'\n\n// bowser\nconst bowser /* :Object */ = Bowser.getParser(window.navigator.userAgent)\nconst { browser, engin, os, platform } = bowser.parsedResult\n\nconst state /* :Object */ = {\n  browser /* :Object */,\n  engin /* :Object */,\n  os /* :Object */,\n  platform /* :Object */,\n  breakPoint /* :number[] int[0,inf) */: [768, 1024],\n  windowWidth /* :number[] int[0,inf) */: 0,\n  windowHeight /* :number[] int[0,inf) */: 0,\n  windowWidthLastChangedHeight /* :number[] int[0,inf) */: 0,\n  windowSizeType /* :string */: '',\n  windowOffsetX /* :number[] int[0,inf) */: 0,\n  windowOffsetY /* :number[] int[0,inf) */: 0\n}\n\nconst mutations /* :Object */ = {\n  setWindowWidth(state /* :Object */, data /* :number[] int[0,inf) */) {\n    state.windowWidth = data\n  },\n  setWindowHeight(state /* :Object */, data /* :number[] int[0,inf) */) {\n    state.windowHeight = data\n  },\n  setWindowWidthLastChangedHeight(\n    state /* :Object */,\n    data /* :number[] int[0,inf) */\n  ) {\n    state.windowWidthLastChangedHeight = data\n  },\n  setWindowSizeType(state /* :Object */, data /* :number[] int[0,inf) */) {\n    state.windowSizeType = data\n  },\n  setWindowOffsetX(state /* :Object */, data /* :number[] int[0,inf) */) {\n    state.windowOffsetX = data\n  },\n  setWindowOffsetY(state /* :Object */, data /* :number[] int[0,inf) */) {\n    state.windowOffsetY = data\n  }\n}\n\nconst actions /* :Object */ = {}\n\nconst vanix /* :Instance */ = new Vanix({ state, mutations, actions })\n\nexport const store /* :Object */ = vanix.create()\n",
     "static": true,
     "longname": "/Users/higa_syuuji/github/syuji-higa/javascript-modules-v5/src/store.js",
     "access": "public",
@@ -5051,7 +5848,7 @@
     "lineNumber": 1
   },
   {
-    "__docId__": 172,
+    "__docId__": 208,
     "kind": "variable",
     "name": "bowser",
     "memberof": "src/store.js",
@@ -5072,7 +5869,7 @@
     "ignore": true
   },
   {
-    "__docId__": 173,
+    "__docId__": 209,
     "kind": "variable",
     "name": "browser",
     "memberof": "src/store.js",
@@ -5093,7 +5890,7 @@
     "ignore": true
   },
   {
-    "__docId__": 174,
+    "__docId__": 210,
     "kind": "variable",
     "name": "state",
     "memberof": "src/store.js",
@@ -5104,17 +5901,17 @@
     "importPath": "javascript-modules-v5/src/store.js",
     "importStyle": null,
     "description": null,
-    "lineNumber": 18,
+    "lineNumber": 13,
     "undocument": true,
     "type": {
       "types": [
-        "{\"browser\": *, \"engin\": *, \"os\": *, \"platform\": *, \"breakPoint\": *, \"windowWidth\": *, \"windowHeight\": *, \"windowWidthLastChangedHeight\": *, \"windowSizeType\": *}"
+        "{\"browser\": *, \"engin\": *, \"os\": *, \"platform\": *, \"breakPoint\": *, \"windowWidth\": *, \"windowHeight\": *, \"windowWidthLastChangedHeight\": *, \"windowSizeType\": *, \"windowOffsetX\": *, \"windowOffsetY\": *}"
       ]
     },
     "ignore": true
   },
   {
-    "__docId__": 175,
+    "__docId__": 211,
     "kind": "variable",
     "name": "mutations",
     "memberof": "src/store.js",
@@ -5125,17 +5922,17 @@
     "importPath": "javascript-modules-v5/src/store.js",
     "importStyle": null,
     "description": null,
-    "lineNumber": 30,
+    "lineNumber": 27,
     "undocument": true,
     "type": {
       "types": [
-        "{\"setWindowWidth\": function, \"setWindowHeight\": function, \"setWindowWidthLastChangedHeight\": function, \"setWindowSizeType\": function}"
+        "{\"setWindowWidth\": function, \"setWindowHeight\": function, \"setWindowWidthLastChangedHeight\": function, \"setWindowSizeType\": function, \"setWindowOffsetX\": function, \"setWindowOffsetY\": function}"
       ]
     },
     "ignore": true
   },
   {
-    "__docId__": 176,
+    "__docId__": 212,
     "kind": "variable",
     "name": "actions",
     "memberof": "src/store.js",
@@ -5146,7 +5943,7 @@
     "importPath": "javascript-modules-v5/src/store.js",
     "importStyle": null,
     "description": null,
-    "lineNumber": 48,
+    "lineNumber": 51,
     "undocument": true,
     "type": {
       "types": [
@@ -5156,7 +5953,7 @@
     "ignore": true
   },
   {
-    "__docId__": 177,
+    "__docId__": 213,
     "kind": "variable",
     "name": "vanix",
     "memberof": "src/store.js",
@@ -5167,7 +5964,7 @@
     "importPath": "javascript-modules-v5/src/store.js",
     "importStyle": null,
     "description": null,
-    "lineNumber": 50,
+    "lineNumber": 53,
     "undocument": true,
     "type": {
       "types": [
@@ -5177,7 +5974,7 @@
     "ignore": true
   },
   {
-    "__docId__": 178,
+    "__docId__": 214,
     "kind": "variable",
     "name": "store",
     "memberof": "src/store.js",
@@ -5188,7 +5985,7 @@
     "importPath": "javascript-modules-v5/src/store.js",
     "importStyle": "{store}",
     "description": null,
-    "lineNumber": 52,
+    "lineNumber": 55,
     "undocument": true,
     "type": {
       "types": [
@@ -5197,7 +5994,7 @@
     }
   },
   {
-    "__docId__": 179,
+    "__docId__": 215,
     "kind": "file",
     "name": "src/utils/background-image.js",
     "content": "/**\n * @param {Element} $el\n * @return {string[]}\n */\nexport const getBackgroundImages = ($el) => {\n  const _backgroundImage /* :string */ = getComputedStyle($el, '')\n    .backgroundImage\n  const _paths /* :string[] */ = []\n\n  if (_backgroundImage === 'none') {\n    return _paths\n  }\n\n  const _images /* :string[] */ = _backgroundImage.split(/,\\s?/)\n\n  if (!_images) {\n    return _paths\n  }\n\n  for (const img /* :string */ of _images) {\n    const _path /* :string */ = img.match(/^url\\(['\"]?(.+[0-9a-zA-Z])['\"]?\\)$/)\n\n    if (typeof _path !== 'undefined' && _path !== null) {\n      _paths.push(_path[1])\n    }\n  }\n\n  return _paths\n}\n",
@@ -5208,7 +6005,7 @@
     "lineNumber": 1
   },
   {
-    "__docId__": 180,
+    "__docId__": 216,
     "kind": "function",
     "name": "getBackgroundImages",
     "memberof": "src/utils/background-image.js",
@@ -5244,7 +6041,7 @@
     }
   },
   {
-    "__docId__": 181,
+    "__docId__": 217,
     "kind": "file",
     "name": "src/utils/debounce.js",
     "content": "/**\n * @param {Object} [options]\n * @param {number} [options.interval] - int[0,inf)\n * @param {boolean} [options.isFirstRun]\n * @return {function}\n */\nexport const debounce = (options = {}) => {\n  const { interval, isFirstRun } = Object.assign(\n    { interval: 100, isFirstRun: false },\n    options\n  )\n  let _timer /* :number int[0,inf) */ = 0\n  let _firstRun /* :boolean */ = true\n\n  return (fn /* :function */) => {\n    if (isFirstRun && _firstRun) {\n      fn()\n      _firstRun = false\n    }\n    clearTimeout(_timer)\n    _timer = setTimeout(() => {\n      fn()\n      _timer = 0\n      if (isFirstRun) {\n        _firstRun = true\n      }\n    }, interval)\n  }\n}\n",
@@ -5255,7 +6052,7 @@
     "lineNumber": 1
   },
   {
-    "__docId__": 182,
+    "__docId__": 218,
     "kind": "function",
     "name": "debounce",
     "memberof": "src/utils/debounce.js",
@@ -5311,7 +6108,150 @@
     }
   },
   {
-    "__docId__": 183,
+    "__docId__": 219,
+    "kind": "file",
+    "name": "src/utils/element.js",
+    "content": "import { kebabToPascalCase } from '../models/string'\n\n/**\n * @param {Element} $el\n * @param {string} selector\n * @param {boolean} [isSlefTarget]\n * @return {?Element}\n */\nexport const includesElement = ($el, selector, isSlefTarget = true) => {\n  const _elms /* :Element[] */ = Array.from(document.querySelectorAll(selector))\n  const _$el /* :Element */ = isSlefTarget ? $el : $el.parentNode\n\n  const _getParent = ($el /* :Element */) /* :Element */ => {\n    if (!$el || !$el.tagName || $el.tagName === 'HTML') return null\n\n    if (_elms.includes($el)) {\n      return $el\n    }\n\n    return _getParent($el.parentNode)\n  }\n\n  return _getParent(_$el)\n}\n\n/**\n * @param {Elemtnt} el\n * @param {string} dataName\n * @param {Object} [options]\n * @param {boolean} [options.needsSingle]\n * @param {?function} [options.filter]\n * @return {Object}\n */\nexport const groupByDataElement = (el, dataName, options = {}) => {\n  const { needsSingle, filter } = Object.assign(\n    {\n      needsSingle: false,\n      filter: null\n    },\n    options\n  )\n\n  const _$$el /* :HTMLCollection|NodeList */ = el.querySelectorAll(\n    `[data-${dataName}]`\n  )\n  return Array.from(_$$el).reduce((memo /* :Object */, $el /* :Element */) => {\n    if (!filter || filter($el)) {\n      const _dataName /* :string */ =\n        'dataset' in $el\n          ? $el.dataset[kebabToPascalCase(dataName)]\n          : $el.getAttribute(`data-${dataName}`)\n      if (_dataName) {\n        if (needsSingle) {\n          memo[_dataName] = $el\n        } else {\n          if (!memo[_dataName]) {\n            memo[_dataName] = []\n          }\n          memo[_dataName].push($el)\n        }\n      }\n    }\n    return memo\n  }, {})\n}\n",
+    "static": true,
+    "longname": "/Users/higa_syuuji/github/syuji-higa/javascript-modules-v5/src/utils/element.js",
+    "access": "public",
+    "description": null,
+    "lineNumber": 1
+  },
+  {
+    "__docId__": 220,
+    "kind": "function",
+    "name": "includesElement",
+    "memberof": "src/utils/element.js",
+    "generator": false,
+    "async": false,
+    "static": true,
+    "longname": "src/utils/element.js~includesElement",
+    "access": "public",
+    "export": true,
+    "importPath": "javascript-modules-v5/src/utils/element.js",
+    "importStyle": "{includesElement}",
+    "description": "",
+    "lineNumber": 9,
+    "params": [
+      {
+        "nullable": null,
+        "types": [
+          "Element"
+        ],
+        "spread": false,
+        "optional": false,
+        "name": "$el",
+        "description": ""
+      },
+      {
+        "nullable": null,
+        "types": [
+          "string"
+        ],
+        "spread": false,
+        "optional": false,
+        "name": "selector",
+        "description": ""
+      },
+      {
+        "nullable": null,
+        "types": [
+          "boolean"
+        ],
+        "spread": false,
+        "optional": true,
+        "name": "isSlefTarget",
+        "description": ""
+      }
+    ],
+    "return": {
+      "nullable": true,
+      "types": [
+        "Element"
+      ],
+      "spread": false,
+      "description": ""
+    }
+  },
+  {
+    "__docId__": 221,
+    "kind": "function",
+    "name": "groupByDataElement",
+    "memberof": "src/utils/element.js",
+    "generator": false,
+    "async": false,
+    "static": true,
+    "longname": "src/utils/element.js~groupByDataElement",
+    "access": "public",
+    "export": true,
+    "importPath": "javascript-modules-v5/src/utils/element.js",
+    "importStyle": "{groupByDataElement}",
+    "description": "",
+    "lineNumber": 34,
+    "params": [
+      {
+        "nullable": null,
+        "types": [
+          "Elemtnt"
+        ],
+        "spread": false,
+        "optional": false,
+        "name": "el",
+        "description": ""
+      },
+      {
+        "nullable": null,
+        "types": [
+          "string"
+        ],
+        "spread": false,
+        "optional": false,
+        "name": "dataName",
+        "description": ""
+      },
+      {
+        "nullable": null,
+        "types": [
+          "Object"
+        ],
+        "spread": false,
+        "optional": true,
+        "name": "options",
+        "description": ""
+      },
+      {
+        "nullable": null,
+        "types": [
+          "boolean"
+        ],
+        "spread": false,
+        "optional": true,
+        "name": "options.needsSingle",
+        "description": ""
+      },
+      {
+        "nullable": true,
+        "types": [
+          "function"
+        ],
+        "spread": false,
+        "optional": true,
+        "name": "options.filter",
+        "description": ""
+      }
+    ],
+    "return": {
+      "nullable": null,
+      "types": [
+        "Object"
+      ],
+      "spread": false,
+      "description": ""
+    }
+  },
+  {
+    "__docId__": 222,
     "kind": "file",
     "name": "src/utils/event.js",
     "content": "/**\n * @param {Element} target\n * @param {string} eventType\n * @param {function} listener\n * @param {boolean|Object} [option]\n * @return {Object}\n */\nexport const createEvent = (target, eventType, listener, option = false) => {\n  return {\n    handleEvent: (e) => {\n      listener(e)\n    },\n    add: function() {\n      target.addEventListener(eventType, this, option)\n    },\n    remove: function() {\n      target.removeEventListener(eventType, this, option)\n    }\n  }\n}\n\n/**\n * @param {Array} options\n * @param {Element} options[0] - dispatc target\n * @param {string} options[1] - eventType\n * @param {Object} [options[2]] - event detail\n * @param {Event} event\n *\n * @example\n *   onDispatchEvent.bind(this, [window, 'resize'], e);\n */\nexport const onDispatchEvent = (options, event) => {\n  const [target, eventType, detail] = options\n\n  const _detail /* :Object */ = (() => {\n    const _obj /* :Object */ = {\n      status: event\n    }\n    if (detail) Object.assign(_obj, detail)\n    return _obj\n  })()\n\n  target.dispatchEvent(\n    new CustomEvent(eventType, {\n      detail: _detail\n    })\n  )\n}\n",
@@ -5322,7 +6262,7 @@
     "lineNumber": 1
   },
   {
-    "__docId__": 184,
+    "__docId__": 223,
     "kind": "function",
     "name": "createEvent",
     "memberof": "src/utils/event.js",
@@ -5389,7 +6329,7 @@
     }
   },
   {
-    "__docId__": 185,
+    "__docId__": 224,
     "kind": "function",
     "name": "onDispatchEvent",
     "memberof": "src/utils/event.js",
@@ -5461,7 +6401,7 @@
     "return": null
   },
   {
-    "__docId__": 186,
+    "__docId__": 225,
     "kind": "file",
     "name": "src/utils/load.js",
     "content": "/**\n * @param {Element} $video\n * @return {Promise}\n */\nexport const loadVideo = ($video) => {\n  return new Promise((resolve /* :function */) => {\n    $video.load()\n    $video.addEventListener(\n      'canplaythrough',\n      () => {\n        resolve()\n      },\n      { once: true }\n    )\n  })\n}\n\n/**\n * @param {string} src\n * @param {Object} [options]\n * @param {funciton} [options.done]\n * @param {funciton} [options.fail]\n * @param {funciton} [options.always]\n * @return {Promise}\n */\nexport const loadImage = (src, options = {}) => {\n  const { done, fail, always } = options\n\n  return new Promise((resolve /* :function */) => {\n    const _img /* :Image */ = new Image()\n\n    const _always = (img /* :Image */, isSuccess /* :boolean */) => {\n      if (always) always(img)\n      resolve(img, isSuccess)\n    }\n\n    _img.onload /* :functon */ = () => {\n      if (done) done(_img)\n      _always(_img, true)\n    }\n    _img.onerror /* :functon */ = () => {\n      if (fail) fail(_img)\n      _always(_img, false)\n    }\n\n    _img.src /* :string */ = src\n  })\n}\n\n/**\n * @param {string} file\n * @param {Object} [options]\n * @param {funciton} [options.done]\n * @param {funciton} [options.fail]\n * @param {funciton} [options.always]\n * @return {Promise}\n */\nexport const loadFile = (file, options = {}) => {\n  const { done, fail, always } = options\n\n  return new Promise((resolve /* :function */) => {\n    const _reader /* :FileRender */ = new FileReader()\n\n    const _always /* :function */ = (\n      file_ /* :FileRender */,\n      isSuccess /* :boolean */\n    ) => {\n      if (always) always(file_)\n      resolve(isSuccess)\n    }\n\n    _reader.onload /* :function */ = (file_ /* :FileRender */) => {\n      if (done) done(file_)\n      _always(file_, true)\n    }\n    _reader.onerror /* :function */ = (file_ /* :FileRender */) => {\n      if (fail) fail(file_)\n      _always(file_, false)\n    }\n\n    _reader.readAsDataURL(file)\n  })\n}\n",
@@ -5472,7 +6412,7 @@
     "lineNumber": 1
   },
   {
-    "__docId__": 187,
+    "__docId__": 226,
     "kind": "function",
     "name": "loadVideo",
     "memberof": "src/utils/load.js",
@@ -5508,7 +6448,7 @@
     }
   },
   {
-    "__docId__": 188,
+    "__docId__": 227,
     "kind": "function",
     "name": "loadImage",
     "memberof": "src/utils/load.js",
@@ -5584,7 +6524,7 @@
     }
   },
   {
-    "__docId__": 189,
+    "__docId__": 228,
     "kind": "function",
     "name": "loadFile",
     "memberof": "src/utils/load.js",
@@ -5660,10 +6600,846 @@
     }
   },
   {
-    "__docId__": 190,
+    "__docId__": 229,
+    "kind": "file",
+    "name": "src/utils/rect.js",
+    "content": "let _viewportY /* :number */ = 0\nlet _viewportX /* :number */ = 0\n\n/**\n * @param {Element} $viewport\n */\nconst _reset = ($viewport) => {\n  if ($viewport) {\n    const {\n      top /* :number */,\n      left /* :number */\n    } = $viewport.getBoundingClientRect()\n    _viewportY = $viewport.scrollTop - top\n    _viewportX = $viewport.scrollLeft - left\n  } else {\n    _viewportY = window.pageYOffset\n    _viewportX = window.pageXOffset\n  }\n}\n\n/**\n * @param {Element} $el\n * @param {?Element} $viewport\n * @return {Object}\n * @property {number} width - [0,inf)\n * @property {number} height - [0,inf)\n * @property {number} top\n * @property {number} right\n * @property {number} bottom\n * @property {number} left\n */\nexport const rect = ($el, $viewport = null) => {\n  _reset($viewport)\n  const {\n    width,\n    height,\n    top,\n    right,\n    bottom,\n    left\n  } = $el.getBoundingClientRect()\n  return {\n    width,\n    height,\n    top: top + _viewportY,\n    right: right + _viewportX,\n    bottom: bottom + _viewportY,\n    left: left + _viewportX\n  }\n}\n\n/**\n * @param {Element} $el\n * @param {?Element} [$viewport]\n * @return {Object}\n * @property {number} x -\n * @property {number} y -\n */\nexport const center = ($el, $viewport = null) => {\n  const _rect = /* :Object */ rect($el, $viewport)\n  return {\n    x /* :number */: _rect.left + _rect.width / 2,\n    y /* :number */: _rect.top + _rect.height / 2\n  }\n}\n",
+    "static": true,
+    "longname": "/Users/higa_syuuji/github/syuji-higa/javascript-modules-v5/src/utils/rect.js",
+    "access": "public",
+    "description": null,
+    "lineNumber": 1
+  },
+  {
+    "__docId__": 230,
+    "kind": "variable",
+    "name": "_viewportY",
+    "memberof": "src/utils/rect.js",
+    "static": true,
+    "longname": "src/utils/rect.js~_viewportY",
+    "access": "private",
+    "export": false,
+    "importPath": "javascript-modules-v5/src/utils/rect.js",
+    "importStyle": null,
+    "description": null,
+    "lineNumber": 1,
+    "undocument": true,
+    "type": {
+      "types": [
+        "number"
+      ]
+    },
+    "ignore": true
+  },
+  {
+    "__docId__": 231,
+    "kind": "variable",
+    "name": "_viewportX",
+    "memberof": "src/utils/rect.js",
+    "static": true,
+    "longname": "src/utils/rect.js~_viewportX",
+    "access": "private",
+    "export": false,
+    "importPath": "javascript-modules-v5/src/utils/rect.js",
+    "importStyle": null,
+    "description": null,
+    "lineNumber": 2,
+    "undocument": true,
+    "type": {
+      "types": [
+        "number"
+      ]
+    },
+    "ignore": true
+  },
+  {
+    "__docId__": 232,
+    "kind": "function",
+    "name": "_reset",
+    "memberof": "src/utils/rect.js",
+    "generator": false,
+    "async": false,
+    "static": true,
+    "longname": "src/utils/rect.js~_reset",
+    "access": "private",
+    "export": false,
+    "importPath": "javascript-modules-v5/src/utils/rect.js",
+    "importStyle": null,
+    "description": "",
+    "lineNumber": 7,
+    "params": [
+      {
+        "nullable": null,
+        "types": [
+          "Element"
+        ],
+        "spread": false,
+        "optional": false,
+        "name": "$viewport",
+        "description": ""
+      }
+    ],
+    "return": null,
+    "ignore": true
+  },
+  {
+    "__docId__": 233,
+    "kind": "function",
+    "name": "rect",
+    "memberof": "src/utils/rect.js",
+    "generator": false,
+    "async": false,
+    "static": true,
+    "longname": "src/utils/rect.js~rect",
+    "access": "public",
+    "export": true,
+    "importPath": "javascript-modules-v5/src/utils/rect.js",
+    "importStyle": "{rect}",
+    "description": "",
+    "lineNumber": 32,
+    "params": [
+      {
+        "nullable": null,
+        "types": [
+          "Element"
+        ],
+        "spread": false,
+        "optional": false,
+        "name": "$el",
+        "description": ""
+      },
+      {
+        "nullable": true,
+        "types": [
+          "Element"
+        ],
+        "spread": false,
+        "optional": false,
+        "name": "$viewport",
+        "description": ""
+      }
+    ],
+    "properties": [
+      {
+        "nullable": null,
+        "types": [
+          "number"
+        ],
+        "spread": false,
+        "optional": false,
+        "name": "width",
+        "description": "[0,inf)"
+      },
+      {
+        "nullable": null,
+        "types": [
+          "number"
+        ],
+        "spread": false,
+        "optional": false,
+        "name": "height",
+        "description": "[0,inf)"
+      },
+      {
+        "nullable": null,
+        "types": [
+          "number"
+        ],
+        "spread": false,
+        "optional": false,
+        "name": "top",
+        "description": ""
+      },
+      {
+        "nullable": null,
+        "types": [
+          "number"
+        ],
+        "spread": false,
+        "optional": false,
+        "name": "right",
+        "description": ""
+      },
+      {
+        "nullable": null,
+        "types": [
+          "number"
+        ],
+        "spread": false,
+        "optional": false,
+        "name": "bottom",
+        "description": ""
+      },
+      {
+        "nullable": null,
+        "types": [
+          "number"
+        ],
+        "spread": false,
+        "optional": false,
+        "name": "left",
+        "description": ""
+      }
+    ],
+    "return": {
+      "nullable": null,
+      "types": [
+        "Object"
+      ],
+      "spread": false,
+      "description": ""
+    }
+  },
+  {
+    "__docId__": 234,
+    "kind": "function",
+    "name": "center",
+    "memberof": "src/utils/rect.js",
+    "generator": false,
+    "async": false,
+    "static": true,
+    "longname": "src/utils/rect.js~center",
+    "access": "public",
+    "export": true,
+    "importPath": "javascript-modules-v5/src/utils/rect.js",
+    "importStyle": "{center}",
+    "description": "",
+    "lineNumber": 59,
+    "params": [
+      {
+        "nullable": null,
+        "types": [
+          "Element"
+        ],
+        "spread": false,
+        "optional": false,
+        "name": "$el",
+        "description": ""
+      },
+      {
+        "nullable": true,
+        "types": [
+          "Element"
+        ],
+        "spread": false,
+        "optional": true,
+        "name": "$viewport",
+        "description": ""
+      }
+    ],
+    "properties": [
+      {
+        "nullable": null,
+        "types": [
+          "number"
+        ],
+        "spread": false,
+        "optional": false,
+        "name": "x",
+        "description": ""
+      },
+      {
+        "nullable": null,
+        "types": [
+          "number"
+        ],
+        "spread": false,
+        "optional": false,
+        "name": "y",
+        "description": ""
+      }
+    ],
+    "return": {
+      "nullable": null,
+      "types": [
+        "Object"
+      ],
+      "spread": false,
+      "description": ""
+    }
+  },
+  {
+    "__docId__": 235,
+    "kind": "file",
+    "name": "src/utils/throttle.js",
+    "content": "/**\n * @param {Object} [options]\n * @param {number} [options.interval] // int[0,inf)\n * @param {boolean} [options.isLastRun]\n * @return {function(fn: function)}\n */\nexport const throttle = (options = {}) => {\n  const { interval, isLastRun } = Object.assign(\n    { interval: 100, isLastRun: true },\n    options\n  )\n\n  let _lastTime /* :number int[0,inf) */ = new Date().getTime() - interval\n  let _timer /* :number int[0,inf) */ = 0\n\n  return (fn) => {\n    if (_lastTime + interval <= new Date().getTime()) {\n      _lastTime = new Date().getTime()\n      fn()\n    }\n    if (isLastRun) {\n      clearTimeout(_timer)\n      _timer = setTimeout(() => {\n        fn()\n        _timer = 0\n      }, interval)\n    }\n  }\n}\n",
+    "static": true,
+    "longname": "/Users/higa_syuuji/github/syuji-higa/javascript-modules-v5/src/utils/throttle.js",
+    "access": "public",
+    "description": null,
+    "lineNumber": 1
+  },
+  {
+    "__docId__": 236,
+    "kind": "function",
+    "name": "throttle",
+    "memberof": "src/utils/throttle.js",
+    "generator": false,
+    "async": false,
+    "static": true,
+    "longname": "src/utils/throttle.js~throttle",
+    "access": "public",
+    "export": true,
+    "importPath": "javascript-modules-v5/src/utils/throttle.js",
+    "importStyle": "{throttle}",
+    "description": "",
+    "lineNumber": 7,
+    "params": [
+      {
+        "nullable": null,
+        "types": [
+          "Object"
+        ],
+        "spread": false,
+        "optional": true,
+        "name": "options",
+        "description": ""
+      },
+      {
+        "nullable": null,
+        "types": [
+          "number"
+        ],
+        "spread": false,
+        "optional": true,
+        "name": "options.interval",
+        "description": "// int[0,inf)"
+      },
+      {
+        "nullable": null,
+        "types": [
+          "boolean"
+        ],
+        "spread": false,
+        "optional": true,
+        "name": "options.isLastRun",
+        "description": ""
+      }
+    ],
+    "return": {
+      "nullable": null,
+      "types": [
+        "function(fn: function)"
+      ],
+      "spread": false,
+      "description": ""
+    }
+  },
+  {
+    "__docId__": 237,
+    "kind": "file",
+    "name": "src/utils/wait.js",
+    "content": "/**\n * @param {number} timer - int[0,inf)\n * @param {number} startTime - int[0,inf)\n * @param {number} interval - int[0,inf)\n * @param {number} timeout - int[0,inf)\n * @param {function} observe\n * @param {function} resolve\n * @param {function} returnValFn\n * @return {Promise}\n */\nconst check /* :function */ = (\n  timer,\n  startTime,\n  interval,\n  timeout,\n  observe,\n  resolve,\n  returnValFn\n) => {\n  if (timer) {\n    clearTimeout(timer)\n  }\n\n  timer = setTimeout(() => {\n    if (observe() || timeout < new Date().getTime() - startTime) {\n      returnValFn ? resolve(returnValFn()) : resolve()\n    } else {\n      check(timer, startTime, interval, timeout, observe, resolve, returnValFn)\n    }\n  }, interval)\n}\n\n/**\n * @param {number} interval - int[0,inf)\n * @param {function} observe\n * @param {Object} [options]\n * @param {number} [options.timeout] - int[0,inf)\n * @param {?function} [options.returnValFn]\n * @return {Promise}\n */\nexport const wait = (interval, observe, options = {}) => {\n  let { timeout, returnValFn } = Object.assign(\n    { timeout: 30000, returnValFn: null },\n    options\n  )\n\n  let _timer /* :number [0,inf) */ = 0\n  const _startTime /* :number [0,inf) */ = new Date().getTime()\n\n  return new Promise((resolve /* function */) => {\n    check(_timer, _startTime, interval, timeout, observe, resolve, returnValFn)\n  })\n}\n",
+    "static": true,
+    "longname": "/Users/higa_syuuji/github/syuji-higa/javascript-modules-v5/src/utils/wait.js",
+    "access": "public",
+    "description": null,
+    "lineNumber": 1
+  },
+  {
+    "__docId__": 238,
+    "kind": "function",
+    "name": "check",
+    "memberof": "src/utils/wait.js",
+    "generator": false,
+    "async": false,
+    "static": true,
+    "longname": "src/utils/wait.js~check",
+    "access": "public",
+    "export": false,
+    "importPath": "javascript-modules-v5/src/utils/wait.js",
+    "importStyle": null,
+    "description": "",
+    "lineNumber": 11,
+    "params": [
+      {
+        "nullable": null,
+        "types": [
+          "number"
+        ],
+        "spread": false,
+        "optional": false,
+        "name": "timer",
+        "description": "int[0,inf)"
+      },
+      {
+        "nullable": null,
+        "types": [
+          "number"
+        ],
+        "spread": false,
+        "optional": false,
+        "name": "startTime",
+        "description": "int[0,inf)"
+      },
+      {
+        "nullable": null,
+        "types": [
+          "number"
+        ],
+        "spread": false,
+        "optional": false,
+        "name": "interval",
+        "description": "int[0,inf)"
+      },
+      {
+        "nullable": null,
+        "types": [
+          "number"
+        ],
+        "spread": false,
+        "optional": false,
+        "name": "timeout",
+        "description": "int[0,inf)"
+      },
+      {
+        "nullable": null,
+        "types": [
+          "function"
+        ],
+        "spread": false,
+        "optional": false,
+        "name": "observe",
+        "description": ""
+      },
+      {
+        "nullable": null,
+        "types": [
+          "function"
+        ],
+        "spread": false,
+        "optional": false,
+        "name": "resolve",
+        "description": ""
+      },
+      {
+        "nullable": null,
+        "types": [
+          "function"
+        ],
+        "spread": false,
+        "optional": false,
+        "name": "returnValFn",
+        "description": ""
+      }
+    ],
+    "return": {
+      "nullable": null,
+      "types": [
+        "Promise"
+      ],
+      "spread": false,
+      "description": ""
+    },
+    "ignore": true
+  },
+  {
+    "__docId__": 239,
+    "kind": "function",
+    "name": "wait",
+    "memberof": "src/utils/wait.js",
+    "generator": false,
+    "async": false,
+    "static": true,
+    "longname": "src/utils/wait.js~wait",
+    "access": "public",
+    "export": true,
+    "importPath": "javascript-modules-v5/src/utils/wait.js",
+    "importStyle": "{wait}",
+    "description": "",
+    "lineNumber": 41,
+    "params": [
+      {
+        "nullable": null,
+        "types": [
+          "number"
+        ],
+        "spread": false,
+        "optional": false,
+        "name": "interval",
+        "description": "int[0,inf)"
+      },
+      {
+        "nullable": null,
+        "types": [
+          "function"
+        ],
+        "spread": false,
+        "optional": false,
+        "name": "observe",
+        "description": ""
+      },
+      {
+        "nullable": null,
+        "types": [
+          "Object"
+        ],
+        "spread": false,
+        "optional": true,
+        "name": "options",
+        "description": ""
+      },
+      {
+        "nullable": null,
+        "types": [
+          "number"
+        ],
+        "spread": false,
+        "optional": true,
+        "name": "options.timeout",
+        "description": "int[0,inf)"
+      },
+      {
+        "nullable": true,
+        "types": [
+          "function"
+        ],
+        "spread": false,
+        "optional": true,
+        "name": "options.returnValFn",
+        "description": ""
+      }
+    ],
+    "return": {
+      "nullable": null,
+      "types": [
+        "Promise"
+      ],
+      "spread": false,
+      "description": ""
+    }
+  },
+  {
+    "__docId__": 240,
+    "kind": "file",
+    "name": "src/views/_observe-scroll-single.js",
+    "content": "/**\n * depends on 'vanix' used in 'store'\n */\n\nimport { store } from '../store'\nimport { inviewportObserver } from '../modules'\nimport { rect } from '../utils/rect'\n\nclass ObserveScrollSingle {\n  _selfClassName /* :string */ = ''\n  _$el /* :Element */\n  _$$item /* :HTMLCollection|NodeList */\n  _storeStateObject /* :Object */ = {}\n  _state /* :Object */ = {\n    range /* :number [0,inf) */: 0,\n    start /* :number */: 0\n  }\n\n  /**\n   * @return {Object}\n   */\n  static get _defOptions() {\n    return {\n      selfClassName: 'js-class-name'\n    }\n  }\n\n  /**\n   * @param {Object} [options]\n   * @param {string} [options.selfClassName]\n   */\n  constructor(options = {}) {\n    const { selfClassName } = Object.assign(\n      ObserveScrollSingle._defOptions,\n      options\n    )\n\n    this._selfClassName = selfClassName\n\n    this._storeStateObject = {\n      windowWidth: () => {\n        this._setStatus()\n      },\n      windowHeight: () => {\n        this._setStatus()\n      },\n      windowOffsetY: (state) => {\n        this._update(state.windowOffsetY)\n      }\n    }\n  }\n\n  /**\n   * @return {Instance}\n   */\n  create() {\n    this._$el = document.getElementsByClassName(this._selfClassName)[0]\n    return this\n  }\n\n  /**\n   * @return {Instance}\n   */\n  destroy() {\n    this._$el = null\n    return this\n  }\n\n  /**\n   * @return {Instance}\n   */\n  on() {\n    inviewportObserver.add(this._$el, (isInviewport /* :boolean */) => {\n      if (isInviewport) {\n        this._on()\n      } else {\n        this._off()\n      }\n    })\n    return this\n  }\n\n  /**\n   * @return {Instance}\n   */\n  off() {\n    this._off()\n    inviewportObserver.remove(this._$el)\n    return this\n  }\n\n  _on() {\n    store.observe(this._storeStateObject)\n    this._setStatus()\n  }\n\n  _off() {\n    store.unobserve(this._storeStateObject)\n  }\n\n  _setStatus() {\n    const { top /* :number */, height /* :number */ } = rect(this._$el)\n    this._state.range = height + store.state.windowHeight\n    this._state.start = top - store.state.windowHeight\n  }\n\n  _update(offsetY) {\n    const { range, start } = this._state\n    const _progress /* :number [0,inf) */ = offsetY - start\n    const _progressRatio /* :number [0,1] */ = _progress / range\n    console.log(_progressRatio)\n  }\n}\n\nexport { ObserveScrollSingle as default }\n",
+    "static": true,
+    "longname": "/Users/higa_syuuji/github/syuji-higa/javascript-modules-v5/src/views/_observe-scroll-single.js",
+    "access": "public",
+    "description": null,
+    "lineNumber": 1
+  },
+  {
+    "__docId__": 241,
+    "kind": "class",
+    "name": "ObserveScrollSingle",
+    "memberof": "src/views/_observe-scroll-single.js",
+    "static": true,
+    "longname": "src/views/_observe-scroll-single.js~ObserveScrollSingle",
+    "access": "public",
+    "export": false,
+    "importPath": "javascript-modules-v5/src/views/_observe-scroll-single.js",
+    "importStyle": null,
+    "description": null,
+    "lineNumber": 9,
+    "undocument": true,
+    "interface": false,
+    "ignore": true
+  },
+  {
+    "__docId__": 242,
+    "kind": "member",
+    "name": "_selfClassName",
+    "memberof": "src/views/_observe-scroll-single.js~ObserveScrollSingle",
+    "static": false,
+    "longname": "src/views/_observe-scroll-single.js~ObserveScrollSingle#_selfClassName",
+    "access": "private",
+    "description": null,
+    "lineNumber": 10,
+    "undocument": true,
+    "type": {
+      "types": [
+        "*"
+      ]
+    }
+  },
+  {
+    "__docId__": 243,
+    "kind": "member",
+    "name": "_$el",
+    "memberof": "src/views/_observe-scroll-single.js~ObserveScrollSingle",
+    "static": false,
+    "longname": "src/views/_observe-scroll-single.js~ObserveScrollSingle#_$el",
+    "access": "private",
+    "description": null,
+    "lineNumber": 11,
+    "undocument": true,
+    "type": {
+      "types": [
+        "*"
+      ]
+    }
+  },
+  {
+    "__docId__": 244,
+    "kind": "member",
+    "name": "_$$item",
+    "memberof": "src/views/_observe-scroll-single.js~ObserveScrollSingle",
+    "static": false,
+    "longname": "src/views/_observe-scroll-single.js~ObserveScrollSingle#_$$item",
+    "access": "private",
+    "description": null,
+    "lineNumber": 12,
+    "undocument": true,
+    "type": {
+      "types": [
+        "*"
+      ]
+    }
+  },
+  {
+    "__docId__": 245,
+    "kind": "member",
+    "name": "_storeStateObject",
+    "memberof": "src/views/_observe-scroll-single.js~ObserveScrollSingle",
+    "static": false,
+    "longname": "src/views/_observe-scroll-single.js~ObserveScrollSingle#_storeStateObject",
+    "access": "private",
+    "description": null,
+    "lineNumber": 13,
+    "undocument": true,
+    "type": {
+      "types": [
+        "*"
+      ]
+    }
+  },
+  {
+    "__docId__": 246,
+    "kind": "member",
+    "name": "_state",
+    "memberof": "src/views/_observe-scroll-single.js~ObserveScrollSingle",
+    "static": false,
+    "longname": "src/views/_observe-scroll-single.js~ObserveScrollSingle#_state",
+    "access": "private",
+    "description": null,
+    "lineNumber": 14,
+    "undocument": true,
+    "type": {
+      "types": [
+        "*"
+      ]
+    }
+  },
+  {
+    "__docId__": 247,
+    "kind": "get",
+    "name": "_defOptions",
+    "memberof": "src/views/_observe-scroll-single.js~ObserveScrollSingle",
+    "generator": false,
+    "async": false,
+    "static": true,
+    "longname": "src/views/_observe-scroll-single.js~ObserveScrollSingle._defOptions",
+    "access": "private",
+    "description": null,
+    "lineNumber": 22,
+    "undocument": true,
+    "type": {
+      "types": [
+        "{\"selfClassName\": string}"
+      ]
+    }
+  },
+  {
+    "__docId__": 248,
+    "kind": "constructor",
+    "name": "constructor",
+    "memberof": "src/views/_observe-scroll-single.js~ObserveScrollSingle",
+    "generator": false,
+    "async": false,
+    "static": false,
+    "longname": "src/views/_observe-scroll-single.js~ObserveScrollSingle#constructor",
+    "access": "public",
+    "description": "",
+    "lineNumber": 32,
+    "params": [
+      {
+        "nullable": null,
+        "types": [
+          "Object"
+        ],
+        "spread": false,
+        "optional": true,
+        "name": "options",
+        "description": ""
+      },
+      {
+        "nullable": null,
+        "types": [
+          "string"
+        ],
+        "spread": false,
+        "optional": true,
+        "name": "options.selfClassName",
+        "description": ""
+      }
+    ]
+  },
+  {
+    "__docId__": 251,
+    "kind": "method",
+    "name": "create",
+    "memberof": "src/views/_observe-scroll-single.js~ObserveScrollSingle",
+    "generator": false,
+    "async": false,
+    "static": false,
+    "longname": "src/views/_observe-scroll-single.js~ObserveScrollSingle#create",
+    "access": "public",
+    "description": "",
+    "lineNumber": 56,
+    "return": {
+      "nullable": null,
+      "types": [
+        "Instance"
+      ],
+      "spread": false,
+      "description": ""
+    },
+    "params": []
+  },
+  {
+    "__docId__": 253,
+    "kind": "method",
+    "name": "destroy",
+    "memberof": "src/views/_observe-scroll-single.js~ObserveScrollSingle",
+    "generator": false,
+    "async": false,
+    "static": false,
+    "longname": "src/views/_observe-scroll-single.js~ObserveScrollSingle#destroy",
+    "access": "public",
+    "description": "",
+    "lineNumber": 64,
+    "return": {
+      "nullable": null,
+      "types": [
+        "Instance"
+      ],
+      "spread": false,
+      "description": ""
+    },
+    "params": []
+  },
+  {
+    "__docId__": 255,
+    "kind": "method",
+    "name": "on",
+    "memberof": "src/views/_observe-scroll-single.js~ObserveScrollSingle",
+    "generator": false,
+    "async": false,
+    "static": false,
+    "longname": "src/views/_observe-scroll-single.js~ObserveScrollSingle#on",
+    "access": "public",
+    "description": "",
+    "lineNumber": 72,
+    "return": {
+      "nullable": null,
+      "types": [
+        "Instance"
+      ],
+      "spread": false,
+      "description": ""
+    },
+    "params": []
+  },
+  {
+    "__docId__": 256,
+    "kind": "method",
+    "name": "off",
+    "memberof": "src/views/_observe-scroll-single.js~ObserveScrollSingle",
+    "generator": false,
+    "async": false,
+    "static": false,
+    "longname": "src/views/_observe-scroll-single.js~ObserveScrollSingle#off",
+    "access": "public",
+    "description": "",
+    "lineNumber": 86,
+    "return": {
+      "nullable": null,
+      "types": [
+        "Instance"
+      ],
+      "spread": false,
+      "description": ""
+    },
+    "params": []
+  },
+  {
+    "__docId__": 257,
+    "kind": "method",
+    "name": "_on",
+    "memberof": "src/views/_observe-scroll-single.js~ObserveScrollSingle",
+    "generator": false,
+    "async": false,
+    "static": false,
+    "longname": "src/views/_observe-scroll-single.js~ObserveScrollSingle#_on",
+    "access": "private",
+    "description": null,
+    "lineNumber": 92,
+    "undocument": true,
+    "params": [],
+    "return": null
+  },
+  {
+    "__docId__": 258,
+    "kind": "method",
+    "name": "_off",
+    "memberof": "src/views/_observe-scroll-single.js~ObserveScrollSingle",
+    "generator": false,
+    "async": false,
+    "static": false,
+    "longname": "src/views/_observe-scroll-single.js~ObserveScrollSingle#_off",
+    "access": "private",
+    "description": null,
+    "lineNumber": 97,
+    "undocument": true,
+    "params": [],
+    "return": null
+  },
+  {
+    "__docId__": 259,
+    "kind": "method",
+    "name": "_setStatus",
+    "memberof": "src/views/_observe-scroll-single.js~ObserveScrollSingle",
+    "generator": false,
+    "async": false,
+    "static": false,
+    "longname": "src/views/_observe-scroll-single.js~ObserveScrollSingle#_setStatus",
+    "access": "private",
+    "description": null,
+    "lineNumber": 101,
+    "undocument": true,
+    "params": [],
+    "return": null
+  },
+  {
+    "__docId__": 260,
+    "kind": "method",
+    "name": "_update",
+    "memberof": "src/views/_observe-scroll-single.js~ObserveScrollSingle",
+    "generator": false,
+    "async": false,
+    "static": false,
+    "longname": "src/views/_observe-scroll-single.js~ObserveScrollSingle#_update",
+    "access": "private",
+    "description": null,
+    "lineNumber": 107,
+    "undocument": true,
+    "params": [
+      {
+        "name": "offsetY",
+        "types": [
+          "*"
+        ]
+      }
+    ],
+    "return": null
+  },
+  {
+    "__docId__": 261,
     "kind": "file",
     "name": "src/views/client-flag-setter.js",
-    "content": "/**\n * depends on 'vanix' used in '../store'\n */\n\nimport { store } from '../store'\n\nclass ClientFlagSetter {\n  constructor() {\n    const { platform /* Object */ } = store.state\n\n    document.documentElement.classList.add(`is-${platform.type}`)\n  }\n}\n\nexport { ClientFlagSetter as default }\n",
+    "content": "/**\n * depends on 'vanix' used in 'store'\n */\n\nimport { store } from '../store'\n\nclass ClientFlagSetter {\n  constructor() {\n    const { platform /* Object */ } = store.state\n\n    document.documentElement.classList.add(`is-${platform.type}`)\n  }\n}\n\nexport { ClientFlagSetter as default }\n",
     "static": true,
     "longname": "/Users/higa_syuuji/github/syuji-higa/javascript-modules-v5/src/views/client-flag-setter.js",
     "access": "public",
@@ -5671,7 +7447,7 @@
     "lineNumber": 1
   },
   {
-    "__docId__": 191,
+    "__docId__": 262,
     "kind": "class",
     "name": "ClientFlagSetter",
     "memberof": "src/views/client-flag-setter.js",
@@ -5688,7 +7464,7 @@
     "ignore": true
   },
   {
-    "__docId__": 192,
+    "__docId__": 263,
     "kind": "constructor",
     "name": "constructor",
     "memberof": "src/views/client-flag-setter.js~ClientFlagSetter",
@@ -5702,10 +7478,10 @@
     "undocument": true
   },
   {
-    "__docId__": 193,
+    "__docId__": 264,
     "kind": "file",
     "name": "src/views/height-fitter.js",
-    "content": "/**\n * depends on 'vanix' used in '../store'\n */\n\nimport { store } from '../store'\n\nclass HeightFitter {\n  _$$el /* :HTMLCollection|NodeList */\n  _platformType /* :string */ = ''\n  _storeStateObject /* :Object */ = {}\n\n  /**\n   * @return {Object}\n   */\n  static get _defOpts() {\n    return {\n      selfClassName: 'js-height-fitter'\n    }\n  }\n\n  /**\n   * @param {Object} [opts]\n   * @param {string} [opts.selfClassName]\n   */\n  constructor(opts = {}) {\n    const { selfClassName } = Object.assign(HeightFitter._defOpts, opts)\n\n    this._$$el = document.getElementsByClassName(selfClassName)\n\n    this._platformType = store.state.platform.type\n\n    this._storeStateObject = {\n      setWindowWidthLastChangedHeight: () => {\n        this.update()\n      }\n    }\n  }\n\n  /**\n   * @return {Instance}\n   */\n  on() {\n    store.observe(this._storeStateObject)\n    return this\n  }\n\n  /**\n   * @return {Instance}\n   */\n  off() {\n    store.unobserve(this._storeStateObject)\n    return this\n  }\n\n  /**\n   * @return {Instance}\n   */\n  update() {\n    const _height /* :number int[0,inf) */ =\n      store.state.windowWidthLastChangedHeight\n\n    for (const $el /* :Element */ of Array.from(this._$$el)) {\n      if (this._platformType === $el.dataset.heightFitterIgnore) {\n        continue\n      }\n      $el.style.height = `${_height}px`\n    }\n\n    return this\n  }\n}\n\nexport { HeightFitter as default }\n",
+    "content": "/**\n * depends on 'vanix' used in 'store'\n */\n\nimport { store } from '../store'\n\nclass HeightFitter {\n  _$$el /* :HTMLCollection|NodeList */\n  _platformType /* :string */ = ''\n  _storeStateObject /* :Object */ = {}\n\n  /**\n   * @return {Object}\n   */\n  static get _defOptions() {\n    return {\n      selfClassName: 'js-height-fitter'\n    }\n  }\n\n  /**\n   * @param {Object} [options]\n   * @param {string} [options.selfClassName]\n   */\n  constructor(options = {}) {\n    const { selfClassName } = Object.assign(HeightFitter._defOptions, options)\n\n    this._$$el = document.getElementsByClassName(selfClassName)\n\n    this._platformType = store.state.platform.type\n\n    this._storeStateObject = {\n      windowWidthLastChangedHeight: () => {\n        this.update()\n      }\n    }\n  }\n\n  /**\n   * @return {Instance}\n   */\n  on() {\n    store.observe(this._storeStateObject)\n    return this\n  }\n\n  /**\n   * @return {Instance}\n   */\n  off() {\n    store.unobserve(this._storeStateObject)\n    return this\n  }\n\n  /**\n   * @return {Instance}\n   */\n  update() {\n    const _height /* :number int[0,inf) */ =\n      store.state.windowWidthLastChangedHeight\n\n    for (const $el /* :Element */ of Array.from(this._$$el)) {\n      if (this._platformType === $el.dataset.heightFitterIgnore) {\n        continue\n      }\n      $el.style.height = `${_height}px`\n    }\n\n    return this\n  }\n}\n\nexport { HeightFitter as default }\n",
     "static": true,
     "longname": "/Users/higa_syuuji/github/syuji-higa/javascript-modules-v5/src/views/height-fitter.js",
     "access": "public",
@@ -5713,7 +7489,7 @@
     "lineNumber": 1
   },
   {
-    "__docId__": 194,
+    "__docId__": 265,
     "kind": "class",
     "name": "HeightFitter",
     "memberof": "src/views/height-fitter.js",
@@ -5730,7 +7506,7 @@
     "ignore": true
   },
   {
-    "__docId__": 195,
+    "__docId__": 266,
     "kind": "member",
     "name": "_$$el",
     "memberof": "src/views/height-fitter.js~HeightFitter",
@@ -5747,7 +7523,7 @@
     }
   },
   {
-    "__docId__": 196,
+    "__docId__": 267,
     "kind": "member",
     "name": "_platformType",
     "memberof": "src/views/height-fitter.js~HeightFitter",
@@ -5764,7 +7540,7 @@
     }
   },
   {
-    "__docId__": 197,
+    "__docId__": 268,
     "kind": "member",
     "name": "_storeStateObject",
     "memberof": "src/views/height-fitter.js~HeightFitter",
@@ -5781,14 +7557,14 @@
     }
   },
   {
-    "__docId__": 198,
+    "__docId__": 269,
     "kind": "get",
-    "name": "_defOpts",
+    "name": "_defOptions",
     "memberof": "src/views/height-fitter.js~HeightFitter",
     "generator": false,
     "async": false,
     "static": true,
-    "longname": "src/views/height-fitter.js~HeightFitter._defOpts",
+    "longname": "src/views/height-fitter.js~HeightFitter._defOptions",
     "access": "private",
     "description": "",
     "lineNumber": 15,
@@ -5807,7 +7583,7 @@
     }
   },
   {
-    "__docId__": 199,
+    "__docId__": 270,
     "kind": "constructor",
     "name": "constructor",
     "memberof": "src/views/height-fitter.js~HeightFitter",
@@ -5826,7 +7602,7 @@
         ],
         "spread": false,
         "optional": true,
-        "name": "opts",
+        "name": "options",
         "description": ""
       },
       {
@@ -5836,13 +7612,13 @@
         ],
         "spread": false,
         "optional": true,
-        "name": "opts.selfClassName",
+        "name": "options.selfClassName",
         "description": ""
       }
     ]
   },
   {
-    "__docId__": 203,
+    "__docId__": 274,
     "kind": "method",
     "name": "on",
     "memberof": "src/views/height-fitter.js~HeightFitter",
@@ -5864,7 +7640,7 @@
     "params": []
   },
   {
-    "__docId__": 204,
+    "__docId__": 275,
     "kind": "method",
     "name": "off",
     "memberof": "src/views/height-fitter.js~HeightFitter",
@@ -5886,7 +7662,7 @@
     "params": []
   },
   {
-    "__docId__": 205,
+    "__docId__": 276,
     "kind": "method",
     "name": "update",
     "memberof": "src/views/height-fitter.js~HeightFitter",
@@ -5908,10 +7684,738 @@
     "params": []
   },
   {
-    "__docId__": 206,
+    "__docId__": 277,
+    "kind": "file",
+    "name": "src/views/ignitioner.js",
+    "content": "class Ignitioner {\n  _selfClassName /* :string */ = ''\n  _isIgnitedClassName /* :string */ = ''\n  _$$el /* :HTMLCollection|NodeList */\n  _observer /* :IntersectionObserver */\n  _targets /* :Set */ = new Set()\n\n  /**\n   * @return {Object}\n   */\n  static get _defOptions() {\n    return {\n      selfClassName: 'js-ignitioner',\n      isIgnitedClassName: 'is-ignited'\n    }\n  }\n\n  /**\n   * @param {Object} [options]\n   * @param {string} [options.selfClassName]\n   * @param {string} [options.isLoadedClassName]\n   */\n  constructor(options = {}) {\n    const { selfClassName, isIgnitedClassName } = Object.assign(\n      Ignitioner._defOptions,\n      options\n    )\n\n    this._selfClassName = selfClassName\n    this._isIgnitedClassName = isIgnitedClassName\n  }\n\n  /**\n   * @return {Instance}\n   */\n  create() {\n    this._$$el = document.getElementsByClassName(this._selfClassName)\n    this._observer = new IntersectionObserver(this._update.bind(this), {\n      rootMargin: '-10% 0% -10% 0%'\n    })\n    return this\n  }\n\n  /**\n   * @return {Instance}\n   */\n  destroy() {\n    this._$$el = null\n    this._observer = null\n    this._targets.clear()\n    return this\n  }\n\n  /**\n   * @return {Instance}\n   */\n  on() {\n    for (const $el /* :Element */ of Array.from(this._$$el)) {\n      this.add($el)\n    }\n    return this\n  }\n\n  /**\n   * @return {Instance}\n   */\n  off() {\n    this._targets.forEach(($el /* :Element */) => {\n      this.remove($el)\n    })\n    return this\n  }\n\n  /**\n   * @param {Element} $el\n   * @return {Instance}\n   */\n  add($el) {\n    this._observer.observe($el)\n    this._targets.add($el)\n    return this\n  }\n\n  /**\n   * @param {Element} $el\n   * @return {Instance}\n   */\n  remove($el) {\n    this._observer.unobserve($el)\n    this._targets.delete($el)\n    return this\n  }\n\n  /**\n   * @param {Array<IntersectionObserverEntry>} entries\n   */\n  _update(entries) {\n    for (const {\n      target /* :Element */,\n      isIntersecting /* :boolean */\n    } of entries) {\n      if (isIntersecting) {\n        target.classList.add(this._isIgnitedClassName)\n        this.remove(target)\n      }\n    }\n  }\n}\n\nexport { Ignitioner as default }\n",
+    "static": true,
+    "longname": "/Users/higa_syuuji/github/syuji-higa/javascript-modules-v5/src/views/ignitioner.js",
+    "access": "public",
+    "description": null,
+    "lineNumber": 1
+  },
+  {
+    "__docId__": 278,
+    "kind": "class",
+    "name": "Ignitioner",
+    "memberof": "src/views/ignitioner.js",
+    "static": true,
+    "longname": "src/views/ignitioner.js~Ignitioner",
+    "access": "public",
+    "export": false,
+    "importPath": "javascript-modules-v5/src/views/ignitioner.js",
+    "importStyle": null,
+    "description": null,
+    "lineNumber": 1,
+    "undocument": true,
+    "interface": false,
+    "ignore": true
+  },
+  {
+    "__docId__": 279,
+    "kind": "member",
+    "name": "_selfClassName",
+    "memberof": "src/views/ignitioner.js~Ignitioner",
+    "static": false,
+    "longname": "src/views/ignitioner.js~Ignitioner#_selfClassName",
+    "access": "private",
+    "description": null,
+    "lineNumber": 2,
+    "undocument": true,
+    "type": {
+      "types": [
+        "*"
+      ]
+    }
+  },
+  {
+    "__docId__": 280,
+    "kind": "member",
+    "name": "_isIgnitedClassName",
+    "memberof": "src/views/ignitioner.js~Ignitioner",
+    "static": false,
+    "longname": "src/views/ignitioner.js~Ignitioner#_isIgnitedClassName",
+    "access": "private",
+    "description": null,
+    "lineNumber": 3,
+    "undocument": true,
+    "type": {
+      "types": [
+        "*"
+      ]
+    }
+  },
+  {
+    "__docId__": 281,
+    "kind": "member",
+    "name": "_$$el",
+    "memberof": "src/views/ignitioner.js~Ignitioner",
+    "static": false,
+    "longname": "src/views/ignitioner.js~Ignitioner#_$$el",
+    "access": "private",
+    "description": null,
+    "lineNumber": 4,
+    "undocument": true,
+    "type": {
+      "types": [
+        "*"
+      ]
+    }
+  },
+  {
+    "__docId__": 282,
+    "kind": "member",
+    "name": "_observer",
+    "memberof": "src/views/ignitioner.js~Ignitioner",
+    "static": false,
+    "longname": "src/views/ignitioner.js~Ignitioner#_observer",
+    "access": "private",
+    "description": null,
+    "lineNumber": 5,
+    "undocument": true,
+    "type": {
+      "types": [
+        "*"
+      ]
+    }
+  },
+  {
+    "__docId__": 283,
+    "kind": "member",
+    "name": "_targets",
+    "memberof": "src/views/ignitioner.js~Ignitioner",
+    "static": false,
+    "longname": "src/views/ignitioner.js~Ignitioner#_targets",
+    "access": "private",
+    "description": null,
+    "lineNumber": 6,
+    "undocument": true,
+    "type": {
+      "types": [
+        "*"
+      ]
+    }
+  },
+  {
+    "__docId__": 284,
+    "kind": "get",
+    "name": "_defOptions",
+    "memberof": "src/views/ignitioner.js~Ignitioner",
+    "generator": false,
+    "async": false,
+    "static": true,
+    "longname": "src/views/ignitioner.js~Ignitioner._defOptions",
+    "access": "private",
+    "description": "",
+    "lineNumber": 11,
+    "return": {
+      "nullable": null,
+      "types": [
+        "Object"
+      ],
+      "spread": false,
+      "description": ""
+    },
+    "type": {
+      "types": [
+        "{\"selfClassName\": string, \"isIgnitedClassName\": string}"
+      ]
+    }
+  },
+  {
+    "__docId__": 285,
+    "kind": "constructor",
+    "name": "constructor",
+    "memberof": "src/views/ignitioner.js~Ignitioner",
+    "generator": false,
+    "async": false,
+    "static": false,
+    "longname": "src/views/ignitioner.js~Ignitioner#constructor",
+    "access": "public",
+    "description": "",
+    "lineNumber": 23,
+    "params": [
+      {
+        "nullable": null,
+        "types": [
+          "Object"
+        ],
+        "spread": false,
+        "optional": true,
+        "name": "options",
+        "description": ""
+      },
+      {
+        "nullable": null,
+        "types": [
+          "string"
+        ],
+        "spread": false,
+        "optional": true,
+        "name": "options.selfClassName",
+        "description": ""
+      },
+      {
+        "nullable": null,
+        "types": [
+          "string"
+        ],
+        "spread": false,
+        "optional": true,
+        "name": "options.isLoadedClassName",
+        "description": ""
+      }
+    ]
+  },
+  {
+    "__docId__": 288,
+    "kind": "method",
+    "name": "create",
+    "memberof": "src/views/ignitioner.js~Ignitioner",
+    "generator": false,
+    "async": false,
+    "static": false,
+    "longname": "src/views/ignitioner.js~Ignitioner#create",
+    "access": "public",
+    "description": "",
+    "lineNumber": 36,
+    "return": {
+      "nullable": null,
+      "types": [
+        "Instance"
+      ],
+      "spread": false,
+      "description": ""
+    },
+    "params": []
+  },
+  {
+    "__docId__": 291,
+    "kind": "method",
+    "name": "destroy",
+    "memberof": "src/views/ignitioner.js~Ignitioner",
+    "generator": false,
+    "async": false,
+    "static": false,
+    "longname": "src/views/ignitioner.js~Ignitioner#destroy",
+    "access": "public",
+    "description": "",
+    "lineNumber": 47,
+    "return": {
+      "nullable": null,
+      "types": [
+        "Instance"
+      ],
+      "spread": false,
+      "description": ""
+    },
+    "params": []
+  },
+  {
+    "__docId__": 294,
+    "kind": "method",
+    "name": "on",
+    "memberof": "src/views/ignitioner.js~Ignitioner",
+    "generator": false,
+    "async": false,
+    "static": false,
+    "longname": "src/views/ignitioner.js~Ignitioner#on",
+    "access": "public",
+    "description": "",
+    "lineNumber": 57,
+    "return": {
+      "nullable": null,
+      "types": [
+        "Instance"
+      ],
+      "spread": false,
+      "description": ""
+    },
+    "params": []
+  },
+  {
+    "__docId__": 295,
+    "kind": "method",
+    "name": "off",
+    "memberof": "src/views/ignitioner.js~Ignitioner",
+    "generator": false,
+    "async": false,
+    "static": false,
+    "longname": "src/views/ignitioner.js~Ignitioner#off",
+    "access": "public",
+    "description": "",
+    "lineNumber": 67,
+    "return": {
+      "nullable": null,
+      "types": [
+        "Instance"
+      ],
+      "spread": false,
+      "description": ""
+    },
+    "params": []
+  },
+  {
+    "__docId__": 296,
+    "kind": "method",
+    "name": "add",
+    "memberof": "src/views/ignitioner.js~Ignitioner",
+    "generator": false,
+    "async": false,
+    "static": false,
+    "longname": "src/views/ignitioner.js~Ignitioner#add",
+    "access": "public",
+    "description": "",
+    "lineNumber": 78,
+    "params": [
+      {
+        "nullable": null,
+        "types": [
+          "Element"
+        ],
+        "spread": false,
+        "optional": false,
+        "name": "$el",
+        "description": ""
+      }
+    ],
+    "return": {
+      "nullable": null,
+      "types": [
+        "Instance"
+      ],
+      "spread": false,
+      "description": ""
+    }
+  },
+  {
+    "__docId__": 297,
+    "kind": "method",
+    "name": "remove",
+    "memberof": "src/views/ignitioner.js~Ignitioner",
+    "generator": false,
+    "async": false,
+    "static": false,
+    "longname": "src/views/ignitioner.js~Ignitioner#remove",
+    "access": "public",
+    "description": "",
+    "lineNumber": 88,
+    "params": [
+      {
+        "nullable": null,
+        "types": [
+          "Element"
+        ],
+        "spread": false,
+        "optional": false,
+        "name": "$el",
+        "description": ""
+      }
+    ],
+    "return": {
+      "nullable": null,
+      "types": [
+        "Instance"
+      ],
+      "spread": false,
+      "description": ""
+    }
+  },
+  {
+    "__docId__": 298,
+    "kind": "method",
+    "name": "_update",
+    "memberof": "src/views/ignitioner.js~Ignitioner",
+    "generator": false,
+    "async": false,
+    "static": false,
+    "longname": "src/views/ignitioner.js~Ignitioner#_update",
+    "access": "private",
+    "description": "",
+    "lineNumber": 97,
+    "params": [
+      {
+        "nullable": null,
+        "types": [
+          "Array<IntersectionObserverEntry>"
+        ],
+        "spread": false,
+        "optional": false,
+        "name": "entries",
+        "description": ""
+      }
+    ],
+    "return": null
+  },
+  {
+    "__docId__": 299,
+    "kind": "file",
+    "name": "src/views/inviewporter.js",
+    "content": "class Inviewporter {\n  _selfClassName /* :string */ = ''\n  _isInviewportClassName /* :string */ = ''\n  _$$el /* :HTMLCollection|NodeList */\n  _observer /* :IntersectionObserver */\n  _targets /* :Set */ = new Set()\n\n  /**\n   * @return {Object}\n   */\n  static get _defOptions() {\n    return {\n      selfClassName: 'js-inviewporter',\n      isInviewportClassName: 'is-inviewport'\n    }\n  }\n\n  /**\n   * @param {Object} [options]\n   * @param {string} [options.selfClassName]\n   * @param {string} [options.isLoadedClassName]\n   */\n  constructor(options = {}) {\n    const { selfClassName, isInviewportClassName } = Object.assign(\n      Inviewporter._defOptions,\n      options\n    )\n\n    this._selfClassName = selfClassName\n    this._isInviewportClassName = isInviewportClassName\n  }\n\n  /**\n   * @return {Instance}\n   */\n  create() {\n    this._$$el = document.getElementsByClassName(this._selfClassName)\n    this._observer = new IntersectionObserver(this._upate.bind(this))\n    return this\n  }\n\n  /**\n   * @return {Instance}\n   */\n  destroy() {\n    this._$$el = null\n    this._observer = null\n    this._targets.clear()\n    return this\n  }\n\n  /**\n   * @return {Instance}\n   */\n  on() {\n    for (const $el /* :Element */ of Array.from(this._$$el)) {\n      this.add($el)\n    }\n    return this\n  }\n\n  /**\n   * @return {Instance}\n   */\n  off() {\n    this._targets.forEach(($el /* :Element */) => {\n      this.remove($el)\n    })\n    return this\n  }\n\n  /**\n   * @param {Element} $el\n   * @return {Instance}\n   */\n  add($el) {\n    this._observer.observe($el)\n    this._targets.add($el)\n    return this\n  }\n\n  /**\n   * @param {Element} $el\n   * @return {Instance}\n   */\n  remove($el) {\n    this._observer.unobserve($el)\n    this._targets.delete($el)\n    return this\n  }\n\n  /**\n   * @param {Array<IntersectionObserverEntry>} entries\n   */\n  _upate(entries) {\n    for (const {\n      target /* :Element */,\n      isIntersecting /* :boolean */\n    } of entries) {\n      if (isIntersecting) {\n        target.classList.add(this._isInviewportClassName)\n      } else {\n        target.classList.remove(this._isInviewportClassName)\n      }\n    }\n  }\n}\n\nexport { Inviewporter as default }\n",
+    "static": true,
+    "longname": "/Users/higa_syuuji/github/syuji-higa/javascript-modules-v5/src/views/inviewporter.js",
+    "access": "public",
+    "description": null,
+    "lineNumber": 1
+  },
+  {
+    "__docId__": 300,
+    "kind": "class",
+    "name": "Inviewporter",
+    "memberof": "src/views/inviewporter.js",
+    "static": true,
+    "longname": "src/views/inviewporter.js~Inviewporter",
+    "access": "public",
+    "export": false,
+    "importPath": "javascript-modules-v5/src/views/inviewporter.js",
+    "importStyle": null,
+    "description": null,
+    "lineNumber": 1,
+    "undocument": true,
+    "interface": false,
+    "ignore": true
+  },
+  {
+    "__docId__": 301,
+    "kind": "member",
+    "name": "_selfClassName",
+    "memberof": "src/views/inviewporter.js~Inviewporter",
+    "static": false,
+    "longname": "src/views/inviewporter.js~Inviewporter#_selfClassName",
+    "access": "private",
+    "description": null,
+    "lineNumber": 2,
+    "undocument": true,
+    "type": {
+      "types": [
+        "*"
+      ]
+    }
+  },
+  {
+    "__docId__": 302,
+    "kind": "member",
+    "name": "_isInviewportClassName",
+    "memberof": "src/views/inviewporter.js~Inviewporter",
+    "static": false,
+    "longname": "src/views/inviewporter.js~Inviewporter#_isInviewportClassName",
+    "access": "private",
+    "description": null,
+    "lineNumber": 3,
+    "undocument": true,
+    "type": {
+      "types": [
+        "*"
+      ]
+    }
+  },
+  {
+    "__docId__": 303,
+    "kind": "member",
+    "name": "_$$el",
+    "memberof": "src/views/inviewporter.js~Inviewporter",
+    "static": false,
+    "longname": "src/views/inviewporter.js~Inviewporter#_$$el",
+    "access": "private",
+    "description": null,
+    "lineNumber": 4,
+    "undocument": true,
+    "type": {
+      "types": [
+        "*"
+      ]
+    }
+  },
+  {
+    "__docId__": 304,
+    "kind": "member",
+    "name": "_observer",
+    "memberof": "src/views/inviewporter.js~Inviewporter",
+    "static": false,
+    "longname": "src/views/inviewporter.js~Inviewporter#_observer",
+    "access": "private",
+    "description": null,
+    "lineNumber": 5,
+    "undocument": true,
+    "type": {
+      "types": [
+        "*"
+      ]
+    }
+  },
+  {
+    "__docId__": 305,
+    "kind": "member",
+    "name": "_targets",
+    "memberof": "src/views/inviewporter.js~Inviewporter",
+    "static": false,
+    "longname": "src/views/inviewporter.js~Inviewporter#_targets",
+    "access": "private",
+    "description": null,
+    "lineNumber": 6,
+    "undocument": true,
+    "type": {
+      "types": [
+        "*"
+      ]
+    }
+  },
+  {
+    "__docId__": 306,
+    "kind": "get",
+    "name": "_defOptions",
+    "memberof": "src/views/inviewporter.js~Inviewporter",
+    "generator": false,
+    "async": false,
+    "static": true,
+    "longname": "src/views/inviewporter.js~Inviewporter._defOptions",
+    "access": "private",
+    "description": "",
+    "lineNumber": 11,
+    "return": {
+      "nullable": null,
+      "types": [
+        "Object"
+      ],
+      "spread": false,
+      "description": ""
+    },
+    "type": {
+      "types": [
+        "{\"selfClassName\": string, \"isInviewportClassName\": string}"
+      ]
+    }
+  },
+  {
+    "__docId__": 307,
+    "kind": "constructor",
+    "name": "constructor",
+    "memberof": "src/views/inviewporter.js~Inviewporter",
+    "generator": false,
+    "async": false,
+    "static": false,
+    "longname": "src/views/inviewporter.js~Inviewporter#constructor",
+    "access": "public",
+    "description": "",
+    "lineNumber": 23,
+    "params": [
+      {
+        "nullable": null,
+        "types": [
+          "Object"
+        ],
+        "spread": false,
+        "optional": true,
+        "name": "options",
+        "description": ""
+      },
+      {
+        "nullable": null,
+        "types": [
+          "string"
+        ],
+        "spread": false,
+        "optional": true,
+        "name": "options.selfClassName",
+        "description": ""
+      },
+      {
+        "nullable": null,
+        "types": [
+          "string"
+        ],
+        "spread": false,
+        "optional": true,
+        "name": "options.isLoadedClassName",
+        "description": ""
+      }
+    ]
+  },
+  {
+    "__docId__": 310,
+    "kind": "method",
+    "name": "create",
+    "memberof": "src/views/inviewporter.js~Inviewporter",
+    "generator": false,
+    "async": false,
+    "static": false,
+    "longname": "src/views/inviewporter.js~Inviewporter#create",
+    "access": "public",
+    "description": "",
+    "lineNumber": 36,
+    "return": {
+      "nullable": null,
+      "types": [
+        "Instance"
+      ],
+      "spread": false,
+      "description": ""
+    },
+    "params": []
+  },
+  {
+    "__docId__": 313,
+    "kind": "method",
+    "name": "destroy",
+    "memberof": "src/views/inviewporter.js~Inviewporter",
+    "generator": false,
+    "async": false,
+    "static": false,
+    "longname": "src/views/inviewporter.js~Inviewporter#destroy",
+    "access": "public",
+    "description": "",
+    "lineNumber": 45,
+    "return": {
+      "nullable": null,
+      "types": [
+        "Instance"
+      ],
+      "spread": false,
+      "description": ""
+    },
+    "params": []
+  },
+  {
+    "__docId__": 316,
+    "kind": "method",
+    "name": "on",
+    "memberof": "src/views/inviewporter.js~Inviewporter",
+    "generator": false,
+    "async": false,
+    "static": false,
+    "longname": "src/views/inviewporter.js~Inviewporter#on",
+    "access": "public",
+    "description": "",
+    "lineNumber": 55,
+    "return": {
+      "nullable": null,
+      "types": [
+        "Instance"
+      ],
+      "spread": false,
+      "description": ""
+    },
+    "params": []
+  },
+  {
+    "__docId__": 317,
+    "kind": "method",
+    "name": "off",
+    "memberof": "src/views/inviewporter.js~Inviewporter",
+    "generator": false,
+    "async": false,
+    "static": false,
+    "longname": "src/views/inviewporter.js~Inviewporter#off",
+    "access": "public",
+    "description": "",
+    "lineNumber": 65,
+    "return": {
+      "nullable": null,
+      "types": [
+        "Instance"
+      ],
+      "spread": false,
+      "description": ""
+    },
+    "params": []
+  },
+  {
+    "__docId__": 318,
+    "kind": "method",
+    "name": "add",
+    "memberof": "src/views/inviewporter.js~Inviewporter",
+    "generator": false,
+    "async": false,
+    "static": false,
+    "longname": "src/views/inviewporter.js~Inviewporter#add",
+    "access": "public",
+    "description": "",
+    "lineNumber": 76,
+    "params": [
+      {
+        "nullable": null,
+        "types": [
+          "Element"
+        ],
+        "spread": false,
+        "optional": false,
+        "name": "$el",
+        "description": ""
+      }
+    ],
+    "return": {
+      "nullable": null,
+      "types": [
+        "Instance"
+      ],
+      "spread": false,
+      "description": ""
+    }
+  },
+  {
+    "__docId__": 319,
+    "kind": "method",
+    "name": "remove",
+    "memberof": "src/views/inviewporter.js~Inviewporter",
+    "generator": false,
+    "async": false,
+    "static": false,
+    "longname": "src/views/inviewporter.js~Inviewporter#remove",
+    "access": "public",
+    "description": "",
+    "lineNumber": 86,
+    "params": [
+      {
+        "nullable": null,
+        "types": [
+          "Element"
+        ],
+        "spread": false,
+        "optional": false,
+        "name": "$el",
+        "description": ""
+      }
+    ],
+    "return": {
+      "nullable": null,
+      "types": [
+        "Instance"
+      ],
+      "spread": false,
+      "description": ""
+    }
+  },
+  {
+    "__docId__": 320,
+    "kind": "method",
+    "name": "_upate",
+    "memberof": "src/views/inviewporter.js~Inviewporter",
+    "generator": false,
+    "async": false,
+    "static": false,
+    "longname": "src/views/inviewporter.js~Inviewporter#_upate",
+    "access": "private",
+    "description": "",
+    "lineNumber": 95,
+    "params": [
+      {
+        "nullable": null,
+        "types": [
+          "Array<IntersectionObserverEntry>"
+        ],
+        "spread": false,
+        "optional": false,
+        "name": "entries",
+        "description": ""
+      }
+    ],
+    "return": null
+  },
+  {
+    "__docId__": 321,
     "kind": "file",
     "name": "src/views/lazyloader.js",
-    "content": "import { loadImage } from '../utils/load'\nimport { getBackgroundImages } from '../utils/background-image'\n\nclass Lazyloader {\n  _selfClassName /* :string */ = ''\n  _isLoadedClassName /* :string */ = ''\n  _isImageSettedClassName /* :string */ = ''\n  _$$el /* :HTMLCollection|NodeList */\n  _observer /* :IntersectionObserver */\n  _targets /* :Set */ = new Set()\n\n  /**\n   * @return {Object}\n   */\n  static get _defOpts() {\n    return {\n      selfClassName: 'js-lazyloader',\n      isLoadedClassName: 'is-lazyloaded',\n      isImageSettedClassName: 'is-image-setted'\n    }\n  }\n\n  /**\n   * @param {Object} [opts]\n   * @param {string} [opts.selfClassName]\n   * @param {string} [opts.isLoadedClassName]\n   * @param {string} [opts.isImageSettedClassName]\n   */\n  constructor(opts = {}) {\n    const {\n      selfClassName,\n      isLoadedClassName,\n      isImageSettedClassName\n    } = Object.assign(Lazyloader._defOpts, opts)\n\n    this._selfClassName = selfClassName\n    this._isLoadedClassName = isLoadedClassName\n    this._isImageSettedClassName = isImageSettedClassName\n  }\n\n  /**\n   * @return {Instance}\n   */\n  create() {\n    this._$$el = document.getElementsByClassName(this._selfClassName)\n    this._observer = new IntersectionObserver(this._inviewport.bind(this), {\n      rootMargin: '50% 50% 50% 50%'\n    })\n    return this\n  }\n\n  /**\n   * @return {Instance}\n   */\n  destroy() {\n    this._$$el = null\n    this._observer = null\n    this._targets.clear()\n    return this\n  }\n\n  /**\n   * @return {Instance}\n   */\n  on() {\n    for (const $el /* :Element */ of Array.from(this._$$el)) {\n      this.add($el)\n    }\n    return this\n  }\n\n  /**\n   * @return {Instance}\n   */\n  off() {\n    this._targets.forEach(($el /* :Element */) => {\n      this.remove($el)\n    })\n    return this\n  }\n\n  /**\n   * @return {Instance}\n   */\n  add($el) {\n    this._observer.observe($el)\n    this._targets.add($el)\n    return this\n  }\n\n  /**\n   * @return {Instance}\n   */\n  remove($el) {\n    this._observer.unobserve($el)\n    this._targets.delete($el)\n    return this\n  }\n\n  /**\n   * @param {Array<IntersectionObserverEntry>} entries\n   * @return {Promise}\n   */\n  async _inviewport(entries) {\n    const loadList = []\n\n    for (const { target, isIntersecting } of entries) {\n      if (isIntersecting) {\n        target.classList.add(this._isImageSettedClassName)\n        const _srcList /* :string[] */ = this._setSrcList(target)\n        this.remove(target)\n\n        loadList.push(() => {\n          return (async () => {\n            await Promise.all(_srcList.map((src) => loadImage(src)))\n            target.classList.add(this._isLoadedClassName)\n          })()\n        })\n      }\n    }\n\n    await Promise.all(loadList.map((load /* :function */) => load()))\n  }\n\n  /**\n   * @param {Element} $el\n   */\n  _setSrcList($el) {\n    const _src /* :string */ = $el.dataset.src\n\n    // img\n    if ($el.src) {\n      $el.src = _src\n      return [_src]\n    }\n    // source\n    else if ($el.srcset) {\n      $el.srcset = _src\n      return [_src]\n    }\n\n    // background-image\n    const _bgImages /* string[] */ = getBackgroundImages($el)\n\n    if (0 >= _bgImages.length) {\n      console.warn(\n        '\"data-src\" has not been set or Not find background-image, for lazyloader.'\n      )\n    }\n\n    return _bgImages\n  }\n}\n\nexport { Lazyloader as default }\n",
+    "content": "import { loadImage } from '../utils/load'\nimport { getBackgroundImages } from '../utils/background-image'\n\nclass Lazyloader {\n  _selfClassName /* :string */ = ''\n  _isLoadedClassName /* :string */ = ''\n  _isImageSettedClassName /* :string */ = ''\n  _$$el /* :HTMLCollection|NodeList */\n  _observer /* :IntersectionObserver */\n  _targets /* :Set */ = new Set()\n\n  /**\n   * @return {Object}\n   */\n  static get _defOptions() {\n    return {\n      selfClassName: 'js-lazyloader',\n      isLoadedClassName: 'is-lazyloaded',\n      isImageSettedClassName: 'is-image-setted'\n    }\n  }\n\n  /**\n   * @param {Object} [options]\n   * @param {string} [options.selfClassName]\n   * @param {string} [options.isLoadedClassName]\n   * @param {string} [options.isImageSettedClassName]\n   */\n  constructor(options = {}) {\n    const {\n      selfClassName,\n      isLoadedClassName,\n      isImageSettedClassName\n    } = Object.assign(Lazyloader._defOptions, options)\n\n    this._selfClassName = selfClassName\n    this._isLoadedClassName = isLoadedClassName\n    this._isImageSettedClassName = isImageSettedClassName\n  }\n\n  /**\n   * @return {Instance}\n   */\n  create() {\n    this._$$el = document.getElementsByClassName(this._selfClassName)\n    this._observer = new IntersectionObserver(this._update.bind(this), {\n      rootMargin: '-10% 0% -10% 0%'\n    })\n    return this\n  }\n\n  /**\n   * @return {Instance}\n   */\n  destroy() {\n    this._$$el = null\n    this._observer = null\n    this._targets.clear()\n    return this\n  }\n\n  /**\n   * @return {Instance}\n   */\n  on() {\n    for (const $el /* :Element */ of Array.from(this._$$el)) {\n      this.add($el)\n    }\n    return this\n  }\n\n  /**\n   * @return {Instance}\n   */\n  off() {\n    this._targets.forEach(($el /* :Element */) => {\n      this.remove($el)\n    })\n    return this\n  }\n\n  /**\n   * @param {Element} $el\n   * @return {Instance}\n   */\n  add($el) {\n    this._observer.observe($el)\n    this._targets.add($el)\n    return this\n  }\n\n  /**\n   * @param {Element} $el\n   * @return {Instance}\n   */\n  remove($el) {\n    this._observer.unobserve($el)\n    this._targets.delete($el)\n    return this\n  }\n\n  /**\n   * @param {Array<IntersectionObserverEntry>} entries\n   * @return {Promise}\n   */\n  async _update(entries) {\n    const loadList /* :function[] */ = []\n\n    for (const {\n      target /* :Element */,\n      isIntersecting /* :boolean */\n    } of entries) {\n      if (isIntersecting) {\n        target.classList.add(this._isImageSettedClassName)\n        const _srcList /* :string[] */ = this._getSrcList(target)\n        this.remove(target)\n\n        loadList.push(() => {\n          return (async () => {\n            await Promise.all(_srcList.map((src) => loadImage(src)))\n            target.classList.add(this._isLoadedClassName)\n          })()\n        })\n      }\n    }\n\n    await Promise.all(loadList.map((load /* :function */) => load()))\n  }\n\n  /**\n   * @param {Element} $el\n   * @return {string[]}\n   */\n  _getSrcList($el) {\n    // img\n    if ($el.src) {\n      const _src /* :string */ = $el.dataset.src\n      $el.src = _src\n      return [_src]\n    }\n    // source\n    else if ($el.tagName.toLowerCase() === 'picture') {\n      const _sources = []\n      for (const $child /* :Element */ of Array.from($el.children)) {\n        const _tagName /* :string */ = $child.tagName.toLowerCase()\n        let _src /* :string */ = ''\n        switch (_tagName) {\n          case 'source': {\n            _src = $child.dataset.src\n            $child.srcset = _src\n            break\n          }\n          case 'img': {\n            _src = $child.dataset.src\n            $child.src = _src\n            break\n          }\n          default: {\n            break\n          }\n        }\n        _sources.push(_src)\n      }\n      return _sources\n    }\n\n    // background-image\n    const _bgImages /* string[] */ = getBackgroundImages($el)\n\n    if (_bgImages.length) {\n      return _bgImages\n    }\n\n    return []\n  }\n}\n\nexport { Lazyloader as default }\n",
     "static": true,
     "longname": "/Users/higa_syuuji/github/syuji-higa/javascript-modules-v5/src/views/lazyloader.js",
     "access": "public",
@@ -5919,7 +8423,7 @@
     "lineNumber": 1
   },
   {
-    "__docId__": 207,
+    "__docId__": 322,
     "kind": "class",
     "name": "Lazyloader",
     "memberof": "src/views/lazyloader.js",
@@ -5936,7 +8440,7 @@
     "ignore": true
   },
   {
-    "__docId__": 208,
+    "__docId__": 323,
     "kind": "member",
     "name": "_selfClassName",
     "memberof": "src/views/lazyloader.js~Lazyloader",
@@ -5953,7 +8457,7 @@
     }
   },
   {
-    "__docId__": 209,
+    "__docId__": 324,
     "kind": "member",
     "name": "_isLoadedClassName",
     "memberof": "src/views/lazyloader.js~Lazyloader",
@@ -5970,7 +8474,7 @@
     }
   },
   {
-    "__docId__": 210,
+    "__docId__": 325,
     "kind": "member",
     "name": "_isImageSettedClassName",
     "memberof": "src/views/lazyloader.js~Lazyloader",
@@ -5987,7 +8491,7 @@
     }
   },
   {
-    "__docId__": 211,
+    "__docId__": 326,
     "kind": "member",
     "name": "_$$el",
     "memberof": "src/views/lazyloader.js~Lazyloader",
@@ -6004,7 +8508,7 @@
     }
   },
   {
-    "__docId__": 212,
+    "__docId__": 327,
     "kind": "member",
     "name": "_observer",
     "memberof": "src/views/lazyloader.js~Lazyloader",
@@ -6021,7 +8525,7 @@
     }
   },
   {
-    "__docId__": 213,
+    "__docId__": 328,
     "kind": "member",
     "name": "_targets",
     "memberof": "src/views/lazyloader.js~Lazyloader",
@@ -6038,14 +8542,14 @@
     }
   },
   {
-    "__docId__": 214,
+    "__docId__": 329,
     "kind": "get",
-    "name": "_defOpts",
+    "name": "_defOptions",
     "memberof": "src/views/lazyloader.js~Lazyloader",
     "generator": false,
     "async": false,
     "static": true,
-    "longname": "src/views/lazyloader.js~Lazyloader._defOpts",
+    "longname": "src/views/lazyloader.js~Lazyloader._defOptions",
     "access": "private",
     "description": "",
     "lineNumber": 15,
@@ -6064,7 +8568,7 @@
     }
   },
   {
-    "__docId__": 215,
+    "__docId__": 330,
     "kind": "constructor",
     "name": "constructor",
     "memberof": "src/views/lazyloader.js~Lazyloader",
@@ -6083,7 +8587,7 @@
         ],
         "spread": false,
         "optional": true,
-        "name": "opts",
+        "name": "options",
         "description": ""
       },
       {
@@ -6093,7 +8597,7 @@
         ],
         "spread": false,
         "optional": true,
-        "name": "opts.selfClassName",
+        "name": "options.selfClassName",
         "description": ""
       },
       {
@@ -6103,7 +8607,7 @@
         ],
         "spread": false,
         "optional": true,
-        "name": "opts.isLoadedClassName",
+        "name": "options.isLoadedClassName",
         "description": ""
       },
       {
@@ -6113,13 +8617,13 @@
         ],
         "spread": false,
         "optional": true,
-        "name": "opts.isImageSettedClassName",
+        "name": "options.isImageSettedClassName",
         "description": ""
       }
     ]
   },
   {
-    "__docId__": 219,
+    "__docId__": 334,
     "kind": "method",
     "name": "create",
     "memberof": "src/views/lazyloader.js~Lazyloader",
@@ -6141,7 +8645,7 @@
     "params": []
   },
   {
-    "__docId__": 222,
+    "__docId__": 337,
     "kind": "method",
     "name": "destroy",
     "memberof": "src/views/lazyloader.js~Lazyloader",
@@ -6163,7 +8667,7 @@
     "params": []
   },
   {
-    "__docId__": 225,
+    "__docId__": 340,
     "kind": "method",
     "name": "on",
     "memberof": "src/views/lazyloader.js~Lazyloader",
@@ -6185,7 +8689,7 @@
     "params": []
   },
   {
-    "__docId__": 226,
+    "__docId__": 341,
     "kind": "method",
     "name": "off",
     "memberof": "src/views/lazyloader.js~Lazyloader",
@@ -6207,7 +8711,7 @@
     "params": []
   },
   {
-    "__docId__": 227,
+    "__docId__": 342,
     "kind": "method",
     "name": "add",
     "memberof": "src/views/lazyloader.js~Lazyloader",
@@ -6217,7 +8721,19 @@
     "longname": "src/views/lazyloader.js~Lazyloader#add",
     "access": "public",
     "description": "",
-    "lineNumber": 85,
+    "lineNumber": 86,
+    "params": [
+      {
+        "nullable": null,
+        "types": [
+          "Element"
+        ],
+        "spread": false,
+        "optional": false,
+        "name": "$el",
+        "description": ""
+      }
+    ],
     "return": {
       "nullable": null,
       "types": [
@@ -6225,18 +8741,10 @@
       ],
       "spread": false,
       "description": ""
-    },
-    "params": [
-      {
-        "name": "$el",
-        "types": [
-          "*"
-        ]
-      }
-    ]
+    }
   },
   {
-    "__docId__": 228,
+    "__docId__": 343,
     "kind": "method",
     "name": "remove",
     "memberof": "src/views/lazyloader.js~Lazyloader",
@@ -6246,7 +8754,19 @@
     "longname": "src/views/lazyloader.js~Lazyloader#remove",
     "access": "public",
     "description": "",
-    "lineNumber": 94,
+    "lineNumber": 96,
+    "params": [
+      {
+        "nullable": null,
+        "types": [
+          "Element"
+        ],
+        "spread": false,
+        "optional": false,
+        "name": "$el",
+        "description": ""
+      }
+    ],
     "return": {
       "nullable": null,
       "types": [
@@ -6254,28 +8774,20 @@
       ],
       "spread": false,
       "description": ""
-    },
-    "params": [
-      {
-        "name": "$el",
-        "types": [
-          "*"
-        ]
-      }
-    ]
+    }
   },
   {
-    "__docId__": 229,
+    "__docId__": 344,
     "kind": "method",
-    "name": "_inviewport",
+    "name": "_update",
     "memberof": "src/views/lazyloader.js~Lazyloader",
     "generator": false,
     "async": true,
     "static": false,
-    "longname": "src/views/lazyloader.js~Lazyloader#_inviewport",
+    "longname": "src/views/lazyloader.js~Lazyloader#_update",
     "access": "private",
     "description": "",
-    "lineNumber": 104,
+    "lineNumber": 106,
     "params": [
       {
         "nullable": null,
@@ -6298,17 +8810,17 @@
     }
   },
   {
-    "__docId__": 230,
+    "__docId__": 345,
     "kind": "method",
-    "name": "_setSrcList",
+    "name": "_getSrcList",
     "memberof": "src/views/lazyloader.js~Lazyloader",
     "generator": false,
     "async": false,
     "static": false,
-    "longname": "src/views/lazyloader.js~Lazyloader#_setSrcList",
+    "longname": "src/views/lazyloader.js~Lazyloader#_getSrcList",
     "access": "private",
     "description": "",
-    "lineNumber": 128,
+    "lineNumber": 134,
     "params": [
       {
         "nullable": null,
@@ -6322,10 +8834,222 @@
       }
     ],
     "return": {
+      "nullable": null,
+      "types": [
+        "string[]"
+      ],
+      "spread": false,
+      "description": ""
+    }
+  },
+  {
+    "__docId__": 346,
+    "kind": "file",
+    "name": "src/views/page-loader.js",
+    "content": "/**\n * depends on 'vanix' used in 'store'\n */\n\nimport { imagePreloader } from '../modules'\n\nclass PageLoader {\n  _isWindowLoaded /* :boolean */ = false\n  _isImagesPreloaded /* :boolean */ = false\n  _isPageLoadedClassName /* :string */ = ''\n\n  static get _defOptions() {\n    return {\n      isPageLoadedClassName: 'is-page-loaded'\n    }\n  }\n\n  /**\n   * @param {Object} [options]\n   * @param {string} [options.isPageLoadedClassName]\n   */\n  constructor(options = {}) {\n    const { isPageLoadedClassName } = Object.assign(\n      PageLoader._defOptions,\n      options\n    )\n\n    this._isPageLoadedClassName = isPageLoadedClassName\n\n    window.addEventListener('load', this._onWindowLoad.bind(this), {\n      once: true\n    })\n  }\n\n  /**\n   * @return {Instance}\n   */\n  start() {\n    this._preloadImages()\n    return this\n  }\n\n  _onWindowLoad() {\n    this._isWindowLoaded = true\n    this._mightAllLoaded()\n  }\n\n  /**\n   * @return {Promise}\n   */\n  async _preloadImages() {\n    await imagePreloader.add(document.body)\n    await imagePreloader.load(document.body)\n    imagePreloader.remove(document.body)\n    this._isImagesPreloaded = true\n    this._mightAllLoaded()\n  }\n\n  _mightAllLoaded() {\n    const _isAllLoaded /* :boolean */ =\n      this._isWindowLoaded && this._isImagesPreloaded\n    if (!_isAllLoaded) {\n      return\n    }\n    document.documentElement.classList.add(this._isPageLoadedClassName)\n    document.dispatchEvent(new CustomEvent('pageLoaded'))\n  }\n}\n\nexport { PageLoader as default }\n",
+    "static": true,
+    "longname": "/Users/higa_syuuji/github/syuji-higa/javascript-modules-v5/src/views/page-loader.js",
+    "access": "public",
+    "description": null,
+    "lineNumber": 1
+  },
+  {
+    "__docId__": 347,
+    "kind": "class",
+    "name": "PageLoader",
+    "memberof": "src/views/page-loader.js",
+    "static": true,
+    "longname": "src/views/page-loader.js~PageLoader",
+    "access": "public",
+    "export": false,
+    "importPath": "javascript-modules-v5/src/views/page-loader.js",
+    "importStyle": null,
+    "description": null,
+    "lineNumber": 7,
+    "undocument": true,
+    "interface": false,
+    "ignore": true
+  },
+  {
+    "__docId__": 348,
+    "kind": "member",
+    "name": "_isWindowLoaded",
+    "memberof": "src/views/page-loader.js~PageLoader",
+    "static": false,
+    "longname": "src/views/page-loader.js~PageLoader#_isWindowLoaded",
+    "access": "private",
+    "description": null,
+    "lineNumber": 8,
+    "undocument": true,
+    "type": {
       "types": [
         "*"
       ]
     }
+  },
+  {
+    "__docId__": 349,
+    "kind": "member",
+    "name": "_isImagesPreloaded",
+    "memberof": "src/views/page-loader.js~PageLoader",
+    "static": false,
+    "longname": "src/views/page-loader.js~PageLoader#_isImagesPreloaded",
+    "access": "private",
+    "description": null,
+    "lineNumber": 9,
+    "undocument": true,
+    "type": {
+      "types": [
+        "*"
+      ]
+    }
+  },
+  {
+    "__docId__": 350,
+    "kind": "member",
+    "name": "_isPageLoadedClassName",
+    "memberof": "src/views/page-loader.js~PageLoader",
+    "static": false,
+    "longname": "src/views/page-loader.js~PageLoader#_isPageLoadedClassName",
+    "access": "private",
+    "description": null,
+    "lineNumber": 10,
+    "undocument": true,
+    "type": {
+      "types": [
+        "*"
+      ]
+    }
+  },
+  {
+    "__docId__": 351,
+    "kind": "get",
+    "name": "_defOptions",
+    "memberof": "src/views/page-loader.js~PageLoader",
+    "generator": false,
+    "async": false,
+    "static": true,
+    "longname": "src/views/page-loader.js~PageLoader._defOptions",
+    "access": "private",
+    "description": null,
+    "lineNumber": 12,
+    "undocument": true,
+    "type": {
+      "types": [
+        "{\"isPageLoadedClassName\": string}"
+      ]
+    }
+  },
+  {
+    "__docId__": 352,
+    "kind": "constructor",
+    "name": "constructor",
+    "memberof": "src/views/page-loader.js~PageLoader",
+    "generator": false,
+    "async": false,
+    "static": false,
+    "longname": "src/views/page-loader.js~PageLoader#constructor",
+    "access": "public",
+    "description": "",
+    "lineNumber": 22,
+    "params": [
+      {
+        "nullable": null,
+        "types": [
+          "Object"
+        ],
+        "spread": false,
+        "optional": true,
+        "name": "options",
+        "description": ""
+      },
+      {
+        "nullable": null,
+        "types": [
+          "string"
+        ],
+        "spread": false,
+        "optional": true,
+        "name": "options.isPageLoadedClassName",
+        "description": ""
+      }
+    ]
+  },
+  {
+    "__docId__": 354,
+    "kind": "method",
+    "name": "start",
+    "memberof": "src/views/page-loader.js~PageLoader",
+    "generator": false,
+    "async": false,
+    "static": false,
+    "longname": "src/views/page-loader.js~PageLoader#start",
+    "access": "public",
+    "description": "",
+    "lineNumber": 38,
+    "return": {
+      "nullable": null,
+      "types": [
+        "Instance"
+      ],
+      "spread": false,
+      "description": ""
+    },
+    "params": []
+  },
+  {
+    "__docId__": 355,
+    "kind": "method",
+    "name": "_onWindowLoad",
+    "memberof": "src/views/page-loader.js~PageLoader",
+    "generator": false,
+    "async": false,
+    "static": false,
+    "longname": "src/views/page-loader.js~PageLoader#_onWindowLoad",
+    "access": "private",
+    "description": null,
+    "lineNumber": 43,
+    "undocument": true,
+    "params": [],
+    "return": null
+  },
+  {
+    "__docId__": 357,
+    "kind": "method",
+    "name": "_preloadImages",
+    "memberof": "src/views/page-loader.js~PageLoader",
+    "generator": false,
+    "async": true,
+    "static": false,
+    "longname": "src/views/page-loader.js~PageLoader#_preloadImages",
+    "access": "private",
+    "description": "",
+    "lineNumber": 51,
+    "return": {
+      "nullable": null,
+      "types": [
+        "Promise"
+      ],
+      "spread": false,
+      "description": ""
+    },
+    "params": []
+  },
+  {
+    "__docId__": 359,
+    "kind": "method",
+    "name": "_mightAllLoaded",
+    "memberof": "src/views/page-loader.js~PageLoader",
+    "generator": false,
+    "async": false,
+    "static": false,
+    "longname": "src/views/page-loader.js~PageLoader#_mightAllLoaded",
+    "access": "private",
+    "description": null,
+    "lineNumber": 59,
+    "undocument": true,
+    "params": [],
+    "return": null
   },
   {
     "kind": "index",

@@ -1,5 +1,5 @@
 /**
- * depends on 'vanix' used in '../store'
+ * depends on 'vanix' used in 'store'
  */
 
 import { store } from '../store'

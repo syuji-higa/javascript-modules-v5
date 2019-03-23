@@ -1,7 +1,7 @@
 {
-  "coverage": "76.08%",
-  "expectCount": 138,
-  "actualCount": 105,
+  "coverage": "67.38%",
+  "expectCount": 233,
+  "actualCount": 157,
   "files": {
     "src/models/array.js": {
       "expectCount": 5,
@@ -95,8 +95,8 @@
       "undocumentLines": []
     },
     "src/models/string.js": {
-      "expectCount": 6,
-      "actualCount": 6,
+      "expectCount": 8,
+      "actualCount": 8,
       "undocumentLines": []
     },
     "src/models/trigonometric.js": {
@@ -120,6 +120,35 @@
       "undocumentLines": [
         3,
         4
+      ]
+    },
+    "src/modules/image-preloader.js": {
+      "expectCount": 11,
+      "actualCount": 8,
+      "undocumentLines": [
+        5,
+        6,
+        7
+      ]
+    },
+    "src/modules/inviewport-observer.js": {
+      "expectCount": 8,
+      "actualCount": 5,
+      "undocumentLines": [
+        1,
+        2,
+        3
+      ]
+    },
+    "src/modules/scroll-observer.js": {
+      "expectCount": 8,
+      "actualCount": 3,
+      "undocumentLines": [
+        9,
+        10,
+        11,
+        13,
+        47
       ]
     },
     "src/modules/window-size-observer.js": {
@@ -148,11 +177,11 @@
       "undocumentLines": [
         10,
         11,
-        18,
-        30,
-        48,
-        50,
-        52
+        13,
+        27,
+        51,
+        53,
+        55
       ]
     },
     "src/utils/background-image.js": {
@@ -165,6 +194,11 @@
       "actualCount": 1,
       "undocumentLines": []
     },
+    "src/utils/element.js": {
+      "expectCount": 2,
+      "actualCount": 2,
+      "undocumentLines": []
+    },
     "src/utils/event.js": {
       "expectCount": 2,
       "actualCount": 2,
@@ -174,6 +208,41 @@
       "expectCount": 3,
       "actualCount": 3,
       "undocumentLines": []
+    },
+    "src/utils/rect.js": {
+      "expectCount": 5,
+      "actualCount": 3,
+      "undocumentLines": [
+        1,
+        2
+      ]
+    },
+    "src/utils/throttle.js": {
+      "expectCount": 1,
+      "actualCount": 1,
+      "undocumentLines": []
+    },
+    "src/utils/wait.js": {
+      "expectCount": 2,
+      "actualCount": 2,
+      "undocumentLines": []
+    },
+    "src/views/_observe-scroll-single.js": {
+      "expectCount": 16,
+      "actualCount": 5,
+      "undocumentLines": [
+        9,
+        10,
+        11,
+        12,
+        13,
+        14,
+        22,
+        92,
+        97,
+        101,
+        107
+      ]
     },
     "src/views/client-flag-setter.js": {
       "expectCount": 2,
@@ -193,6 +262,30 @@
         10
       ]
     },
+    "src/views/ignitioner.js": {
+      "expectCount": 15,
+      "actualCount": 9,
+      "undocumentLines": [
+        1,
+        2,
+        3,
+        4,
+        5,
+        6
+      ]
+    },
+    "src/views/inviewporter.js": {
+      "expectCount": 15,
+      "actualCount": 9,
+      "undocumentLines": [
+        1,
+        2,
+        3,
+        4,
+        5,
+        6
+      ]
+    },
     "src/views/lazyloader.js": {
       "expectCount": 17,
       "actualCount": 10,
@@ -204,6 +297,19 @@
         8,
         9,
         10
+      ]
+    },
+    "src/views/page-loader.js": {
+      "expectCount": 10,
+      "actualCount": 3,
+      "undocumentLines": [
+        7,
+        8,
+        9,
+        10,
+        12,
+        43,
+        59
       ]
     }
   }

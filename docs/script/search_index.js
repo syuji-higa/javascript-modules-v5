@@ -42,6 +42,12 @@ window.esdocSearchIndex = [
     "function"
   ],
   [
+    "javascript-modules-v5/src/utils/rect.js~center",
+    "function/index.html#static-function-center",
+    "<span>center</span> <span class=\"search-result-import-path\">javascript-modules-v5/src/utils/rect.js</span>",
+    "function"
+  ],
+  [
     "javascript-modules-v5/src/models/string.js~charcount",
     "function/index.html#static-function-charCount",
     "<span>charCount</span> <span class=\"search-result-import-path\">javascript-modules-v5/src/models/string.js</span>",
@@ -138,6 +144,12 @@ window.esdocSearchIndex = [
     "function"
   ],
   [
+    "javascript-modules-v5/src/utils/element.js~groupbydataelement",
+    "function/index.html#static-function-groupByDataElement",
+    "<span>groupByDataElement</span> <span class=\"search-result-import-path\">javascript-modules-v5/src/utils/element.js</span>",
+    "function"
+  ],
+  [
     "javascript-modules-v5/src/models/trigonometric.js~heightfrombasehypotenuse",
     "function/index.html#static-function-heightFromBaseHypotenuse",
     "<span>heightFromBaseHypotenuse</span> <span class=\"search-result-import-path\">javascript-modules-v5/src/models/trigonometric.js</span>",
@@ -177,6 +189,12 @@ window.esdocSearchIndex = [
     "javascript-modules-v5/src/models/trigonometric.js~hypotenusefromheightradian",
     "function/index.html#static-function-hypotenuseFromHeightRadian",
     "<span>hypotenuseFromHeightRadian</span> <span class=\"search-result-import-path\">javascript-modules-v5/src/models/trigonometric.js</span>",
+    "function"
+  ],
+  [
+    "javascript-modules-v5/src/utils/element.js~includeselement",
+    "function/index.html#static-function-includesElement",
+    "<span>includesElement</span> <span class=\"search-result-import-path\">javascript-modules-v5/src/utils/element.js</span>",
     "function"
   ],
   [
@@ -237,6 +255,12 @@ window.esdocSearchIndex = [
     "javascript-modules-v5/src/models/validate.js~iszipcode",
     "function/index.html#static-function-isZipCode",
     "<span>isZipCode</span> <span class=\"search-result-import-path\">javascript-modules-v5/src/models/validate.js</span>",
+    "function"
+  ],
+  [
+    "javascript-modules-v5/src/models/string.js~kebabtopascalcase",
+    "function/index.html#static-function-kebabToPascalCase",
+    "<span>kebabToPascalCase</span> <span class=\"search-result-import-path\">javascript-modules-v5/src/models/string.js</span>",
     "function"
   ],
   [
@@ -318,6 +342,12 @@ window.esdocSearchIndex = [
     "function"
   ],
   [
+    "javascript-modules-v5/src/models/string.js~pascaltokebabcase",
+    "function/index.html#static-function-pascalToKebabCase",
+    "<span>pascalToKebabCase</span> <span class=\"search-result-import-path\">javascript-modules-v5/src/models/string.js</span>",
+    "function"
+  ],
+  [
     "javascript-modules-v5/src/models/progress.js~progress",
     "function/index.html#static-function-progress",
     "<span>progress</span> <span class=\"search-result-import-path\">javascript-modules-v5/src/models/progress.js</span>",
@@ -366,6 +396,12 @@ window.esdocSearchIndex = [
     "function"
   ],
   [
+    "javascript-modules-v5/src/utils/rect.js~rect",
+    "function/index.html#static-function-rect",
+    "<span>rect</span> <span class=\"search-result-import-path\">javascript-modules-v5/src/utils/rect.js</span>",
+    "function"
+  ],
+  [
     "javascript-modules-v5/src/models/math.js~round",
     "function/index.html#static-function-round",
     "<span>round</span> <span class=\"search-result-import-path\">javascript-modules-v5/src/models/math.js</span>",
@@ -406,6 +442,12 @@ window.esdocSearchIndex = [
     "variable/index.html#static-variable-store",
     "<span>store</span> <span class=\"search-result-import-path\">javascript-modules-v5/src/store.js</span>",
     "variable"
+  ],
+  [
+    "javascript-modules-v5/src/utils/throttle.js~throttle",
+    "function/index.html#static-function-throttle",
+    "<span>throttle</span> <span class=\"search-result-import-path\">javascript-modules-v5/src/utils/throttle.js</span>",
+    "function"
   ],
   [
     "javascript-modules-v5/src/models/math.js~toangle",
@@ -477,6 +519,12 @@ window.esdocSearchIndex = [
     "javascript-modules-v5/src/models/string.js~ucfirst",
     "function/index.html#static-function-ucfirst",
     "<span>ucfirst</span> <span class=\"search-result-import-path\">javascript-modules-v5/src/models/string.js</span>",
+    "function"
+  ],
+  [
+    "javascript-modules-v5/src/utils/wait.js~wait",
+    "function/index.html#static-function-wait",
+    "<span>wait</span> <span class=\"search-result-import-path\">javascript-modules-v5/src/utils/wait.js</span>",
     "function"
   ],
   [
@@ -894,6 +942,24 @@ window.esdocSearchIndex = [
     "file"
   ],
   [
+    "src/modules/image-preloader.js",
+    "file/src/modules/image-preloader.js.html",
+    "src/modules/image-preloader.js",
+    "file"
+  ],
+  [
+    "src/modules/inviewport-observer.js",
+    "file/src/modules/inviewport-observer.js.html",
+    "src/modules/inviewport-observer.js",
+    "file"
+  ],
+  [
+    "src/modules/scroll-observer.js",
+    "file/src/modules/scroll-observer.js.html",
+    "src/modules/scroll-observer.js",
+    "file"
+  ],
+  [
     "src/modules/window-size-observer.js",
     "file/src/modules/window-size-observer.js.html",
     "src/modules/window-size-observer.js",
@@ -924,6 +990,12 @@ window.esdocSearchIndex = [
     "file"
   ],
   [
+    "src/utils/element.js",
+    "file/src/utils/element.js.html",
+    "src/utils/element.js",
+    "file"
+  ],
+  [
     "src/utils/event.js",
     "file/src/utils/event.js.html",
     "src/utils/event.js",
@@ -933,6 +1005,30 @@ window.esdocSearchIndex = [
     "src/utils/load.js",
     "file/src/utils/load.js.html",
     "src/utils/load.js",
+    "file"
+  ],
+  [
+    "src/utils/rect.js",
+    "file/src/utils/rect.js.html",
+    "src/utils/rect.js",
+    "file"
+  ],
+  [
+    "src/utils/throttle.js",
+    "file/src/utils/throttle.js.html",
+    "src/utils/throttle.js",
+    "file"
+  ],
+  [
+    "src/utils/wait.js",
+    "file/src/utils/wait.js.html",
+    "src/utils/wait.js",
+    "file"
+  ],
+  [
+    "src/views/_observe-scroll-single.js",
+    "file/src/views/_observe-scroll-single.js.html",
+    "src/views/_observe-scroll-single.js",
     "file"
   ],
   [
@@ -948,9 +1044,27 @@ window.esdocSearchIndex = [
     "file"
   ],
   [
+    "src/views/ignitioner.js",
+    "file/src/views/ignitioner.js.html",
+    "src/views/ignitioner.js",
+    "file"
+  ],
+  [
+    "src/views/inviewporter.js",
+    "file/src/views/inviewporter.js.html",
+    "src/views/inviewporter.js",
+    "file"
+  ],
+  [
     "src/views/lazyloader.js",
     "file/src/views/lazyloader.js.html",
     "src/views/lazyloader.js",
+    "file"
+  ],
+  [
+    "src/views/page-loader.js",
+    "file/src/views/page-loader.js.html",
+    "src/views/page-loader.js",
     "file"
   ]
 ]
