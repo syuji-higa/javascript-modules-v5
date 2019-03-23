@@ -47,11 +47,7 @@ class InviewportObserver {
       target /* :Element */,
       isIntersecting /* :boolean */
     } of entries) {
-      if (isIntersecting) {
-        this._functions.get(target)(true)
-      } else {
-        this._functions.get(target)(false)
-      }
+      this._functions.get(target)(isIntersecting)
     }
   }
 }
