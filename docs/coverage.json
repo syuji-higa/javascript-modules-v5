@@ -1,7 +1,7 @@
 {
-  "coverage": "67.38%",
-  "expectCount": 233,
-  "actualCount": 157,
+  "coverage": "68.61%",
+  "expectCount": 239,
+  "actualCount": 164,
   "files": {
     "src/models/array.js": {
       "expectCount": 5,
@@ -140,6 +140,19 @@
         3
       ]
     },
+    "src/modules/inviewport-scroll-observer.js": {
+      "expectCount": 12,
+      "actualCount": 5,
+      "undocumentLines": [
+        9,
+        10,
+        11,
+        12,
+        14,
+        80,
+        99
+      ]
+    },
     "src/modules/scroll-observer.js": {
       "expectCount": 8,
       "actualCount": 3,
@@ -228,20 +241,12 @@
       "undocumentLines": []
     },
     "src/views/_observe-scroll-single.js": {
-      "expectCount": 16,
-      "actualCount": 5,
+      "expectCount": 10,
+      "actualCount": 7,
       "undocumentLines": [
-        9,
-        10,
-        11,
-        12,
-        13,
-        14,
-        22,
-        92,
-        97,
-        101,
-        107
+        7,
+        8,
+        9
       ]
     },
     "src/views/client-flag-setter.js": {

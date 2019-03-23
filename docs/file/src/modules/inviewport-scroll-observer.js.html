@@ -3,7 +3,7 @@
 <head>
   <meta charset="utf-8">
   <base data-ice="baseUrl" href="../../../">
-  <title data-ice="title">src/views/_observe-scroll-single.js | javascript-modules-v5</title>
+  <title data-ice="title">src/modules/inviewport-scroll-observer.js | javascript-modules-v5</title>
   <link type="text/css" rel="stylesheet" href="css/style.css">
   <link type="text/css" rel="stylesheet" href="css/prettify-tomorrow.css">
   <script src="script/prettify/prettify.js"></script>
@@ -121,60 +121,40 @@
 </div>
 </nav>
 
-<div class="content" data-ice="content"><h1 data-ice="title">src/views/_observe-scroll-single.js</h1>
+<div class="content" data-ice="content"><h1 data-ice="title">src/modules/inviewport-scroll-observer.js</h1>
 <pre class="source-code line-number raw-source-code"><code class="prettyprint linenums" data-ice="content">/**
- * depends on &apos;vanix&apos; used in &apos;inviewportScrollObserver&apos;
+ * depends on &apos;vanix&apos; used in &apos;store&apos;
  */
 
-import { inviewportScrollObserver } from &apos;../modules&apos;
+import { store } from &apos;../store&apos;
+import { inviewportObserver } from &apos;../modules&apos;
+import { rect } from &apos;../utils/rect&apos;
 
-class ObserveScrollSingle {
-  _selfClassName /* :string */ = &apos;&apos;
-  _$el /* :Element */
+class inviewportScrollObserver {
+  _targets /* :WeakMap */ = new WeakMap()
+  _inviewportTargets /* :Map */ = new Map()
+  _storeStateObject /* :Object */ = {}
 
-  /**
-   * @return {Object}
-   */
-  static get _defOptions() {
-    return {
-      selfClassName: &apos;js-class-name&apos;
+  constructor() {
+    this._storeStateObject = {
+      windowWidth: () =&gt; {
+        this._setStateAll()
+      },
+      windowHeight: () =&gt; {
+        this._setStateAll()
+      },
+      windowOffsetY: (state) =&gt; {
+        this._update(state.windowOffsetY)
+      }
     }
-  }
-
-  /**
-   * @param {Object} [options]
-   * @param {string} [options.selfClassName]
-   */
-  constructor(options = {}) {
-    const { selfClassName } = Object.assign(
-      ObserveScrollSingle._defOptions,
-      options
-    )
-
-    this._selfClassName = selfClassName
-  }
-
-  /**
-   * @return {Instance}
-   */
-  create() {
-    this._$el = document.getElementsByClassName(this._selfClassName)[0]
-    return this
-  }
-
-  /**
-   * @return {Instance}
-   */
-  destroy() {
-    this._$el = null
-    return this
   }
 
   /**
    * @return {Instance}
    */
   on() {
-    inviewportScrollObserver.add(this._$el, this._update.bind(this))
+    store.observe(this._storeStateObject)
+    this._setStateAll()
     return this
   }
 
@@ -182,22 +162,82 @@ class ObserveScrollSingle {
    * @return {Instance}
    */
   off() {
-    inviewportScrollObserver.remove(this._$el)
+    store.unobserve(this._storeStateObject)
     return this
   }
 
   /**
-   * @param {Object} obj
-   * @property {Element} obj.target
-   * @property {number} obj.progress - [0,inf)
-   * @property {number} obj.progressRatio - [0,1]
+   * @param {Element} $el
+   * @param {function} func
+   * @return {Instance}
    */
-  _update({ target, progress, progressRatio }) {
-    console.log(target, progress, progressRatio)
+  add($el, func) {
+    this._targets.set($el, {
+      func,
+      state /* :Object */: {
+        range /* :number [0,inf) */: 0,
+        start /* :number */: 0
+      }
+    })
+    this._setState($el)
+    inviewportObserver.add($el, (isInviewport /* :boolean */) =&gt; {
+      if (isInviewport) {
+        this._inviewportTargets.set($el, this._targets.get($el))
+      } else {
+        this._inviewportTargets.delete($el, this._targets.get($el))
+      }
+    })
+    return this
+  }
+
+  /**
+   * @param {Element} $el
+   * @return {Instance}
+   */
+  remove($el) {
+    this._inviewportTargets.delete($el, this._targets.get($el))
+    this._targets.delete($el)
+    inviewportObserver.remove($el)
+    return this
+  }
+
+  _setStateAll() {
+    this._inviewportTargets.forEach((
+      target /* :Object */,
+      $el /* :Element */
+    ) =&gt; {
+      this._setState($el)
+    })
+  }
+
+  /**
+   * @param {Element} $el
+   */
+  _setState($el) {
+    const { top /* :number */, height /* :number */ } = rect($el)
+    const { state /* :Object */ } = this._targets.get($el)
+    state.range = height + store.state.windowHeight
+    state.start = top - store.state.windowHeight
+  }
+
+  _update(offsetY) {
+    this._inviewportTargets.forEach((
+      { func /* :function */, state /* :Object */ },
+      $el /* :Element */
+    ) =&gt; {
+      const { range /* :number */, start } = state
+      const _progress /* :number [0,inf) */ = offsetY - start
+      const _progressRatio /* :number [0,1] */ = _progress / range
+      func({
+        taregt: $el,
+        progress: _progress,
+        progressRatio: _progressRatio
+      })
+    })
   }
 }
 
-export { ObserveScrollSingle as default }
+export { inviewportScrollObserver as default }
 </code></pre>
 
 </div>

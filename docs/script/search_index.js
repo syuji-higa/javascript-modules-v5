@@ -954,6 +954,12 @@ window.esdocSearchIndex = [
     "file"
   ],
   [
+    "src/modules/inviewport-scroll-observer.js",
+    "file/src/modules/inviewport-scroll-observer.js.html",
+    "src/modules/inviewport-scroll-observer.js",
+    "file"
+  ],
+  [
     "src/modules/scroll-observer.js",
     "file/src/modules/scroll-observer.js.html",
     "src/modules/scroll-observer.js",
