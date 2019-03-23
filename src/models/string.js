@@ -59,6 +59,26 @@ export const toFirstLetterUpper = (str) => {
 
 /**
  * @param {string} str
+ * @return {string}
+ */
+export const kebabToPascalCase = (str) => {
+  return str.replace(/-./g, (s /* :string */) /* :string */ => {
+    return s.charAt(1).toUpperCase()
+  })
+}
+
+/**
+ * @param {string} str
+ * @return {string}
+ */
+export const pascalToKebabCase = (str) => {
+  return str.replace(/([A-Z])/g, (s /* :string */) /* :string */ => {
+    return '-' + s.charAt(0).toLowerCase()
+  })
+}
+
+/**
+ * @param {string} str
  * @return {number}
  */
 export const charCount = (str) => {
