@@ -65,18 +65,16 @@ class ControlledRequestAnimationFramer {
 
     const _time = new Date().getTime()
 
-    this._animes.forEach(
-      ({ frameStartTime, ms, count, interval, func }, key) => {
-        const _anime /* :Object */ = this._animes.get(key)
-        _anime.count++
-        _anime.time = _time - _anime.startTime
-        if (count % interval || ms > _time - frameStartTime) {
-          return
-        }
-        _anime.frameStartTime = _time
-        func()
+    this._animes.forEach(({ frameStartTime, ms, count, interval, func }, c) => {
+      const _anime /* :Object */ = this._animes.get(key)
+      _anime.count++
+      _anime.time = _time - _anime.startTime
+      if (count % interval || ms > _time - frameStartTime) {
+        return
       }
-    )
+      _anime.frameStartTime = _time
+      func(key)
+    })
   }
 }
 
