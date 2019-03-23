@@ -99,3 +99,19 @@ export const charCount = (str) => {
   }
   return _count
 }
+
+/**
+ * @param {string} str
+ * @return {string[]}
+ */
+export const numberStrings = (str) => {
+  return str.match(/-?[0-9]+\.?[0-9]*|-?[0-9]*\.?[0-9]+/g)
+}
+
+/**
+ * @param {string} str
+ * @return {string[]}
+ */
+export const notNumberStrings = (str) => {
+  return str.split(/-?[0-9]+\.?[0-9]*|-?[0-9]*\.?[0-9]+/g)
+}
