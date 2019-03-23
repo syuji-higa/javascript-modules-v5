@@ -1,6 +1,6 @@
 {
-  "coverage": "66.66%",
-  "expectCount": 261,
+  "coverage": "66.41%",
+  "expectCount": 262,
   "actualCount": 174,
   "files": {
     "src/models/array.js": {
@@ -158,7 +158,7 @@
       ]
     },
     "src/modules/inviewport-scroll-observer.js": {
-      "expectCount": 12,
+      "expectCount": 13,
       "actualCount": 5,
       "undocumentLines": [
         9,
@@ -166,8 +166,9 @@
         11,
         12,
         14,
-        84,
-        103
+        85,
+        101,
+        107
       ]
     },
     "src/modules/request-animation-framer.js": {

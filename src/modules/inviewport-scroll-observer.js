@@ -8,7 +8,7 @@ import { rect } from '../utils/rect'
 
 class inviewportScrollObserver {
   _targets /* :WeakMap */ = new WeakMap()
-  _inviewportTargets /* :Map */ = new Map()
+  _inviewportTargets /* :Set */ = new Set()
   _storeStateObject /* :Object */ = {}
 
   constructor() {
@@ -19,8 +19,8 @@ class inviewportScrollObserver {
       windowHeight: () => {
         this._setStateAll()
       },
-      windowOffsetY: (state) => {
-        this._update(state.windowOffsetY)
+      windowOffsetY: () => {
+        this._updateAll()
       }
     }
   }
@@ -62,9 +62,10 @@ class inviewportScrollObserver {
         onceFunc(isInviewport)
       }
       if (isInviewport) {
-        this._inviewportTargets.set($el, this._targets.get($el))
+        this._inviewportTargets.add($el)
+        this._update($el)
       } else {
-        this._inviewportTargets.delete($el, this._targets.get($el))
+        this._inviewportTargets.delete($el)
       }
     })
     return this
@@ -75,17 +76,14 @@ class inviewportScrollObserver {
    * @return {Instance}
    */
   remove($el) {
-    this._inviewportTargets.delete($el, this._targets.get($el))
+    this._inviewportTargets.delete($el)
     this._targets.delete($el)
     inviewportObserver.remove($el)
     return this
   }
 
   _setStateAll() {
-    this._inviewportTargets.forEach((
-      target /* :Object */,
-      $el /* :Element */
-    ) => {
+    this._inviewportTargets.forEach(($el /* :Element */) => {
       this._setState($el)
     })
   }
@@ -100,19 +98,24 @@ class inviewportScrollObserver {
     state.start = top - store.state.windowHeight
   }
 
-  _update(offsetY) {
-    this._inviewportTargets.forEach((
-      { updateFunc /* :function */, state /* :Object */ },
-      $el /* :Element */
-    ) => {
-      const { range /* :number */, start } = state
-      const _progress /* :number [0,inf) */ = offsetY - start
-      const _progressRatio /* :number [0,1] */ = _progress / range
-      updateFunc({
-        target: $el,
-        progress: _progress,
-        progressRatio: _progressRatio
-      })
+  _updateAll() {
+    this._inviewportTargets.forEach(($el /* :Element */) => {
+      this._update($el)
+    })
+  }
+
+  _update($el) {
+    const {
+      updateFunc /* :function */,
+      state /* :Object */
+    } = this._targets.get($el)
+    const { range /* :number */, start /* :number */ } = state
+    const _progress /* :number [0,inf) */ = store.state.windowOffsetY - start
+    const _progressRatio /* :number [0,1] */ = _progress / range
+    updateFunc({
+      target: $el,
+      progress: _progress,
+      progressRatio: _progressRatio
     })
   }
 }

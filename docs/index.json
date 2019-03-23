@@ -5780,7 +5780,7 @@
     "__docId__": 193,
     "kind": "file",
     "name": "src/modules/inviewport-scroll-observer.js",
-    "content": "/**\n * depends on 'vanix' used in 'store'\n */\n\nimport { store } from '../store'\nimport { inviewportObserver } from '../modules'\nimport { rect } from '../utils/rect'\n\nclass inviewportScrollObserver {\n  _targets /* :WeakMap */ = new WeakMap()\n  _inviewportTargets /* :Map */ = new Map()\n  _storeStateObject /* :Object */ = {}\n\n  constructor() {\n    this._storeStateObject = {\n      windowWidth: () => {\n        this._setStateAll()\n      },\n      windowHeight: () => {\n        this._setStateAll()\n      },\n      windowOffsetY: (state) => {\n        this._update(state.windowOffsetY)\n      }\n    }\n  }\n\n  /**\n   * @return {Instance}\n   */\n  on() {\n    store.observe(this._storeStateObject)\n    this._setStateAll()\n    return this\n  }\n\n  /**\n   * @return {Instance}\n   */\n  off() {\n    store.unobserve(this._storeStateObject)\n    return this\n  }\n\n  /**\n   * @param {Element} $el\n   * @param {function} updateFunc\n   * @param {?function} onceFunc\n   * @return {Instance}\n   */\n  add($el, updateFunc, onceFunc = null) {\n    this._targets.set($el, {\n      updateFunc,\n      state /* :Object */: {\n        range /* :number [0,inf) */: 0,\n        start /* :number */: 0\n      }\n    })\n    this._setState($el)\n    inviewportObserver.add($el, (isInviewport /* :boolean */) => {\n      if (onceFunc) {\n        onceFunc(isInviewport)\n      }\n      if (isInviewport) {\n        this._inviewportTargets.set($el, this._targets.get($el))\n      } else {\n        this._inviewportTargets.delete($el, this._targets.get($el))\n      }\n    })\n    return this\n  }\n\n  /**\n   * @param {Element} $el\n   * @return {Instance}\n   */\n  remove($el) {\n    this._inviewportTargets.delete($el, this._targets.get($el))\n    this._targets.delete($el)\n    inviewportObserver.remove($el)\n    return this\n  }\n\n  _setStateAll() {\n    this._inviewportTargets.forEach((\n      target /* :Object */,\n      $el /* :Element */\n    ) => {\n      this._setState($el)\n    })\n  }\n\n  /**\n   * @param {Element} $el\n   */\n  _setState($el) {\n    const { top /* :number */, height /* :number */ } = rect($el)\n    const { state /* :Object */ } = this._targets.get($el)\n    state.range = height + store.state.windowHeight\n    state.start = top - store.state.windowHeight\n  }\n\n  _update(offsetY) {\n    this._inviewportTargets.forEach((\n      { updateFunc /* :function */, state /* :Object */ },\n      $el /* :Element */\n    ) => {\n      const { range /* :number */, start } = state\n      const _progress /* :number [0,inf) */ = offsetY - start\n      const _progressRatio /* :number [0,1] */ = _progress / range\n      updateFunc({\n        target: $el,\n        progress: _progress,\n        progressRatio: _progressRatio\n      })\n    })\n  }\n}\n\nexport { inviewportScrollObserver as default }\n",
+    "content": "/**\n * depends on 'vanix' used in 'store'\n */\n\nimport { store } from '../store'\nimport { inviewportObserver } from '../modules'\nimport { rect } from '../utils/rect'\n\nclass inviewportScrollObserver {\n  _targets /* :WeakMap */ = new WeakMap()\n  _inviewportTargets /* :Set */ = new Set()\n  _storeStateObject /* :Object */ = {}\n\n  constructor() {\n    this._storeStateObject = {\n      windowWidth: () => {\n        this._setStateAll()\n      },\n      windowHeight: () => {\n        this._setStateAll()\n      },\n      windowOffsetY: () => {\n        this._updateAll()\n      }\n    }\n  }\n\n  /**\n   * @return {Instance}\n   */\n  on() {\n    store.observe(this._storeStateObject)\n    this._setStateAll()\n    return this\n  }\n\n  /**\n   * @return {Instance}\n   */\n  off() {\n    store.unobserve(this._storeStateObject)\n    return this\n  }\n\n  /**\n   * @param {Element} $el\n   * @param {function} updateFunc\n   * @param {?function} onceFunc\n   * @return {Instance}\n   */\n  add($el, updateFunc, onceFunc = null) {\n    this._targets.set($el, {\n      updateFunc,\n      state /* :Object */: {\n        range /* :number [0,inf) */: 0,\n        start /* :number */: 0\n      }\n    })\n    this._setState($el)\n    inviewportObserver.add($el, (isInviewport /* :boolean */) => {\n      if (onceFunc) {\n        onceFunc(isInviewport)\n      }\n      if (isInviewport) {\n        this._inviewportTargets.add($el)\n        this._update($el)\n      } else {\n        this._inviewportTargets.delete($el)\n      }\n    })\n    return this\n  }\n\n  /**\n   * @param {Element} $el\n   * @return {Instance}\n   */\n  remove($el) {\n    this._inviewportTargets.delete($el)\n    this._targets.delete($el)\n    inviewportObserver.remove($el)\n    return this\n  }\n\n  _setStateAll() {\n    this._inviewportTargets.forEach(($el /* :Element */) => {\n      this._setState($el)\n    })\n  }\n\n  /**\n   * @param {Element} $el\n   */\n  _setState($el) {\n    const { top /* :number */, height /* :number */ } = rect($el)\n    const { state /* :Object */ } = this._targets.get($el)\n    state.range = height + store.state.windowHeight\n    state.start = top - store.state.windowHeight\n  }\n\n  _updateAll() {\n    this._inviewportTargets.forEach(($el /* :Element */) => {\n      this._update($el)\n    })\n  }\n\n  _update($el) {\n    const {\n      updateFunc /* :function */,\n      state /* :Object */\n    } = this._targets.get($el)\n    const { range /* :number */, start /* :number */ } = state\n    const _progress /* :number [0,inf) */ = store.state.windowOffsetY - start\n    const _progressRatio /* :number [0,1] */ = _progress / range\n    updateFunc({\n      target: $el,\n      progress: _progress,\n      progressRatio: _progressRatio\n    })\n  }\n}\n\nexport { inviewportScrollObserver as default }\n",
     "static": true,
     "longname": "/Users/higa_syuuji/github/syuji-higa/javascript-modules-v5/src/modules/inviewport-scroll-observer.js",
     "access": "public",
@@ -5977,7 +5977,7 @@
     "longname": "src/modules/inviewport-scroll-observer.js~inviewportScrollObserver#remove",
     "access": "public",
     "description": "",
-    "lineNumber": 77,
+    "lineNumber": 78,
     "params": [
       {
         "nullable": null,
@@ -6010,7 +6010,7 @@
     "longname": "src/modules/inviewport-scroll-observer.js~inviewportScrollObserver#_setStateAll",
     "access": "private",
     "description": null,
-    "lineNumber": 84,
+    "lineNumber": 85,
     "undocument": true,
     "params": [],
     "return": null
@@ -6026,7 +6026,7 @@
     "longname": "src/modules/inviewport-scroll-observer.js~inviewportScrollObserver#_setState",
     "access": "private",
     "description": "",
-    "lineNumber": 96,
+    "lineNumber": 94,
     "params": [
       {
         "nullable": null,
@@ -6044,6 +6044,22 @@
   {
     "__docId__": 206,
     "kind": "method",
+    "name": "_updateAll",
+    "memberof": "src/modules/inviewport-scroll-observer.js~inviewportScrollObserver",
+    "generator": false,
+    "async": false,
+    "static": false,
+    "longname": "src/modules/inviewport-scroll-observer.js~inviewportScrollObserver#_updateAll",
+    "access": "private",
+    "description": null,
+    "lineNumber": 101,
+    "undocument": true,
+    "params": [],
+    "return": null
+  },
+  {
+    "__docId__": 207,
+    "kind": "method",
     "name": "_update",
     "memberof": "src/modules/inviewport-scroll-observer.js~inviewportScrollObserver",
     "generator": false,
@@ -6052,11 +6068,11 @@
     "longname": "src/modules/inviewport-scroll-observer.js~inviewportScrollObserver#_update",
     "access": "private",
     "description": null,
-    "lineNumber": 103,
+    "lineNumber": 107,
     "undocument": true,
     "params": [
       {
-        "name": "offsetY",
+        "name": "$el",
         "types": [
           "*"
         ]
@@ -6065,7 +6081,7 @@
     "return": null
   },
   {
-    "__docId__": 207,
+    "__docId__": 208,
     "kind": "file",
     "name": "src/modules/request-animation-framer.js",
     "content": "class RequestAnimationFramer {\n  _animes /* :Map */ = new Map()\n  _animateHandle /* :number int[0,inf) */ = 0\n\n  /**\n   * @param {Object} key\n   * @return {number} [0,inf)\n   */\n  getTime(key) {\n    return this._animes.get(key).time\n  }\n\n  /**\n   * @param {Object} key\n   * @param {function} func\n   * @return {Instance}\n   */\n  add(key, func) {\n    this._animes.set(key, func)\n\n    if (!this._animateHandle) {\n      this._start()\n    }\n    return this\n  }\n\n  /**\n   * @param {Object} key\n   * @return {Instance}\n   */\n  remove(key) {\n    this._animes.delete(key)\n    if (!this._animes.size) {\n      this._stop()\n    }\n\n    return this\n  }\n\n  _start() {\n    if (this._animateHandle) {\n      return\n    }\n    this._animate()\n  }\n\n  _stop() {\n    cancelAnimationFrame(this._animateHandle)\n    this._animateHandle = 0\n  }\n\n  _animate() {\n    this._animateHandle = requestAnimationFrame(this._animate.bind(this))\n\n    this._animes.forEach((func, key) => {\n      func(key)\n    })\n  }\n}\n\nexport { RequestAnimationFramer as default }\n",
@@ -6076,7 +6092,7 @@
     "lineNumber": 1
   },
   {
-    "__docId__": 208,
+    "__docId__": 209,
     "kind": "class",
     "name": "RequestAnimationFramer",
     "memberof": "src/modules/request-animation-framer.js",
@@ -6093,7 +6109,7 @@
     "ignore": true
   },
   {
-    "__docId__": 209,
+    "__docId__": 210,
     "kind": "member",
     "name": "_animes",
     "memberof": "src/modules/request-animation-framer.js~RequestAnimationFramer",
@@ -6110,7 +6126,7 @@
     }
   },
   {
-    "__docId__": 210,
+    "__docId__": 211,
     "kind": "member",
     "name": "_animateHandle",
     "memberof": "src/modules/request-animation-framer.js~RequestAnimationFramer",
@@ -6127,7 +6143,7 @@
     }
   },
   {
-    "__docId__": 211,
+    "__docId__": 212,
     "kind": "method",
     "name": "getTime",
     "memberof": "src/modules/request-animation-framer.js~RequestAnimationFramer",
@@ -6160,7 +6176,7 @@
     }
   },
   {
-    "__docId__": 212,
+    "__docId__": 213,
     "kind": "method",
     "name": "add",
     "memberof": "src/modules/request-animation-framer.js~RequestAnimationFramer",
@@ -6203,7 +6219,7 @@
     }
   },
   {
-    "__docId__": 213,
+    "__docId__": 214,
     "kind": "method",
     "name": "remove",
     "memberof": "src/modules/request-animation-framer.js~RequestAnimationFramer",
@@ -6236,7 +6252,7 @@
     }
   },
   {
-    "__docId__": 214,
+    "__docId__": 215,
     "kind": "method",
     "name": "_start",
     "memberof": "src/modules/request-animation-framer.js~RequestAnimationFramer",
@@ -6252,7 +6268,7 @@
     "return": null
   },
   {
-    "__docId__": 215,
+    "__docId__": 216,
     "kind": "method",
     "name": "_stop",
     "memberof": "src/modules/request-animation-framer.js~RequestAnimationFramer",
@@ -6268,7 +6284,7 @@
     "return": null
   },
   {
-    "__docId__": 217,
+    "__docId__": 218,
     "kind": "method",
     "name": "_animate",
     "memberof": "src/modules/request-animation-framer.js~RequestAnimationFramer",
@@ -6284,7 +6300,7 @@
     "return": null
   },
   {
-    "__docId__": 219,
+    "__docId__": 220,
     "kind": "file",
     "name": "src/modules/scroll-observer.js",
     "content": "/**\n * depends on 'vanix' used in 'store'\n */\n\nimport { store } from '../store'\nimport { eventer } from '../modules'\nimport { throttle } from '../utils/throttle'\n\nclass ScrollObserver {\n  _scrollThrottle /* :function */\n  _scrollEvent /* :Object */ = {}\n\n  constructor() {\n    this._scrollThrottle = throttle(200)\n    this._scrollEvent = eventer.create(\n      window,\n      'scroll',\n      this._onScroll.bind(this)\n    )\n  }\n\n  /**\n   * @return {Instance}\n   */\n  on() {\n    this._scrollEvent.add()\n    return this\n  }\n\n  /**\n   * @return {Instance}\n   */\n  off() {\n    this._scrollEvent.remove()\n    return this\n  }\n\n  /**\n   * @return {Instance}\n   */\n  update() {\n    store.commit('setWindowOffsetX', window.pageXOffset)\n    store.commit('setWindowOffsetY', window.pageYOffset)\n    return this\n  }\n\n  _onScroll() {\n    this._scrollThrottle(this.update.bind(this))\n  }\n}\n\nexport { ScrollObserver as default }\n",
@@ -6295,7 +6311,7 @@
     "lineNumber": 1
   },
   {
-    "__docId__": 220,
+    "__docId__": 221,
     "kind": "class",
     "name": "ScrollObserver",
     "memberof": "src/modules/scroll-observer.js",
@@ -6312,7 +6328,7 @@
     "ignore": true
   },
   {
-    "__docId__": 221,
+    "__docId__": 222,
     "kind": "member",
     "name": "_scrollThrottle",
     "memberof": "src/modules/scroll-observer.js~ScrollObserver",
@@ -6329,7 +6345,7 @@
     }
   },
   {
-    "__docId__": 222,
+    "__docId__": 223,
     "kind": "member",
     "name": "_scrollEvent",
     "memberof": "src/modules/scroll-observer.js~ScrollObserver",
@@ -6346,7 +6362,7 @@
     }
   },
   {
-    "__docId__": 223,
+    "__docId__": 224,
     "kind": "constructor",
     "name": "constructor",
     "memberof": "src/modules/scroll-observer.js~ScrollObserver",
@@ -6360,7 +6376,7 @@
     "undocument": true
   },
   {
-    "__docId__": 226,
+    "__docId__": 227,
     "kind": "method",
     "name": "on",
     "memberof": "src/modules/scroll-observer.js~ScrollObserver",
@@ -6382,7 +6398,7 @@
     "params": []
   },
   {
-    "__docId__": 227,
+    "__docId__": 228,
     "kind": "method",
     "name": "off",
     "memberof": "src/modules/scroll-observer.js~ScrollObserver",
@@ -6404,7 +6420,7 @@
     "params": []
   },
   {
-    "__docId__": 228,
+    "__docId__": 229,
     "kind": "method",
     "name": "update",
     "memberof": "src/modules/scroll-observer.js~ScrollObserver",
@@ -6426,7 +6442,7 @@
     "params": []
   },
   {
-    "__docId__": 229,
+    "__docId__": 230,
     "kind": "method",
     "name": "_onScroll",
     "memberof": "src/modules/scroll-observer.js~ScrollObserver",
@@ -6442,7 +6458,7 @@
     "return": null
   },
   {
-    "__docId__": 230,
+    "__docId__": 231,
     "kind": "file",
     "name": "src/modules/window-size-observer.js",
     "content": "/**\n * depends on 'vanix' used in 'store'\n */\n\nimport { store } from '../store'\nimport { eventer } from '../modules'\nimport { debounce } from '../utils/debounce'\n\nclass WindowSizeObserver {\n  _isMobile /* :boolane */ = false\n  _resizeDebounce /* :function */\n  _resizeEvent /* :Object */ = {}\n\n  constructor() {\n    this._isMobile = !!store.state.platform.type.match(/^mobile$/)\n\n    this._resizeDebounce = debounce(200)\n    this._resizeEvent = eventer.create(\n      window,\n      'resize',\n      this._onResize.bind(this)\n    )\n  }\n\n  /**\n   * @return {Instance}\n   */\n  on() {\n    this._resizeEvent.add()\n    return this\n  }\n\n  /**\n   * @return {Instance}\n   */\n  off() {\n    this._resizeEvent.remove()\n    return this\n  }\n\n  /**\n   * @return {Instance}\n   */\n  update() {\n    store.commit('setWindowWidth', window.innerWidth)\n    store.commit('setWindowHeight', window.innerHeight)\n\n    if (\n      !this._isMobile ||\n      store.state.windowWidthLastChangedHeight !== window.innerWidth\n    ) {\n      store.commit('setWindowWidthLastChangedHeight', window.innerHeight)\n    }\n\n    if (store.state.breakPoint[0] > store.state.windowWidth) {\n      if (store.state.windowSizeType !== 'mobile') {\n        store.commit('setWindowSizeType', 'mobile')\n      }\n    } else if (store.state.breakPoint[1] > store.state.windowWidth) {\n      if (store.state.windowSizeType !== 'tablet') {\n        store.commit('setWindowSizeType', 'tablet')\n      }\n    } else {\n      if (store.state.windowSizeType !== 'desktop') {\n        store.commit('setWindowSizeType', 'desktop')\n      }\n    }\n\n    return this\n  }\n\n  _onResize() {\n    this._resizeDebounce(this.update.bind(this))\n  }\n}\n\nexport { WindowSizeObserver as default }\n",
@@ -6453,7 +6469,7 @@
     "lineNumber": 1
   },
   {
-    "__docId__": 231,
+    "__docId__": 232,
     "kind": "class",
     "name": "WindowSizeObserver",
     "memberof": "src/modules/window-size-observer.js",
@@ -6470,7 +6486,7 @@
     "ignore": true
   },
   {
-    "__docId__": 232,
+    "__docId__": 233,
     "kind": "member",
     "name": "_isMobile",
     "memberof": "src/modules/window-size-observer.js~WindowSizeObserver",
@@ -6487,7 +6503,7 @@
     }
   },
   {
-    "__docId__": 233,
+    "__docId__": 234,
     "kind": "member",
     "name": "_resizeDebounce",
     "memberof": "src/modules/window-size-observer.js~WindowSizeObserver",
@@ -6504,7 +6520,7 @@
     }
   },
   {
-    "__docId__": 234,
+    "__docId__": 235,
     "kind": "member",
     "name": "_resizeEvent",
     "memberof": "src/modules/window-size-observer.js~WindowSizeObserver",
@@ -6521,7 +6537,7 @@
     }
   },
   {
-    "__docId__": 235,
+    "__docId__": 236,
     "kind": "constructor",
     "name": "constructor",
     "memberof": "src/modules/window-size-observer.js~WindowSizeObserver",
@@ -6535,7 +6551,7 @@
     "undocument": true
   },
   {
-    "__docId__": 239,
+    "__docId__": 240,
     "kind": "method",
     "name": "on",
     "memberof": "src/modules/window-size-observer.js~WindowSizeObserver",
@@ -6557,7 +6573,7 @@
     "params": []
   },
   {
-    "__docId__": 240,
+    "__docId__": 241,
     "kind": "method",
     "name": "off",
     "memberof": "src/modules/window-size-observer.js~WindowSizeObserver",
@@ -6579,7 +6595,7 @@
     "params": []
   },
   {
-    "__docId__": 241,
+    "__docId__": 242,
     "kind": "method",
     "name": "update",
     "memberof": "src/modules/window-size-observer.js~WindowSizeObserver",
@@ -6601,7 +6617,7 @@
     "params": []
   },
   {
-    "__docId__": 242,
+    "__docId__": 243,
     "kind": "method",
     "name": "_onResize",
     "memberof": "src/modules/window-size-observer.js~WindowSizeObserver",
@@ -6617,7 +6633,7 @@
     "return": null
   },
   {
-    "__docId__": 243,
+    "__docId__": 244,
     "kind": "file",
     "name": "src/pattern/singleton.js",
     "content": "class Singleton {\n  /**\n   * @type {Object}\n   */\n  static _instance = {}\n\n  /**\n   * @type {Object}\n   */\n  static _isInternal = {}\n\n  /**\n   * @return {Instance}\n   */\n  static getInstance() {\n    const { _instance, _isInternal } = Singleton\n    const _name /* :string */ = this.name\n    if (_instance[_name]) {\n      return Singleton._instance[_name]\n    }\n    _isInternal[_name] /* :boolean */ = true\n    return new this()\n  }\n\n  constructor() {\n    const { _isInternal, _instance } = Singleton\n    const _name /* :string */ = this.constructor.name\n    if (!_isInternal[_name]) {\n      throw new Error(\n        `Can't call new ${_name}(), use ${_name}.getInstance() instead.`\n      )\n    }\n    _isInternal[_name] /* :boolean */ = false\n    _instance[_name] /* :Instance */ = this\n  }\n}\n\nexport { Singleton as default }\n",
@@ -6628,7 +6644,7 @@
     "lineNumber": 1
   },
   {
-    "__docId__": 244,
+    "__docId__": 245,
     "kind": "class",
     "name": "Singleton",
     "memberof": "src/pattern/singleton.js",
@@ -6645,7 +6661,7 @@
     "ignore": true
   },
   {
-    "__docId__": 245,
+    "__docId__": 246,
     "kind": "member",
     "name": "_instance",
     "memberof": "src/pattern/singleton.js~Singleton",
@@ -6664,7 +6680,7 @@
     }
   },
   {
-    "__docId__": 246,
+    "__docId__": 247,
     "kind": "member",
     "name": "_isInternal",
     "memberof": "src/pattern/singleton.js~Singleton",
@@ -6683,7 +6699,7 @@
     }
   },
   {
-    "__docId__": 247,
+    "__docId__": 248,
     "kind": "method",
     "name": "getInstance",
     "memberof": "src/pattern/singleton.js~Singleton",
@@ -6705,7 +6721,7 @@
     "params": []
   },
   {
-    "__docId__": 248,
+    "__docId__": 249,
     "kind": "constructor",
     "name": "constructor",
     "memberof": "src/pattern/singleton.js~Singleton",
@@ -6719,7 +6735,7 @@
     "undocument": true
   },
   {
-    "__docId__": 249,
+    "__docId__": 250,
     "kind": "file",
     "name": "src/store.js",
     "content": "/**\n * depends on 'vanix'\n * depends on 'bowser'\n */\n\nimport Vanix from 'vanix'\nimport Bowser from 'bowser'\n\n// bowser\nconst bowser /* :Object */ = Bowser.getParser(window.navigator.userAgent)\nconst { browser, engin, os, platform } = bowser.parsedResult\n\nconst state /* :Object */ = {\n  browser /* :Object */,\n  engin /* :Object */,\n  os /* :Object */,\n  platform /* :Object */,\n  breakPoint /* :number[] int[0,inf) */: [768, 1024],\n  windowWidth /* :number[] int[0,inf) */: 0,\n  windowHeight /* :number[] int[0,inf) */: 0,\n  windowWidthLastChangedHeight /* :number[] int[0,inf) */: 0,\n  windowSizeType /* :string */: '',\n  windowOffsetX /* :number[] int[0,inf) */: 0,\n  windowOffsetY /* :number[] int[0,inf) */: 0\n}\n\nconst mutations /* :Object */ = {\n  setWindowWidth(state /* :Object */, data /* :number[] int[0,inf) */) {\n    state.windowWidth = data\n  },\n  setWindowHeight(state /* :Object */, data /* :number[] int[0,inf) */) {\n    state.windowHeight = data\n  },\n  setWindowWidthLastChangedHeight(\n    state /* :Object */,\n    data /* :number[] int[0,inf) */\n  ) {\n    state.windowWidthLastChangedHeight = data\n  },\n  setWindowSizeType(state /* :Object */, data /* :number[] int[0,inf) */) {\n    state.windowSizeType = data\n  },\n  setWindowOffsetX(state /* :Object */, data /* :number[] int[0,inf) */) {\n    state.windowOffsetX = data\n  },\n  setWindowOffsetY(state /* :Object */, data /* :number[] int[0,inf) */) {\n    state.windowOffsetY = data\n  }\n}\n\nconst actions /* :Object */ = {}\n\nconst vanix /* :Instance */ = new Vanix({ state, mutations, actions })\n\nexport const store /* :Object */ = vanix.create()\n",
@@ -6730,7 +6746,7 @@
     "lineNumber": 1
   },
   {
-    "__docId__": 250,
+    "__docId__": 251,
     "kind": "variable",
     "name": "bowser",
     "memberof": "src/store.js",
@@ -6751,7 +6767,7 @@
     "ignore": true
   },
   {
-    "__docId__": 251,
+    "__docId__": 252,
     "kind": "variable",
     "name": "browser",
     "memberof": "src/store.js",
@@ -6772,7 +6788,7 @@
     "ignore": true
   },
   {
-    "__docId__": 252,
+    "__docId__": 253,
     "kind": "variable",
     "name": "state",
     "memberof": "src/store.js",
@@ -6793,7 +6809,7 @@
     "ignore": true
   },
   {
-    "__docId__": 253,
+    "__docId__": 254,
     "kind": "variable",
     "name": "mutations",
     "memberof": "src/store.js",
@@ -6814,7 +6830,7 @@
     "ignore": true
   },
   {
-    "__docId__": 254,
+    "__docId__": 255,
     "kind": "variable",
     "name": "actions",
     "memberof": "src/store.js",
@@ -6835,7 +6851,7 @@
     "ignore": true
   },
   {
-    "__docId__": 255,
+    "__docId__": 256,
     "kind": "variable",
     "name": "vanix",
     "memberof": "src/store.js",
@@ -6856,7 +6872,7 @@
     "ignore": true
   },
   {
-    "__docId__": 256,
+    "__docId__": 257,
     "kind": "variable",
     "name": "store",
     "memberof": "src/store.js",
@@ -6876,7 +6892,7 @@
     }
   },
   {
-    "__docId__": 257,
+    "__docId__": 258,
     "kind": "file",
     "name": "src/utils/background-image.js",
     "content": "/**\n * @param {Element} $el\n * @return {string[]}\n */\nexport const getBackgroundImages = ($el) => {\n  const _backgroundImage /* :string */ = getComputedStyle($el, '')\n    .backgroundImage\n  const _paths /* :string[] */ = []\n\n  if (_backgroundImage === 'none') {\n    return _paths\n  }\n\n  const _images /* :string[] */ = _backgroundImage.split(/,\\s?/)\n\n  if (!_images) {\n    return _paths\n  }\n\n  for (const img /* :string */ of _images) {\n    const _path /* :string */ = img.match(/^url\\(['\"]?(.+[0-9a-zA-Z])['\"]?\\)$/)\n\n    if (typeof _path !== 'undefined' && _path !== null) {\n      _paths.push(_path[1])\n    }\n  }\n\n  return _paths\n}\n",
@@ -6887,7 +6903,7 @@
     "lineNumber": 1
   },
   {
-    "__docId__": 258,
+    "__docId__": 259,
     "kind": "function",
     "name": "getBackgroundImages",
     "memberof": "src/utils/background-image.js",
@@ -6923,7 +6939,7 @@
     }
   },
   {
-    "__docId__": 259,
+    "__docId__": 260,
     "kind": "file",
     "name": "src/utils/debounce.js",
     "content": "/**\n * @param {Object} [options]\n * @param {number} [options.interval] - int[0,inf)\n * @param {boolean} [options.isFirstRun]\n * @return {function}\n */\nexport const debounce = (options = {}) => {\n  const { interval, isFirstRun } = Object.assign(\n    { interval: 100, isFirstRun: false },\n    options\n  )\n  let _timer /* :number int[0,inf) */ = 0\n  let _firstRun /* :boolean */ = true\n\n  return (fn /* :function */) => {\n    if (isFirstRun && _firstRun) {\n      fn()\n      _firstRun = false\n    }\n    clearTimeout(_timer)\n    _timer = setTimeout(() => {\n      fn()\n      _timer = 0\n      if (isFirstRun) {\n        _firstRun = true\n      }\n    }, interval)\n  }\n}\n",
@@ -6934,7 +6950,7 @@
     "lineNumber": 1
   },
   {
-    "__docId__": 260,
+    "__docId__": 261,
     "kind": "function",
     "name": "debounce",
     "memberof": "src/utils/debounce.js",
@@ -6990,7 +7006,7 @@
     }
   },
   {
-    "__docId__": 261,
+    "__docId__": 262,
     "kind": "file",
     "name": "src/utils/element.js",
     "content": "import { kebabToPascalCase } from '../models/string'\n\n/**\n * @param {Element} $el\n * @param {string} selector\n * @param {boolean} [isSlefTarget]\n * @return {?Element}\n */\nexport const includesElement = ($el, selector, isSlefTarget = true) => {\n  const _elms /* :Element[] */ = Array.from(document.querySelectorAll(selector))\n  const _$el /* :Element */ = isSlefTarget ? $el : $el.parentNode\n\n  const _getParent = ($el /* :Element */) /* :Element */ => {\n    if (!$el || !$el.tagName || $el.tagName === 'HTML') return null\n\n    if (_elms.includes($el)) {\n      return $el\n    }\n\n    return _getParent($el.parentNode)\n  }\n\n  return _getParent(_$el)\n}\n\n/**\n * @param {Elemtnt} el\n * @param {string} dataName\n * @param {Object} [options]\n * @param {boolean} [options.needsSingle]\n * @param {?function} [options.filter]\n * @return {Object}\n */\nexport const groupByDataElement = (el, dataName, options = {}) => {\n  const { needsSingle, filter } = Object.assign(\n    {\n      needsSingle: false,\n      filter: null\n    },\n    options\n  )\n\n  const _$$el /* :HTMLCollection|NodeList */ = el.querySelectorAll(\n    `[data-${dataName}]`\n  )\n  return Array.from(_$$el).reduce((memo /* :Object */, $el /* :Element */) => {\n    if (!filter || filter($el)) {\n      const _dataName /* :string */ =\n        'dataset' in $el\n          ? $el.dataset[kebabToPascalCase(dataName)]\n          : $el.getAttribute(`data-${dataName}`)\n      if (_dataName) {\n        if (needsSingle) {\n          memo[_dataName] = $el\n        } else {\n          if (!memo[_dataName]) {\n            memo[_dataName] = []\n          }\n          memo[_dataName].push($el)\n        }\n      }\n    }\n    return memo\n  }, {})\n}\n",
@@ -7001,7 +7017,7 @@
     "lineNumber": 1
   },
   {
-    "__docId__": 262,
+    "__docId__": 263,
     "kind": "function",
     "name": "includesElement",
     "memberof": "src/utils/element.js",
@@ -7057,7 +7073,7 @@
     }
   },
   {
-    "__docId__": 263,
+    "__docId__": 264,
     "kind": "function",
     "name": "groupByDataElement",
     "memberof": "src/utils/element.js",
@@ -7133,7 +7149,7 @@
     }
   },
   {
-    "__docId__": 264,
+    "__docId__": 265,
     "kind": "file",
     "name": "src/utils/event.js",
     "content": "/**\n * @param {Element} target\n * @param {string} eventType\n * @param {function} listener\n * @param {boolean|Object} [option]\n * @return {Object}\n */\nexport const createEvent = (target, eventType, listener, option = false) => {\n  return {\n    handleEvent: (e) => {\n      listener(e)\n    },\n    add: function() {\n      target.addEventListener(eventType, this, option)\n    },\n    remove: function() {\n      target.removeEventListener(eventType, this, option)\n    }\n  }\n}\n\n/**\n * @param {Array} options\n * @param {Element} options[0] - dispatc target\n * @param {string} options[1] - eventType\n * @param {Object} [options[2]] - event detail\n * @param {Event} event\n *\n * @example\n *   onDispatchEvent.bind(this, [window, 'resize'], e);\n */\nexport const onDispatchEvent = (options, event) => {\n  const [target, eventType, detail] = options\n\n  const _detail /* :Object */ = (() => {\n    const _obj /* :Object */ = {\n      status: event\n    }\n    if (detail) Object.assign(_obj, detail)\n    return _obj\n  })()\n\n  target.dispatchEvent(\n    new CustomEvent(eventType, {\n      detail: _detail\n    })\n  )\n}\n",
@@ -7144,7 +7160,7 @@
     "lineNumber": 1
   },
   {
-    "__docId__": 265,
+    "__docId__": 266,
     "kind": "function",
     "name": "createEvent",
     "memberof": "src/utils/event.js",
@@ -7211,7 +7227,7 @@
     }
   },
   {
-    "__docId__": 266,
+    "__docId__": 267,
     "kind": "function",
     "name": "onDispatchEvent",
     "memberof": "src/utils/event.js",
@@ -7283,7 +7299,7 @@
     "return": null
   },
   {
-    "__docId__": 267,
+    "__docId__": 268,
     "kind": "file",
     "name": "src/utils/load.js",
     "content": "/**\n * @param {Element} $video\n * @return {Promise}\n */\nexport const loadVideo = ($video) => {\n  return new Promise((resolve /* :function */) => {\n    $video.load()\n    $video.addEventListener(\n      'canplaythrough',\n      () => {\n        resolve()\n      },\n      { once: true }\n    )\n  })\n}\n\n/**\n * @param {string} src\n * @param {Object} [options]\n * @param {funciton} [options.done]\n * @param {funciton} [options.fail]\n * @param {funciton} [options.always]\n * @return {Promise}\n */\nexport const loadImage = (src, options = {}) => {\n  const { done, fail, always } = options\n\n  return new Promise((resolve /* :function */) => {\n    const _img /* :Image */ = new Image()\n\n    const _always = (img /* :Image */, isSuccess /* :boolean */) => {\n      if (always) always(img)\n      resolve(img, isSuccess)\n    }\n\n    _img.onload /* :functon */ = () => {\n      if (done) done(_img)\n      _always(_img, true)\n    }\n    _img.onerror /* :functon */ = () => {\n      if (fail) fail(_img)\n      _always(_img, false)\n    }\n\n    _img.src /* :string */ = src\n  })\n}\n\n/**\n * @param {string} file\n * @param {Object} [options]\n * @param {funciton} [options.done]\n * @param {funciton} [options.fail]\n * @param {funciton} [options.always]\n * @return {Promise}\n */\nexport const loadFile = (file, options = {}) => {\n  const { done, fail, always } = options\n\n  return new Promise((resolve /* :function */) => {\n    const _reader /* :FileRender */ = new FileReader()\n\n    const _always /* :function */ = (\n      file_ /* :FileRender */,\n      isSuccess /* :boolean */\n    ) => {\n      if (always) always(file_)\n      resolve(isSuccess)\n    }\n\n    _reader.onload /* :function */ = (file_ /* :FileRender */) => {\n      if (done) done(file_)\n      _always(file_, true)\n    }\n    _reader.onerror /* :function */ = (file_ /* :FileRender */) => {\n      if (fail) fail(file_)\n      _always(file_, false)\n    }\n\n    _reader.readAsDataURL(file)\n  })\n}\n",
@@ -7294,7 +7310,7 @@
     "lineNumber": 1
   },
   {
-    "__docId__": 268,
+    "__docId__": 269,
     "kind": "function",
     "name": "loadVideo",
     "memberof": "src/utils/load.js",
@@ -7330,7 +7346,7 @@
     }
   },
   {
-    "__docId__": 269,
+    "__docId__": 270,
     "kind": "function",
     "name": "loadImage",
     "memberof": "src/utils/load.js",
@@ -7406,7 +7422,7 @@
     }
   },
   {
-    "__docId__": 270,
+    "__docId__": 271,
     "kind": "function",
     "name": "loadFile",
     "memberof": "src/utils/load.js",
@@ -7482,7 +7498,7 @@
     }
   },
   {
-    "__docId__": 271,
+    "__docId__": 272,
     "kind": "file",
     "name": "src/utils/rect.js",
     "content": "let _viewportY /* :number */ = 0\nlet _viewportX /* :number */ = 0\n\n/**\n * @param {Element} $viewport\n */\nconst _reset = ($viewport) => {\n  if ($viewport) {\n    const {\n      top /* :number */,\n      left /* :number */\n    } = $viewport.getBoundingClientRect()\n    _viewportY = $viewport.scrollTop - top\n    _viewportX = $viewport.scrollLeft - left\n  } else {\n    _viewportY = window.pageYOffset\n    _viewportX = window.pageXOffset\n  }\n}\n\n/**\n * @param {Element} $el\n * @param {?Element} $viewport\n * @return {Object}\n * @property {number} width - [0,inf)\n * @property {number} height - [0,inf)\n * @property {number} top\n * @property {number} right\n * @property {number} bottom\n * @property {number} left\n */\nexport const rect = ($el, $viewport = null) => {\n  _reset($viewport)\n  const {\n    width,\n    height,\n    top,\n    right,\n    bottom,\n    left\n  } = $el.getBoundingClientRect()\n  return {\n    width,\n    height,\n    top: top + _viewportY,\n    right: right + _viewportX,\n    bottom: bottom + _viewportY,\n    left: left + _viewportX\n  }\n}\n\n/**\n * @param {Element} $el\n * @param {?Element} [$viewport]\n * @return {Object}\n * @property {number} x -\n * @property {number} y -\n */\nexport const center = ($el, $viewport = null) => {\n  const _rect = /* :Object */ rect($el, $viewport)\n  return {\n    x /* :number */: _rect.left + _rect.width / 2,\n    y /* :number */: _rect.top + _rect.height / 2\n  }\n}\n",
@@ -7493,7 +7509,7 @@
     "lineNumber": 1
   },
   {
-    "__docId__": 272,
+    "__docId__": 273,
     "kind": "variable",
     "name": "_viewportY",
     "memberof": "src/utils/rect.js",
@@ -7514,7 +7530,7 @@
     "ignore": true
   },
   {
-    "__docId__": 273,
+    "__docId__": 274,
     "kind": "variable",
     "name": "_viewportX",
     "memberof": "src/utils/rect.js",
@@ -7535,7 +7551,7 @@
     "ignore": true
   },
   {
-    "__docId__": 274,
+    "__docId__": 275,
     "kind": "function",
     "name": "_reset",
     "memberof": "src/utils/rect.js",
@@ -7565,7 +7581,7 @@
     "ignore": true
   },
   {
-    "__docId__": 275,
+    "__docId__": 276,
     "kind": "function",
     "name": "rect",
     "memberof": "src/utils/rect.js",
@@ -7673,7 +7689,7 @@
     }
   },
   {
-    "__docId__": 276,
+    "__docId__": 277,
     "kind": "function",
     "name": "center",
     "memberof": "src/utils/rect.js",
@@ -7741,7 +7757,7 @@
     }
   },
   {
-    "__docId__": 277,
+    "__docId__": 278,
     "kind": "file",
     "name": "src/utils/sleep.js",
     "content": "/**\n * @param {number} time\n * @return {Promise}\n */\nexport const sleep = (time) => {\n  return new Promise((resolve /* :function */) => {\n    setTimeout(resolve, time)\n  })\n}\n",
@@ -7752,7 +7768,7 @@
     "lineNumber": 1
   },
   {
-    "__docId__": 278,
+    "__docId__": 279,
     "kind": "function",
     "name": "sleep",
     "memberof": "src/utils/sleep.js",
@@ -7788,7 +7804,7 @@
     }
   },
   {
-    "__docId__": 279,
+    "__docId__": 280,
     "kind": "file",
     "name": "src/utils/throttle.js",
     "content": "/**\n * @param {Object} [options]\n * @param {number} [options.interval] // int[0,inf)\n * @param {boolean} [options.isLastRun]\n * @return {function(fn: function)}\n */\nexport const throttle = (options = {}) => {\n  const { interval, isLastRun } = Object.assign(\n    { interval: 100, isLastRun: true },\n    options\n  )\n\n  let _lastTime /* :number int[0,inf) */ = new Date().getTime() - interval\n  let _timer /* :number int[0,inf) */ = 0\n\n  return (fn) => {\n    if (_lastTime + interval <= new Date().getTime()) {\n      _lastTime = new Date().getTime()\n      fn()\n    }\n    if (isLastRun) {\n      clearTimeout(_timer)\n      _timer = setTimeout(() => {\n        fn()\n        _timer = 0\n      }, interval)\n    }\n  }\n}\n",
@@ -7799,7 +7815,7 @@
     "lineNumber": 1
   },
   {
-    "__docId__": 280,
+    "__docId__": 281,
     "kind": "function",
     "name": "throttle",
     "memberof": "src/utils/throttle.js",
@@ -7855,7 +7871,7 @@
     }
   },
   {
-    "__docId__": 281,
+    "__docId__": 282,
     "kind": "file",
     "name": "src/utils/wait.js",
     "content": "/**\n * @param {number} timer - int[0,inf)\n * @param {number} startTime - int[0,inf)\n * @param {number} interval - int[0,inf)\n * @param {number} timeout - int[0,inf)\n * @param {function} observe\n * @param {function} resolve\n * @param {function} returnValFn\n * @return {Promise}\n */\nconst check /* :function */ = (\n  timer,\n  startTime,\n  interval,\n  timeout,\n  observe,\n  resolve,\n  returnValFn\n) => {\n  if (timer) {\n    clearTimeout(timer)\n  }\n\n  timer = setTimeout(() => {\n    if (observe() || timeout < new Date().getTime() - startTime) {\n      returnValFn ? resolve(returnValFn()) : resolve()\n    } else {\n      check(timer, startTime, interval, timeout, observe, resolve, returnValFn)\n    }\n  }, interval)\n}\n\n/**\n * @param {number} interval - int[0,inf)\n * @param {function} observe\n * @param {Object} [options]\n * @param {number} [options.timeout] - int[0,inf)\n * @param {?function} [options.returnValFn]\n * @return {Promise}\n */\nexport const wait = (interval, observe, options = {}) => {\n  let { timeout, returnValFn } = Object.assign(\n    { timeout: 30000, returnValFn: null },\n    options\n  )\n\n  let _timer /* :number [0,inf) */ = 0\n  const _startTime /* :number [0,inf) */ = new Date().getTime()\n\n  return new Promise((resolve /* function */) => {\n    check(_timer, _startTime, interval, timeout, observe, resolve, returnValFn)\n  })\n}\n",
@@ -7866,7 +7882,7 @@
     "lineNumber": 1
   },
   {
-    "__docId__": 282,
+    "__docId__": 283,
     "kind": "function",
     "name": "check",
     "memberof": "src/utils/wait.js",
@@ -7963,7 +7979,7 @@
     "ignore": true
   },
   {
-    "__docId__": 283,
+    "__docId__": 284,
     "kind": "function",
     "name": "wait",
     "memberof": "src/utils/wait.js",
@@ -8039,7 +8055,7 @@
     }
   },
   {
-    "__docId__": 284,
+    "__docId__": 285,
     "kind": "file",
     "name": "src/views/_observe-scroll-single.js",
     "content": "/**\n * depends on 'vanix' used in 'inviewportScrollObserver'\n */\n\nimport { inviewportScrollObserver } from '../modules'\n\nclass ObserveScrollSingle {\n  _selfClassName /* :string */ = ''\n  _$el /* :Element */\n\n  /**\n   * @return {Object}\n   */\n  static get _defOptions() {\n    return {\n      selfClassName: 'js-class-name'\n    }\n  }\n\n  /**\n   * @param {Object} [options]\n   * @param {string} [options.selfClassName]\n   */\n  constructor(options = {}) {\n    const { selfClassName } = Object.assign(\n      ObserveScrollSingle._defOptions,\n      options\n    )\n\n    this._selfClassName = selfClassName\n  }\n\n  /**\n   * @return {Instance}\n   */\n  create() {\n    this._$el = document.getElementsByClassName(this._selfClassName)[0]\n    return this\n  }\n\n  /**\n   * @return {Instance}\n   */\n  destroy() {\n    this._$el = null\n    return this\n  }\n\n  /**\n   * @return {Instance}\n   */\n  on() {\n    inviewportScrollObserver.add(this._$el, this._update.bind(this))\n    return this\n  }\n\n  /**\n   * @return {Instance}\n   */\n  off() {\n    inviewportScrollObserver.remove(this._$el)\n    return this\n  }\n\n  /**\n   * @param {Object} obj\n   * @property {Element} obj.target\n   * @property {number} obj.progress - [0,inf)\n   * @property {number} obj.progressRatio - [0,1]\n   */\n  _update({ target, progress, progressRatio }) {\n    console.log(target, progress, progressRatio)\n  }\n}\n\nexport { ObserveScrollSingle as default }\n",
@@ -8050,7 +8066,7 @@
     "lineNumber": 1
   },
   {
-    "__docId__": 285,
+    "__docId__": 286,
     "kind": "class",
     "name": "ObserveScrollSingle",
     "memberof": "src/views/_observe-scroll-single.js",
@@ -8067,7 +8083,7 @@
     "ignore": true
   },
   {
-    "__docId__": 286,
+    "__docId__": 287,
     "kind": "member",
     "name": "_selfClassName",
     "memberof": "src/views/_observe-scroll-single.js~ObserveScrollSingle",
@@ -8084,7 +8100,7 @@
     }
   },
   {
-    "__docId__": 287,
+    "__docId__": 288,
     "kind": "member",
     "name": "_$el",
     "memberof": "src/views/_observe-scroll-single.js~ObserveScrollSingle",
@@ -8101,7 +8117,7 @@
     }
   },
   {
-    "__docId__": 288,
+    "__docId__": 289,
     "kind": "get",
     "name": "_defOptions",
     "memberof": "src/views/_observe-scroll-single.js~ObserveScrollSingle",
@@ -8127,7 +8143,7 @@
     }
   },
   {
-    "__docId__": 289,
+    "__docId__": 290,
     "kind": "constructor",
     "name": "constructor",
     "memberof": "src/views/_observe-scroll-single.js~ObserveScrollSingle",
@@ -8162,7 +8178,7 @@
     ]
   },
   {
-    "__docId__": 291,
+    "__docId__": 292,
     "kind": "method",
     "name": "create",
     "memberof": "src/views/_observe-scroll-single.js~ObserveScrollSingle",
@@ -8184,7 +8200,7 @@
     "params": []
   },
   {
-    "__docId__": 293,
+    "__docId__": 294,
     "kind": "method",
     "name": "destroy",
     "memberof": "src/views/_observe-scroll-single.js~ObserveScrollSingle",
@@ -8206,7 +8222,7 @@
     "params": []
   },
   {
-    "__docId__": 295,
+    "__docId__": 296,
     "kind": "method",
     "name": "on",
     "memberof": "src/views/_observe-scroll-single.js~ObserveScrollSingle",
@@ -8228,7 +8244,7 @@
     "params": []
   },
   {
-    "__docId__": 296,
+    "__docId__": 297,
     "kind": "method",
     "name": "off",
     "memberof": "src/views/_observe-scroll-single.js~ObserveScrollSingle",
@@ -8250,7 +8266,7 @@
     "params": []
   },
   {
-    "__docId__": 297,
+    "__docId__": 298,
     "kind": "method",
     "name": "_update",
     "memberof": "src/views/_observe-scroll-single.js~ObserveScrollSingle",
@@ -8308,7 +8324,7 @@
     "return": null
   },
   {
-    "__docId__": 298,
+    "__docId__": 299,
     "kind": "file",
     "name": "src/views/client-flag-setter.js",
     "content": "/**\n * depends on 'vanix' used in 'store'\n */\n\nimport { store } from '../store'\n\nclass ClientFlagSetter {\n  constructor() {\n    const { platform /* Object */ } = store.state\n\n    document.documentElement.classList.add(`is-${platform.type}`)\n  }\n}\n\nexport { ClientFlagSetter as default }\n",
@@ -8319,7 +8335,7 @@
     "lineNumber": 1
   },
   {
-    "__docId__": 299,
+    "__docId__": 300,
     "kind": "class",
     "name": "ClientFlagSetter",
     "memberof": "src/views/client-flag-setter.js",
@@ -8336,7 +8352,7 @@
     "ignore": true
   },
   {
-    "__docId__": 300,
+    "__docId__": 301,
     "kind": "constructor",
     "name": "constructor",
     "memberof": "src/views/client-flag-setter.js~ClientFlagSetter",
@@ -8350,7 +8366,7 @@
     "undocument": true
   },
   {
-    "__docId__": 301,
+    "__docId__": 302,
     "kind": "file",
     "name": "src/views/height-fitter.js",
     "content": "/**\n * depends on 'vanix' used in 'store'\n */\n\nimport { store } from '../store'\n\nclass HeightFitter {\n  _$$el /* :HTMLCollection|NodeList */\n  _platformType /* :string */ = ''\n  _storeStateObject /* :Object */ = {}\n\n  /**\n   * @return {Object}\n   */\n  static get _defOptions() {\n    return {\n      selfClassName: 'js-height-fitter'\n    }\n  }\n\n  /**\n   * @param {Object} [options]\n   * @param {string} [options.selfClassName]\n   */\n  constructor(options = {}) {\n    const { selfClassName } = Object.assign(HeightFitter._defOptions, options)\n\n    this._$$el = document.getElementsByClassName(selfClassName)\n\n    this._platformType = store.state.platform.type\n\n    this._storeStateObject = {\n      windowWidthLastChangedHeight: () => {\n        this.update()\n      }\n    }\n  }\n\n  /**\n   * @return {Instance}\n   */\n  on() {\n    store.observe(this._storeStateObject)\n    return this\n  }\n\n  /**\n   * @return {Instance}\n   */\n  off() {\n    store.unobserve(this._storeStateObject)\n    return this\n  }\n\n  /**\n   * @return {Instance}\n   */\n  update() {\n    const _height /* :number int[0,inf) */ =\n      store.state.windowWidthLastChangedHeight\n\n    for (const $el /* :Element */ of Array.from(this._$$el)) {\n      if (this._platformType === $el.dataset.heightFitterIgnore) {\n        continue\n      }\n      $el.style.height = `${_height}px`\n    }\n\n    return this\n  }\n}\n\nexport { HeightFitter as default }\n",
@@ -8361,7 +8377,7 @@
     "lineNumber": 1
   },
   {
-    "__docId__": 302,
+    "__docId__": 303,
     "kind": "class",
     "name": "HeightFitter",
     "memberof": "src/views/height-fitter.js",
@@ -8378,7 +8394,7 @@
     "ignore": true
   },
   {
-    "__docId__": 303,
+    "__docId__": 304,
     "kind": "member",
     "name": "_$$el",
     "memberof": "src/views/height-fitter.js~HeightFitter",
@@ -8395,7 +8411,7 @@
     }
   },
   {
-    "__docId__": 304,
+    "__docId__": 305,
     "kind": "member",
     "name": "_platformType",
     "memberof": "src/views/height-fitter.js~HeightFitter",
@@ -8412,7 +8428,7 @@
     }
   },
   {
-    "__docId__": 305,
+    "__docId__": 306,
     "kind": "member",
     "name": "_storeStateObject",
     "memberof": "src/views/height-fitter.js~HeightFitter",
@@ -8429,7 +8445,7 @@
     }
   },
   {
-    "__docId__": 306,
+    "__docId__": 307,
     "kind": "get",
     "name": "_defOptions",
     "memberof": "src/views/height-fitter.js~HeightFitter",
@@ -8455,7 +8471,7 @@
     }
   },
   {
-    "__docId__": 307,
+    "__docId__": 308,
     "kind": "constructor",
     "name": "constructor",
     "memberof": "src/views/height-fitter.js~HeightFitter",
@@ -8490,7 +8506,7 @@
     ]
   },
   {
-    "__docId__": 311,
+    "__docId__": 312,
     "kind": "method",
     "name": "on",
     "memberof": "src/views/height-fitter.js~HeightFitter",
@@ -8512,7 +8528,7 @@
     "params": []
   },
   {
-    "__docId__": 312,
+    "__docId__": 313,
     "kind": "method",
     "name": "off",
     "memberof": "src/views/height-fitter.js~HeightFitter",
@@ -8534,7 +8550,7 @@
     "params": []
   },
   {
-    "__docId__": 313,
+    "__docId__": 314,
     "kind": "method",
     "name": "update",
     "memberof": "src/views/height-fitter.js~HeightFitter",
@@ -8556,7 +8572,7 @@
     "params": []
   },
   {
-    "__docId__": 314,
+    "__docId__": 315,
     "kind": "file",
     "name": "src/views/ignitioner.js",
     "content": "class Ignitioner {\n  _selfClassName /* :string */ = ''\n  _isIgnitedClassName /* :string */ = ''\n  _$$el /* :HTMLCollection|NodeList */\n  _observer /* :IntersectionObserver */\n  _targets /* :Set */ = new Set()\n\n  /**\n   * @return {Object}\n   */\n  static get _defOptions() {\n    return {\n      selfClassName: 'js-ignitioner',\n      isIgnitedClassName: 'is-ignited'\n    }\n  }\n\n  /**\n   * @param {Object} [options]\n   * @param {string} [options.selfClassName]\n   * @param {string} [options.isLoadedClassName]\n   */\n  constructor(options = {}) {\n    const { selfClassName, isIgnitedClassName } = Object.assign(\n      Ignitioner._defOptions,\n      options\n    )\n\n    this._selfClassName = selfClassName\n    this._isIgnitedClassName = isIgnitedClassName\n  }\n\n  /**\n   * @return {Instance}\n   */\n  create() {\n    this._$$el = document.getElementsByClassName(this._selfClassName)\n    this._observer = new IntersectionObserver(this._update.bind(this), {\n      rootMargin: '-10% 0% -10% 0%'\n    })\n    return this\n  }\n\n  /**\n   * @return {Instance}\n   */\n  destroy() {\n    this._$$el = null\n    this._observer = null\n    this._targets.clear()\n    return this\n  }\n\n  /**\n   * @return {Instance}\n   */\n  on() {\n    for (const $el /* :Element */ of Array.from(this._$$el)) {\n      this.add($el)\n    }\n    return this\n  }\n\n  /**\n   * @return {Instance}\n   */\n  off() {\n    this._targets.forEach(($el /* :Element */) => {\n      this.remove($el)\n    })\n    return this\n  }\n\n  /**\n   * @param {Element} $el\n   * @return {Instance}\n   */\n  add($el) {\n    this._observer.observe($el)\n    this._targets.add($el)\n    return this\n  }\n\n  /**\n   * @param {Element} $el\n   * @return {Instance}\n   */\n  remove($el) {\n    this._observer.unobserve($el)\n    this._targets.delete($el)\n    return this\n  }\n\n  /**\n   * @param {Array<IntersectionObserverEntry>} entries\n   */\n  _update(entries) {\n    for (const {\n      target /* :Element */,\n      isIntersecting /* :boolean */\n    } of entries) {\n      if (isIntersecting) {\n        target.classList.add(this._isIgnitedClassName)\n        this.remove(target)\n      }\n    }\n  }\n}\n\nexport { Ignitioner as default }\n",
@@ -8567,7 +8583,7 @@
     "lineNumber": 1
   },
   {
-    "__docId__": 315,
+    "__docId__": 316,
     "kind": "class",
     "name": "Ignitioner",
     "memberof": "src/views/ignitioner.js",
@@ -8584,7 +8600,7 @@
     "ignore": true
   },
   {
-    "__docId__": 316,
+    "__docId__": 317,
     "kind": "member",
     "name": "_selfClassName",
     "memberof": "src/views/ignitioner.js~Ignitioner",
@@ -8601,7 +8617,7 @@
     }
   },
   {
-    "__docId__": 317,
+    "__docId__": 318,
     "kind": "member",
     "name": "_isIgnitedClassName",
     "memberof": "src/views/ignitioner.js~Ignitioner",
@@ -8618,7 +8634,7 @@
     }
   },
   {
-    "__docId__": 318,
+    "__docId__": 319,
     "kind": "member",
     "name": "_$$el",
     "memberof": "src/views/ignitioner.js~Ignitioner",
@@ -8635,7 +8651,7 @@
     }
   },
   {
-    "__docId__": 319,
+    "__docId__": 320,
     "kind": "member",
     "name": "_observer",
     "memberof": "src/views/ignitioner.js~Ignitioner",
@@ -8652,7 +8668,7 @@
     }
   },
   {
-    "__docId__": 320,
+    "__docId__": 321,
     "kind": "member",
     "name": "_targets",
     "memberof": "src/views/ignitioner.js~Ignitioner",
@@ -8669,7 +8685,7 @@
     }
   },
   {
-    "__docId__": 321,
+    "__docId__": 322,
     "kind": "get",
     "name": "_defOptions",
     "memberof": "src/views/ignitioner.js~Ignitioner",
@@ -8695,7 +8711,7 @@
     }
   },
   {
-    "__docId__": 322,
+    "__docId__": 323,
     "kind": "constructor",
     "name": "constructor",
     "memberof": "src/views/ignitioner.js~Ignitioner",
@@ -8740,7 +8756,7 @@
     ]
   },
   {
-    "__docId__": 325,
+    "__docId__": 326,
     "kind": "method",
     "name": "create",
     "memberof": "src/views/ignitioner.js~Ignitioner",
@@ -8762,7 +8778,7 @@
     "params": []
   },
   {
-    "__docId__": 328,
+    "__docId__": 329,
     "kind": "method",
     "name": "destroy",
     "memberof": "src/views/ignitioner.js~Ignitioner",
@@ -8784,7 +8800,7 @@
     "params": []
   },
   {
-    "__docId__": 331,
+    "__docId__": 332,
     "kind": "method",
     "name": "on",
     "memberof": "src/views/ignitioner.js~Ignitioner",
@@ -8806,7 +8822,7 @@
     "params": []
   },
   {
-    "__docId__": 332,
+    "__docId__": 333,
     "kind": "method",
     "name": "off",
     "memberof": "src/views/ignitioner.js~Ignitioner",
@@ -8828,7 +8844,7 @@
     "params": []
   },
   {
-    "__docId__": 333,
+    "__docId__": 334,
     "kind": "method",
     "name": "add",
     "memberof": "src/views/ignitioner.js~Ignitioner",
@@ -8861,7 +8877,7 @@
     }
   },
   {
-    "__docId__": 334,
+    "__docId__": 335,
     "kind": "method",
     "name": "remove",
     "memberof": "src/views/ignitioner.js~Ignitioner",
@@ -8894,7 +8910,7 @@
     }
   },
   {
-    "__docId__": 335,
+    "__docId__": 336,
     "kind": "method",
     "name": "_update",
     "memberof": "src/views/ignitioner.js~Ignitioner",
@@ -8920,7 +8936,7 @@
     "return": null
   },
   {
-    "__docId__": 336,
+    "__docId__": 337,
     "kind": "file",
     "name": "src/views/inviewporter.js",
     "content": "class Inviewporter {\n  _selfClassName /* :string */ = ''\n  _isInviewportClassName /* :string */ = ''\n  _$$el /* :HTMLCollection|NodeList */\n  _observer /* :IntersectionObserver */\n  _targets /* :Set */ = new Set()\n\n  /**\n   * @return {Object}\n   */\n  static get _defOptions() {\n    return {\n      selfClassName: 'js-inviewporter',\n      isInviewportClassName: 'is-inviewport'\n    }\n  }\n\n  /**\n   * @param {Object} [options]\n   * @param {string} [options.selfClassName]\n   * @param {string} [options.isLoadedClassName]\n   */\n  constructor(options = {}) {\n    const { selfClassName, isInviewportClassName } = Object.assign(\n      Inviewporter._defOptions,\n      options\n    )\n\n    this._selfClassName = selfClassName\n    this._isInviewportClassName = isInviewportClassName\n  }\n\n  /**\n   * @return {Instance}\n   */\n  create() {\n    this._$$el = document.getElementsByClassName(this._selfClassName)\n    this._observer = new IntersectionObserver(this._upate.bind(this))\n    return this\n  }\n\n  /**\n   * @return {Instance}\n   */\n  destroy() {\n    this._$$el = null\n    this._observer = null\n    this._targets.clear()\n    return this\n  }\n\n  /**\n   * @return {Instance}\n   */\n  on() {\n    for (const $el /* :Element */ of Array.from(this._$$el)) {\n      this.add($el)\n    }\n    return this\n  }\n\n  /**\n   * @return {Instance}\n   */\n  off() {\n    this._targets.forEach(($el /* :Element */) => {\n      this.remove($el)\n    })\n    return this\n  }\n\n  /**\n   * @param {Element} $el\n   * @return {Instance}\n   */\n  add($el) {\n    this._observer.observe($el)\n    this._targets.add($el)\n    return this\n  }\n\n  /**\n   * @param {Element} $el\n   * @return {Instance}\n   */\n  remove($el) {\n    this._observer.unobserve($el)\n    this._targets.delete($el)\n    return this\n  }\n\n  /**\n   * @param {Array<IntersectionObserverEntry>} entries\n   */\n  _upate(entries) {\n    for (const {\n      target /* :Element */,\n      isIntersecting /* :boolean */\n    } of entries) {\n      if (isIntersecting) {\n        target.classList.add(this._isInviewportClassName)\n      } else {\n        target.classList.remove(this._isInviewportClassName)\n      }\n    }\n  }\n}\n\nexport { Inviewporter as default }\n",
@@ -8931,7 +8947,7 @@
     "lineNumber": 1
   },
   {
-    "__docId__": 337,
+    "__docId__": 338,
     "kind": "class",
     "name": "Inviewporter",
     "memberof": "src/views/inviewporter.js",
@@ -8948,7 +8964,7 @@
     "ignore": true
   },
   {
-    "__docId__": 338,
+    "__docId__": 339,
     "kind": "member",
     "name": "_selfClassName",
     "memberof": "src/views/inviewporter.js~Inviewporter",
@@ -8965,7 +8981,7 @@
     }
   },
   {
-    "__docId__": 339,
+    "__docId__": 340,
     "kind": "member",
     "name": "_isInviewportClassName",
     "memberof": "src/views/inviewporter.js~Inviewporter",
@@ -8982,7 +8998,7 @@
     }
   },
   {
-    "__docId__": 340,
+    "__docId__": 341,
     "kind": "member",
     "name": "_$$el",
     "memberof": "src/views/inviewporter.js~Inviewporter",
@@ -8999,7 +9015,7 @@
     }
   },
   {
-    "__docId__": 341,
+    "__docId__": 342,
     "kind": "member",
     "name": "_observer",
     "memberof": "src/views/inviewporter.js~Inviewporter",
@@ -9016,7 +9032,7 @@
     }
   },
   {
-    "__docId__": 342,
+    "__docId__": 343,
     "kind": "member",
     "name": "_targets",
     "memberof": "src/views/inviewporter.js~Inviewporter",
@@ -9033,7 +9049,7 @@
     }
   },
   {
-    "__docId__": 343,
+    "__docId__": 344,
     "kind": "get",
     "name": "_defOptions",
     "memberof": "src/views/inviewporter.js~Inviewporter",
@@ -9059,7 +9075,7 @@
     }
   },
   {
-    "__docId__": 344,
+    "__docId__": 345,
     "kind": "constructor",
     "name": "constructor",
     "memberof": "src/views/inviewporter.js~Inviewporter",
@@ -9104,7 +9120,7 @@
     ]
   },
   {
-    "__docId__": 347,
+    "__docId__": 348,
     "kind": "method",
     "name": "create",
     "memberof": "src/views/inviewporter.js~Inviewporter",
@@ -9126,7 +9142,7 @@
     "params": []
   },
   {
-    "__docId__": 350,
+    "__docId__": 351,
     "kind": "method",
     "name": "destroy",
     "memberof": "src/views/inviewporter.js~Inviewporter",
@@ -9148,7 +9164,7 @@
     "params": []
   },
   {
-    "__docId__": 353,
+    "__docId__": 354,
     "kind": "method",
     "name": "on",
     "memberof": "src/views/inviewporter.js~Inviewporter",
@@ -9170,7 +9186,7 @@
     "params": []
   },
   {
-    "__docId__": 354,
+    "__docId__": 355,
     "kind": "method",
     "name": "off",
     "memberof": "src/views/inviewporter.js~Inviewporter",
@@ -9192,7 +9208,7 @@
     "params": []
   },
   {
-    "__docId__": 355,
+    "__docId__": 356,
     "kind": "method",
     "name": "add",
     "memberof": "src/views/inviewporter.js~Inviewporter",
@@ -9225,7 +9241,7 @@
     }
   },
   {
-    "__docId__": 356,
+    "__docId__": 357,
     "kind": "method",
     "name": "remove",
     "memberof": "src/views/inviewporter.js~Inviewporter",
@@ -9258,7 +9274,7 @@
     }
   },
   {
-    "__docId__": 357,
+    "__docId__": 358,
     "kind": "method",
     "name": "_upate",
     "memberof": "src/views/inviewporter.js~Inviewporter",
@@ -9284,7 +9300,7 @@
     "return": null
   },
   {
-    "__docId__": 358,
+    "__docId__": 359,
     "kind": "file",
     "name": "src/views/lazyloader.js",
     "content": "import { loadImage } from '../utils/load'\nimport { getBackgroundImages } from '../utils/background-image'\n\nclass Lazyloader {\n  _selfClassName /* :string */ = ''\n  _isLoadedClassName /* :string */ = ''\n  _isImageSettedClassName /* :string */ = ''\n  _$$el /* :HTMLCollection|NodeList */\n  _observer /* :IntersectionObserver */\n  _targets /* :Set */ = new Set()\n\n  /**\n   * @return {Object}\n   */\n  static get _defOptions() {\n    return {\n      selfClassName: 'js-lazyloader',\n      isLoadedClassName: 'is-lazyloaded',\n      isImageSettedClassName: 'is-image-setted'\n    }\n  }\n\n  /**\n   * @param {Object} [options]\n   * @param {string} [options.selfClassName]\n   * @param {string} [options.isLoadedClassName]\n   * @param {string} [options.isImageSettedClassName]\n   */\n  constructor(options = {}) {\n    const {\n      selfClassName,\n      isLoadedClassName,\n      isImageSettedClassName\n    } = Object.assign(Lazyloader._defOptions, options)\n\n    this._selfClassName = selfClassName\n    this._isLoadedClassName = isLoadedClassName\n    this._isImageSettedClassName = isImageSettedClassName\n  }\n\n  /**\n   * @return {Instance}\n   */\n  create() {\n    this._$$el = document.getElementsByClassName(this._selfClassName)\n    this._observer = new IntersectionObserver(this._update.bind(this), {\n      rootMargin: '-10% 0% -10% 0%'\n    })\n    return this\n  }\n\n  /**\n   * @return {Instance}\n   */\n  destroy() {\n    this._$$el = null\n    this._observer = null\n    this._targets.clear()\n    return this\n  }\n\n  /**\n   * @return {Instance}\n   */\n  on() {\n    for (const $el /* :Element */ of Array.from(this._$$el)) {\n      this.add($el)\n    }\n    return this\n  }\n\n  /**\n   * @return {Instance}\n   */\n  off() {\n    this._targets.forEach(($el /* :Element */) => {\n      this.remove($el)\n    })\n    return this\n  }\n\n  /**\n   * @param {Element} $el\n   * @return {Instance}\n   */\n  add($el) {\n    this._observer.observe($el)\n    this._targets.add($el)\n    return this\n  }\n\n  /**\n   * @param {Element} $el\n   * @return {Instance}\n   */\n  remove($el) {\n    this._observer.unobserve($el)\n    this._targets.delete($el)\n    return this\n  }\n\n  /**\n   * @param {Array<IntersectionObserverEntry>} entries\n   * @return {Promise}\n   */\n  async _update(entries) {\n    const loadList /* :function[] */ = []\n\n    for (const {\n      target /* :Element */,\n      isIntersecting /* :boolean */\n    } of entries) {\n      if (isIntersecting) {\n        target.classList.add(this._isImageSettedClassName)\n        const _srcList /* :string[] */ = this._getSrcList(target)\n        this.remove(target)\n\n        loadList.push(() => {\n          return (async () => {\n            await Promise.all(_srcList.map((src) => loadImage(src)))\n            target.classList.add(this._isLoadedClassName)\n          })()\n        })\n      }\n    }\n\n    await Promise.all(loadList.map((load /* :function */) => load()))\n  }\n\n  /**\n   * @param {Element} $el\n   * @return {string[]}\n   */\n  _getSrcList($el) {\n    // img\n    if ($el.src) {\n      const _src /* :string */ = $el.dataset.src\n      $el.src = _src\n      return [_src]\n    }\n    // source\n    else if ($el.tagName.toLowerCase() === 'picture') {\n      const _sources = []\n      for (const $child /* :Element */ of Array.from($el.children)) {\n        const _tagName /* :string */ = $child.tagName.toLowerCase()\n        let _src /* :string */ = ''\n        switch (_tagName) {\n          case 'source': {\n            _src = $child.dataset.src\n            $child.srcset = _src\n            break\n          }\n          case 'img': {\n            _src = $child.dataset.src\n            $child.src = _src\n            break\n          }\n          default: {\n            break\n          }\n        }\n        _sources.push(_src)\n      }\n      return _sources\n    }\n\n    // background-image\n    const _bgImages /* string[] */ = getBackgroundImages($el)\n\n    if (_bgImages.length) {\n      return _bgImages\n    }\n\n    return []\n  }\n}\n\nexport { Lazyloader as default }\n",
@@ -9295,7 +9311,7 @@
     "lineNumber": 1
   },
   {
-    "__docId__": 359,
+    "__docId__": 360,
     "kind": "class",
     "name": "Lazyloader",
     "memberof": "src/views/lazyloader.js",
@@ -9312,7 +9328,7 @@
     "ignore": true
   },
   {
-    "__docId__": 360,
+    "__docId__": 361,
     "kind": "member",
     "name": "_selfClassName",
     "memberof": "src/views/lazyloader.js~Lazyloader",
@@ -9329,7 +9345,7 @@
     }
   },
   {
-    "__docId__": 361,
+    "__docId__": 362,
     "kind": "member",
     "name": "_isLoadedClassName",
     "memberof": "src/views/lazyloader.js~Lazyloader",
@@ -9346,7 +9362,7 @@
     }
   },
   {
-    "__docId__": 362,
+    "__docId__": 363,
     "kind": "member",
     "name": "_isImageSettedClassName",
     "memberof": "src/views/lazyloader.js~Lazyloader",
@@ -9363,7 +9379,7 @@
     }
   },
   {
-    "__docId__": 363,
+    "__docId__": 364,
     "kind": "member",
     "name": "_$$el",
     "memberof": "src/views/lazyloader.js~Lazyloader",
@@ -9380,7 +9396,7 @@
     }
   },
   {
-    "__docId__": 364,
+    "__docId__": 365,
     "kind": "member",
     "name": "_observer",
     "memberof": "src/views/lazyloader.js~Lazyloader",
@@ -9397,7 +9413,7 @@
     }
   },
   {
-    "__docId__": 365,
+    "__docId__": 366,
     "kind": "member",
     "name": "_targets",
     "memberof": "src/views/lazyloader.js~Lazyloader",
@@ -9414,7 +9430,7 @@
     }
   },
   {
-    "__docId__": 366,
+    "__docId__": 367,
     "kind": "get",
     "name": "_defOptions",
     "memberof": "src/views/lazyloader.js~Lazyloader",
@@ -9440,7 +9456,7 @@
     }
   },
   {
-    "__docId__": 367,
+    "__docId__": 368,
     "kind": "constructor",
     "name": "constructor",
     "memberof": "src/views/lazyloader.js~Lazyloader",
@@ -9495,7 +9511,7 @@
     ]
   },
   {
-    "__docId__": 371,
+    "__docId__": 372,
     "kind": "method",
     "name": "create",
     "memberof": "src/views/lazyloader.js~Lazyloader",
@@ -9517,7 +9533,7 @@
     "params": []
   },
   {
-    "__docId__": 374,
+    "__docId__": 375,
     "kind": "method",
     "name": "destroy",
     "memberof": "src/views/lazyloader.js~Lazyloader",
@@ -9539,7 +9555,7 @@
     "params": []
   },
   {
-    "__docId__": 377,
+    "__docId__": 378,
     "kind": "method",
     "name": "on",
     "memberof": "src/views/lazyloader.js~Lazyloader",
@@ -9561,7 +9577,7 @@
     "params": []
   },
   {
-    "__docId__": 378,
+    "__docId__": 379,
     "kind": "method",
     "name": "off",
     "memberof": "src/views/lazyloader.js~Lazyloader",
@@ -9583,7 +9599,7 @@
     "params": []
   },
   {
-    "__docId__": 379,
+    "__docId__": 380,
     "kind": "method",
     "name": "add",
     "memberof": "src/views/lazyloader.js~Lazyloader",
@@ -9616,7 +9632,7 @@
     }
   },
   {
-    "__docId__": 380,
+    "__docId__": 381,
     "kind": "method",
     "name": "remove",
     "memberof": "src/views/lazyloader.js~Lazyloader",
@@ -9649,7 +9665,7 @@
     }
   },
   {
-    "__docId__": 381,
+    "__docId__": 382,
     "kind": "method",
     "name": "_update",
     "memberof": "src/views/lazyloader.js~Lazyloader",
@@ -9682,7 +9698,7 @@
     }
   },
   {
-    "__docId__": 382,
+    "__docId__": 383,
     "kind": "method",
     "name": "_getSrcList",
     "memberof": "src/views/lazyloader.js~Lazyloader",
@@ -9715,7 +9731,7 @@
     }
   },
   {
-    "__docId__": 383,
+    "__docId__": 384,
     "kind": "file",
     "name": "src/views/page-loader.js",
     "content": "/**\n * depends on 'vanix' used in 'store'\n */\n\nimport { imagePreloader } from '../modules'\n\nclass PageLoader {\n  _isWindowLoaded /* :boolean */ = false\n  _isImagesPreloaded /* :boolean */ = false\n  _isPageLoadedClassName /* :string */ = ''\n\n  static get _defOptions() {\n    return {\n      isPageLoadedClassName: 'is-page-loaded'\n    }\n  }\n\n  /**\n   * @param {Object} [options]\n   * @param {string} [options.isPageLoadedClassName]\n   */\n  constructor(options = {}) {\n    const { isPageLoadedClassName } = Object.assign(\n      PageLoader._defOptions,\n      options\n    )\n\n    this._isPageLoadedClassName = isPageLoadedClassName\n\n    window.addEventListener('load', this._onWindowLoad.bind(this), {\n      once: true\n    })\n  }\n\n  /**\n   * @return {Instance}\n   */\n  start() {\n    this._preloadImages()\n    return this\n  }\n\n  _onWindowLoad() {\n    this._isWindowLoaded = true\n    this._mightAllLoaded()\n  }\n\n  /**\n   * @return {Promise}\n   */\n  async _preloadImages() {\n    await imagePreloader.add(document.body)\n    await imagePreloader.load(document.body)\n    imagePreloader.remove(document.body)\n    this._isImagesPreloaded = true\n    this._mightAllLoaded()\n  }\n\n  _mightAllLoaded() {\n    const _isAllLoaded /* :boolean */ =\n      this._isWindowLoaded && this._isImagesPreloaded\n    if (!_isAllLoaded) {\n      return\n    }\n    document.documentElement.classList.add(this._isPageLoadedClassName)\n    document.dispatchEvent(new CustomEvent('pageLoaded'))\n  }\n}\n\nexport { PageLoader as default }\n",
@@ -9726,7 +9742,7 @@
     "lineNumber": 1
   },
   {
-    "__docId__": 384,
+    "__docId__": 385,
     "kind": "class",
     "name": "PageLoader",
     "memberof": "src/views/page-loader.js",
@@ -9743,7 +9759,7 @@
     "ignore": true
   },
   {
-    "__docId__": 385,
+    "__docId__": 386,
     "kind": "member",
     "name": "_isWindowLoaded",
     "memberof": "src/views/page-loader.js~PageLoader",
@@ -9760,7 +9776,7 @@
     }
   },
   {
-    "__docId__": 386,
+    "__docId__": 387,
     "kind": "member",
     "name": "_isImagesPreloaded",
     "memberof": "src/views/page-loader.js~PageLoader",
@@ -9777,7 +9793,7 @@
     }
   },
   {
-    "__docId__": 387,
+    "__docId__": 388,
     "kind": "member",
     "name": "_isPageLoadedClassName",
     "memberof": "src/views/page-loader.js~PageLoader",
@@ -9794,7 +9810,7 @@
     }
   },
   {
-    "__docId__": 388,
+    "__docId__": 389,
     "kind": "get",
     "name": "_defOptions",
     "memberof": "src/views/page-loader.js~PageLoader",
@@ -9813,7 +9829,7 @@
     }
   },
   {
-    "__docId__": 389,
+    "__docId__": 390,
     "kind": "constructor",
     "name": "constructor",
     "memberof": "src/views/page-loader.js~PageLoader",
@@ -9848,7 +9864,7 @@
     ]
   },
   {
-    "__docId__": 391,
+    "__docId__": 392,
     "kind": "method",
     "name": "start",
     "memberof": "src/views/page-loader.js~PageLoader",
@@ -9870,7 +9886,7 @@
     "params": []
   },
   {
-    "__docId__": 392,
+    "__docId__": 393,
     "kind": "method",
     "name": "_onWindowLoad",
     "memberof": "src/views/page-loader.js~PageLoader",
@@ -9886,7 +9902,7 @@
     "return": null
   },
   {
-    "__docId__": 394,
+    "__docId__": 395,
     "kind": "method",
     "name": "_preloadImages",
     "memberof": "src/views/page-loader.js~PageLoader",
@@ -9908,7 +9924,7 @@
     "params": []
   },
   {
-    "__docId__": 396,
+    "__docId__": 397,
     "kind": "method",
     "name": "_mightAllLoaded",
     "memberof": "src/views/page-loader.js~PageLoader",
