@@ -6,7 +6,7 @@ import { store } from '../store'
 import { inviewportObserver } from '../modules'
 import { rect } from '../utils/rect'
 
-class ObserveScrollBase {
+class ObserveScrollSingle {
   _selfClassName /* :string */ = ''
   _$el /* :Element */
   _$$item /* :HTMLCollection|NodeList */
@@ -30,8 +30,8 @@ class ObserveScrollBase {
    * @param {string} [options.selfClassName]
    */
   constructor(options = {}) {
-    const { selfClassName, itemClassName } = Object.assign(
-      ObserveScrollBase._defOptions,
+    const { selfClassName } = Object.assign(
+      ObserveScrollSingle._defOptions,
       options
     )
 
@@ -112,4 +112,4 @@ class ObserveScrollBase {
   }
 }
 
-export { ObserveScrollBase as default }
+export { ObserveScrollSingle as default }
