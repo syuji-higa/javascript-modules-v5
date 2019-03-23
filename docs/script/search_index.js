@@ -306,6 +306,18 @@ window.esdocSearchIndex = [
     "function"
   ],
   [
+    "javascript-modules-v5/src/models/string.js~notnumberstrings",
+    "function/index.html#static-function-notNumberStrings",
+    "<span>notNumberStrings</span> <span class=\"search-result-import-path\">javascript-modules-v5/src/models/string.js</span>",
+    "function"
+  ],
+  [
+    "javascript-modules-v5/src/models/string.js~numberstrings",
+    "function/index.html#static-function-numberStrings",
+    "<span>numberStrings</span> <span class=\"search-result-import-path\">javascript-modules-v5/src/models/string.js</span>",
+    "function"
+  ],
+  [
     "javascript-modules-v5/src/models/object-type.js~objecttype",
     "function/index.html#static-function-objectType",
     "<span>objectType</span> <span class=\"search-result-import-path\">javascript-modules-v5/src/models/object-type.js</span>",
@@ -396,6 +408,12 @@ window.esdocSearchIndex = [
     "function"
   ],
   [
+    "javascript-modules-v5/src/models/ratio-value.js~ratiovalue",
+    "function/index.html#static-function-ratioValue",
+    "<span>ratioValue</span> <span class=\"search-result-import-path\">javascript-modules-v5/src/models/ratio-value.js</span>",
+    "function"
+  ],
+  [
     "javascript-modules-v5/src/utils/rect.js~rect",
     "function/index.html#static-function-rect",
     "<span>rect</span> <span class=\"search-result-import-path\">javascript-modules-v5/src/utils/rect.js</span>",
@@ -423,6 +441,12 @@ window.esdocSearchIndex = [
     "javascript-modules-v5/src/models/math.js~sign",
     "function/index.html#static-function-sign",
     "<span>sign</span> <span class=\"search-result-import-path\">javascript-modules-v5/src/models/math.js</span>",
+    "function"
+  ],
+  [
+    "javascript-modules-v5/src/utils/sleep.js~sleep",
+    "function/index.html#static-function-sleep",
+    "<span>sleep</span> <span class=\"search-result-import-path\">javascript-modules-v5/src/utils/sleep.js</span>",
     "function"
   ],
   [
@@ -900,6 +924,12 @@ window.esdocSearchIndex = [
     "file"
   ],
   [
+    "src/models/ratio-value.js",
+    "file/src/models/ratio-value.js.html",
+    "src/models/ratio-value.js",
+    "file"
+  ],
+  [
     "src/models/ratio.js",
     "file/src/models/ratio.js.html",
     "src/models/ratio.js",
@@ -936,6 +966,12 @@ window.esdocSearchIndex = [
     "file"
   ],
   [
+    "src/modules/controlled-request-animation-framer.js",
+    "file/src/modules/controlled-request-animation-framer.js.html",
+    "src/modules/controlled-request-animation-framer.js",
+    "file"
+  ],
+  [
     "src/modules/eventer.js",
     "file/src/modules/eventer.js.html",
     "src/modules/eventer.js",
@@ -957,6 +993,12 @@ window.esdocSearchIndex = [
     "src/modules/inviewport-scroll-observer.js",
     "file/src/modules/inviewport-scroll-observer.js.html",
     "src/modules/inviewport-scroll-observer.js",
+    "file"
+  ],
+  [
+    "src/modules/request-animation-framer.js",
+    "file/src/modules/request-animation-framer.js.html",
+    "src/modules/request-animation-framer.js",
     "file"
   ],
   [
@@ -1017,6 +1059,12 @@ window.esdocSearchIndex = [
     "src/utils/rect.js",
     "file/src/utils/rect.js.html",
     "src/utils/rect.js",
+    "file"
+  ],
+  [
+    "src/utils/sleep.js",
+    "file/src/utils/sleep.js.html",
+    "src/utils/sleep.js",
     "file"
   ],
   [

@@ -67,6 +67,7 @@
 <li data-ice="doc"><span data-ice="kind" class="kind-function">F</span><span data-ice="name"><span><a href="function/index.html#static-function-random">random</a></span></span></li>
 <li data-ice="doc"><span data-ice="kind" class="kind-function">F</span><span data-ice="name"><span><a href="function/index.html#static-function-randomDir">randomDir</a></span></span></li>
 <li data-ice="doc"><span data-ice="kind" class="kind-function">F</span><span data-ice="name"><span><a href="function/index.html#static-function-randomInt">randomInt</a></span></span></li>
+<li data-ice="doc"><span data-ice="kind" class="kind-function">F</span><span data-ice="name"><span><a href="function/index.html#static-function-ratioValue">ratioValue</a></span></span></li>
 <li data-ice="doc"><span data-ice="kind" class="kind-function">F</span><span data-ice="name"><span><a href="function/index.html#static-function-cover">cover</a></span></span></li>
 <li data-ice="doc"><span data-ice="kind" class="kind-function">F</span><span data-ice="name"><span><a href="function/index.html#static-function-normalizeOverRatio">normalizeOverRatio</a></span></span></li>
 <li data-ice="doc"><span data-ice="kind" class="kind-function">F</span><span data-ice="name"><span><a href="function/index.html#static-function-normalizeUnderRatio">normalizeUnderRatio</a></span></span></li>
@@ -74,6 +75,8 @@
 <li data-ice="doc"><span data-ice="kind" class="kind-function">F</span><span data-ice="name"><span><a href="function/index.html#static-function-squaresPosition">squaresPosition</a></span></span></li>
 <li data-ice="doc"><span data-ice="kind" class="kind-function">F</span><span data-ice="name"><span><a href="function/index.html#static-function-charCount">charCount</a></span></span></li>
 <li data-ice="doc"><span data-ice="kind" class="kind-function">F</span><span data-ice="name"><span><a href="function/index.html#static-function-kebabToPascalCase">kebabToPascalCase</a></span></span></li>
+<li data-ice="doc"><span data-ice="kind" class="kind-function">F</span><span data-ice="name"><span><a href="function/index.html#static-function-notNumberStrings">notNumberStrings</a></span></span></li>
+<li data-ice="doc"><span data-ice="kind" class="kind-function">F</span><span data-ice="name"><span><a href="function/index.html#static-function-numberStrings">numberStrings</a></span></span></li>
 <li data-ice="doc"><span data-ice="kind" class="kind-function">F</span><span data-ice="name"><span><a href="function/index.html#static-function-pascalToKebabCase">pascalToKebabCase</a></span></span></li>
 <li data-ice="doc"><span data-ice="kind" class="kind-function">F</span><span data-ice="name"><span><a href="function/index.html#static-function-toCommaNum">toCommaNum</a></span></span></li>
 <li data-ice="doc"><span data-ice="kind" class="kind-function">F</span><span data-ice="name"><span><a href="function/index.html#static-function-toFirstLetterUpper">toFirstLetterUpper</a></span></span></li>
@@ -115,6 +118,7 @@
 <li data-ice="doc"><span data-ice="kind" class="kind-function">F</span><span data-ice="name"><span><a href="function/index.html#static-function-loadVideo">loadVideo</a></span></span></li>
 <li data-ice="doc"><span data-ice="kind" class="kind-function">F</span><span data-ice="name"><span><a href="function/index.html#static-function-center">center</a></span></span></li>
 <li data-ice="doc"><span data-ice="kind" class="kind-function">F</span><span data-ice="name"><span><a href="function/index.html#static-function-rect">rect</a></span></span></li>
+<li data-ice="doc"><span data-ice="kind" class="kind-function">F</span><span data-ice="name"><span><a href="function/index.html#static-function-sleep">sleep</a></span></span></li>
 <li data-ice="doc"><span data-ice="kind" class="kind-function">F</span><span data-ice="name"><span><a href="function/index.html#static-function-throttle">throttle</a></span></span></li>
 <li data-ice="doc"><span data-ice="kind" class="kind-function">F</span><span data-ice="name"><span><a href="function/index.html#static-function-wait">wait</a></span></span></li>
 </ul>
@@ -168,12 +172,13 @@ class inviewportScrollObserver {
 
   /**
    * @param {Element} $el
-   * @param {function} func
+   * @param {function} updateFunc
+   * @param {?function} onceFunc
    * @return {Instance}
    */
-  add($el, func) {
+  add($el, updateFunc, onceFunc = null) {
     this._targets.set($el, {
-      func,
+      updateFunc,
       state /* :Object */: {
         range /* :number [0,inf) */: 0,
         start /* :number */: 0
@@ -181,6 +186,9 @@ class inviewportScrollObserver {
     })
     this._setState($el)
     inviewportObserver.add($el, (isInviewport /* :boolean */) =&gt; {
+      if (onceFunc) {
+        onceFunc(isInviewport)
+      }
       if (isInviewport) {
         this._inviewportTargets.set($el, this._targets.get($el))
       } else {
@@ -222,13 +230,13 @@ class inviewportScrollObserver {
 
   _update(offsetY) {
     this._inviewportTargets.forEach((
-      { func /* :function */, state /* :Object */ },
+      { updateFunc /* :function */, state /* :Object */ },
       $el /* :Element */
     ) =&gt; {
       const { range /* :number */, start } = state
       const _progress /* :number [0,inf) */ = offsetY - start
       const _progressRatio /* :number [0,1] */ = _progress / range
-      func({
+      updateFunc({
         target: $el,
         progress: _progress,
         progressRatio: _progressRatio

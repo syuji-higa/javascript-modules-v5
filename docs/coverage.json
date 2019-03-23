@@ -1,7 +1,7 @@
 {
-  "coverage": "68.61%",
-  "expectCount": 239,
-  "actualCount": 164,
+  "coverage": "66.66%",
+  "expectCount": 261,
+  "actualCount": 174,
   "files": {
     "src/models/array.js": {
       "expectCount": 5,
@@ -84,6 +84,11 @@
       "actualCount": 3,
       "undocumentLines": []
     },
+    "src/models/ratio-value.js": {
+      "expectCount": 1,
+      "actualCount": 1,
+      "undocumentLines": []
+    },
     "src/models/ratio.js": {
       "expectCount": 3,
       "actualCount": 3,
@@ -95,8 +100,8 @@
       "undocumentLines": []
     },
     "src/models/string.js": {
-      "expectCount": 8,
-      "actualCount": 8,
+      "expectCount": 10,
+      "actualCount": 10,
       "undocumentLines": []
     },
     "src/models/trigonometric.js": {
@@ -113,6 +118,18 @@
       "expectCount": 8,
       "actualCount": 8,
       "undocumentLines": []
+    },
+    "src/modules/controlled-request-animation-framer.js": {
+      "expectCount": 9,
+      "actualCount": 3,
+      "undocumentLines": [
+        1,
+        2,
+        3,
+        51,
+        58,
+        63
+      ]
     },
     "src/modules/eventer.js": {
       "expectCount": 7,
@@ -149,8 +166,20 @@
         11,
         12,
         14,
-        80,
-        99
+        84,
+        103
+      ]
+    },
+    "src/modules/request-animation-framer.js": {
+      "expectCount": 9,
+      "actualCount": 3,
+      "undocumentLines": [
+        1,
+        2,
+        3,
+        40,
+        47,
+        52
       ]
     },
     "src/modules/scroll-observer.js": {
@@ -229,6 +258,11 @@
         1,
         2
       ]
+    },
+    "src/utils/sleep.js": {
+      "expectCount": 1,
+      "actualCount": 1,
+      "undocumentLines": []
     },
     "src/utils/throttle.js": {
       "expectCount": 1,
