@@ -44,12 +44,13 @@ class inviewportScrollObserver {
 
   /**
    * @param {Element} $el
-   * @param {function} func
+   * @param {function} updateFunc
+   * @param {?function} onceFunc
    * @return {Instance}
    */
-  add($el, func) {
+  add($el, updateFunc, onceFunc = null) {
     this._targets.set($el, {
-      func,
+      updateFunc,
       state /* :Object */: {
         range /* :number [0,inf) */: 0,
         start /* :number */: 0
@@ -57,6 +58,9 @@ class inviewportScrollObserver {
     })
     this._setState($el)
     inviewportObserver.add($el, (isInviewport /* :boolean */) => {
+      if (onceFunc) {
+        onceFunc(isInviewport)
+      }
       if (isInviewport) {
         this._inviewportTargets.set($el, this._targets.get($el))
       } else {
@@ -98,13 +102,13 @@ class inviewportScrollObserver {
 
   _update(offsetY) {
     this._inviewportTargets.forEach((
-      { func /* :function */, state /* :Object */ },
+      { updateFunc /* :function */, state /* :Object */ },
       $el /* :Element */
     ) => {
       const { range /* :number */, start } = state
       const _progress /* :number [0,inf) */ = offsetY - start
       const _progressRatio /* :number [0,1] */ = _progress / range
-      func({
+      updateFunc({
         target: $el,
         progress: _progress,
         progressRatio: _progressRatio
