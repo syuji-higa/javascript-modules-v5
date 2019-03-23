@@ -426,6 +426,12 @@ window.esdocSearchIndex = [
     "function"
   ],
   [
+    "javascript-modules-v5/src/data/scroll-animation-data.js~scrollanimationdata",
+    "variable/index.html#static-variable-scrollAnimationData",
+    "<span>scrollAnimationData</span> <span class=\"search-result-import-path\">javascript-modules-v5/src/data/scroll-animation-data.js</span>",
+    "variable"
+  ],
+  [
     "javascript-modules-v5/src/models/query-string.js~serialize",
     "function/index.html#static-function-serialize",
     "<span>serialize</span> <span class=\"search-result-import-path\">javascript-modules-v5/src/models/query-string.js</span>",
@@ -834,6 +840,12 @@ window.esdocSearchIndex = [
     "external"
   ],
   [
+    "src/data/scroll-animation-data.js",
+    "file/src/data/scroll-animation-data.js.html",
+    "src/data/scroll-animation-data.js",
+    "file"
+  ],
+  [
     "src/models/array.js",
     "file/src/models/array.js.html",
     "src/models/array.js",
@@ -1119,6 +1131,12 @@ window.esdocSearchIndex = [
     "src/views/page-loader.js",
     "file/src/views/page-loader.js.html",
     "src/views/page-loader.js",
+    "file"
+  ],
+  [
+    "src/views/scroll-animator.js",
+    "file/src/views/scroll-animator.js.html",
+    "src/views/scroll-animator.js",
     "file"
   ]
 ]

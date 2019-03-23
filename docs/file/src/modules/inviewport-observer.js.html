@@ -30,6 +30,7 @@
   <ul>
     
   <li data-ice="doc"><span data-ice="kind" class="kind-variable">V</span><span data-ice="name"><span><a href="variable/index.html#static-variable-store">store</a></span></span></li>
+<li data-ice="doc"><a data-ice="dirPath" class="nav-dir-path" href="identifiers.html#data">data</a><span data-ice="kind" class="kind-variable">V</span><span data-ice="name"><span><a href="variable/index.html#static-variable-scrollAnimationData">scrollAnimationData</a></span></span></li>
 <li data-ice="doc"><a data-ice="dirPath" class="nav-dir-path" href="identifiers.html#models">models</a><span data-ice="kind" class="kind-function">F</span><span data-ice="name"><span><a href="function/index.html#static-function-caterpillarArray">caterpillarArray</a></span></span></li>
 <li data-ice="doc"><span data-ice="kind" class="kind-function">F</span><span data-ice="name"><span><a href="function/index.html#static-function-createArray">createArray</a></span></span></li>
 <li data-ice="doc"><span data-ice="kind" class="kind-function">F</span><span data-ice="name"><span><a href="function/index.html#static-function-createSerialNumberArray">createSerialNumberArray</a></span></span></li>
@@ -175,11 +176,7 @@
       target /* :Element */,
       isIntersecting /* :boolean */
     } of entries) {
-      if (isIntersecting) {
-        this._functions.get(target)(true)
-      } else {
-        this._functions.get(target)(false)
-      }
+      this._functions.get(target)(isIntersecting)
     }
   }
 }

@@ -1,8 +1,15 @@
 {
-  "coverage": "66.41%",
-  "expectCount": 262,
-  "actualCount": 174,
+  "coverage": "65.94%",
+  "expectCount": 276,
+  "actualCount": 182,
   "files": {
+    "src/data/scroll-animation-data.js": {
+      "expectCount": 1,
+      "actualCount": 0,
+      "undocumentLines": [
+        1
+      ]
+    },
     "src/models/array.js": {
       "expectCount": 5,
       "actualCount": 5,
@@ -350,6 +357,17 @@
         12,
         43,
         59
+      ]
+    },
+    "src/views/scroll-animator.js": {
+      "expectCount": 13,
+      "actualCount": 8,
+      "undocumentLines": [
+        9,
+        10,
+        11,
+        12,
+        100
       ]
     }
   }
