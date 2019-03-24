@@ -4,14 +4,6 @@ class RequestAnimationFramer {
 
   /**
    * @param {Object} key
-   * @return {number} [0,inf)
-   */
-  getTime(key) {
-    return this._animes.get(key).time
-  }
-
-  /**
-   * @param {Object} key
    * @param {function} func
    * @return {Instance}
    */
