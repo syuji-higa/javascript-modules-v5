@@ -382,9 +382,9 @@
               "line": 9,
               "column": 30
             },
-            "identifierName": "inviewportScrollObserver"
+            "identifierName": "InviewportScrollObserver"
           },
-          "name": "inviewportScrollObserver"
+          "name": "InviewportScrollObserver"
         },
         "superClass": null,
         "body": {
@@ -7218,9 +7218,9 @@
                   "line": 126,
                   "column": 33
                 },
-                "identifierName": "inviewportScrollObserver"
+                "identifierName": "InviewportScrollObserver"
               },
-              "name": "inviewportScrollObserver"
+              "name": "InviewportScrollObserver"
             },
             "exported": {
               "type": "Identifier",
@@ -8212,7 +8212,7 @@
         "postfix": false,
         "binop": null
       },
-      "value": "inviewportScrollObserver",
+      "value": "InviewportScrollObserver",
       "start": 188,
       "end": 212,
       "loc": {
@@ -19250,7 +19250,7 @@
         "postfix": false,
         "binop": null
       },
-      "value": "inviewportScrollObserver",
+      "value": "InviewportScrollObserver",
       "start": 2781,
       "end": 2805,
       "loc": {

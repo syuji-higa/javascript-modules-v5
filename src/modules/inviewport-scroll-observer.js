@@ -6,7 +6,7 @@ import { store } from '../store'
 import { inviewportObserver, scrollObserver } from '../modules'
 import { rect } from '../utils/rect'
 
-class inviewportScrollObserver {
+class InviewportScrollObserver {
   _targets /* :WeakMap */ = new WeakMap()
   _inviewportTargets /* :Set */ = new Set()
   _storeStateObject /* :Object */ = {}
@@ -123,4 +123,4 @@ class inviewportScrollObserver {
   }
 }
 
-export { inviewportScrollObserver as default }
+export { InviewportScrollObserver as default }
