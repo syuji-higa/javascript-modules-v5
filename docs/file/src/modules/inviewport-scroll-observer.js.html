@@ -132,7 +132,7 @@
  */
 
 import { store } from &apos;../store&apos;
-import { inviewportObserver } from &apos;../modules&apos;
+import { inviewportObserver, scrollObserver } from &apos;../modules&apos;
 import { rect } from &apos;../utils/rect&apos;
 
 class inviewportScrollObserver {
@@ -192,9 +192,11 @@ class inviewportScrollObserver {
       }
       if (isInviewport) {
         this._inviewportTargets.add($el)
+        scrollObserver.add($el)
         this._update($el)
       } else {
         this._inviewportTargets.delete($el)
+        scrollObserver.remove($el)
       }
     })
     return this
@@ -207,6 +209,7 @@ class inviewportScrollObserver {
   remove($el) {
     this._inviewportTargets.delete($el)
     this._targets.delete($el)
+    scrollObserver.remove($el)
     inviewportObserver.remove($el)
     return this
   }

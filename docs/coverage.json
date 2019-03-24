@@ -1,6 +1,6 @@
 {
-  "coverage": "65.94%",
-  "expectCount": 276,
+  "coverage": "65.23%",
+  "expectCount": 279,
   "actualCount": 182,
   "files": {
     "src/data/scroll-animation-data.js": {
@@ -173,9 +173,9 @@
         11,
         12,
         14,
-        85,
-        101,
-        107
+        88,
+        104,
+        110
       ]
     },
     "src/modules/request-animation-framer.js": {
@@ -191,14 +191,17 @@
       ]
     },
     "src/modules/scroll-observer.js": {
-      "expectCount": 8,
+      "expectCount": 11,
       "actualCount": 3,
       "undocumentLines": [
         9,
         10,
         11,
-        13,
-        47
+        12,
+        14,
+        48,
+        52,
+        65
       ]
     },
     "src/modules/window-size-observer.js": {

@@ -138,6 +138,7 @@ import { throttle } from &apos;../utils/throttle&apos;
 class ScrollObserver {
   _scrollThrottle /* :function */
   _scrollEvent /* :Object */ = {}
+  _targets /* :Set */ = new Set()
 
   constructor() {
     this._scrollThrottle = throttle(200)
@@ -149,19 +150,36 @@ class ScrollObserver {
   }
 
   /**
+   * @param {Element} $el
    * @return {Instance}
    */
-  on() {
-    this._scrollEvent.add()
+  add($el) {
+    this._targets.add($el)
+    if (this._targets.size === 1) {
+      this._on()
+      this.update()
+    }
     return this
   }
 
   /**
+   * @param {Element} $el
    * @return {Instance}
    */
-  off() {
-    this._scrollEvent.remove()
+  remove($el) {
+    this._targets.delete($el)
+    if (this._targets.size === 0) {
+      this._off()
+    }
     return this
+  }
+
+  _on() {
+    this._scrollEvent.add()
+  }
+
+  _off() {
+    this._scrollEvent.remove()
   }
 
   /**
