@@ -42,14 +42,14 @@ class WindowSizeObserver {
    * @return {Instance}
    */
   update() {
-    store.commit('setWindowWidth', window.innerWidth)
-    store.commit('setWindowHeight', window.innerHeight)
-
-    if (
-      !this._isMobile ||
-      store.state.windowWidthLastChangedHeight !== window.innerWidth
-    ) {
+    if (!this._isMobile || store.state.windowWidth !== window.innerWidth) {
       store.commit('setWindowWidthLastChangedHeight', window.innerHeight)
+    }
+    if (store.state.windowWidth !== window.innerWidth) {
+      store.commit('setWindowWidth', window.innerWidth)
+    }
+    if (store.state.windowHeight !== window.innerHeight) {
+      store.commit('setWindowHeight', window.innerHeight)
     }
 
     if (store.state.breakPoint[0] > store.state.windowWidth) {
