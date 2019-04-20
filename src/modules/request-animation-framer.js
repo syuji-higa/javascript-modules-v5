@@ -1,6 +1,6 @@
 class RequestAnimationFramer {
   _animes /* :Map */ = new Map()
-  _animateHandle /* :number int[0,inf) */ = 0
+  _animateHandle /* :number - int[0,inf) */ = 0
 
   /**
    * @param {Object} key

@@ -3,6 +3,7 @@
  */
 
 import { store } from '../store'
+import { parse } from '../models/query-string'
 import { inviewportObserver, scrollObserver } from '../modules'
 import { rect } from '../utils/rect'
 
@@ -49,15 +50,25 @@ class InviewportScrollObserver {
    * @return {Instance}
    */
   add($el, updateFunc, onceFunc = null) {
+    const _options = $el.dataset.inviewportScrollObserverOptions
+
+    const { windowTopStart, windowBottomEnd, startOffset, endOffset } = parse(
+      _options
+    )
+
     this._targets.set($el, {
       updateFunc,
+      windowTopStart /* :boolean */: windowTopStart || false,
+      windowBottomEnd /* :boolean */: windowBottomEnd || false,
+      startOffset /* :number*/: startOffset || 0,
+      endOffset /* :number */: endOffset || 0,
       state /* :Object */: {
-        range /* :number [0,inf) */: 0,
-        start /* :number */: 0
+        range /* :number - [0,inf) */: 0,
+        start /* :number*/: 0
       }
     })
     this._setState($el)
-    inviewportObserver.add($el, (isInviewport /* :boolean */) => {
+    inviewportObserver.add($el, (isInviewport) => {
       if (onceFunc) {
         onceFunc(isInviewport)
       }
@@ -86,7 +97,7 @@ class InviewportScrollObserver {
   }
 
   _setStateAll() {
-    this._inviewportTargets.forEach(($el /* :Element */) => {
+    this._inviewportTargets.forEach(($el) => {
       this._setState($el)
     })
   }
@@ -95,26 +106,31 @@ class InviewportScrollObserver {
    * @param {Element} $el
    */
   _setState($el) {
-    const { top /* :number */, height /* :number */ } = rect($el)
-    const { state /* :Object */ } = this._targets.get($el)
-    state.range = height + store.state.windowHeight
-    state.start = top - store.state.windowHeight
+    const { top, height } = rect($el)
+    const {
+      windowTopStart,
+      windowBottomEnd,
+      startOffset,
+      endOffset,
+      state
+    } = this._targets.get($el)
+    state.range = windowBottomEnd ? height : height + store.state.windowHeight
+    state.start = windowTopStart ? top : top - store.state.windowHeight
+    state.range += endOffset
+    state.start += startOffset
   }
 
   _updateAll() {
-    this._inviewportTargets.forEach(($el /* :Element */) => {
+    this._inviewportTargets.forEach(($el) => {
       this._update($el)
     })
   }
 
   _update($el) {
-    const {
-      updateFunc /* :function */,
-      state /* :Object */
-    } = this._targets.get($el)
-    const { range /* :number */, start /* :number */ } = state
-    const _progress /* :number [0,inf) */ = store.state.windowOffsetY - start
-    const _progressRatio /* :number [0,1] */ = _progress / range
+    const { updateFunc, state } = this._targets.get($el)
+    const { range, start } = state
+    const _progress /* :number - [0,inf) */ = store.state.windowOffsetY - start
+    const _progressRatio /* :number - [0,1] */ = _progress / range
     updateFunc({
       target: $el,
       progress: _progress,

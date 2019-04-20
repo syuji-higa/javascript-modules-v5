@@ -12,7 +12,7 @@ class ImagePreloader {
   static get _defOptions() {
     return {
       images: [],
-      needsElementLoad: true
+      needsElementLoad: false
     }
   }
 
@@ -32,22 +32,22 @@ class ImagePreloader {
     const _images /* :Set */ = new Set()
 
     // init images
-    for (const img /* :Element */ of images) {
+    for (const img of images) {
       if (!this._images.has(img)) {
         _images.add(img)
       }
     }
 
     // wrap element background image
-    for (const bgImg /* :string */ of getBackgroundImages($el)) {
+    for (const bgImg of getBackgroundImages($el)) {
       if (bgImg && !this._images.has(bgImg)) {
         _images.add(bgImg)
       }
     }
 
     // child elements background images
-    for (const $child /* :Element */ of $el.getElementsByTagName('*')) {
-      for (const bgImg /* :string */ of getBackgroundImages($child)) {
+    for (const $child of $el.getElementsByTagName('*')) {
+      for (const bgImg of getBackgroundImages($child)) {
         if (bgImg && !this._images.has(bgImg)) {
           _images.add(bgImg)
         }
@@ -57,15 +57,14 @@ class ImagePreloader {
     if (needsElementLoad) {
       // img elements images
       await Promise.all(
-        Array.from($el.getElementsByTagName('img'), async (
-          $img /* :Element */
-        ) => {
+        Array.from($el.getElementsByTagName('img'), async ($img) => {
           if (!$img.getAttribute('src')) {
             return
           }
           let _img /* :string */ = ''
           await wait(200, () /* :string */ => {
-            _img = 'currentSrc' in $img ? $img.currentSrc : $img.src
+            _img =
+              typeof $img.currentSrc === 'string' ? $img.currentSrc : $img.src
             return _img
           })
           if (_img && !this._images.has(_img)) {
@@ -83,7 +82,7 @@ class ImagePreloader {
       })
 
       // svg image elements images
-      Array.from($el.getElementsByTagName('image'), ($img /* :Element */) => {
+      Array.from($el.getElementsByTagName('image'), ($img) => {
         const _img /* :string */ = $img.getAttribute('xlink:href')
         if (_img && !this._images.has(_img)) {
           _images.add(_img)
@@ -93,7 +92,7 @@ class ImagePreloader {
 
     this._status.set($el, {
       images /* :Set */: _images,
-      loadedLen /* :number int[0,inf) */: 0
+      loadedLen /* :number - int[0,inf) */: 0
     })
   }
 
@@ -112,9 +111,7 @@ class ImagePreloader {
    */
   load($el) {
     const _loaders = this.getLoaders($el)
-    return Promise.all(
-      _loaders.map((loader /* :function */) /* :Promise */ => loader())
-    )
+    return Promise.all(_loaders.map((loader) /* :Promise */ => loader()))
   }
 
   /**
@@ -124,7 +121,7 @@ class ImagePreloader {
   getLoaders($el) {
     const _images /* :Set */ = this._status.get($el).images
 
-    return [..._images].map((src /* :string */) => {
+    return [..._images].map((src) => {
       return this._load.bind(this, $el, src)
     })
   }
@@ -152,11 +149,11 @@ class ImagePreloader {
    */
   _load($el, src) {
     return loadImage(src, {
-      done: (img /* :Image */) => {
+      done: (img) => {
         this._images.set(src, {
           src /* :string */: img.src,
-          width /* :number int[0,inf) */: img.width,
-          height /* :number int[0,inf) */: img.height
+          width /* :number - int[0,inf) */: img.width,
+          height /* :number - int[0,inf) */: img.height
         })
       },
       always: () => {

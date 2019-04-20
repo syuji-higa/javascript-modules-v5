@@ -33,7 +33,7 @@ class Eventer {
   add(target, eventType, listener, option = false) {
     let _hasEvent /* :boolean */ = false
 
-    for (const e /* :Object */ of this._events) {
+    for (const e of this._events) {
       if (
         target === e.target &&
         eventType === e.eventType &&
@@ -67,7 +67,7 @@ class Eventer {
    * @return {Instance}
    */
   remove(target, eventType, listener) {
-    this._events.forEach((e /* :Object */, i /* :number int[0,inf) */) => {
+    this._events.forEach((e, i) => {
       if (
         target === e.target &&
         eventType === e.eventType &&
@@ -97,8 +97,8 @@ class Eventer {
     const _event = createEvent(
       target,
       eventType,
-      (e /* :Event */) => {
-        for (const listener /* :function */ of listeners) {
+      (e) => {
+        for (const listener of listeners) {
           listener(e)
         }
       },

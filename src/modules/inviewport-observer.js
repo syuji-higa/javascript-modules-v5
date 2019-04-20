@@ -43,10 +43,7 @@ class InviewportObserver {
    * @param {Array<IntersectionObserverEntry>} entries
    */
   _update(entries) {
-    for (const {
-      target /* :Element */,
-      isIntersecting /* :boolean */
-    } of entries) {
+    for (const { target, isIntersecting } of entries) {
       this._functions.get(target)(isIntersecting)
     }
   }

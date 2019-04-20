@@ -1,6 +1,6 @@
 class ControlledRequestAnimationFramer {
   _animes /* :Map */ = new Map()
-  _animateHandle /* :number int[0,inf) */ = 0
+  _animateHandle /* :number - int[0,inf) */ = 0
 
   /**
    * @param {Object} key
@@ -19,12 +19,12 @@ class ControlledRequestAnimationFramer {
    */
   add(key, func, fps, interval = 0) {
     this._animes.set(key, {
-      startTime /* :number [0,inf) */: new Date().getTime(),
-      time /* :number [0,inf) */: 0,
-      frameStartTime /* :number [0,inf) */: 0,
-      ms /* :number [0,inf) */: fps === 'auto' ? 0 : Math.floor(1000 / fps),
-      count /* :number int[0,inf) */: 0,
-      interval /* :number int[0,inf) */: interval + 1,
+      startTime /* :number - [0,inf) */: new Date().getTime(),
+      time /* :number - [0,inf) */: 0,
+      frameStartTime /* :number - [0,inf) */: 0,
+      ms /* :number - [0,inf) */: fps === 'auto' ? 0 : Math.floor(1000 / fps),
+      count /* :number - int[0,inf) */: 0,
+      interval /* :number - int[0,inf) */: interval + 1,
       func /* :function */: func
     })
 
@@ -65,7 +65,7 @@ class ControlledRequestAnimationFramer {
 
     const _time = new Date().getTime()
 
-    this._animes.forEach(({ frameStartTime, ms, count, interval, func }, c) => {
+    this._animes.forEach(({ frameStartTime, ms, count, interval, func }) => {
       const _anime /* :Object */ = this._animes.get(key)
       _anime.count++
       _anime.time = _time - _anime.startTime
