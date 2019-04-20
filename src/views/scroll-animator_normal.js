@@ -82,8 +82,8 @@ class ScrollAnimator {
           $el,
           'scroll-animation-child-name'
         ),
-        viewportRatio /* :number */: 0, // [0,1]
-        valueRatio /* :number|null */: null // [0,1]
+        viewportRatio /* :number - [0,1] */: 0,
+        valueRatio /* :number|null - [0,1] */: null
       })
       requestAnimationFramer.add($el, this._animate.bind(this))
     } else {

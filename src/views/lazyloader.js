@@ -63,7 +63,7 @@ class Lazyloader {
    * @return {Instance}
    */
   on() {
-    for (const $el /* :Element */ of Array.from(this._$$el)) {
+    for (const $el of Array.from(this._$$el)) {
       this.add($el)
     }
     return this
@@ -73,7 +73,7 @@ class Lazyloader {
    * @return {Instance}
    */
   off() {
-    this._targets.forEach(($el /* :Element */) => {
+    this._targets.forEach(($el) => {
       this.remove($el)
     })
     return this
@@ -106,10 +106,7 @@ class Lazyloader {
   async _update(entries) {
     const loadList /* :function[] */ = []
 
-    for (const {
-      target /* :Element */,
-      isIntersecting /* :boolean */
-    } of entries) {
+    for (const { target, isIntersecting } of entries) {
       if (isIntersecting) {
         target.classList.add(this._isImageSettedClassName)
         const _srcList /* :string[] */ = this._getSrcList(target)
@@ -124,7 +121,7 @@ class Lazyloader {
       }
     }
 
-    await Promise.all(loadList.map((load /* :function */) => load()))
+    await Promise.all(loadList.map((load) => load()))
   }
 
   /**
@@ -141,7 +138,7 @@ class Lazyloader {
     // source
     else if ($el.tagName.toLowerCase() === 'picture') {
       const _sources = []
-      for (const $child /* :Element */ of Array.from($el.children)) {
+      for (const $child of Array.from($el.children)) {
         const _tagName /* :string */ = $child.tagName.toLowerCase()
         let _src /* :string */ = ''
         switch (_tagName) {

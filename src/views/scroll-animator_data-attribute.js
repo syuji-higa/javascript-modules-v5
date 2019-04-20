@@ -89,11 +89,11 @@ class ScrollAnimator {
         elements /* :Object */: shownElement(
           $el.getElementsByClassName(this._itemClassName)
         ),
-        viewportRatio /* :number */: 0, // [0,1]
-        valueRatio /* :number|null */: null, // [0,1]
-        acceleration /* :number */: Number(
+        viewportRatio /* :number - [0,1] */: 0,
+        valueRatio /* :number|null - [0,1] */: null,
+        acceleration /* :number - [0,inf) */: Number(
           $el.dataset.scrollAnimatorAcceleration
-        ) // [0,inf)
+        )
       })
       requestAnimationFramer.add($el, this._animate.bind(this))
     } else {

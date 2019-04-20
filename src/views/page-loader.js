@@ -8,24 +8,33 @@ class PageLoader {
   _isWindowLoaded /* :boolean */ = false
   _isImagesPreloaded /* :boolean */ = false
   _isPageLoadedClassName /* :string */ = ''
+  _isPageShownClassName /* :string */ = ''
+  _showDuration /* :number */ = 0 // int[0,inf)
 
   static get _defOptions() {
     return {
-      isPageLoadedClassName: 'is-page-loaded'
+      isPageLoadedClassName: 'is-page-loaded',
+      isPageShownClassName: 'is-page-shown',
+      showDuration: 1000
     }
   }
 
   /**
    * @param {Object} [options]
    * @param {string} [options.isPageLoadedClassName]
+   * @param {string} [options.isPageShownClassName]
+   * @param {string} [options.showDuration]
    */
   constructor(options = {}) {
-    const { isPageLoadedClassName } = Object.assign(
-      PageLoader._defOptions,
-      options
-    )
+    const {
+      isPageLoadedClassName,
+      isPageShownClassName,
+      showDuration
+    } = Object.assign(PageLoader._defOptions, options)
 
     this._isPageLoadedClassName = isPageLoadedClassName
+    this._isPageShownClassName = isPageShownClassName
+    this._showDuration = showDuration
 
     window.addEventListener('load', this._onWindowLoad.bind(this), {
       once: true
@@ -64,6 +73,10 @@ class PageLoader {
     }
     document.documentElement.classList.add(this._isPageLoadedClassName)
     document.dispatchEvent(new CustomEvent('pageLoaded'))
+
+    setTimeout(() => {
+      document.documentElement.classList.add(this._isPageShownClassName)
+    }, this._showDuration)
   }
 }
 

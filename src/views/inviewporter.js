@@ -35,7 +35,7 @@ class Inviewporter {
    */
   create() {
     this._$$el = document.getElementsByClassName(this._selfClassName)
-    this._observer = new IntersectionObserver(this._upate.bind(this))
+    this._observer = new IntersectionObserver(this._update.bind(this))
     return this
   }
 
@@ -53,7 +53,7 @@ class Inviewporter {
    * @return {Instance}
    */
   on() {
-    for (const $el /* :Element */ of Array.from(this._$$el)) {
+    for (const $el of Array.from(this._$$el)) {
       this.add($el)
     }
     return this
@@ -63,7 +63,7 @@ class Inviewporter {
    * @return {Instance}
    */
   off() {
-    this._targets.forEach(($el /* :Element */) => {
+    this._targets.forEach(($el) => {
       this.remove($el)
     })
     return this
@@ -92,16 +92,33 @@ class Inviewporter {
   /**
    * @param {Array<IntersectionObserverEntry>} entries
    */
-  _upate(entries) {
-    for (const {
-      target /* :Element */,
-      isIntersecting /* :boolean */
-    } of entries) {
+  _update(entries) {
+    for (const { target, isIntersecting } of entries) {
       if (isIntersecting) {
         target.classList.add(this._isInviewportClassName)
+        this._mightAddClassHtml(target)
       } else {
         target.classList.remove(this._isInviewportClassName)
+        this._mightRemoveClassHtml(target)
       }
+    }
+  }
+
+  _mightAddClassHtml(target) {
+    const _id /* :string|null */ = target.dataset.inviewportId
+    if (_id) {
+      document.documentElement.classList.add(
+        `${this._isInviewportClassName}-${_id}`
+      )
+    }
+  }
+
+  _mightRemoveClassHtml(target) {
+    const _id /* :string|null */ = target.dataset.inviewportId
+    if (_id) {
+      document.documentElement.classList.remove(
+        `${this._isInviewportClassName}-${_id}`
+      )
     }
   }
 }

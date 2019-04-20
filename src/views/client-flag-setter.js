@@ -6,7 +6,7 @@ import { store } from '../store'
 
 class ClientFlagSetter {
   constructor() {
-    const { platform /* Object */ } = store.state
+    const { platform } = store.state
 
     document.documentElement.classList.add(`is-${platform.type}`)
   }

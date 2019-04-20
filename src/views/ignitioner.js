@@ -55,7 +55,7 @@ class Ignitioner {
    * @return {Instance}
    */
   on() {
-    for (const $el /* :Element */ of Array.from(this._$$el)) {
+    for (const $el of Array.from(this._$$el)) {
       this.add($el)
     }
     return this
@@ -65,7 +65,7 @@ class Ignitioner {
    * @return {Instance}
    */
   off() {
-    this._targets.forEach(($el /* :Element */) => {
+    this._targets.forEach(($el) => {
       this.remove($el)
     })
     return this
@@ -95,10 +95,7 @@ class Ignitioner {
    * @param {Array<IntersectionObserverEntry>} entries
    */
   _update(entries) {
-    for (const {
-      target /* :Element */,
-      isIntersecting /* :boolean */
-    } of entries) {
+    for (const { target, isIntersecting } of entries) {
       if (isIntersecting) {
         target.classList.add(this._isIgnitedClassName)
         this.remove(target)

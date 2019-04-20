@@ -56,10 +56,10 @@ class HeightFitter {
    * @return {Instance}
    */
   update() {
-    const _height /* :number int[0,inf) */ =
+    const _height /* :number -int[0,inf) */ =
       store.state.windowWidthLastChangedHeight
 
-    for (const $el /* :Element */ of Array.from(this._$$el)) {
+    for (const $el of Array.from(this._$$el)) {
       if (this._platformType === $el.dataset.heightFitterIgnore) {
         continue
       }
