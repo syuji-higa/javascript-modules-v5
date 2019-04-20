@@ -77,8 +77,8 @@ class ScrollAnimator {
   _once($el, isInviewport) {
     if (isInviewport) {
       this._state.set($el, {
-        viewportRatio /* :number [0,1] */: 0,
-        valueRatio /* :number|null [0,1] */: null
+        viewportRatio /* :number */: 0, // [0,1]
+        valueRatio /* :number|null */: null // [0,1]
       })
       requestAnimationFramer.add($el, this._animate.bind(this))
     } else {
@@ -98,15 +98,10 @@ class ScrollAnimator {
   }
 
   _animate($el) {
-    const _animationName /* :string */ = $el.dataset.scrollAnimationName
-    const { styles, acceleration } /* :Object */ = scrollAnimationData[
-      _animationName
-    ]
+    const _animationName /* :string */ = $el.dataset.scrollAnimatorName
+    const { styles, acceleration } = scrollAnimationData[_animationName]
     const _state /* :Object */ = this._state.get($el)
-    const {
-      viewportRatio /* :number [0,1] */,
-      valueRatio /* :number [0,1] */
-    } = _state
+    const { viewportRatio, valueRatio } = _state
 
     if (valueRatio !== null) {
       _state.valueRatio += (viewportRatio - valueRatio) * acceleration
@@ -114,9 +109,7 @@ class ScrollAnimator {
       _state.valueRatio = viewportRatio
     }
 
-    for (const [prop /* :string */, values /* :string[] */] of Object.entries(
-      styles
-    )) {
+    for (const [prop, values] of Object.entries(styles)) {
       $el.style[prop] = ratioValue(...values, _state.valueRatio)
     }
   }
