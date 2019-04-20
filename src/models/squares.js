@@ -16,11 +16,11 @@ export const squaresIndex = (col, x, y) => {
  * @param {number} col - int[0,inf)
  * @param {number} index - int[0,inf)
  * @return {number[]} int[0,inf)
- * @property {number} 0 int[0,inf)  x position
- * @property {number} 1 int[0,inf)  y position
+ * @property {number} - int[0,inf)  x position
+ * @property {number} - int[0,inf)  y position
  */
 export const squaresPosition = (col, index) => {
-  const x /* :number int[0,inf) */ = index % col
-  const y /* :number int[0,inf) */ = (index - x) / col
+  const x /* :number - int[0,inf) */ = index % col
+  const y /* :number - int[0,inf) */ = (index - x) / col
   return [x, y]
 }

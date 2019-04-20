@@ -20,20 +20,14 @@ export const coordinateLength = (p1X, p1Y, p2X, p2Y) => {
  */
 export const coordinatePickupColor = (cTL, cTR, cBL, cBR, pRX, pRY) => {
   // color top
-  const _cT /* :number[] [0,1] */ = cTL.map((
-    c /* :number [0,1] */,
-    i /* :number int[0,inf) */
-  ) => {
+  const _cT /* :number[] - [0,1] */ = cTL.map((c, i) => {
     return cTL[i] + (cTR[i] - cTL[i]) * pRX
   })
   // color bottom
-  const _cB /* :number[] [0,1] */ = cBL.map((
-    c /* :number [0,1] */,
-    i /* :number int[0,inf) */
-  ) => {
+  const _cB /* :number[] - [0,1] */ = cBL.map((c, i) => {
     return cBL[i] + (cBR[i] - cBL[i]) * pRX
   })
-  return _cT.map((c /* :number [0,1] */, i /* :number int[0,inf) */) => {
+  return _cT.map((c, i) => {
     return _cT[i] + (_cB[i] - _cT[i]) * pRY
   })
 }

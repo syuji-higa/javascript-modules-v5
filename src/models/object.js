@@ -6,7 +6,7 @@ import { objectType } from './object-type'
  */
 const assign = (to, from) => {
   const _toKeys /* :string[] */ = Object.keys(to)
-  for (const [key /* :string */, val /* :* */] of Object.entries(from)) {
+  for (const [key, val] of Object.entries(from)) {
     if (_toKeys.includes(key) && objectType(val) === 'Object') {
       assign(to[key], val)
     } else {

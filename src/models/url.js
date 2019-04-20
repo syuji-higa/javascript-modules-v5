@@ -71,9 +71,7 @@ export const parseUrl = (str) => {
  * @return {boolean}
  */
 export const isMatchLocation = (href) => {
-  const { origin /* :string */, pathname /* :string */ } = parseUrl(
-    location.href
-  )
+  const { origin, pathname } = parseUrl(location.href)
 
   const _rx /* :RegExp */ = new RegExp(`^${origin}${pathname}(\\\?.+)?(#.*)?$`)
 

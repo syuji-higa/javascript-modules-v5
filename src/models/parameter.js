@@ -4,7 +4,7 @@ import { parse } from './query-string'
  * @return {string}
  */
 const _hashQuery = () => {
-  const { hash /* :string */ } = location
+  const { hash } = location
 
   if (hash === '') {
     return ''

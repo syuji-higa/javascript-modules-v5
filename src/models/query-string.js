@@ -20,8 +20,8 @@ export const parse = (str, options = {}) => {
   }
   return String(str)
     .split(sep)
-    .reduce((obj /* :Object */, param /* :string */) => {
-      const [key /* :string */, val /* :string */] = param.split(eq)
+    .reduce((obj /* :Object */, param) => {
+      const [key, val] = param.split(eq)
       const _val /* :string|number|boolean */ = (() => {
         if (!typeChange) return val
         if (val.match(/^[+,-]?([1-9]\d*|0)(\.\d+)?$/)) {
@@ -53,33 +53,31 @@ export const serialize = (data, options = {}) => {
   const _encode /* :function */ = encodeURIComponent
   let _query /* :string */ = ''
 
-  Object.entries(data).forEach(
-    ([key /* :string */, val /* :string|number|Object|*[] */]) => {
-      const _type /* :string */ =
-        typeof val === 'object' && val instanceof Array ? 'array' : typeof val
+  Object.entries(data).forEach(([key, val]) => {
+    const _type /* :string */ =
+      typeof val === 'object' && val instanceof Array ? 'array' : typeof val
 
-      switch (_type) {
-        case 'undefined':
-          _query += key
-          break
-        case 'array':
-          val.forEach((_i) => {
-            _query += `${key}[]${eq + _encode(val[_i]) + sep}`
-          })
-          _query = _query.substr(0, _query.length - 1)
-          break
-        case 'object':
-          Object.entries(val).forEach(([key_ /* :string */, val_ /* :* */]) => {
-            _query += `${key}[${key_}]${eq + _encode(val_) + sep}`
-          })
-          _query = _query.substr(0, _query.length - 1)
-          break
-        default:
-          _query += key + eq + _encode(val)
-          break
-      }
-      _query += sep
+    switch (_type) {
+      case 'undefined':
+        _query += key
+        break
+      case 'array':
+        val.forEach((_i) => {
+          _query += `${key}[]${eq + _encode(val[_i]) + sep}`
+        })
+        _query = _query.substr(0, _query.length - 1)
+        break
+      case 'object':
+        Object.entries(val).forEach(([key_, val_]) => {
+          _query += `${key}[${key_}]${eq + _encode(val_) + sep}`
+        })
+        _query = _query.substr(0, _query.length - 1)
+        break
+      default:
+        _query += key + eq + _encode(val)
+        break
     }
-  )
+    _query += sep
+  })
   return _query.substr(0, _query.length - 1)
 }

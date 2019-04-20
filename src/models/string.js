@@ -3,9 +3,7 @@
  * @return {string}
  */
 export const toHalfNum = (str) => {
-  return str.replace(/[０-９]/g, (
-    s /* :'０'|'１'|'２'|'３'|'４'|'５'|'６'|'７'|'８'|'９' */
-  ) => {
+  return str.replace(/[０-９]/g, (s) => {
     return String.fromCharCode(s.charCodeAt(0) - 0xfee0)
   })
 }
@@ -32,10 +30,10 @@ export const toCommaNum = (str) => {
  * @return {string}
  */
 export const toZeroPadding = (str, digit) => {
-  const _digit /* :number int[0,inf) */ = str.split('.')[0].length
-  const _diff /* :number int */ = digit - _digit
+  const _digit /* :number - int[0,inf) */ = str.split('.')[0].length
+  const _diff /* :number - int */ = digit - _digit
   let _zero /* :string */ = ''
-  for (let i /* :number int[0,inf) */ = 0; _diff > i; i++) {
+  for (let i /* :number - int[0,inf) */ = 0; _diff > i; i++) {
     _zero += '0'
   }
   return _zero + str
@@ -61,8 +59,8 @@ export const toFirstLetterUpper = (str) => {
  * @param {string} str
  * @return {string}
  */
-export const kebabToPascalCase = (str) => {
-  return str.replace(/-./g, (s /* :string */) /* :string */ => {
+export const toPascalCase = (str, sep) => {
+  return str.replace(new RegExp(`${sep}.`, 'g'), (s) /* :string */ => {
     return s.charAt(1).toUpperCase()
   })
 }
@@ -71,9 +69,9 @@ export const kebabToPascalCase = (str) => {
  * @param {string} str
  * @return {string}
  */
-export const pascalToKebabCase = (str) => {
-  return str.replace(/([A-Z])/g, (s /* :string */) /* :string */ => {
-    return '-' + s.charAt(0).toLowerCase()
+export const pascalCaseTo = (str, sep) => {
+  return str.replace(/([A-Z])/g, (s) /* :string */ => {
+    return sep + s.charAt(0).toLowerCase()
   })
 }
 
@@ -82,10 +80,10 @@ export const pascalToKebabCase = (str) => {
  * @return {number}
  */
 export const charCount = (str) => {
-  let _count /* :number int[0,inf) */ = 0
+  let _count /* :number - int[0,inf) */ = 0
   const _escapeStr /* :string */ = escape(str)
   for (
-    let i /* :number int[0,inf) */ = 0;
+    let i /* :number - int[0,inf) */ = 0;
     i < _escapeStr.length;
     i++, _count++
   ) {

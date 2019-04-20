@@ -59,7 +59,7 @@ export const isHalfNum = (str) => {
  * @return {boolean}
  */
 export const isStrRenge = (str, min, max) => {
-  const _len /* :number int[0,inf) */ = Math.ceil(charCount(str) / 2)
+  const _len /* :number - int[0,inf) */ = Math.ceil(charCount(str) / 2)
   return min <= _len && _len <= max
 }
 

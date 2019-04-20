@@ -77,8 +77,8 @@ export const clamp = (num, min, max) => {
  * @return {number} int
  */
 export const hoop = (num, min, max) => {
-  const _range /* :number int[0,inf) */ = max - min + 1
-  let _num /* :number int */ = (num - min) % _range
+  const _range /* :number - int[0,inf) */ = max - min + 1
+  let _num /* :number - int */ = (num - min) % _range
   if (0 > _num) {
     _num = _range + _num
   }
@@ -91,4 +91,22 @@ export const hoop = (num, min, max) => {
  */
 export const toTowPower = (num) => {
   return Math.pow(2, (Math.log(num) / Math.LN2) | 0)
+}
+
+/**
+ * @param {number} frame - int[0,inf)
+ * @param {number} fps - [0,inf)
+ * @return {number} [0,inf)
+ */
+export const frameToTime = (frame, fps = 60) => {
+  return (1000 / fps) * frame
+}
+
+/**
+ * @param {number} num - int[0,inf)
+ * @param {number} fps - [0,inf)
+ * @return {number} [0,inf)
+ */
+export const timeToFrame = (time, fps = 60) => {
+  return (time * fps) / 1000
 }

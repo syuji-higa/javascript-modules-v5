@@ -4,21 +4,21 @@
  */
 export const areaTimestamp = (offset) => {
   const _date /* :Date */ = new Date()
-  const _utc /* :number int[0,inf) */ = _date.getTime()
-  const _deviceOffset /* :number int */ = _date.getTimezoneOffset()
+  const _utc /* :number - int[0,inf) */ = _date.getTime()
+  const _deviceOffset /* :number - int */ = _date.getTimezoneOffset()
   return _utc + 1000 * 60 * (_deviceOffset + offset * 60)
 }
 
 /**
  * @param {number} offset - int
  * @return {Object}
- * @property {number} year int[0,inf)
- * @property {number} day int[0,6]
- * @property {number} date int[1,31]
- * @property {number} month int[0,11]
- * @property {number} hours int[0,23]
- * @property {number} minutes int[0,59]
- * @property {number} milliseconds int[0,999]
+ * @property {number} year - int[0,inf)
+ * @property {number} day - int[0,6]
+ * @property {number} date - int[1,31]
+ * @property {number} month - int[0,11]
+ * @property {number} hours - int[0,23]
+ * @property {number} minutes - int[0,59]
+ * @property {number} milliseconds - int[0,999]
  */
 export const areaDate = (offset) => {
   const _offsetDate /* :Date */ = new Date(areaTimestamp(offset))

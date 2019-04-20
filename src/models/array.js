@@ -6,7 +6,7 @@
 export const createArray = (num, val) => {
   const _arr /* :*[] */ = []
 
-  for (let i /* :number int[0,inf) */ = 0; num > i; i++) {
+  for (let i /* :number - int[0,inf) */ = 0; num > i; i++) {
     _arr[i] = val
   }
 
@@ -21,7 +21,7 @@ export const createArray = (num, val) => {
 export const createSerialNumberArray = (num, start = 0) => {
   const _arr /* :*[] */ = []
 
-  for (let i /* :number int[0,inf) */ = 0; num > i; i++) {
+  for (let i /* :number - int[0,inf) */ = 0; num > i; i++) {
     _arr[i] = start + i
   }
 
@@ -33,9 +33,9 @@ export const createSerialNumberArray = (num, start = 0) => {
  * @return {*[]}
  */
 export const shuffleArray = (arr) => {
-  let _n /* :number int[0,inf) */ = arr.length
-  let _t /* :number int[0,inf) */ = 0
-  let _i /* :number int[0,inf) */ = 0
+  let _n /* :number - int[0,inf) */ = arr.length
+  let _t /* :number - int[0,inf) */ = 0
+  let _i /* :number - int[0,inf) */ = 0
 
   while (_n) {
     _i = Math.floor(Math.random() * _n--)
