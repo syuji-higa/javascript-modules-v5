@@ -1,4 +1,4 @@
-import { kebabToPascalCase } from '../models/string'
+import { toPascalCase } from '../models/string'
 
 /**
  * @param {Element} $el
@@ -47,7 +47,7 @@ export const groupByDataElement = (el, dataName, options = {}) => {
     if (!filter || filter($el)) {
       const _dataName /* :string */ =
         'dataset' in $el
-          ? $el.dataset[kebabToPascalCase(dataName)]
+          ? $el.dataset[toPascalCase(dataName, '-')]
           : $el.getAttribute(`data-${dataName}`)
       if (_dataName) {
         if (needsSingle) {
@@ -62,4 +62,14 @@ export const groupByDataElement = (el, dataName, options = {}) => {
     }
     return memo
   }, {})
+}
+
+/**
+ * @param {HTMLCollection|NodeList} $$el
+ * @return {Element[]}
+ */
+export const shownElement = ($$el) => {
+  return Array.from($$el).filter(($el) => {
+    return getComputedStyle($el, '').display !== 'none'
+  })
 }
