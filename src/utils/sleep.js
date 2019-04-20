@@ -3,7 +3,7 @@
  * @return {Promise}
  */
 export const sleep = (time) => {
-  return new Promise((resolve /* :function */) => {
+  return new Promise((resolve) => {
     setTimeout(resolve, time)
   })
 }

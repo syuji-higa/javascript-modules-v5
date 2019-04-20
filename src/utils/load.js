@@ -3,7 +3,7 @@
  * @return {Promise}
  */
 export const loadVideo = ($video) => {
-  return new Promise((resolve /* :function */) => {
+  return new Promise((resolve) => {
     $video.load()
     $video.addEventListener(
       'canplaythrough',
@@ -26,7 +26,7 @@ export const loadVideo = ($video) => {
 export const loadImage = (src, options = {}) => {
   const { done, fail, always } = options
 
-  return new Promise((resolve /* :function */) => {
+  return new Promise((resolve) => {
     const _img /* :Image */ = new Image()
 
     const _always = (img /* :Image */, isSuccess /* :boolean */) => {
@@ -34,16 +34,16 @@ export const loadImage = (src, options = {}) => {
       resolve(img, isSuccess)
     }
 
-    _img.onload /* :functon */ = () => {
+    _img.onload = () => {
       if (done) done(_img)
       _always(_img, true)
     }
-    _img.onerror /* :functon */ = () => {
+    _img.onerror = () => {
       if (fail) fail(_img)
       _always(_img, false)
     }
 
-    _img.src /* :string */ = src
+    _img.src = src
   })
 }
 
@@ -58,7 +58,7 @@ export const loadImage = (src, options = {}) => {
 export const loadFile = (file, options = {}) => {
   const { done, fail, always } = options
 
-  return new Promise((resolve /* :function */) => {
+  return new Promise((resolve) => {
     const _reader /* :FileRender */ = new FileReader()
 
     const _always /* :function */ = (
@@ -69,11 +69,11 @@ export const loadFile = (file, options = {}) => {
       resolve(isSuccess)
     }
 
-    _reader.onload /* :function */ = (file_ /* :FileRender */) => {
+    _reader.onload = (file_) => {
       if (done) done(file_)
       _always(file_, true)
     }
-    _reader.onerror /* :function */ = (file_ /* :FileRender */) => {
+    _reader.onerror = (file_) => {
       if (fail) fail(file_)
       _always(file_, false)
     }

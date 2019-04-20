@@ -43,7 +43,7 @@ export const groupByDataElement = (el, dataName, options = {}) => {
   const _$$el /* :HTMLCollection|NodeList */ = el.querySelectorAll(
     `[data-${dataName}]`
   )
-  return Array.from(_$$el).reduce((memo /* :Object */, $el /* :Element */) => {
+  return Array.from(_$$el).reduce((memo /* :Object */, $el) => {
     if (!filter || filter($el)) {
       const _dataName /* :string */ =
         'dataset' in $el

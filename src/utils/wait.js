@@ -44,10 +44,10 @@ export const wait = (interval, observe, options = {}) => {
     options
   )
 
-  let _timer /* :number [0,inf) */ = 0
-  const _startTime /* :number [0,inf) */ = new Date().getTime()
+  let _timer /* :number - [0,inf) */ = 0
+  const _startTime /* :number - [0,inf) */ = new Date().getTime()
 
-  return new Promise((resolve /* function */) => {
+  return new Promise((resolve) => {
     check(_timer, _startTime, interval, timeout, observe, resolve, returnValFn)
   })
 }

@@ -28,14 +28,14 @@ export const splitElement = (htmlStr, options = {}) => {
   const _strings /* :string */ = htmlStr.split(_reg)
   const _tags /* :string */ = htmlStr.match(_reg)
   let _html /* :string */ = ''
-  let _spaceCnt /* :number int[0,inf) */ = 0
-  let _charCnt /* :number int[0,inf) */ = 0
+  let _spaceCnt /* :number - int[0,inf) */ = 0
+  let _charCnt /* :number - int[0,inf) */ = 0
 
   const _append = (
     str /* :string */,
-    brIndex /* :number int[0,inf) */,
-    wordIndex /* :number int[0,inf) */,
-    charCnt /* :number int[0,inf) */,
+    brIndex /* :number - int[0,inf) */,
+    wordIndex /* :number - int[0,inf) */,
+    charCnt /* :number - int[0,inf) */,
     isSpace /* :boolean */ = false
   ) => {
     const _$char /* :Element */ = document.createElement(wrapTag)
@@ -92,7 +92,7 @@ export const splitElement = (htmlStr, options = {}) => {
       }
       case 'word': {
         const _words /* :string[] */ = _str.split(' ')
-        const _last /* :number int[0,inf) */ = _words.length - 1
+        const _last /* :number - int[0,inf) */ = _words.length - 1
         _words.forEach((w, i) => {
           const _w /* :string */ = _last > i ? `${w}\u00a0` : w
           _append(_w, i, _spaceCnt)

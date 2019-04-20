@@ -17,7 +17,7 @@ export const getBackgroundImages = ($el) => {
     return _paths
   }
 
-  for (const img /* :string */ of _images) {
+  for (const img of _images) {
     const _path /* :string */ = img.match(/^url\(['"]?(.+[0-9a-zA-Z])['"]?\)$/)
 
     if (typeof _path !== 'undefined' && _path !== null) {

@@ -1,6 +1,6 @@
 /**
  * @param {Object} [options]
- * @param {number} [options.interval] // int[0,inf)
+ * @param {number} [options.interval] - int[0,inf)
  * @param {boolean} [options.isLastRun]
  * @return {function(fn: function)}
  */
@@ -10,8 +10,8 @@ export const throttle = (options = {}) => {
     options
   )
 
-  let _lastTime /* :number int[0,inf) */ = new Date().getTime() - interval
-  let _timer /* :number int[0,inf) */ = 0
+  let _lastTime /* :number - int[0,inf) */ = new Date().getTime() - interval
+  let _timer /* :number - int[0,inf) */ = 0
 
   return (fn) => {
     if (_lastTime + interval <= new Date().getTime()) {

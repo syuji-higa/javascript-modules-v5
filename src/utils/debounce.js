@@ -9,7 +9,7 @@ export const debounce = (options = {}) => {
     { interval: 100, isFirstRun: false },
     options
   )
-  let _timer /* :number int[0,inf) */ = 0
+  let _timer /* :number - int[0,inf) */ = 0
   let _firstRun /* :boolean */ = true
 
   return (fn /* :function */) => {
