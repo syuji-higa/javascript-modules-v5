@@ -2,7 +2,7 @@ import { parse } from '../models/query-string'
 import { splitElement } from '../utils/split-element'
 
 class CharSplitter {
-  _$$el /* :HTMLCollection|NodeList */
+  _$$el /* :HTMLCollection|NodeList|null */ = null
   _selfClassName /* :string */ = ''
   _isSplitedClassName /* :string */ = ''
 
