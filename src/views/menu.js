@@ -1,3 +1,7 @@
+/**
+ * depends on 'vanix' used in 'store'
+ */
+
 import lottie from 'lottie-web'
 import animationData from '../data/lottie/menu-button.json'
 import { createEvent } from '../utils/event'
@@ -6,8 +10,8 @@ class Menu {
   _menuClassName /* :string */ = ''
   _icoClassName /* :string */ = ''
   _isOpenedClassName /* :string */ = {}
-  _clickEvent /* :Object */ = {}
-  _lottie /* :Instance */
+  _clickEvent /* :Object|null */ = {}
+  _lottie /* :Instance|null */ = null
 
   /**
    * @return {Object}
@@ -115,7 +119,7 @@ class Menu {
   open() {
     document.documentElement.classList.add(this._isOpenedClassName)
     this._lottie.playSegments(
-      [this._chapter.default, this._chapter.opneTo],
+      [this._chapter.default, this._chapter.openTo],
       false
     )
     return this
