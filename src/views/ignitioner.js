@@ -1,8 +1,8 @@
 class Ignitioner {
   _selfClassName /* :string */ = ''
   _isIgnitedClassName /* :string */ = ''
-  _$$el /* :HTMLCollection|NodeList */
-  _observer /* :IntersectionObserver */
+  _$$el /* :HTMLCollection|NodeList|null */ = null
+  _observer /* :IntersectionObserver|null */ = null
   _targets /* :Set */ = new Set()
 
   /**
@@ -98,6 +98,18 @@ class Ignitioner {
     for (const { target, isIntersecting } of entries) {
       if (isIntersecting) {
         target.classList.add(this._isIgnitedClassName)
+
+        const _id = target.dataset.ignitionerId
+        if (_id) {
+          document.dispatchEvent(
+            new CustomEvent('ignition', {
+              detail: {
+                id: _id
+              }
+            })
+          )
+        }
+
         this.remove(target)
       }
     }
