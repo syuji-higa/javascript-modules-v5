@@ -5,8 +5,8 @@ class Lazyloader {
   _selfClassName /* :string */ = ''
   _isLoadedClassName /* :string */ = ''
   _isImageSettedClassName /* :string */ = ''
-  _$$el /* :HTMLCollection|NodeList */
-  _observer /* :IntersectionObserver */
+  _$$el /* :HTMLCollection|NodeList|null */ = null
+  _observer /* :IntersectionObserver|null */ = null
   _targets /* :Set */ = new Set()
 
   /**
@@ -130,7 +130,7 @@ class Lazyloader {
    */
   _getSrcList($el) {
     // img
-    if ($el.src) {
+    if ('src' in $el) {
       const _src /* :string */ = $el.dataset.src
       $el.src = _src
       return [_src]
