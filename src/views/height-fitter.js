@@ -5,8 +5,9 @@
 import { store } from '../store'
 
 class HeightFitter {
-  _$$el /* :HTMLCollection|NodeList */
+  _selfClassName /* :string */ = ''
   _platformType /* :string */ = ''
+  _$$el /* :HTMLCollection|NodeList|null */ = null
   _storeStateObject /* :Object */ = {}
 
   /**
@@ -25,15 +26,32 @@ class HeightFitter {
   constructor(options = {}) {
     const { selfClassName } = Object.assign(HeightFitter._defOptions, options)
 
-    this._$$el = document.getElementsByClassName(selfClassName)
-
+    this._selfClassName = selfClassName
     this._platformType = store.state.platform.type
+  }
+
+  /**
+   * @return {Instance}
+   */
+  create() {
+    this._$$el = document.getElementsByClassName(this._selfClassName)
 
     this._storeStateObject = {
       windowWidthLastChangedHeight: () => {
         this.update()
       }
     }
+
+    return this
+  }
+
+  /**
+   * @return {Instance}
+   */
+  destroy() {
+    this._$$el = null
+    this._storeStateObject = {}
+    return this
   }
 
   /**
@@ -56,8 +74,8 @@ class HeightFitter {
    * @return {Instance}
    */
   update() {
-    const _height /* :number -int[0,inf) */ =
-      store.state.windowWidthLastChangedHeight
+    const _height /* :number - int[0,inf) */ =
+      document.documentElement.clientHeight
 
     for (const $el of Array.from(this._$$el)) {
       if (this._platformType === $el.dataset.heightFitterIgnore) {
