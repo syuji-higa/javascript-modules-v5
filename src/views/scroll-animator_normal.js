@@ -9,7 +9,7 @@ import { scrollAnimationData } from '../data/scroll-animation-data'
 
 class ScrollAnimator {
   _selfClassName /* :string */ = ''
-  _$$el /* :HTMLCollection|NodeList */
+  _$$el /* :HTMLCollection|NodeList|null */ = null
   _state /* :WeakMap */ = new WeakMap()
 
   /**

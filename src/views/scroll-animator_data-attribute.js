@@ -11,7 +11,7 @@ import { dataAttribute } from '../utils/attribute'
 class ScrollAnimator {
   _selfClassName /* :string */ = ''
   _itemClassName /* :string */ = ''
-  _$$el /* :HTMLCollection|NodeList */
+  _$$el /* :HTMLCollection|NodeList|null */ = null
   _state /* :WeakMap */ = new WeakMap()
 
   /**
