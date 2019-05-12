@@ -1,7 +1,7 @@
 {
   "name": "javascript-modules-v5",
   "version": "1.0.0",
-  "description": "General purpose TypeScript modules.",
+  "description": "General purpose JavaScript modules.",
   "main": "index.js",
   "dependencies": {},
   "devDependencies": {
