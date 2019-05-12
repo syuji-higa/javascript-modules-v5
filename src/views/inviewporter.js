@@ -1,8 +1,14 @@
+/**
+ * depends on 'vanix' used in 'store'
+ */
+
+import { store } from '../store'
+
 class Inviewporter {
   _selfClassName /* :string */ = ''
   _isInviewportClassName /* :string */ = ''
-  _$$el /* :HTMLCollection|NodeList */
-  _observer /* :IntersectionObserver */
+  _$$el /* :HTMLCollection|NodeList|null */ = null
+  _observer /* :IntersectionObserver|null */ = null
   _targets /* :Set */ = new Set()
 
   /**
@@ -107,6 +113,7 @@ class Inviewporter {
   _mightAddClassHtml(target) {
     const _id /* :string|null */ = target.dataset.inviewportId
     if (_id) {
+      store.commit('setInviewports', [...store.state.inviewports, _id])
       document.documentElement.classList.add(
         `${this._isInviewportClassName}-${_id}`
       )
@@ -116,6 +123,10 @@ class Inviewporter {
   _mightRemoveClassHtml(target) {
     const _id /* :string|null */ = target.dataset.inviewportId
     if (_id) {
+      store.commit(
+        'setInviewports',
+        store.state.inviewports.filter((val) => val !== _id)
+      )
       document.documentElement.classList.remove(
         `${this._isInviewportClassName}-${_id}`
       )
