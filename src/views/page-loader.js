@@ -7,6 +7,8 @@ import { imagePreloader } from '../modules'
 class PageLoader {
   _isWindowLoaded /* :boolean */ = false
   _isImagesPreloaded /* :boolean */ = false
+  _isOtherCompleted /* :boolean */ = false
+  _otherPromises /* :functon[] */ = []
   _isPageLoadedClassName /* :string */ = ''
   _isPageShownClassName /* :string */ = ''
   _showDuration /* :number */ = 0 // int[0,inf)
@@ -44,8 +46,17 @@ class PageLoader {
   /**
    * @return {Instance}
    */
+  add(fn) {
+    this._otherPromises.push(fn)
+    return this
+  }
+
+  /**
+   * @return {Instance}
+   */
   start() {
     this._preloadImages()
+    this._startOhterPromises()
     return this
   }
 
@@ -65,12 +76,22 @@ class PageLoader {
     this._mightAllLoaded()
   }
 
+  /**
+   * @return {Promise}
+   */
+  async _startOhterPromises() {
+    await Promise.all(this._otherPromises.map((fn) => fn()))
+    this._isOtherCompleted = true
+    this._mightAllLoaded()
+  }
+
   _mightAllLoaded() {
     const _isAllLoaded /* :boolean */ =
-      this._isWindowLoaded && this._isImagesPreloaded
+      this._isWindowLoaded && this._isImagesPreloaded && this._isOtherCompleted
     if (!_isAllLoaded) {
       return
     }
+
     document.documentElement.classList.add(this._isPageLoadedClassName)
     document.dispatchEvent(new CustomEvent('pageLoaded'))
 
