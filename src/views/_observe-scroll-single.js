@@ -6,7 +6,7 @@ import { inviewportScrollObserver } from '../modules'
 
 class ObserveScrollSingle {
   _selfClassName /* :string */ = ''
-  _$el /* :Element */
+  _$el /* :Element|null */ = null
 
   /**
    * @return {Object}
