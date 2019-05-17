@@ -3,7 +3,7 @@ import { lottie } from '../modules'
 
 class IgnitionLottieAnimator {
   _selfClassName /* :string */ = ''
-  _targetIds /* :string[] */ = []
+  _animations /* :string[] */ = {}
   _ignitionEvent /* :Object */ = {}
 
   /**
@@ -34,9 +34,24 @@ class IgnitionLottieAnimator {
    */
   create() {
     const _$$el = document.getElementsByClassName(this._selfClassName)
-    this._targetIds = Array.from(_$$el, ($el) => {
-      return $el.dataset.lottieId
-    })
+
+    for (const $el of Array.from(_$$el)) {
+      const _triggerId /* :string */ = $el.dataset.triggerIgnitionerId
+
+      if (_triggerId) {
+        const _lottieId /* :string */ = $el.dataset.lottieId
+        const _delay /* :string */ = $el.dataset.animationDelay || '0'
+
+        if (!(_triggerId in this._animations)) {
+          this._animations[_triggerId] = []
+        }
+
+        this._animations[_triggerId].push({
+          id: _lottieId,
+          delay: Number(_delay)
+        })
+      }
+    }
 
     this._ignitionEvent = createEvent(
       document,
@@ -76,8 +91,12 @@ class IgnitionLottieAnimator {
    */
   _update(e) {
     const _id /* :strings */ = e.detail.id
-    if (this._targetIds.includes(_id)) {
-      lottie.animate(_id, 'show')
+    if (_id in this._animations) {
+      for (const { id, delay } of this._animations[_id]) {
+        setTimeout(() => {
+          lottie.animate(id, 'show')
+        }, delay)
+      }
     }
   }
 }
