@@ -11,7 +11,6 @@ class Lottie {
   _baseDir /* :string */ = ''
   _animations /* :Object */ = {}
   _lottieLoadEvents /* :Object[] */ = []
-  _storeStateObject /* :Object */ = {}
 
   /**
    * @return {Object}
@@ -93,13 +92,6 @@ class Lottie {
       }
     }
 
-    this._storeStateObject = {
-      windowSizeType: () => {
-        this.destroy()
-        this.create()
-      }
-    }
-
     return this
   }
 
@@ -113,7 +105,6 @@ class Lottie {
 
     this._animations = {}
     this._lottieLoadEvents = []
-    this._storeStateObject = {}
 
     return this
   }
@@ -125,7 +116,6 @@ class Lottie {
     for (const event of this._lottieLoadEvents) {
       event.add()
     }
-    store.observe(this._storeStateObject)
     return this
   }
 
@@ -136,7 +126,6 @@ class Lottie {
     for (const event of this._lottieLoadEvents) {
       event.remove()
     }
-    store.unobserve(this._storeStateObject)
     return this
   }
 
@@ -149,6 +138,54 @@ class Lottie {
     const _animation /* :Object */ = this._animations[id]
     const _motion /* :number[] - int[0,inf) */ = _animation.motions[motion]
     _animation.lottie.playSegments(_motion, true)
+    return this
+  }
+
+  /**
+   * @param {string} id
+   * @return {Instance}
+   */
+  play(id) {
+    const _animation /* :Object */ = this._animations[id]
+    _animation.lottie.play()
+    return this
+  }
+
+  /**
+   * @param {string} id
+   * @return {Instance}
+   */
+  stop(id) {
+    const _animation /* :Object */ = this._animations[id]
+    _animation.lottie.stop()
+    return this
+  }
+
+  /**
+   * @param {string} id
+   * @param {string} type
+   * @return {?number[]} - int[0,inf)
+   */
+  getMotion(id, type) {
+    const _animation /* :Object */ = this._animations[id]
+    if (type in _animation.motions) {
+      return [..._animation.motions[type]]
+    } else {
+      null
+    }
+  }
+
+  /**
+   * @param {string} id
+   * @param {string} prop
+   * @param {*} val
+   * @return {Instance}
+   */
+  setOptions(id, prop, val) {
+    const _animation /* :Object */ = this._animations[id]
+    if (prop in _animation.lottie) {
+      _animation.lottie[prop] = val
+    }
     return this
   }
 
