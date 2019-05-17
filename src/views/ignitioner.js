@@ -99,7 +99,7 @@ class Ignitioner {
       if (isIntersecting) {
         target.classList.add(this._isIgnitedClassName)
 
-        const _id = target.dataset.ignitionerId
+        const _id = target.dataset.ignitionId
         if (_id) {
           document.dispatchEvent(
             new CustomEvent('ignition', {
