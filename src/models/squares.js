@@ -20,7 +20,7 @@ export const squaresIndex = (col, x, y) => {
  * @property {number} - int[0,inf)  y position
  */
 export const squaresPosition = (col, index) => {
-  const x /* :number - int[0,inf) */ = index % col
-  const y /* :number - int[0,inf) */ = (index - x) / col
+  const y /* :number - int[0,inf) */ = Math.floor(index / col)
+  const x /* :number - int[0,inf) */ = index - col * y
   return [x, y]
 }
