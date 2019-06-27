@@ -57,6 +57,7 @@ export const toFirstLetterUpper = (str) => {
 
 /**
  * @param {string} str
+ * @param {string} sep
  * @return {string}
  */
 export const toPascalCase = (str, sep) => {
@@ -67,6 +68,7 @@ export const toPascalCase = (str, sep) => {
 
 /**
  * @param {string} str
+ * @param {string} sep
  * @return {string}
  */
 export const pascalCaseTo = (str, sep) => {

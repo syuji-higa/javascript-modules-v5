@@ -8,7 +8,7 @@
   <link type="text/css" rel="stylesheet" href="css/prettify-tomorrow.css">
   <script src="script/prettify/prettify.js"></script>
   <script src="script/manual.js"></script>
-<meta name="description" content="General purpose TypeScript modules."><meta property="twitter:card" content="summary"><meta property="twitter:title" content="javascript-modules-v5"><meta property="twitter:description" content="General purpose TypeScript modules."></head>
+<meta name="description" content="General purpose JavaScript modules."><meta property="twitter:card" content="summary"><meta property="twitter:title" content="javascript-modules-v5"><meta property="twitter:description" content="General purpose JavaScript modules."></head>
 <body class="layout-container" data-ice="rootContainer">
 
 <header>
@@ -37,8 +37,6 @@
 <li data-ice="doc"><span data-ice="kind" class="kind-function">F</span><span data-ice="name"><span><a href="function/index.html#static-function-flattenArray">flattenArray</a></span></span></li>
 <li data-ice="doc"><span data-ice="kind" class="kind-function">F</span><span data-ice="name"><span><a href="function/index.html#static-function-shuffleArray">shuffleArray</a></span></span></li>
 <li data-ice="doc"><span data-ice="kind" class="kind-function">F</span><span data-ice="name"><span><a href="function/index.html#static-function-isJson">isJson</a></span></span></li>
-<li data-ice="doc"><span data-ice="kind" class="kind-function">F</span><span data-ice="name"><span><a href="function/index.html#static-function-coordinateLength">coordinateLength</a></span></span></li>
-<li data-ice="doc"><span data-ice="kind" class="kind-function">F</span><span data-ice="name"><span><a href="function/index.html#static-function-coordinatePickupColor">coordinatePickupColor</a></span></span></li>
 <li data-ice="doc"><span data-ice="kind" class="kind-function">F</span><span data-ice="name"><span><a href="function/index.html#static-function-areaDate">areaDate</a></span></span></li>
 <li data-ice="doc"><span data-ice="kind" class="kind-function">F</span><span data-ice="name"><span><a href="function/index.html#static-function-areaTimestamp">areaTimestamp</a></span></span></li>
 <li data-ice="doc"><span data-ice="kind" class="kind-function">F</span><span data-ice="name"><span><a href="function/index.html#static-function-toDayOfWeekEn">toDayOfWeekEn</a></span></span></li>
@@ -48,9 +46,11 @@
 <li data-ice="doc"><span data-ice="kind" class="kind-function">F</span><span data-ice="name"><span><a href="function/index.html#static-function-clamp">clamp</a></span></span></li>
 <li data-ice="doc"><span data-ice="kind" class="kind-function">F</span><span data-ice="name"><span><a href="function/index.html#static-function-decimal">decimal</a></span></span></li>
 <li data-ice="doc"><span data-ice="kind" class="kind-function">F</span><span data-ice="name"><span><a href="function/index.html#static-function-floor">floor</a></span></span></li>
+<li data-ice="doc"><span data-ice="kind" class="kind-function">F</span><span data-ice="name"><span><a href="function/index.html#static-function-frameToTime">frameToTime</a></span></span></li>
 <li data-ice="doc"><span data-ice="kind" class="kind-function">F</span><span data-ice="name"><span><a href="function/index.html#static-function-hoop">hoop</a></span></span></li>
 <li data-ice="doc"><span data-ice="kind" class="kind-function">F</span><span data-ice="name"><span><a href="function/index.html#static-function-round">round</a></span></span></li>
 <li data-ice="doc"><span data-ice="kind" class="kind-function">F</span><span data-ice="name"><span><a href="function/index.html#static-function-sign">sign</a></span></span></li>
+<li data-ice="doc"><span data-ice="kind" class="kind-function">F</span><span data-ice="name"><span><a href="function/index.html#static-function-timeToFrame">timeToFrame</a></span></span></li>
 <li data-ice="doc"><span data-ice="kind" class="kind-function">F</span><span data-ice="name"><span><a href="function/index.html#static-function-toAngle">toAngle</a></span></span></li>
 <li data-ice="doc"><span data-ice="kind" class="kind-function">F</span><span data-ice="name"><span><a href="function/index.html#static-function-toRadian">toRadian</a></span></span></li>
 <li data-ice="doc"><span data-ice="kind" class="kind-function">F</span><span data-ice="name"><span><a href="function/index.html#static-function-toTowPower">toTowPower</a></span></span></li>
@@ -70,32 +70,20 @@
 <li data-ice="doc"><span data-ice="kind" class="kind-function">F</span><span data-ice="name"><span><a href="function/index.html#static-function-randomInt">randomInt</a></span></span></li>
 <li data-ice="doc"><span data-ice="kind" class="kind-function">F</span><span data-ice="name"><span><a href="function/index.html#static-function-ratioValue">ratioValue</a></span></span></li>
 <li data-ice="doc"><span data-ice="kind" class="kind-function">F</span><span data-ice="name"><span><a href="function/index.html#static-function-cover">cover</a></span></span></li>
-<li data-ice="doc"><span data-ice="kind" class="kind-function">F</span><span data-ice="name"><span><a href="function/index.html#static-function-normalizeOverRatio">normalizeOverRatio</a></span></span></li>
-<li data-ice="doc"><span data-ice="kind" class="kind-function">F</span><span data-ice="name"><span><a href="function/index.html#static-function-normalizeUnderRatio">normalizeUnderRatio</a></span></span></li>
+<li data-ice="doc"><span data-ice="kind" class="kind-function">F</span><span data-ice="name"><span><a href="function/index.html#static-function-maxRatio">maxRatio</a></span></span></li>
+<li data-ice="doc"><span data-ice="kind" class="kind-function">F</span><span data-ice="name"><span><a href="function/index.html#static-function-minRatio">minRatio</a></span></span></li>
 <li data-ice="doc"><span data-ice="kind" class="kind-function">F</span><span data-ice="name"><span><a href="function/index.html#static-function-squaresIndex">squaresIndex</a></span></span></li>
 <li data-ice="doc"><span data-ice="kind" class="kind-function">F</span><span data-ice="name"><span><a href="function/index.html#static-function-squaresPosition">squaresPosition</a></span></span></li>
 <li data-ice="doc"><span data-ice="kind" class="kind-function">F</span><span data-ice="name"><span><a href="function/index.html#static-function-charCount">charCount</a></span></span></li>
-<li data-ice="doc"><span data-ice="kind" class="kind-function">F</span><span data-ice="name"><span><a href="function/index.html#static-function-kebabToPascalCase">kebabToPascalCase</a></span></span></li>
 <li data-ice="doc"><span data-ice="kind" class="kind-function">F</span><span data-ice="name"><span><a href="function/index.html#static-function-notNumberStrings">notNumberStrings</a></span></span></li>
 <li data-ice="doc"><span data-ice="kind" class="kind-function">F</span><span data-ice="name"><span><a href="function/index.html#static-function-numberStrings">numberStrings</a></span></span></li>
-<li data-ice="doc"><span data-ice="kind" class="kind-function">F</span><span data-ice="name"><span><a href="function/index.html#static-function-pascalToKebabCase">pascalToKebabCase</a></span></span></li>
+<li data-ice="doc"><span data-ice="kind" class="kind-function">F</span><span data-ice="name"><span><a href="function/index.html#static-function-pascalCaseTo">pascalCaseTo</a></span></span></li>
 <li data-ice="doc"><span data-ice="kind" class="kind-function">F</span><span data-ice="name"><span><a href="function/index.html#static-function-toCommaNum">toCommaNum</a></span></span></li>
 <li data-ice="doc"><span data-ice="kind" class="kind-function">F</span><span data-ice="name"><span><a href="function/index.html#static-function-toFirstLetterUpper">toFirstLetterUpper</a></span></span></li>
 <li data-ice="doc"><span data-ice="kind" class="kind-function">F</span><span data-ice="name"><span><a href="function/index.html#static-function-toHalfNum">toHalfNum</a></span></span></li>
+<li data-ice="doc"><span data-ice="kind" class="kind-function">F</span><span data-ice="name"><span><a href="function/index.html#static-function-toPascalCase">toPascalCase</a></span></span></li>
 <li data-ice="doc"><span data-ice="kind" class="kind-function">F</span><span data-ice="name"><span><a href="function/index.html#static-function-toZeroPadding">toZeroPadding</a></span></span></li>
 <li data-ice="doc"><span data-ice="kind" class="kind-function">F</span><span data-ice="name"><span><a href="function/index.html#static-function-ucfirst">ucfirst</a></span></span></li>
-<li data-ice="doc"><span data-ice="kind" class="kind-function">F</span><span data-ice="name"><span><a href="function/index.html#static-function-baseFromHeightHypotenuse">baseFromHeightHypotenuse</a></span></span></li>
-<li data-ice="doc"><span data-ice="kind" class="kind-function">F</span><span data-ice="name"><span><a href="function/index.html#static-function-baseFromHeightRadian">baseFromHeightRadian</a></span></span></li>
-<li data-ice="doc"><span data-ice="kind" class="kind-function">F</span><span data-ice="name"><span><a href="function/index.html#static-function-baseFromHypotenuseRadian">baseFromHypotenuseRadian</a></span></span></li>
-<li data-ice="doc"><span data-ice="kind" class="kind-function">F</span><span data-ice="name"><span><a href="function/index.html#static-function-heightFromBaseHypotenuse">heightFromBaseHypotenuse</a></span></span></li>
-<li data-ice="doc"><span data-ice="kind" class="kind-function">F</span><span data-ice="name"><span><a href="function/index.html#static-function-heightFromBaseRadian">heightFromBaseRadian</a></span></span></li>
-<li data-ice="doc"><span data-ice="kind" class="kind-function">F</span><span data-ice="name"><span><a href="function/index.html#static-function-heightFromHypotenuseRadian">heightFromHypotenuseRadian</a></span></span></li>
-<li data-ice="doc"><span data-ice="kind" class="kind-function">F</span><span data-ice="name"><span><a href="function/index.html#static-function-hypotenuseFromBaseHeight">hypotenuseFromBaseHeight</a></span></span></li>
-<li data-ice="doc"><span data-ice="kind" class="kind-function">F</span><span data-ice="name"><span><a href="function/index.html#static-function-hypotenuseFromBaseRadian">hypotenuseFromBaseRadian</a></span></span></li>
-<li data-ice="doc"><span data-ice="kind" class="kind-function">F</span><span data-ice="name"><span><a href="function/index.html#static-function-hypotenuseFromHeightRadian">hypotenuseFromHeightRadian</a></span></span></li>
-<li data-ice="doc"><span data-ice="kind" class="kind-function">F</span><span data-ice="name"><span><a href="function/index.html#static-function-radianFromBaseHeight">radianFromBaseHeight</a></span></span></li>
-<li data-ice="doc"><span data-ice="kind" class="kind-function">F</span><span data-ice="name"><span><a href="function/index.html#static-function-radianFromBaseHypotenuse">radianFromBaseHypotenuse</a></span></span></li>
-<li data-ice="doc"><span data-ice="kind" class="kind-function">F</span><span data-ice="name"><span><a href="function/index.html#static-function-radianFromHeightHypotenuse">radianFromHeightHypotenuse</a></span></span></li>
 <li data-ice="doc"><span data-ice="kind" class="kind-function">F</span><span data-ice="name"><span><a href="function/index.html#static-function-isMatchLocation">isMatchLocation</a></span></span></li>
 <li data-ice="doc"><span data-ice="kind" class="kind-function">F</span><span data-ice="name"><span><a href="function/index.html#static-function-parseUrl">parseUrl</a></span></span></li>
 <li data-ice="doc"><span data-ice="kind" class="kind-function">F</span><span data-ice="name"><span><a href="function/index.html#static-function-isEmKana">isEmKana</a></span></span></li>
@@ -108,10 +96,12 @@
 <li data-ice="doc"><span data-ice="kind" class="kind-function">F</span><span data-ice="name"><span><a href="function/index.html#static-function-isZipCode">isZipCode</a></span></span></li>
 <li data-ice="doc"><span data-ice="kind" class="kind-variable">V</span><span data-ice="name"><span><a href="variable/index.html#static-variable-easings">easings</a></span></span></li>
 <li data-ice="doc"><span data-ice="kind" class="kind-variable">V</span><span data-ice="name"><span><a href="variable/index.html#static-variable-easings">easings</a></span></span></li>
-<li data-ice="doc"><a data-ice="dirPath" class="nav-dir-path" href="identifiers.html#utils">utils</a><span data-ice="kind" class="kind-function">F</span><span data-ice="name"><span><a href="function/index.html#static-function-getBackgroundImages">getBackgroundImages</a></span></span></li>
+<li data-ice="doc"><a data-ice="dirPath" class="nav-dir-path" href="identifiers.html#utils">utils</a><span data-ice="kind" class="kind-function">F</span><span data-ice="name"><span><a href="function/index.html#static-function-dataAttribute">dataAttribute</a></span></span></li>
+<li data-ice="doc"><span data-ice="kind" class="kind-function">F</span><span data-ice="name"><span><a href="function/index.html#static-function-getBackgroundImages">getBackgroundImages</a></span></span></li>
 <li data-ice="doc"><span data-ice="kind" class="kind-function">F</span><span data-ice="name"><span><a href="function/index.html#static-function-debounce">debounce</a></span></span></li>
 <li data-ice="doc"><span data-ice="kind" class="kind-function">F</span><span data-ice="name"><span><a href="function/index.html#static-function-groupByDataElement">groupByDataElement</a></span></span></li>
 <li data-ice="doc"><span data-ice="kind" class="kind-function">F</span><span data-ice="name"><span><a href="function/index.html#static-function-includesElement">includesElement</a></span></span></li>
+<li data-ice="doc"><span data-ice="kind" class="kind-function">F</span><span data-ice="name"><span><a href="function/index.html#static-function-shownElement">shownElement</a></span></span></li>
 <li data-ice="doc"><span data-ice="kind" class="kind-function">F</span><span data-ice="name"><span><a href="function/index.html#static-function-createEvent">createEvent</a></span></span></li>
 <li data-ice="doc"><span data-ice="kind" class="kind-function">F</span><span data-ice="name"><span><a href="function/index.html#static-function-onDispatchEvent">onDispatchEvent</a></span></span></li>
 <li data-ice="doc"><span data-ice="kind" class="kind-function">F</span><span data-ice="name"><span><a href="function/index.html#static-function-loadFile">loadFile</a></span></span></li>
@@ -120,7 +110,9 @@
 <li data-ice="doc"><span data-ice="kind" class="kind-function">F</span><span data-ice="name"><span><a href="function/index.html#static-function-center">center</a></span></span></li>
 <li data-ice="doc"><span data-ice="kind" class="kind-function">F</span><span data-ice="name"><span><a href="function/index.html#static-function-rect">rect</a></span></span></li>
 <li data-ice="doc"><span data-ice="kind" class="kind-function">F</span><span data-ice="name"><span><a href="function/index.html#static-function-sleep">sleep</a></span></span></li>
+<li data-ice="doc"><span data-ice="kind" class="kind-function">F</span><span data-ice="name"><span><a href="function/index.html#static-function-splitElement">splitElement</a></span></span></li>
 <li data-ice="doc"><span data-ice="kind" class="kind-function">F</span><span data-ice="name"><span><a href="function/index.html#static-function-throttle">throttle</a></span></span></li>
+<li data-ice="doc"><span data-ice="kind" class="kind-function">F</span><span data-ice="name"><span><a href="function/index.html#static-function-waitTime">waitTime</a></span></span></li>
 <li data-ice="doc"><span data-ice="kind" class="kind-function">F</span><span data-ice="name"><span><a href="function/index.html#static-function-wait">wait</a></span></span></li>
 </ul>
 </div>
@@ -138,10 +130,10 @@ class ImagePreloader {
   /**
    * @return {Object}
    */
-  static get _defOptions() {
+  static get _defaultOptions() {
     return {
       images: [],
-      needsElementLoad: true
+      needsElementLoad: false
     }
   }
 
@@ -153,30 +145,30 @@ class ImagePreloader {
    * @return {Promsie}
    */
   async add($el, options = {}) {
-    const { images, needsElementLoad } = Object.assign(
-      ImagePreloader._defOptions,
-      options
-    )
+    const { images, needsElementLoad } = {
+      ...ImagePreloader._defaultOptions,
+      ...options
+    }
 
     const _images /* :Set */ = new Set()
 
     // init images
-    for (const img /* :Element */ of images) {
+    for (const img of images) {
       if (!this._images.has(img)) {
         _images.add(img)
       }
     }
 
     // wrap element background image
-    for (const bgImg /* :string */ of getBackgroundImages($el)) {
+    for (const bgImg of getBackgroundImages($el)) {
       if (bgImg &amp;&amp; !this._images.has(bgImg)) {
         _images.add(bgImg)
       }
     }
 
     // child elements background images
-    for (const $child /* :Element */ of $el.getElementsByTagName(&apos;*&apos;)) {
-      for (const bgImg /* :string */ of getBackgroundImages($child)) {
+    for (const $child of $el.getElementsByTagName(&apos;*&apos;)) {
+      for (const bgImg of getBackgroundImages($child)) {
         if (bgImg &amp;&amp; !this._images.has(bgImg)) {
           _images.add(bgImg)
         }
@@ -186,15 +178,14 @@ class ImagePreloader {
     if (needsElementLoad) {
       // img elements images
       await Promise.all(
-        Array.from($el.getElementsByTagName(&apos;img&apos;), async (
-          $img /* :Element */
-        ) =&gt; {
+        Array.from($el.getElementsByTagName(&apos;img&apos;), async ($img) =&gt; {
           if (!$img.getAttribute(&apos;src&apos;)) {
             return
           }
           let _img /* :string */ = &apos;&apos;
           await wait(200, () /* :string */ =&gt; {
-            _img = &apos;currentSrc&apos; in $img ? $img.currentSrc : $img.src
+            _img =
+              typeof $img.currentSrc === &apos;string&apos; ? $img.currentSrc : $img.src
             return _img
           })
           if (_img &amp;&amp; !this._images.has(_img)) {
@@ -212,7 +203,7 @@ class ImagePreloader {
       })
 
       // svg image elements images
-      Array.from($el.getElementsByTagName(&apos;image&apos;), ($img /* :Element */) =&gt; {
+      Array.from($el.getElementsByTagName(&apos;image&apos;), ($img) =&gt; {
         const _img /* :string */ = $img.getAttribute(&apos;xlink:href&apos;)
         if (_img &amp;&amp; !this._images.has(_img)) {
           _images.add(_img)
@@ -222,7 +213,7 @@ class ImagePreloader {
 
     this._status.set($el, {
       images /* :Set */: _images,
-      loadedLen /* :number int[0,inf) */: 0
+      loadedLen /* :number - int[0,inf) */: 0
     })
   }
 
@@ -241,9 +232,7 @@ class ImagePreloader {
    */
   load($el) {
     const _loaders = this.getLoaders($el)
-    return Promise.all(
-      _loaders.map((loader /* :function */) /* :Promise */ =&gt; loader())
-    )
+    return Promise.all(_loaders.map((loader) /* :Promise */ =&gt; loader()))
   }
 
   /**
@@ -253,7 +242,7 @@ class ImagePreloader {
   getLoaders($el) {
     const _images /* :Set */ = this._status.get($el).images
 
-    return [..._images].map((src /* :string */) =&gt; {
+    return [..._images].map((src) =&gt; {
       return this._load.bind(this, $el, src)
     })
   }
@@ -281,11 +270,11 @@ class ImagePreloader {
    */
   _load($el, src) {
     return loadImage(src, {
-      done: (img /* :Image */) =&gt; {
+      done: (img) =&gt; {
         this._images.set(src, {
           src /* :string */: img.src,
-          width /* :number int[0,inf) */: img.width,
-          height /* :number int[0,inf) */: img.height
+          width /* :number - int[0,inf) */: img.width,
+          height /* :number - int[0,inf) */: img.height
         })
       },
       always: () =&gt; {

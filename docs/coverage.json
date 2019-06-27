@@ -1,7 +1,7 @@
 {
-  "coverage": "65.1%",
-  "expectCount": 278,
-  "actualCount": 181,
+  "coverage": "61.25%",
+  "expectCount": 431,
+  "actualCount": 264,
   "files": {
     "src/data/scroll-animation-data.js": {
       "expectCount": 1,
@@ -18,11 +18,6 @@
     "src/models/check.js": {
       "expectCount": 1,
       "actualCount": 1,
-      "undocumentLines": []
-    },
-    "src/models/coordinate.js": {
-      "expectCount": 2,
-      "actualCount": 2,
       "undocumentLines": []
     },
     "src/models/cubic-bezier-easing.js": {
@@ -50,8 +45,8 @@
       "undocumentLines": []
     },
     "src/models/math.js": {
-      "expectCount": 10,
-      "actualCount": 10,
+      "expectCount": 12,
+      "actualCount": 12,
       "undocumentLines": []
     },
     "src/models/normalize.js": {
@@ -111,11 +106,6 @@
       "actualCount": 10,
       "undocumentLines": []
     },
-    "src/models/trigonometric.js": {
-      "expectCount": 12,
-      "actualCount": 12,
-      "undocumentLines": []
-    },
     "src/models/url.js": {
       "expectCount": 2,
       "actualCount": 2,
@@ -125,6 +115,16 @@
       "expectCount": 8,
       "actualCount": 8,
       "undocumentLines": []
+    },
+    "src/modules/anchor.js": {
+      "expectCount": 8,
+      "actualCount": 4,
+      "undocumentLines": [
+        11,
+        12,
+        13,
+        14
+      ]
     },
     "src/modules/controlled-request-animation-framer.js": {
       "expectCount": 9,
@@ -168,14 +168,25 @@
       "expectCount": 13,
       "actualCount": 5,
       "undocumentLines": [
+        10,
+        11,
+        12,
+        13,
+        15,
+        99,
+        123,
+        129
+      ]
+    },
+    "src/modules/lottie.js": {
+      "expectCount": 17,
+      "actualCount": 12,
+      "undocumentLines": [
         9,
         10,
         11,
         12,
-        14,
-        88,
-        104,
-        110
+        13
       ]
     },
     "src/modules/request-animation-framer.js": {
@@ -231,11 +242,16 @@
         10,
         11,
         13,
-        27,
-        51,
-        53,
-        55
+        29,
+        56,
+        58,
+        60
       ]
+    },
+    "src/utils/attribute.js": {
+      "expectCount": 1,
+      "actualCount": 1,
+      "undocumentLines": []
     },
     "src/utils/background-image.js": {
       "expectCount": 1,
@@ -248,8 +264,8 @@
       "undocumentLines": []
     },
     "src/utils/element.js": {
-      "expectCount": 2,
-      "actualCount": 2,
+      "expectCount": 3,
+      "actualCount": 3,
       "undocumentLines": []
     },
     "src/utils/event.js": {
@@ -275,7 +291,30 @@
       "actualCount": 1,
       "undocumentLines": []
     },
+    "src/utils/split-element.js": {
+      "expectCount": 1,
+      "actualCount": 1,
+      "undocumentLines": []
+    },
+    "src/utils/swipe-status.js": {
+      "expectCount": 12,
+      "actualCount": 5,
+      "undocumentLines": [
+        1,
+        2,
+        15,
+        74,
+        91,
+        95,
+        99
+      ]
+    },
     "src/utils/throttle.js": {
+      "expectCount": 1,
+      "actualCount": 1,
+      "undocumentLines": []
+    },
+    "src/utils/wait-time.js": {
       "expectCount": 1,
       "actualCount": 1,
       "undocumentLines": []
@@ -285,6 +324,21 @@
       "actualCount": 2,
       "undocumentLines": []
     },
+    "src/views/_canvas.js": {
+      "expectCount": 17,
+      "actualCount": 8,
+      "undocumentLines": [
+        7,
+        8,
+        9,
+        10,
+        11,
+        12,
+        13,
+        47,
+        67
+      ]
+    },
     "src/views/_observe-scroll-single.js": {
       "expectCount": 10,
       "actualCount": 7,
@@ -292,6 +346,26 @@
         7,
         8,
         9
+      ]
+    },
+    "src/views/_store-observe.js": {
+      "expectCount": 11,
+      "actualCount": 7,
+      "undocumentLines": [
+        7,
+        8,
+        9,
+        10
+      ]
+    },
+    "src/views/char-splitter.js": {
+      "expectCount": 10,
+      "actualCount": 6,
+      "undocumentLines": [
+        4,
+        5,
+        6,
+        7
       ]
     },
     "src/views/client-flag-setter.js": {
@@ -303,13 +377,24 @@
       ]
     },
     "src/views/height-fitter.js": {
-      "expectCount": 9,
-      "actualCount": 5,
+      "expectCount": 12,
+      "actualCount": 7,
       "undocumentLines": [
         7,
         8,
         9,
-        10
+        10,
+        11
+      ]
+    },
+    "src/views/ignition-lottie-animator.js": {
+      "expectCount": 11,
+      "actualCount": 7,
+      "undocumentLines": [
+        4,
+        5,
+        6,
+        7
       ]
     },
     "src/views/ignitioner.js": {
@@ -325,15 +410,17 @@
       ]
     },
     "src/views/inviewporter.js": {
-      "expectCount": 15,
+      "expectCount": 17,
       "actualCount": 9,
       "undocumentLines": [
-        1,
-        2,
-        3,
-        4,
-        5,
-        6
+        7,
+        8,
+        9,
+        10,
+        11,
+        12,
+        113,
+        123
       ]
     },
     "src/views/lazyloader.js": {
@@ -349,20 +436,80 @@
         10
       ]
     },
-    "src/views/page-loader.js": {
-      "expectCount": 10,
-      "actualCount": 3,
+    "src/views/link-middleware.js": {
+      "expectCount": 8,
+      "actualCount": 5,
+      "undocumentLines": [
+        8,
+        9,
+        11
+      ]
+    },
+    "src/views/lottie-animator.js": {
+      "expectCount": 13,
+      "actualCount": 8,
       "undocumentLines": [
         7,
         8,
         9,
         10,
-        12,
-        43,
-        59
+        11
       ]
     },
-    "src/views/scroll-animator.js": {
+    "src/views/menu.js": {
+      "expectCount": 16,
+      "actualCount": 9,
+      "undocumentLines": [
+        9,
+        10,
+        11,
+        12,
+        13,
+        14,
+        48
+      ]
+    },
+    "src/views/page-loader.js": {
+      "expectCount": 16,
+      "actualCount": 5,
+      "undocumentLines": [
+        7,
+        8,
+        9,
+        10,
+        11,
+        12,
+        13,
+        14,
+        16,
+        62,
+        87
+      ]
+    },
+    "src/views/scroll-animator_data-attribute.js": {
+      "expectCount": 14,
+      "actualCount": 8,
+      "undocumentLines": [
+        11,
+        12,
+        13,
+        14,
+        15,
+        115
+      ]
+    },
+    "src/views/scroll-animator_normal.js": {
+      "expectCount": 13,
+      "actualCount": 8,
+      "undocumentLines": [
+        10,
+        11,
+        12,
+        13,
+        105
+      ]
+    },
+    "src/views/scroll-animator_self-viewport.js": {
       "expectCount": 13,
       "actualCount": 8,
       "undocumentLines": [

@@ -20,8 +20,7 @@ class LottieAnimator {
   }
 
   /**
-   * @param {Object}
-   * @property {Object} [options]
+   * @param {Object} [options]
    * @property {string} [options.selfClassName]
    */
   constructor(options = {}) {

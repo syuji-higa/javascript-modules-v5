@@ -103,7 +103,7 @@ export const frameToTime = (frame, fps = 60) => {
 }
 
 /**
- * @param {number} num - int[0,inf)
+ * @param {number} time - int[0,inf)
  * @param {number} fps - [0,inf)
  * @return {number} [0,inf)
  */

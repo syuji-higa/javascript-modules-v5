@@ -30,8 +30,7 @@ class Menu {
   }
 
   /**
-   * @param {Object}
-   * @property {Object} [options]
+   * @param {Object} [options]
    * @property {string} [options.menuClassName]
    * @property {string} [options.icoClassName]
    * @property {string} [options.isOpenedClassName]

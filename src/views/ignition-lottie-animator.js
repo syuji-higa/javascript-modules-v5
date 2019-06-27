@@ -16,8 +16,7 @@ class IgnitionLottieAnimator {
   }
 
   /**
-   * @param {Object}
-   * @property {Object} [options]
+   * @param {Object} [options]
    * @property {string} [options.selfClassName]
    */
   constructor(options = {}) {

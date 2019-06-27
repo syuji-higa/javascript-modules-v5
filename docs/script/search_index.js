@@ -12,24 +12,6 @@ window.esdocSearchIndex = [
     "function"
   ],
   [
-    "javascript-modules-v5/src/models/trigonometric.js~basefromheighthypotenuse",
-    "function/index.html#static-function-baseFromHeightHypotenuse",
-    "<span>baseFromHeightHypotenuse</span> <span class=\"search-result-import-path\">javascript-modules-v5/src/models/trigonometric.js</span>",
-    "function"
-  ],
-  [
-    "javascript-modules-v5/src/models/trigonometric.js~basefromheightradian",
-    "function/index.html#static-function-baseFromHeightRadian",
-    "<span>baseFromHeightRadian</span> <span class=\"search-result-import-path\">javascript-modules-v5/src/models/trigonometric.js</span>",
-    "function"
-  ],
-  [
-    "javascript-modules-v5/src/models/trigonometric.js~basefromhypotenuseradian",
-    "function/index.html#static-function-baseFromHypotenuseRadian",
-    "<span>baseFromHypotenuseRadian</span> <span class=\"search-result-import-path\">javascript-modules-v5/src/models/trigonometric.js</span>",
-    "function"
-  ],
-  [
     "javascript-modules-v5/src/models/array.js~caterpillararray",
     "function/index.html#static-function-caterpillarArray",
     "<span>caterpillarArray</span> <span class=\"search-result-import-path\">javascript-modules-v5/src/models/array.js</span>",
@@ -60,18 +42,6 @@ window.esdocSearchIndex = [
     "function"
   ],
   [
-    "javascript-modules-v5/src/models/coordinate.js~coordinatelength",
-    "function/index.html#static-function-coordinateLength",
-    "<span>coordinateLength</span> <span class=\"search-result-import-path\">javascript-modules-v5/src/models/coordinate.js</span>",
-    "function"
-  ],
-  [
-    "javascript-modules-v5/src/models/coordinate.js~coordinatepickupcolor",
-    "function/index.html#static-function-coordinatePickupColor",
-    "<span>coordinatePickupColor</span> <span class=\"search-result-import-path\">javascript-modules-v5/src/models/coordinate.js</span>",
-    "function"
-  ],
-  [
     "javascript-modules-v5/src/models/ratio.js~cover",
     "function/index.html#static-function-cover",
     "<span>cover</span> <span class=\"search-result-import-path\">javascript-modules-v5/src/models/ratio.js</span>",
@@ -93,6 +63,12 @@ window.esdocSearchIndex = [
     "javascript-modules-v5/src/models/array.js~createserialnumberarray",
     "function/index.html#static-function-createSerialNumberArray",
     "<span>createSerialNumberArray</span> <span class=\"search-result-import-path\">javascript-modules-v5/src/models/array.js</span>",
+    "function"
+  ],
+  [
+    "javascript-modules-v5/src/utils/attribute.js~dataattribute",
+    "function/index.html#static-function-dataAttribute",
+    "<span>dataAttribute</span> <span class=\"search-result-import-path\">javascript-modules-v5/src/utils/attribute.js</span>",
     "function"
   ],
   [
@@ -138,6 +114,12 @@ window.esdocSearchIndex = [
     "function"
   ],
   [
+    "javascript-modules-v5/src/models/math.js~frametotime",
+    "function/index.html#static-function-frameToTime",
+    "<span>frameToTime</span> <span class=\"search-result-import-path\">javascript-modules-v5/src/models/math.js</span>",
+    "function"
+  ],
+  [
     "javascript-modules-v5/src/utils/background-image.js~getbackgroundimages",
     "function/index.html#static-function-getBackgroundImages",
     "<span>getBackgroundImages</span> <span class=\"search-result-import-path\">javascript-modules-v5/src/utils/background-image.js</span>",
@@ -150,45 +132,9 @@ window.esdocSearchIndex = [
     "function"
   ],
   [
-    "javascript-modules-v5/src/models/trigonometric.js~heightfrombasehypotenuse",
-    "function/index.html#static-function-heightFromBaseHypotenuse",
-    "<span>heightFromBaseHypotenuse</span> <span class=\"search-result-import-path\">javascript-modules-v5/src/models/trigonometric.js</span>",
-    "function"
-  ],
-  [
-    "javascript-modules-v5/src/models/trigonometric.js~heightfrombaseradian",
-    "function/index.html#static-function-heightFromBaseRadian",
-    "<span>heightFromBaseRadian</span> <span class=\"search-result-import-path\">javascript-modules-v5/src/models/trigonometric.js</span>",
-    "function"
-  ],
-  [
-    "javascript-modules-v5/src/models/trigonometric.js~heightfromhypotenuseradian",
-    "function/index.html#static-function-heightFromHypotenuseRadian",
-    "<span>heightFromHypotenuseRadian</span> <span class=\"search-result-import-path\">javascript-modules-v5/src/models/trigonometric.js</span>",
-    "function"
-  ],
-  [
     "javascript-modules-v5/src/models/math.js~hoop",
     "function/index.html#static-function-hoop",
     "<span>hoop</span> <span class=\"search-result-import-path\">javascript-modules-v5/src/models/math.js</span>",
-    "function"
-  ],
-  [
-    "javascript-modules-v5/src/models/trigonometric.js~hypotenusefrombaseheight",
-    "function/index.html#static-function-hypotenuseFromBaseHeight",
-    "<span>hypotenuseFromBaseHeight</span> <span class=\"search-result-import-path\">javascript-modules-v5/src/models/trigonometric.js</span>",
-    "function"
-  ],
-  [
-    "javascript-modules-v5/src/models/trigonometric.js~hypotenusefrombaseradian",
-    "function/index.html#static-function-hypotenuseFromBaseRadian",
-    "<span>hypotenuseFromBaseRadian</span> <span class=\"search-result-import-path\">javascript-modules-v5/src/models/trigonometric.js</span>",
-    "function"
-  ],
-  [
-    "javascript-modules-v5/src/models/trigonometric.js~hypotenusefromheightradian",
-    "function/index.html#static-function-hypotenuseFromHeightRadian",
-    "<span>hypotenuseFromHeightRadian</span> <span class=\"search-result-import-path\">javascript-modules-v5/src/models/trigonometric.js</span>",
     "function"
   ],
   [
@@ -258,12 +204,6 @@ window.esdocSearchIndex = [
     "function"
   ],
   [
-    "javascript-modules-v5/src/models/string.js~kebabtopascalcase",
-    "function/index.html#static-function-kebabToPascalCase",
-    "<span>kebabToPascalCase</span> <span class=\"search-result-import-path\">javascript-modules-v5/src/models/string.js</span>",
-    "function"
-  ],
-  [
     "javascript-modules-v5/src/utils/load.js~loadfile",
     "function/index.html#static-function-loadFile",
     "<span>loadFile</span> <span class=\"search-result-import-path\">javascript-modules-v5/src/utils/load.js</span>",
@@ -282,15 +222,15 @@ window.esdocSearchIndex = [
     "function"
   ],
   [
-    "javascript-modules-v5/src/models/ratio.js~normalizeoverratio",
-    "function/index.html#static-function-normalizeOverRatio",
-    "<span>normalizeOverRatio</span> <span class=\"search-result-import-path\">javascript-modules-v5/src/models/ratio.js</span>",
+    "javascript-modules-v5/src/models/ratio.js~maxratio",
+    "function/index.html#static-function-maxRatio",
+    "<span>maxRatio</span> <span class=\"search-result-import-path\">javascript-modules-v5/src/models/ratio.js</span>",
     "function"
   ],
   [
-    "javascript-modules-v5/src/models/ratio.js~normalizeunderratio",
-    "function/index.html#static-function-normalizeUnderRatio",
-    "<span>normalizeUnderRatio</span> <span class=\"search-result-import-path\">javascript-modules-v5/src/models/ratio.js</span>",
+    "javascript-modules-v5/src/models/ratio.js~minratio",
+    "function/index.html#static-function-minRatio",
+    "<span>minRatio</span> <span class=\"search-result-import-path\">javascript-modules-v5/src/models/ratio.js</span>",
     "function"
   ],
   [
@@ -354,9 +294,9 @@ window.esdocSearchIndex = [
     "function"
   ],
   [
-    "javascript-modules-v5/src/models/string.js~pascaltokebabcase",
-    "function/index.html#static-function-pascalToKebabCase",
-    "<span>pascalToKebabCase</span> <span class=\"search-result-import-path\">javascript-modules-v5/src/models/string.js</span>",
+    "javascript-modules-v5/src/models/string.js~pascalcaseto",
+    "function/index.html#static-function-pascalCaseTo",
+    "<span>pascalCaseTo</span> <span class=\"search-result-import-path\">javascript-modules-v5/src/models/string.js</span>",
     "function"
   ],
   [
@@ -369,24 +309,6 @@ window.esdocSearchIndex = [
     "javascript-modules-v5/src/models/parameter.js~query",
     "function/index.html#static-function-query",
     "<span>query</span> <span class=\"search-result-import-path\">javascript-modules-v5/src/models/parameter.js</span>",
-    "function"
-  ],
-  [
-    "javascript-modules-v5/src/models/trigonometric.js~radianfrombaseheight",
-    "function/index.html#static-function-radianFromBaseHeight",
-    "<span>radianFromBaseHeight</span> <span class=\"search-result-import-path\">javascript-modules-v5/src/models/trigonometric.js</span>",
-    "function"
-  ],
-  [
-    "javascript-modules-v5/src/models/trigonometric.js~radianfrombasehypotenuse",
-    "function/index.html#static-function-radianFromBaseHypotenuse",
-    "<span>radianFromBaseHypotenuse</span> <span class=\"search-result-import-path\">javascript-modules-v5/src/models/trigonometric.js</span>",
-    "function"
-  ],
-  [
-    "javascript-modules-v5/src/models/trigonometric.js~radianfromheighthypotenuse",
-    "function/index.html#static-function-radianFromHeightHypotenuse",
-    "<span>radianFromHeightHypotenuse</span> <span class=\"search-result-import-path\">javascript-modules-v5/src/models/trigonometric.js</span>",
     "function"
   ],
   [
@@ -438,6 +360,12 @@ window.esdocSearchIndex = [
     "function"
   ],
   [
+    "javascript-modules-v5/src/utils/element.js~shownelement",
+    "function/index.html#static-function-shownElement",
+    "<span>shownElement</span> <span class=\"search-result-import-path\">javascript-modules-v5/src/utils/element.js</span>",
+    "function"
+  ],
+  [
     "javascript-modules-v5/src/models/array.js~shufflearray",
     "function/index.html#static-function-shuffleArray",
     "<span>shuffleArray</span> <span class=\"search-result-import-path\">javascript-modules-v5/src/models/array.js</span>",
@@ -453,6 +381,12 @@ window.esdocSearchIndex = [
     "javascript-modules-v5/src/utils/sleep.js~sleep",
     "function/index.html#static-function-sleep",
     "<span>sleep</span> <span class=\"search-result-import-path\">javascript-modules-v5/src/utils/sleep.js</span>",
+    "function"
+  ],
+  [
+    "javascript-modules-v5/src/utils/split-element.js~splitelement",
+    "function/index.html#static-function-splitElement",
+    "<span>splitElement</span> <span class=\"search-result-import-path\">javascript-modules-v5/src/utils/split-element.js</span>",
     "function"
   ],
   [
@@ -477,6 +411,12 @@ window.esdocSearchIndex = [
     "javascript-modules-v5/src/utils/throttle.js~throttle",
     "function/index.html#static-function-throttle",
     "<span>throttle</span> <span class=\"search-result-import-path\">javascript-modules-v5/src/utils/throttle.js</span>",
+    "function"
+  ],
+  [
+    "javascript-modules-v5/src/models/math.js~timetoframe",
+    "function/index.html#static-function-timeToFrame",
+    "<span>timeToFrame</span> <span class=\"search-result-import-path\">javascript-modules-v5/src/models/math.js</span>",
     "function"
   ],
   [
@@ -528,6 +468,12 @@ window.esdocSearchIndex = [
     "function"
   ],
   [
+    "javascript-modules-v5/src/models/string.js~topascalcase",
+    "function/index.html#static-function-toPascalCase",
+    "<span>toPascalCase</span> <span class=\"search-result-import-path\">javascript-modules-v5/src/models/string.js</span>",
+    "function"
+  ],
+  [
     "javascript-modules-v5/src/models/math.js~toradian",
     "function/index.html#static-function-toRadian",
     "<span>toRadian</span> <span class=\"search-result-import-path\">javascript-modules-v5/src/models/math.js</span>",
@@ -555,6 +501,12 @@ window.esdocSearchIndex = [
     "javascript-modules-v5/src/utils/wait.js~wait",
     "function/index.html#static-function-wait",
     "<span>wait</span> <span class=\"search-result-import-path\">javascript-modules-v5/src/utils/wait.js</span>",
+    "function"
+  ],
+  [
+    "javascript-modules-v5/src/utils/wait-time.js~waittime",
+    "function/index.html#static-function-waitTime",
+    "<span>waitTime</span> <span class=\"search-result-import-path\">javascript-modules-v5/src/utils/wait-time.js</span>",
     "function"
   ],
   [
@@ -858,12 +810,6 @@ window.esdocSearchIndex = [
     "file"
   ],
   [
-    "src/models/coordinate.js",
-    "file/src/models/coordinate.js.html",
-    "src/models/coordinate.js",
-    "file"
-  ],
-  [
     "src/models/cubic-bezier-easing.js",
     "file/src/models/cubic-bezier-easing.js.html",
     "src/models/cubic-bezier-easing.js",
@@ -960,12 +906,6 @@ window.esdocSearchIndex = [
     "file"
   ],
   [
-    "src/models/trigonometric.js",
-    "file/src/models/trigonometric.js.html",
-    "src/models/trigonometric.js",
-    "file"
-  ],
-  [
     "src/models/url.js",
     "file/src/models/url.js.html",
     "src/models/url.js",
@@ -975,6 +915,12 @@ window.esdocSearchIndex = [
     "src/models/validate.js",
     "file/src/models/validate.js.html",
     "src/models/validate.js",
+    "file"
+  ],
+  [
+    "src/modules/anchor.js",
+    "file/src/modules/anchor.js.html",
+    "src/modules/anchor.js",
     "file"
   ],
   [
@@ -1008,6 +954,12 @@ window.esdocSearchIndex = [
     "file"
   ],
   [
+    "src/modules/lottie.js",
+    "file/src/modules/lottie.js.html",
+    "src/modules/lottie.js",
+    "file"
+  ],
+  [
     "src/modules/request-animation-framer.js",
     "file/src/modules/request-animation-framer.js.html",
     "src/modules/request-animation-framer.js",
@@ -1035,6 +987,12 @@ window.esdocSearchIndex = [
     "src/store.js",
     "file/src/store.js.html",
     "src/store.js",
+    "file"
+  ],
+  [
+    "src/utils/attribute.js",
+    "file/src/utils/attribute.js.html",
+    "src/utils/attribute.js",
     "file"
   ],
   [
@@ -1080,9 +1038,27 @@ window.esdocSearchIndex = [
     "file"
   ],
   [
+    "src/utils/split-element.js",
+    "file/src/utils/split-element.js.html",
+    "src/utils/split-element.js",
+    "file"
+  ],
+  [
+    "src/utils/swipe-status.js",
+    "file/src/utils/swipe-status.js.html",
+    "src/utils/swipe-status.js",
+    "file"
+  ],
+  [
     "src/utils/throttle.js",
     "file/src/utils/throttle.js.html",
     "src/utils/throttle.js",
+    "file"
+  ],
+  [
+    "src/utils/wait-time.js",
+    "file/src/utils/wait-time.js.html",
+    "src/utils/wait-time.js",
     "file"
   ],
   [
@@ -1092,9 +1068,27 @@ window.esdocSearchIndex = [
     "file"
   ],
   [
+    "src/views/_canvas.js",
+    "file/src/views/_canvas.js.html",
+    "src/views/_canvas.js",
+    "file"
+  ],
+  [
     "src/views/_observe-scroll-single.js",
     "file/src/views/_observe-scroll-single.js.html",
     "src/views/_observe-scroll-single.js",
+    "file"
+  ],
+  [
+    "src/views/_store-observe.js",
+    "file/src/views/_store-observe.js.html",
+    "src/views/_store-observe.js",
+    "file"
+  ],
+  [
+    "src/views/char-splitter.js",
+    "file/src/views/char-splitter.js.html",
+    "src/views/char-splitter.js",
     "file"
   ],
   [
@@ -1107,6 +1101,12 @@ window.esdocSearchIndex = [
     "src/views/height-fitter.js",
     "file/src/views/height-fitter.js.html",
     "src/views/height-fitter.js",
+    "file"
+  ],
+  [
+    "src/views/ignition-lottie-animator.js",
+    "file/src/views/ignition-lottie-animator.js.html",
+    "src/views/ignition-lottie-animator.js",
     "file"
   ],
   [
@@ -1128,15 +1128,45 @@ window.esdocSearchIndex = [
     "file"
   ],
   [
+    "src/views/link-middleware.js",
+    "file/src/views/link-middleware.js.html",
+    "src/views/link-middleware.js",
+    "file"
+  ],
+  [
+    "src/views/lottie-animator.js",
+    "file/src/views/lottie-animator.js.html",
+    "src/views/lottie-animator.js",
+    "file"
+  ],
+  [
+    "src/views/menu.js",
+    "file/src/views/menu.js.html",
+    "src/views/menu.js",
+    "file"
+  ],
+  [
     "src/views/page-loader.js",
     "file/src/views/page-loader.js.html",
     "src/views/page-loader.js",
     "file"
   ],
   [
-    "src/views/scroll-animator.js",
-    "file/src/views/scroll-animator.js.html",
-    "src/views/scroll-animator.js",
+    "src/views/scroll-animator_data-attribute.js",
+    "file/src/views/scroll-animator_data-attribute.js.html",
+    "src/views/scroll-animator_data-attribute.js",
+    "file"
+  ],
+  [
+    "src/views/scroll-animator_normal.js",
+    "file/src/views/scroll-animator_normal.js.html",
+    "src/views/scroll-animator_normal.js",
+    "file"
+  ],
+  [
+    "src/views/scroll-animator_self-viewport.js",
+    "file/src/views/scroll-animator_self-viewport.js.html",
+    "src/views/scroll-animator_self-viewport.js",
     "file"
   ]
 ]

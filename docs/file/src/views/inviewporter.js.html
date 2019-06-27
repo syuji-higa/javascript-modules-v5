@@ -8,7 +8,7 @@
   <link type="text/css" rel="stylesheet" href="css/prettify-tomorrow.css">
   <script src="script/prettify/prettify.js"></script>
   <script src="script/manual.js"></script>
-<meta name="description" content="General purpose TypeScript modules."><meta property="twitter:card" content="summary"><meta property="twitter:title" content="javascript-modules-v5"><meta property="twitter:description" content="General purpose TypeScript modules."></head>
+<meta name="description" content="General purpose JavaScript modules."><meta property="twitter:card" content="summary"><meta property="twitter:title" content="javascript-modules-v5"><meta property="twitter:description" content="General purpose JavaScript modules."></head>
 <body class="layout-container" data-ice="rootContainer">
 
 <header>
@@ -37,8 +37,6 @@
 <li data-ice="doc"><span data-ice="kind" class="kind-function">F</span><span data-ice="name"><span><a href="function/index.html#static-function-flattenArray">flattenArray</a></span></span></li>
 <li data-ice="doc"><span data-ice="kind" class="kind-function">F</span><span data-ice="name"><span><a href="function/index.html#static-function-shuffleArray">shuffleArray</a></span></span></li>
 <li data-ice="doc"><span data-ice="kind" class="kind-function">F</span><span data-ice="name"><span><a href="function/index.html#static-function-isJson">isJson</a></span></span></li>
-<li data-ice="doc"><span data-ice="kind" class="kind-function">F</span><span data-ice="name"><span><a href="function/index.html#static-function-coordinateLength">coordinateLength</a></span></span></li>
-<li data-ice="doc"><span data-ice="kind" class="kind-function">F</span><span data-ice="name"><span><a href="function/index.html#static-function-coordinatePickupColor">coordinatePickupColor</a></span></span></li>
 <li data-ice="doc"><span data-ice="kind" class="kind-function">F</span><span data-ice="name"><span><a href="function/index.html#static-function-areaDate">areaDate</a></span></span></li>
 <li data-ice="doc"><span data-ice="kind" class="kind-function">F</span><span data-ice="name"><span><a href="function/index.html#static-function-areaTimestamp">areaTimestamp</a></span></span></li>
 <li data-ice="doc"><span data-ice="kind" class="kind-function">F</span><span data-ice="name"><span><a href="function/index.html#static-function-toDayOfWeekEn">toDayOfWeekEn</a></span></span></li>
@@ -48,9 +46,11 @@
 <li data-ice="doc"><span data-ice="kind" class="kind-function">F</span><span data-ice="name"><span><a href="function/index.html#static-function-clamp">clamp</a></span></span></li>
 <li data-ice="doc"><span data-ice="kind" class="kind-function">F</span><span data-ice="name"><span><a href="function/index.html#static-function-decimal">decimal</a></span></span></li>
 <li data-ice="doc"><span data-ice="kind" class="kind-function">F</span><span data-ice="name"><span><a href="function/index.html#static-function-floor">floor</a></span></span></li>
+<li data-ice="doc"><span data-ice="kind" class="kind-function">F</span><span data-ice="name"><span><a href="function/index.html#static-function-frameToTime">frameToTime</a></span></span></li>
 <li data-ice="doc"><span data-ice="kind" class="kind-function">F</span><span data-ice="name"><span><a href="function/index.html#static-function-hoop">hoop</a></span></span></li>
 <li data-ice="doc"><span data-ice="kind" class="kind-function">F</span><span data-ice="name"><span><a href="function/index.html#static-function-round">round</a></span></span></li>
 <li data-ice="doc"><span data-ice="kind" class="kind-function">F</span><span data-ice="name"><span><a href="function/index.html#static-function-sign">sign</a></span></span></li>
+<li data-ice="doc"><span data-ice="kind" class="kind-function">F</span><span data-ice="name"><span><a href="function/index.html#static-function-timeToFrame">timeToFrame</a></span></span></li>
 <li data-ice="doc"><span data-ice="kind" class="kind-function">F</span><span data-ice="name"><span><a href="function/index.html#static-function-toAngle">toAngle</a></span></span></li>
 <li data-ice="doc"><span data-ice="kind" class="kind-function">F</span><span data-ice="name"><span><a href="function/index.html#static-function-toRadian">toRadian</a></span></span></li>
 <li data-ice="doc"><span data-ice="kind" class="kind-function">F</span><span data-ice="name"><span><a href="function/index.html#static-function-toTowPower">toTowPower</a></span></span></li>
@@ -70,32 +70,20 @@
 <li data-ice="doc"><span data-ice="kind" class="kind-function">F</span><span data-ice="name"><span><a href="function/index.html#static-function-randomInt">randomInt</a></span></span></li>
 <li data-ice="doc"><span data-ice="kind" class="kind-function">F</span><span data-ice="name"><span><a href="function/index.html#static-function-ratioValue">ratioValue</a></span></span></li>
 <li data-ice="doc"><span data-ice="kind" class="kind-function">F</span><span data-ice="name"><span><a href="function/index.html#static-function-cover">cover</a></span></span></li>
-<li data-ice="doc"><span data-ice="kind" class="kind-function">F</span><span data-ice="name"><span><a href="function/index.html#static-function-normalizeOverRatio">normalizeOverRatio</a></span></span></li>
-<li data-ice="doc"><span data-ice="kind" class="kind-function">F</span><span data-ice="name"><span><a href="function/index.html#static-function-normalizeUnderRatio">normalizeUnderRatio</a></span></span></li>
+<li data-ice="doc"><span data-ice="kind" class="kind-function">F</span><span data-ice="name"><span><a href="function/index.html#static-function-maxRatio">maxRatio</a></span></span></li>
+<li data-ice="doc"><span data-ice="kind" class="kind-function">F</span><span data-ice="name"><span><a href="function/index.html#static-function-minRatio">minRatio</a></span></span></li>
 <li data-ice="doc"><span data-ice="kind" class="kind-function">F</span><span data-ice="name"><span><a href="function/index.html#static-function-squaresIndex">squaresIndex</a></span></span></li>
 <li data-ice="doc"><span data-ice="kind" class="kind-function">F</span><span data-ice="name"><span><a href="function/index.html#static-function-squaresPosition">squaresPosition</a></span></span></li>
 <li data-ice="doc"><span data-ice="kind" class="kind-function">F</span><span data-ice="name"><span><a href="function/index.html#static-function-charCount">charCount</a></span></span></li>
-<li data-ice="doc"><span data-ice="kind" class="kind-function">F</span><span data-ice="name"><span><a href="function/index.html#static-function-kebabToPascalCase">kebabToPascalCase</a></span></span></li>
 <li data-ice="doc"><span data-ice="kind" class="kind-function">F</span><span data-ice="name"><span><a href="function/index.html#static-function-notNumberStrings">notNumberStrings</a></span></span></li>
 <li data-ice="doc"><span data-ice="kind" class="kind-function">F</span><span data-ice="name"><span><a href="function/index.html#static-function-numberStrings">numberStrings</a></span></span></li>
-<li data-ice="doc"><span data-ice="kind" class="kind-function">F</span><span data-ice="name"><span><a href="function/index.html#static-function-pascalToKebabCase">pascalToKebabCase</a></span></span></li>
+<li data-ice="doc"><span data-ice="kind" class="kind-function">F</span><span data-ice="name"><span><a href="function/index.html#static-function-pascalCaseTo">pascalCaseTo</a></span></span></li>
 <li data-ice="doc"><span data-ice="kind" class="kind-function">F</span><span data-ice="name"><span><a href="function/index.html#static-function-toCommaNum">toCommaNum</a></span></span></li>
 <li data-ice="doc"><span data-ice="kind" class="kind-function">F</span><span data-ice="name"><span><a href="function/index.html#static-function-toFirstLetterUpper">toFirstLetterUpper</a></span></span></li>
 <li data-ice="doc"><span data-ice="kind" class="kind-function">F</span><span data-ice="name"><span><a href="function/index.html#static-function-toHalfNum">toHalfNum</a></span></span></li>
+<li data-ice="doc"><span data-ice="kind" class="kind-function">F</span><span data-ice="name"><span><a href="function/index.html#static-function-toPascalCase">toPascalCase</a></span></span></li>
 <li data-ice="doc"><span data-ice="kind" class="kind-function">F</span><span data-ice="name"><span><a href="function/index.html#static-function-toZeroPadding">toZeroPadding</a></span></span></li>
 <li data-ice="doc"><span data-ice="kind" class="kind-function">F</span><span data-ice="name"><span><a href="function/index.html#static-function-ucfirst">ucfirst</a></span></span></li>
-<li data-ice="doc"><span data-ice="kind" class="kind-function">F</span><span data-ice="name"><span><a href="function/index.html#static-function-baseFromHeightHypotenuse">baseFromHeightHypotenuse</a></span></span></li>
-<li data-ice="doc"><span data-ice="kind" class="kind-function">F</span><span data-ice="name"><span><a href="function/index.html#static-function-baseFromHeightRadian">baseFromHeightRadian</a></span></span></li>
-<li data-ice="doc"><span data-ice="kind" class="kind-function">F</span><span data-ice="name"><span><a href="function/index.html#static-function-baseFromHypotenuseRadian">baseFromHypotenuseRadian</a></span></span></li>
-<li data-ice="doc"><span data-ice="kind" class="kind-function">F</span><span data-ice="name"><span><a href="function/index.html#static-function-heightFromBaseHypotenuse">heightFromBaseHypotenuse</a></span></span></li>
-<li data-ice="doc"><span data-ice="kind" class="kind-function">F</span><span data-ice="name"><span><a href="function/index.html#static-function-heightFromBaseRadian">heightFromBaseRadian</a></span></span></li>
-<li data-ice="doc"><span data-ice="kind" class="kind-function">F</span><span data-ice="name"><span><a href="function/index.html#static-function-heightFromHypotenuseRadian">heightFromHypotenuseRadian</a></span></span></li>
-<li data-ice="doc"><span data-ice="kind" class="kind-function">F</span><span data-ice="name"><span><a href="function/index.html#static-function-hypotenuseFromBaseHeight">hypotenuseFromBaseHeight</a></span></span></li>
-<li data-ice="doc"><span data-ice="kind" class="kind-function">F</span><span data-ice="name"><span><a href="function/index.html#static-function-hypotenuseFromBaseRadian">hypotenuseFromBaseRadian</a></span></span></li>
-<li data-ice="doc"><span data-ice="kind" class="kind-function">F</span><span data-ice="name"><span><a href="function/index.html#static-function-hypotenuseFromHeightRadian">hypotenuseFromHeightRadian</a></span></span></li>
-<li data-ice="doc"><span data-ice="kind" class="kind-function">F</span><span data-ice="name"><span><a href="function/index.html#static-function-radianFromBaseHeight">radianFromBaseHeight</a></span></span></li>
-<li data-ice="doc"><span data-ice="kind" class="kind-function">F</span><span data-ice="name"><span><a href="function/index.html#static-function-radianFromBaseHypotenuse">radianFromBaseHypotenuse</a></span></span></li>
-<li data-ice="doc"><span data-ice="kind" class="kind-function">F</span><span data-ice="name"><span><a href="function/index.html#static-function-radianFromHeightHypotenuse">radianFromHeightHypotenuse</a></span></span></li>
 <li data-ice="doc"><span data-ice="kind" class="kind-function">F</span><span data-ice="name"><span><a href="function/index.html#static-function-isMatchLocation">isMatchLocation</a></span></span></li>
 <li data-ice="doc"><span data-ice="kind" class="kind-function">F</span><span data-ice="name"><span><a href="function/index.html#static-function-parseUrl">parseUrl</a></span></span></li>
 <li data-ice="doc"><span data-ice="kind" class="kind-function">F</span><span data-ice="name"><span><a href="function/index.html#static-function-isEmKana">isEmKana</a></span></span></li>
@@ -108,10 +96,12 @@
 <li data-ice="doc"><span data-ice="kind" class="kind-function">F</span><span data-ice="name"><span><a href="function/index.html#static-function-isZipCode">isZipCode</a></span></span></li>
 <li data-ice="doc"><span data-ice="kind" class="kind-variable">V</span><span data-ice="name"><span><a href="variable/index.html#static-variable-easings">easings</a></span></span></li>
 <li data-ice="doc"><span data-ice="kind" class="kind-variable">V</span><span data-ice="name"><span><a href="variable/index.html#static-variable-easings">easings</a></span></span></li>
-<li data-ice="doc"><a data-ice="dirPath" class="nav-dir-path" href="identifiers.html#utils">utils</a><span data-ice="kind" class="kind-function">F</span><span data-ice="name"><span><a href="function/index.html#static-function-getBackgroundImages">getBackgroundImages</a></span></span></li>
+<li data-ice="doc"><a data-ice="dirPath" class="nav-dir-path" href="identifiers.html#utils">utils</a><span data-ice="kind" class="kind-function">F</span><span data-ice="name"><span><a href="function/index.html#static-function-dataAttribute">dataAttribute</a></span></span></li>
+<li data-ice="doc"><span data-ice="kind" class="kind-function">F</span><span data-ice="name"><span><a href="function/index.html#static-function-getBackgroundImages">getBackgroundImages</a></span></span></li>
 <li data-ice="doc"><span data-ice="kind" class="kind-function">F</span><span data-ice="name"><span><a href="function/index.html#static-function-debounce">debounce</a></span></span></li>
 <li data-ice="doc"><span data-ice="kind" class="kind-function">F</span><span data-ice="name"><span><a href="function/index.html#static-function-groupByDataElement">groupByDataElement</a></span></span></li>
 <li data-ice="doc"><span data-ice="kind" class="kind-function">F</span><span data-ice="name"><span><a href="function/index.html#static-function-includesElement">includesElement</a></span></span></li>
+<li data-ice="doc"><span data-ice="kind" class="kind-function">F</span><span data-ice="name"><span><a href="function/index.html#static-function-shownElement">shownElement</a></span></span></li>
 <li data-ice="doc"><span data-ice="kind" class="kind-function">F</span><span data-ice="name"><span><a href="function/index.html#static-function-createEvent">createEvent</a></span></span></li>
 <li data-ice="doc"><span data-ice="kind" class="kind-function">F</span><span data-ice="name"><span><a href="function/index.html#static-function-onDispatchEvent">onDispatchEvent</a></span></span></li>
 <li data-ice="doc"><span data-ice="kind" class="kind-function">F</span><span data-ice="name"><span><a href="function/index.html#static-function-loadFile">loadFile</a></span></span></li>
@@ -120,24 +110,32 @@
 <li data-ice="doc"><span data-ice="kind" class="kind-function">F</span><span data-ice="name"><span><a href="function/index.html#static-function-center">center</a></span></span></li>
 <li data-ice="doc"><span data-ice="kind" class="kind-function">F</span><span data-ice="name"><span><a href="function/index.html#static-function-rect">rect</a></span></span></li>
 <li data-ice="doc"><span data-ice="kind" class="kind-function">F</span><span data-ice="name"><span><a href="function/index.html#static-function-sleep">sleep</a></span></span></li>
+<li data-ice="doc"><span data-ice="kind" class="kind-function">F</span><span data-ice="name"><span><a href="function/index.html#static-function-splitElement">splitElement</a></span></span></li>
 <li data-ice="doc"><span data-ice="kind" class="kind-function">F</span><span data-ice="name"><span><a href="function/index.html#static-function-throttle">throttle</a></span></span></li>
+<li data-ice="doc"><span data-ice="kind" class="kind-function">F</span><span data-ice="name"><span><a href="function/index.html#static-function-waitTime">waitTime</a></span></span></li>
 <li data-ice="doc"><span data-ice="kind" class="kind-function">F</span><span data-ice="name"><span><a href="function/index.html#static-function-wait">wait</a></span></span></li>
 </ul>
 </div>
 </nav>
 
 <div class="content" data-ice="content"><h1 data-ice="title">src/views/inviewporter.js</h1>
-<pre class="source-code line-number raw-source-code"><code class="prettyprint linenums" data-ice="content">class Inviewporter {
+<pre class="source-code line-number raw-source-code"><code class="prettyprint linenums" data-ice="content">/**
+ * depends on &apos;vanix&apos; used in &apos;store&apos;
+ */
+
+import { store } from &apos;../store&apos;
+
+class Inviewporter {
   _selfClassName /* :string */ = &apos;&apos;
   _isInviewportClassName /* :string */ = &apos;&apos;
-  _$$el /* :HTMLCollection|NodeList */
-  _observer /* :IntersectionObserver */
+  _$$el /* :HTMLCollection|NodeList|null */ = null
+  _observer /* :IntersectionObserver|null */ = null
   _targets /* :Set */ = new Set()
 
   /**
    * @return {Object}
    */
-  static get _defOptions() {
+  static get _defaultOptions() {
     return {
       selfClassName: &apos;js-inviewporter&apos;,
       isInviewportClassName: &apos;is-inviewport&apos;
@@ -150,10 +148,10 @@
    * @param {string} [options.isLoadedClassName]
    */
   constructor(options = {}) {
-    const { selfClassName, isInviewportClassName } = Object.assign(
-      Inviewporter._defOptions,
-      options
-    )
+    const { selfClassName, isInviewportClassName } = {
+      ...Inviewporter._defaultOptions,
+      ...options
+    }
 
     this._selfClassName = selfClassName
     this._isInviewportClassName = isInviewportClassName
@@ -164,7 +162,7 @@
    */
   create() {
     this._$$el = document.getElementsByClassName(this._selfClassName)
-    this._observer = new IntersectionObserver(this._upate.bind(this))
+    this._observer = new IntersectionObserver(this._update.bind(this))
     return this
   }
 
@@ -182,7 +180,7 @@
    * @return {Instance}
    */
   on() {
-    for (const $el /* :Element */ of Array.from(this._$$el)) {
+    for (const $el of Array.from(this._$$el)) {
       this.add($el)
     }
     return this
@@ -192,7 +190,7 @@
    * @return {Instance}
    */
   off() {
-    this._targets.forEach(($el /* :Element */) =&gt; {
+    this._targets.forEach(($el) =&gt; {
       this.remove($el)
     })
     return this
@@ -221,16 +219,38 @@
   /**
    * @param {Array&lt;IntersectionObserverEntry&gt;} entries
    */
-  _upate(entries) {
-    for (const {
-      target /* :Element */,
-      isIntersecting /* :boolean */
-    } of entries) {
+  _update(entries) {
+    for (const { target, isIntersecting } of entries) {
       if (isIntersecting) {
         target.classList.add(this._isInviewportClassName)
+        this._mightAddClassHtml(target)
       } else {
         target.classList.remove(this._isInviewportClassName)
+        this._mightRemoveClassHtml(target)
       }
+    }
+  }
+
+  _mightAddClassHtml(target) {
+    const _id /* :string|null */ = target.dataset.inviewportId
+    if (_id) {
+      store.commit(&apos;setInviewports&apos;, [...store.state.inviewports, _id])
+      document.documentElement.classList.add(
+        `${this._isInviewportClassName}-${_id}`
+      )
+    }
+  }
+
+  _mightRemoveClassHtml(target) {
+    const _id /* :string|null */ = target.dataset.inviewportId
+    if (_id) {
+      store.commit(
+        &apos;setInviewports&apos;,
+        store.state.inviewports.filter((val) =&gt; val !== _id)
+      )
+      document.documentElement.classList.remove(
+        `${this._isInviewportClassName}-${_id}`
+      )
     }
   }
 }
