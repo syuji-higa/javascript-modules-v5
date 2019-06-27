@@ -36,7 +36,9 @@ export const onDispatchEvent = (options, event) => {
     const _obj /* :Object */ = {
       status: event
     }
-    if (detail) Object.assign(_obj, detail)
+    if (detail) {
+      Object.assign(_obj, detail)
+    }
     return _obj
   })()
 

@@ -21,10 +21,10 @@ class IgnitionLottieAnimator {
    * @property {string} [options.selfClassName]
    */
   constructor(options = {}) {
-    const { selfClassName } = Object.assign(
-      IgnitionLottieAnimator._defaultOptions,
-      options
-    )
+    const { selfClassName } = {
+      ...IgnitionLottieAnimator._defaultOptions,
+      ...options
+    }
 
     this._selfClassName = selfClassName
   }

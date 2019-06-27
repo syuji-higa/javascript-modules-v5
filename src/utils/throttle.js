@@ -5,10 +5,11 @@
  * @return {function(fn: function)}
  */
 export const throttle = (options = {}) => {
-  const { interval, isLastRun } = Object.assign(
-    { interval: 100, isLastRun: true },
-    options
-  )
+  const { interval, isLastRun } = {
+    interval: 100,
+    isLastRun: true,
+    ...options
+  }
 
   let _lastTime /* :number - int[0,inf) */ = new Date().getTime() - interval
   let _timer /* :number - int[0,inf) */ = 0

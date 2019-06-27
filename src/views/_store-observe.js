@@ -12,7 +12,7 @@ class StoreObserve {
   /**
    * @return {Object}
    */
-  static get _defOptions() {
+  static get _defaultOptions() {
     return {
       selfClassName: 'js-store-observe'
     }
@@ -23,7 +23,7 @@ class StoreObserve {
    * @param {string} [options.selfClassName]
    */
   constructor(options = {}) {
-    const { selfClassName } = Object.assign(StoreObserve._defOptions, options)
+    const { selfClassName } = { ...StoreObserve._defaultOptions, ...options }
 
     this._selfClassName = selfClassName
   }

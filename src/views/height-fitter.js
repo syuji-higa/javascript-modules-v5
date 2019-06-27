@@ -13,7 +13,7 @@ class HeightFitter {
   /**
    * @return {Object}
    */
-  static get _defOptions() {
+  static get _defaultOptions() {
     return {
       selfClassName: 'js-height-fitter'
     }
@@ -24,7 +24,7 @@ class HeightFitter {
    * @param {string} [options.selfClassName]
    */
   constructor(options = {}) {
-    const { selfClassName } = Object.assign(HeightFitter._defOptions, options)
+    const { selfClassName } = { ...HeightFitter._defaultOptions, ...options }
 
     this._selfClassName = selfClassName
     this._platformType = store.state.platform.type

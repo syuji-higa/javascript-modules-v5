@@ -38,12 +38,10 @@ class Menu {
    * @property {number[]} [options.chapter] - int[0,inf)
    */
   constructor(options = {}) {
-    const {
-      menuClassName,
-      icoClassName,
-      isOpenedClassName,
-      chapter
-    } = Object.assign(Menu._defaultOptions, options)
+    const { menuClassName, icoClassName, isOpenedClassName, chapter } = {
+      ...Menu._defaultOptions,
+      ...options
+    }
 
     this._menuClassName = menuClassName
     this._icoClassName = icoClassName

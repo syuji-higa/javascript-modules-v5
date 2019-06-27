@@ -13,7 +13,7 @@ class PageLoader {
   _isPageShownClassName /* :string */ = ''
   _showDuration /* :number */ = 0 // int[0,inf)
 
-  static get _defOptions() {
+  static get _defaultOptions() {
     return {
       isPageLoadedClassName: 'is-page-loaded',
       isPageShownClassName: 'is-page-shown',
@@ -28,11 +28,10 @@ class PageLoader {
    * @param {string} [options.showDuration]
    */
   constructor(options = {}) {
-    const {
-      isPageLoadedClassName,
-      isPageShownClassName,
-      showDuration
-    } = Object.assign(PageLoader._defOptions, options)
+    const { isPageLoadedClassName, isPageShownClassName, showDuration } = {
+      ...PageLoader._defaultOptions,
+      ...options
+    }
 
     this._isPageLoadedClassName = isPageLoadedClassName
     this._isPageShownClassName = isPageShownClassName

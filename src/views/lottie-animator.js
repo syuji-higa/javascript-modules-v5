@@ -25,10 +25,10 @@ class LottieAnimator {
    * @property {string} [options.selfClassName]
    */
   constructor(options = {}) {
-    const { selfClassName } = Object.assign(
-      LottieAnimator._defaultOptions,
-      options
-    )
+    const { selfClassName } = {
+      ...LottieAnimator._defaultOptions,
+      ...options
+    }
 
     this._selfClassName = selfClassName
   }

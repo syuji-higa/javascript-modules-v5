@@ -9,7 +9,7 @@ class ImagePreloader {
   /**
    * @return {Object}
    */
-  static get _defOptions() {
+  static get _defaultOptions() {
     return {
       images: [],
       needsElementLoad: false
@@ -24,10 +24,10 @@ class ImagePreloader {
    * @return {Promsie}
    */
   async add($el, options = {}) {
-    const { images, needsElementLoad } = Object.assign(
-      ImagePreloader._defOptions,
-      options
-    )
+    const { images, needsElementLoad } = {
+      ...ImagePreloader._defaultOptions,
+      ...options
+    }
 
     const _images /* :Set */ = new Set()
 

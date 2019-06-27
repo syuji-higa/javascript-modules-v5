@@ -32,13 +32,11 @@ export const includesElement = ($el, selector, isSlefTarget = true) => {
  * @return {Object}
  */
 export const groupByDataElement = (el, dataName, options = {}) => {
-  const { needsSingle, filter } = Object.assign(
-    {
-      needsSingle: false,
-      filter: null
-    },
-    options
-  )
+  const { needsSingle, filter } = {
+    needsSingle: false,
+    filter: null,
+    ...options
+  }
 
   const _$$el /* :HTMLCollection|NodeList */ = el.querySelectorAll(
     `[data-${dataName}]`

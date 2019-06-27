@@ -15,7 +15,7 @@ class ScrollAnimator {
   /**
    * @return {Object}
    */
-  static get _defOptions() {
+  static get _defaultOptions() {
     return {
       selfClassName: 'js-scroll-animator'
     }
@@ -26,7 +26,7 @@ class ScrollAnimator {
    * @param {string} [options.selfClassName]
    */
   constructor(options = {}) {
-    const { selfClassName } = Object.assign(ScrollAnimator._defOptions, options)
+    const { selfClassName } = { ...ScrollAnimator._defaultOptions, ...options }
 
     this._selfClassName = selfClassName
   }

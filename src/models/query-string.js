@@ -7,14 +7,12 @@
  * @return {Object}
  */
 export const parse = (str, options = {}) => {
-  const { sep, eq, typeChange } = Object.assign(
-    {
-      sep: '&',
-      eq: '=',
-      typeChange: true
-    },
-    options
-  )
+  const { sep, eq, typeChange } = {
+    sep: '&',
+    eq: '=',
+    typeChange: true,
+    ...options
+  }
   if (!str || typeof str !== 'string') {
     return {}
   }
@@ -49,7 +47,7 @@ export const parse = (str, options = {}) => {
  * @return {string}
  */
 export const serialize = (data, options = {}) => {
-  const { sep, eq } = Object.assign({ sep: '&', eq: '=' }, options)
+  const { sep, eq } = { sep: '&', eq: '=', ...options }
   const _encode /* :function */ = encodeURIComponent
   let _query /* :string */ = ''
 

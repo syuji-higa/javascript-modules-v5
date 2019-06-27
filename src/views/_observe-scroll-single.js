@@ -11,7 +11,7 @@ class ObserveScrollSingle {
   /**
    * @return {Object}
    */
-  static get _defOptions() {
+  static get _defaultOptions() {
     return {
       selfClassName: 'js-class-name'
     }
@@ -22,10 +22,10 @@ class ObserveScrollSingle {
    * @param {string} [options.selfClassName]
    */
   constructor(options = {}) {
-    const { selfClassName } = Object.assign(
-      ObserveScrollSingle._defOptions,
-      options
-    )
+    const { selfClassName } = {
+      ...ObserveScrollSingle._defaultOptions,
+      ...options
+    }
 
     this._selfClassName = selfClassName
   }

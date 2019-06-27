@@ -27,7 +27,7 @@ class Anchor {
    * @param {Object} [options]
    */
   constructor(options = {}) {
-    const { duration, easing } = Object.assign(Anchor._defaultOptions, options)
+    const { duration, easing } = { ...Anchor._defaultOptions, ...options }
 
     this._duration = duration
     this._easing = easing

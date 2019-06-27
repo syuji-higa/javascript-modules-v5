@@ -15,7 +15,7 @@ class Canvas {
   /**
    * @return {Object}
    */
-  static get _defOptions() {
+  static get _defaultOptions() {
     return {
       selfClassName: 'js-grid'
     }
@@ -26,7 +26,7 @@ class Canvas {
    * @param {string} [options.selfClassName]
    */
   constructor(options = {}) {
-    const { selfClassName } = Object.assign(Canvas._defOptions, options)
+    const { selfClassName } = { ...Canvas._defaultOptions, ...options }
 
     this._selfClassName = selfClassName
     this._dpr = devicePixelRatio || 1

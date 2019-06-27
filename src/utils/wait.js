@@ -39,10 +39,11 @@ const check /* :function */ = (
  * @return {Promise}
  */
 export const wait = (interval, observe, options = {}) => {
-  let { timeout, returnValFn } = Object.assign(
-    { timeout: 30000, returnValFn: null },
-    options
-  )
+  let { timeout, returnValFn } = {
+    timeout: 30000,
+    returnValFn: null,
+    ...options
+  }
 
   let _timer /* :number - [0,inf) */ = 0
   const _startTime /* :number - [0,inf) */ = new Date().getTime()

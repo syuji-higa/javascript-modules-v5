@@ -28,10 +28,10 @@ class Lottie {
    * @property {string} [options.selfClassName]
    */
   constructor(options = {}) {
-    const { selfClassName, baseDir } = Object.assign(
-      Lottie._defaultOptions,
-      options
-    )
+    const { selfClassName, baseDir } = {
+      ...Lottie._defaultOptions,
+      ...options
+    }
 
     this._selfClassName = selfClassName
     this._baseDir = baseDir

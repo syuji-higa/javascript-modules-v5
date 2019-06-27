@@ -9,7 +9,7 @@
  * @return {DocumentFragment}
  */
 export const splitElement = (htmlStr, options = {}) => {
-  const _defOpts = {
+  const _defaultOptions = {
     wrapTag: 'span',
     className: '',
     attributes: {},
@@ -17,11 +17,10 @@ export const splitElement = (htmlStr, options = {}) => {
     nest: 1
   }
 
-  const { wrapTag, className, attributes, type, nest } = Object.assign(
-    {},
-    _defOpts,
-    options
-  )
+  const { wrapTag, className, attributes, type, nest } = {
+    ..._defaultOptions,
+    ...options
+  }
 
   const _$tmp /* :Element */ = document.createElement('div')
   const _reg /* :RegExp */ = /<[^>]+>/g

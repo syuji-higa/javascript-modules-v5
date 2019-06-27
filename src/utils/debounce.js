@@ -5,10 +5,11 @@
  * @return {function}
  */
 export const debounce = (options = {}) => {
-  const { interval, isFirstRun } = Object.assign(
-    { interval: 100, isFirstRun: false },
-    options
-  )
+  const { interval, isFirstRun } = {
+    interval: 100,
+    isFirstRun: false,
+    ...options
+  }
   let _timer /* :number - int[0,inf) */ = 0
   let _firstRun /* :boolean */ = true
 

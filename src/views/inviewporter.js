@@ -14,7 +14,7 @@ class Inviewporter {
   /**
    * @return {Object}
    */
-  static get _defOptions() {
+  static get _defaultOptions() {
     return {
       selfClassName: 'js-inviewporter',
       isInviewportClassName: 'is-inviewport'
@@ -27,10 +27,10 @@ class Inviewporter {
    * @param {string} [options.isLoadedClassName]
    */
   constructor(options = {}) {
-    const { selfClassName, isInviewportClassName } = Object.assign(
-      Inviewporter._defOptions,
-      options
-    )
+    const { selfClassName, isInviewportClassName } = {
+      ...Inviewporter._defaultOptions,
+      ...options
+    }
 
     this._selfClassName = selfClassName
     this._isInviewportClassName = isInviewportClassName

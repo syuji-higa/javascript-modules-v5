@@ -8,7 +8,7 @@ class Ignitioner {
   /**
    * @return {Object}
    */
-  static get _defOptions() {
+  static get _defaultOptions() {
     return {
       selfClassName: 'js-ignitioner',
       isIgnitedClassName: 'is-ignited'
@@ -21,10 +21,10 @@ class Ignitioner {
    * @param {string} [options.isLoadedClassName]
    */
   constructor(options = {}) {
-    const { selfClassName, isIgnitedClassName } = Object.assign(
-      Ignitioner._defOptions,
-      options
-    )
+    const { selfClassName, isIgnitedClassName } = {
+      ...Ignitioner._defaultOptions,
+      ...options
+    }
 
     this._selfClassName = selfClassName
     this._isIgnitedClassName = isIgnitedClassName

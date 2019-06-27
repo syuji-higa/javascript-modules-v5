@@ -9,7 +9,7 @@ class CharSplitter {
   /**
    * @return {Object}
    */
-  static get _defOptions() {
+  static get _defaultOptions() {
     return {
       selfClassName: 'js-char-splitter',
       isSplitedClassName: 'is-char-splited'
@@ -22,10 +22,10 @@ class CharSplitter {
    * @param {string} [options.isSplitedClassName]
    */
   constructor(options = {}) {
-    const { selfClassName, isSplitedClassName } = Object.assign(
-      CharSplitter._defOptions,
-      options
-    )
+    const { selfClassName, isSplitedClassName } = {
+      ...CharSplitter._defaultOptions,
+      ...options
+    }
 
     this._selfClassName = selfClassName
     this._isSplitedClassName = isSplitedClassName
