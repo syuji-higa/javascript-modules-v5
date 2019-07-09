@@ -1,5 +1,6 @@
-import { loadImage } from '../utils/load'
 import { getBackgroundImages } from '../utils/background-image'
+import { loadImage } from '../utils/load'
+import { replaceImageSource } from '../utils/source'
 
 class Lazyloader {
   _selfClassName /* :string */ = ''
@@ -108,66 +109,28 @@ class Lazyloader {
     for (const { target, isIntersecting } of entries) {
       if (isIntersecting) {
         target.classList.add(this._isImageSettedClassName)
-        const _srcList /* :string[] */ = this._getSrcList(target)
         this.remove(target)
 
-        loadList.push(() => {
-          return (async () => {
-            await Promise.all(_srcList.map((src) => loadImage(src)))
+        loadList.push(
+          new Promise(async (resolve) => {
+            // img or picture
+            const _isSuccess /* :boolean */ = await replaceImageSource(target)
+
+            // background image
+            if (!_isSuccess) {
+              const _bgImages /* :string[] */ = getBackgroundImages(target)
+              await Promise.all(_bgImages.map((src) => loadImage(src)))
+            }
+
             target.classList.add(this._isLoadedClassName)
-          })()
-        })
+
+            resolve()
+          })
+        )
       }
     }
 
     await Promise.all(loadList.map((load) => load()))
-  }
-
-  /**
-   * @param {Element} $el
-   * @return {string[]}
-   */
-  _getSrcList($el) {
-    // img
-    if ('src' in $el) {
-      const _src /* :string */ = $el.dataset.src
-      $el.src = _src
-      return [_src]
-    }
-    // source
-    else if ($el.tagName.toLowerCase() === 'picture') {
-      const _sources = []
-      for (const $child of Array.from($el.children)) {
-        const _tagName /* :string */ = $child.tagName.toLowerCase()
-        let _src /* :string */ = ''
-        switch (_tagName) {
-          case 'source': {
-            _src = $child.dataset.src
-            $child.srcset = _src
-            break
-          }
-          case 'img': {
-            _src = $child.dataset.src
-            $child.src = _src
-            break
-          }
-          default: {
-            break
-          }
-        }
-        _sources.push(_src)
-      }
-      return _sources
-    }
-
-    // background-image
-    const _bgImages /* string[] */ = getBackgroundImages($el)
-
-    if (_bgImages.length) {
-      return _bgImages
-    }
-
-    return []
   }
 }
 
