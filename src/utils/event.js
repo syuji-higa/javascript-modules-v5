@@ -20,18 +20,15 @@ export const createEvent = (target, eventType, listener, option = false) => {
 }
 
 /**
- * @param {Array} options
- * @param {Element} options[0] - dispatc target
- * @param {string} options[1] - eventType
- * @param {Object} [options[2]] - event detail
- * @param {Event} event
+ * @param {Element} target
+ * @param {string}eventType
+ * @param {Evnt} event
+ * @param {Object} detail
  *
  * @example
- *   onDispatchEvent.bind(this, [window, 'resize'], e);
+ *   onDispatchEvent.bind(this, window, 'resize', e);
  */
-export const onDispatchEvent = (options, event) => {
-  const [target, eventType, detail] = options
-
+export const onDispatchEvent = (target, eventType, event, detail = {}) => {
   const _detail /* :Object */ = (() => {
     const _obj /* :Object */ = {
       status: event
